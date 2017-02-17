@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>产品类型</item>
+        <item>产品类型</item>
+        <item>产品类型</item>
+        <item>产品类型</item>
+        <item>产品类型</item>
+        <item>产品类型</item>
+    </string-array>
+    <string-array name="customer">
+        <item>张三</item>
+        <item>李四</item>
+        <item>赵武</item>
+        <item>牛顿</item>
+        <item>刘德华</item>
+        <item>成龙</item>
+    </string-array>
+    <string-array name="proCategory">
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+    </string-array>
+    <string-array name="category2">
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+    </string-array>
+    <string-array name="category3">
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+    </string-array>
+    <string-array name="category4">
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+    </string-array>
+    <string-array name="category5">
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+    </string-array>
+    <string-array name="category6">
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+        <item>本公司产品种类</item>
+    </string-array>
+    <string-array name="city">
+        <item>北京</item>
+        <item>上海</item>
+        <item>苏州</item>
+        <item>杭州</item>
+        <item>天津</item>
+    </string-array>
+<string-array name="priority">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+
+</string-array>
+    <string-array name="product">
+        <item>产品</item>
+        <item>手机</item>
+        <item>电脑</item>
+        <item>笔记本</item>
+        <item>火箭</item>
+        <item>坦克</item>
+    </string-array>
+    <string-array name="supplier">
+        <item>供应商</item>
+        <item>空行互联</item>
+        <item>供应商</item>
+        <item>供应商</item>
+        <item>供应商</item>
+    </string-array>
+</resources>

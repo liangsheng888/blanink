@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:padding="5dp">
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_alignParentLeft="true"
+         android:text="  空行互联有限公司"
+         android:layout_centerVertical="true"
+         android:layout_marginLeft="10dp"
+         android:gravity="center_vertical"
+         android:drawableLeft="@drawable/company"/>
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:drawableRight="@drawable/next_black"
+            android:text="1月10日"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_pro_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="产品类"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/colorTheme"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_pro_category"
+            android:layout_marginLeft="20dp"
+            android:text="规格名称"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+</LinearLayout>

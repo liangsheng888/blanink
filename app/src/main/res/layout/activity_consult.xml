@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_consult"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.blanink.activity.ConsultActivity">
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/rl_consult"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="咨询"
+            android:id="@+id/tv_last"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/come_order_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <!--展示消息内容-->
+    <com.blanink.view.NoScrollListview
+        android:id="@+id/lv_message"
+        android:layout_below="@id/rl_consult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.blanink.view.NoScrollListview>
+    <RelativeLayout
+        android:id="@+id/ec_layout_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/ec_btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#fff"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/corners_bg_blue"
+            android:text="发送"/>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginLeft="5dp"
+           android:background="@drawable/corners_bg_white"
+           android:layout_toLeftOf="@id/ec_btn_send">
+           <EditText
+               android:id="@+id/ec_edit_message_input"
+               android:layout_width="match_parent"
+               android:layout_height="45dp"
+               android:layout_margin="1dp"
+               android:background="#fff"
+               android:singleLine="true"
+               android:layout_alignParentLeft="true"
+               />
+       </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>
+

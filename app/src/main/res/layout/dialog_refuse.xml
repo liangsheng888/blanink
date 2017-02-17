@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_last_family_manage_customer_delete_relation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.RefuseReason">
+    <RelativeLayout
+        android:id="@+id/last_family_manage_customer_delete_relation_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:id="@+id/customer_delete_relation_tv_seek"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="拒绝"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+        />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/customer_delete_relation_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:layout_below="@+id/last_family_manage_customer_delete_relation_rl">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBackGround">
+
+            <EditText
+                android:id="@+id/et_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="6"
+                android:textSize="16sp"
+                android:gravity="top"
+                android:background="#fff"
+                android:layout_margin="5dp"
+                android:hint="拒绝原因"/>
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/corners_bg_yellow"
+            android:text="发送"
+            android:layout_margin="15dp"
+            android:textColor="#fff"
+           />
+    </LinearLayout>
+</RelativeLayout>

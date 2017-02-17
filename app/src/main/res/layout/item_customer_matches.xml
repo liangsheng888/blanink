@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:padding="10dp"
+        >
+        <TextView
+            android:id="@+id/tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="空行互联公司"
+            android:textSize="16sp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorTheme"
+            />
+        <TextView
+            android:id="@+id/tv_company_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="江苏 苏州"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorTheme"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#fff">
+        <TextView
+            android:id="@+id/major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:text="主营:"/>
+        <TextView
+            android:id="@+id/tv_major"
+            android:layout_toRightOf="@id/major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="汽车轮胎、汽车玻璃"/>
+
+    </RelativeLayout>
+</LinearLayout>

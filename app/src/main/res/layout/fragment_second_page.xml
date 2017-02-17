@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/fragment_task_content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/framgent_task_rl_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#fff"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/zb"
+                android:gravity="center_horizontal"
+                android:text="排优先级" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/tb"
+                android:gravity="center_horizontal"
+                android:text="评价"
+                android:id="@+id/textView3" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tv_fr_come_order"
+                android:drawableTop="@drawable/ld"
+                android:gravity="center_horizontal"
+                android:text="发布信息" />
+
+            <TextView
+                android:id="@+id/tv_fr_go_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/qd"
+                android:gravity="center_horizontal"
+                android:text="找项目" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tv_fr_task_response"
+                android:drawableTop="@drawable/gzfk"
+                android:gravity="center_horizontal"
+                android:text="投资申请" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/framgent_task_rl_ll2"
+            android:layout_below="@id/framgent_task_rl_ll"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/zb"
+                android:gravity="center_horizontal"
+                android:text="上家管理" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/tb"
+                android:gravity="center_horizontal"
+                android:text="下家管理" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ld"
+                android:gravity="center_horizontal"
+                android:text="发布信息" />
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/qd"
+                android:gravity="center_horizontal"
+                android:text="找项目" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/gzfk"
+                android:gravity="center_horizontal"
+                android:text="投资申请" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

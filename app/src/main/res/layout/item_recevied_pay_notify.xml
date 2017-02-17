@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:padding="5dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp">
+            <TextView
+                android:id="@+id/pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还款金额:"/>
+            <TextView
+                android:id="@+id/tv_pay_money"
+                android:layout_toRightOf="@id/pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5000"
+                android:textColor="@color/colorRed"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/pay_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还款提醒:"/>
+            <TextView
+                android:id="@+id/tv_pay_notify"
+                android:layout_toRightOf="@id/pay_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4/12"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorRed"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next_black"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginTop="1dp"
+        android:background="#fff">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTheme"
+            android:layout_marginLeft="15dp"
+            android:text="空行互联"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3/21"
+                android:textColor="@color/colorTheme"/>
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_toRightOf="@id/tv"
+                android:layout_marginLeft="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTheme"
+                android:text="5000万"/>
+
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="待确认"
+            android:layout_marginLeft="15dp"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="#fff">
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="备注:"/>
+        <TextView
+            android:id="@+id/tv_note_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_note"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+    </RelativeLayout>
+
+</LinearLayout>

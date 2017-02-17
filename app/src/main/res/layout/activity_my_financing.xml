@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my_financing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.blanink.activity.MyFinancing">
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/rl_financingApply"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我发布的融资"
+            android:id="@+id/tv_last"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/financingApply_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+          <ImageView
+              android:id="@+id/iv_financing"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:layout_marginRight="15dp"
+              android:src="@mipmap/add_white"/>
+    </RelativeLayout>
+    <com.blanink.view.RefreshListView
+        android:id="@+id/lv_financying"
+        android:layout_below="@id/rl_financingApply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.blanink.view.RefreshListView>
+</RelativeLayout>

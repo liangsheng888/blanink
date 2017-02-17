@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tender_reply_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.TenderBidQueue">
+
+    <RelativeLayout
+        android:id="@+id/bid_detail_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="招标信息"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/bid_detail_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_my_bid_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/bid_detail_rl"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:text="采购MacBookPro"
+                android:textColor="@color/colorTheme" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/bids_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Bids:"
+                    android:textColor="@color/colorTheme" />
+
+                <TextView
+                    android:id="@+id/tv_bids_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/bids_num"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/colorTheme"
+
+                    android:text="4" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/bid_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorTheme"
+                    android:text="有效期:" />
+
+                <TextView
+                    android:id="@+id/tv_bid_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/bid_date"
+                    android:singleLine="true"
+                    android:layout_marginLeft="5dp"
+                    android:text="2012-6-10"
+                    android:textColor="@color/colorTheme" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_unit_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="单价:"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/tv_single_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_unit_price"
+                    android:text="300" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_single_cost"
+                    android:text="元/个" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/purchase_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="采购数量:"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/tv_purchase_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/purchase_num"
+                    android:text="500" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_first_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="预付定金:"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/tv_first_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/tv_first_price"
+                    android:text="30%" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="总价:"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/intro"
+                    android:text="50000" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/tv_note_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:text="详情:"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/tv_note_detail_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_note_detail"
+                android:ellipsize="end"
+                android:gravity="top"
+                android:maxLines="6"
+                android:text="本公司采购mac book pro 500台，要去质量过硬，速度快，效率高" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/tv_attachment2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:text="附件:"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_attachment2"
+                android:drawableLeft="@drawable/license"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="营业执照" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/publish_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:text="发布时间:"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/tv_publish_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/publish_time"
+                android:layout_marginLeft="5dp"
+                android:text="2012-5-10" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="15dp"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_selector"
+                android:text="编辑"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/my_publish_tender"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ll_my_bid_detail"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:background="#8e8686">
+
+        </View>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="投标公司列表"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#8e8686"
+            android:layout_marginRight="10dp"></View>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_publish_tender_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_publish_tender"
+        android:background="#fff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:drawableRight="@drawable/sj"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="筛选"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/next_black"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="更多" />
+
+    </RelativeLayout>
+     <com.blanink.view.NoScrollListview
+         android:id="@+id/lv_tender"
+         android:background="#fff"
+         android:layout_marginTop="1dp"
+         android:layout_below="@id/my_publish_tender_rl"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:listSelector="#11FB731F"
+         android:drawSelectorOnTop="true">
+     </com.blanink.view.NoScrollListview>
+
+</RelativeLayout>

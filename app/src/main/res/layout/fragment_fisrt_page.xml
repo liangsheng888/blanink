@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/fragment_task_content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/framgent_task_rl_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:background="#fff"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_fr_tender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/zb"
+                android:gravity="center_horizontal"
+                android:text="招标" />
+
+            <TextView
+                android:id="@+id/tv_fr_bid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/tb"
+                android:gravity="center_horizontal"
+                android:text="投标" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tv_fr_come_order"
+                android:drawableTop="@drawable/ld"
+                android:gravity="center_horizontal"
+                android:text="来单" />
+
+            <TextView
+                android:id="@+id/tv_fr_go_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/qd"
+                android:gravity="center_horizontal"
+                android:text="去单" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tv_fr_task_response"
+                android:drawableTop="@drawable/gzfk"
+                android:gravity="center_horizontal"
+                android:text="工作反馈" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/framgent_task_rl_ll2"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_last_manage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:drawableTop="@drawable/hzgl"
+                android:text="上家管理" />
+
+            <TextView
+                android:id="@+id/tv_next_manage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/hzgl"
+                android:gravity="center_horizontal"
+                android:text="下家管理" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/plc"
+                android:gravity="center_horizontal"
+                android:text="排流程" />
+
+            <TextView
+                android:id="@+id/tv_after_sale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/sh"
+                android:gravity="center_horizontal"
+                android:text="售后" />
+
+            <TextView
+                android:id="@+id/tv_financying"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/rz"
+                android:gravity="center_horizontal"
+                android:text="融资" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

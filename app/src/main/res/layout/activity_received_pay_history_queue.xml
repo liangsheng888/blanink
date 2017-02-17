@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/activity_bank_pay_history_queue_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="还款历史"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/activity_bank_pay_history_queue_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:id="@+id/rl_sort"
+        android:padding="10dp"
+        android:layout_below="@id/activity_bank_pay_history_queue_rl">
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="筛选"
+            android:layout_marginLeft="10dp"
+            android:drawableRight="@drawable/sj"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排序"
+            android:layout_centerInParent="true"
+            android:drawableRight="@drawable/sj"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+    <com.blanink.view.RefreshListView
+        android:id="@+id/rv_activity_bank_pay_history_queue"
+        android:layout_below="@id/rl_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+    </com.blanink.view.RefreshListView>
+</RelativeLayout>

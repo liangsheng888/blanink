@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
+
+    <LinearLayout
+        android:id="@+id/framgent_task_seek_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_columnWeight="4"
+        android:background="@color/colorTheme"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="3"
+            android:paddingBottom="2dp"
+            android:paddingLeft="@dimen/padding_search_bar"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+
+            <EditText
+                android:id="@+id/framgent_task_edt_query"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/seabar_input"
+                android:drawableLeft="@drawable/search_bar_icon_normal"
+                android:hint="请输入你需要的信息"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+            <!--  android:visibility="invisible" -->
+            <ImageButton
+                android:id="@+id/framgent_task_search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:src="@drawable/ease_search_clear" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/framgent_task_tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:text="搜索"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <com.blanink.view.MyViewPager
+        android:id="@+id/framgment_task_vp_advertise"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@id/framgent_task_seek_ll"
+        android:gravity="center_horizontal"
+        android:background="#fff">
+    </com.blanink.view.MyViewPager>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fra_task_viewPager"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="160dp"
+        android:layout_marginTop="2dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@id/framgment_task_vp_advertise">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/ll_viewpager_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/fra_task_viewPager"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    >
+
+    <LinearLayout
+        android:id="@+id/framgent_seek_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_columnWeight="4"
+        android:background="@color/colorTheme"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="3"
+            android:paddingBottom="2dp"
+            android:paddingLeft="@dimen/padding_search_bar"
+            android:paddingRight="10dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="2dp">
+
+            <EditText
+                android:id="@+id/edt_query"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/seabar_input"
+                android:drawableLeft="@drawable/search_bar_icon_normal"
+                android:hint="请输入你需要的信息"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+            <!--  android:visibility="invisible" -->
+            <ImageButton
+                android:id="@+id/search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:src="@drawable/ease_search_clear" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:text="搜索"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+   <!-- <com.jude.rollviewpager.RollPagerView
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="140dp"
+        android:layout_below="@id/framgent_seek_ll">
+
+    </com.jude.rollviewpager.RollPagerView>-->
+    <!--<android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="140dp"
+        android:layout_below="@id/framgent_seek_ll">
+
+    </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:id="@+id/ll_viewpager_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:layout_alignBottom="@id/viewPager"
+        android:orientation="horizontal">
+
+    </LinearLayout>-->
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/myViewPager"
+        android:background="#e0d3d3">
+
+    </View>
+
+    <LinearLayout
+        android:id="@+id/framgent_seek_ll_order"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:background="#fff"
+        android:layout_below="@id/view"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/framgent_seek_rl_findOrder"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+            <ImageView
+                android:id="@+id/iv_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/order_64"
+                />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:text="浏览订单"
+                android:layout_toRightOf="@id/iv_order"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_order"
+                android:layout_below="@id/tv_order"
+                android:layout_marginLeft="10dp"
+                android:text="查看所有订单"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:background="@color/colorBackGround"
+            ></View>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/framgent_seek_rl_superSeek"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_seek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/yan"
+                />
+            <TextView
+                android:id="@+id/tv_seek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:text="高级查询"
+                android:layout_toRightOf="@id/iv_seek"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_seek"
+                android:layout_below="@id/tv_seek"
+                android:layout_marginLeft="10dp"
+                android:text="搜索所有信息"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/framgent_seek_ll_order"
+        android:background="@color/colorBackGround">
+
+    </View>
+    <LinearLayout
+        android:id="@+id/ll_customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view2"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/framgent_seek_rl_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <RelativeLayout
+                android:id="@+id/framgent_seek_rl_customer2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#fff"
+                android:layout_alignParentTop="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="  客户"
+                    android:gravity="center"
+                    android:drawableLeft="@drawable/kehu"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="更多"
+                    android:drawableRight="@drawable/more_red"
+                    android:gravity="center_vertical"
+                    android:textColor="#f00" />
+
+            </RelativeLayout>
+
+            <com.blanink.view.NoScrollGridview
+                android:id="@+id/framgent_seek_gv_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#fff"
+                android:numColumns="2">
+            </com.blanink.view.NoScrollGridview>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_customer_null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#fff">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="你的客户空空的!"
+                android:drawableLeft="@mipmap/customer_null"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:textSize="14sp"
+                 android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/ll_customer"
+        android:background="@color/colorBackGround"></View>
+
+    <RelativeLayout
+        android:id="@+id/framgent_seek_rl_zeren"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_below="@id/view4">
+        <TextView
+            android:id="@+id/framgent_seek_rl_order_tv_zeren"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:drawableLeft="@drawable/zr"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:text="  责任人">
+
+        </TextView>
+        <View
+            android:id="@+id/view_"
+            android:layout_below="@id/framgent_seek_rl_order_tv_zeren"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#edecec">
+        </View>
+        <RelativeLayout
+            android:id="@+id/framgent_seek_ll_seek"
+            android:layout_below="@id/view_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center">
+            <RelativeLayout
+                android:id="@+id/rl2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorBackGround"
+                android:layout_alignParentTop="true">
+                <EditText
+                    android:id="@+id/edt_zr"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:layout_margin="1dp"
+                    android:hint="请输入责任人"
+                    android:textSize="16sp"
+                    android:background="#fff"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/rl2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/framgent_seek_ll_order_seek"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_yellow"
+                    android:textColor="#fff"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="搜索"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/framgent_seek_rl_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        android:layout_below="@id/framgent_seek_rl_zeren">
+        <TextView
+            android:id="@+id/framgent_seek_rl_order_tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:drawableLeft="@drawable/order_yellow"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:text="  订单号">
+
+        </TextView>
+        <View
+            android:id="@+id/view5"
+            android:layout_below="@id/framgent_seek_rl_order_tv_order"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#edecec">
+        </View>
+        <RelativeLayout
+            android:id="@+id/framgent_seek_ll_order_jiayi"
+            android:layout_below="@id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center">
+                <RelativeLayout
+                    android:id="@+id/rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorBackGround"
+                    android:layout_alignParentTop="true">
+                <EditText
+                    android:id="@+id/framgent_seek_ll_order_edt_input"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:inputType="number"
+                   android:layout_margin="1dp"
+                    android:hint="请输入订单号"
+                    android:textSize="16sp"
+                    android:background="#fff"
+                    android:layout_height="match_parent" />
+                </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/rl"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/framgent_seek_ll_order_jia"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_yellow"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:layout_margin="10dp"
+                    android:text="甲方订单"/>
+                <TextView
+                    android:id="@+id/framgent_seek_ll_order_yi"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_red"
+                    android:textColor="#fff"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="乙方订单"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/framgent_seek_rl_order"
+        android:background="@color/colorBackGround"></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:id="@+id/framgent_seek_rl_rulerName"
+        android:layout_below="@id/view6">
+        <TextView
+            android:id="@+id/tv_ruler"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/gui"
+            android:layout_marginLeft="10dp"
+            android:text="  规格名称"/>
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/tv_ruler"
+            android:background="#edecec"></View>
+        <LinearLayout
+            android:id="@+id/framgent_seek_rl_ruler"
+            android:layout_below="@id/view7"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorBackGround"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="40dp">
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:popupBackground="#fff"
+                android:background="#fff"
+                android:entries="@array/category"
+                android:id="@+id/framgent_seek_spinner_category">
+            </Spinner></RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="#fff">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/colorBackGround">
+                <EditText
+                    android:id="@+id/framgent_seek_rl_seek"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/biankang_bg"
+                    android:singleLine="true"
+                    android:hint="请输入关键词"
+                    android:textSize="16sp"
+                    android:layout_margin="1dp"
+                    android:layout_height="match_parent" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/rl_tv_seek"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="搜索"
+                android:background="@drawable/corners_bg_yellow"
+                />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="5dp"
+        android:id="@+id/view8"
+        android:layout_width="match_parent"
+        android:layout_below="@id/framgent_seek_rl_rulerName"
+        android:background="@color/colorBackGround"
+        android:layout_height="5dp">
+
+    </View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_below="@id/view8">
+        <TextView
+            android:layout_alignParentTop="true"
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:text="  时间"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/time"
+            android:textSize="16sp"/>
+        <View
+            android:id="@+id/view9"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/tv_time"
+            android:background="@color/colorBackGround"></View>
+        <LinearLayout
+            android:layout_below="@id/view9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+           <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/framgent_seek_ll_time_start"
+                android:gravity="center"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:text="开始时间:"/>
+                <TextView
+
+                    android:id="@+id/time"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:background="#fff"
+                    android:layout_weight="8"
+                    android:text="2012-6-10 12:00:00"/>
+                <ImageView
+                    android:id="@+id/iv_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="#fec525"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/rili"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/framgent_seek_ll_time_end"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="结束时间:"/>
+                <TextView
+                    android:id="@+id/time_end"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:background="#fff"
+                    android:gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:text="2012-6-10 12:00:00"/>
+                <ImageView
+                    android:id="@+id/iv_time_end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="#fec525"
+                    android:src="@drawable/rili"/>
+
+
+            </LinearLayout>-->
+            <LinearLayout
+                android:id="@+id/framgent_seek_ll_time_start"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:text="开始时间:"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="10"
+                    android:background="@color/colorBackGround"
+                    android:layout_height="30dp">
+                    <EditText
+                        android:id="@+id/framgent_seek_ll_tvStartTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:singleLine="true"
+                        android:background="#fff"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_date_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/rili"
+                    android:layout_weight="2"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/framgent_seek_ll_time_end"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:text="结束时间:"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="10"
+                    android:background="@color/colorBackGround"
+                    android:layout_height="30dp">
+                    <EditText
+                        android:id="@+id/framgent_seek_ll_tvEndTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:singleLine="true"
+                        android:background="#fff"/>
+
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_date_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:drawableLeft="@drawable/rili"
+                    android:layout_weight="2"/>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/rl_tv_find"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="查询"
+                android:background="@drawable/corners_bg_yellow"
+                />
+
+
+        </LinearLayout>
+
+        
+        
+    </RelativeLayout>
+
+    <com.blanink.view.MyViewPager
+        android:id="@+id/myViewPager"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="140dp"
+        android:layout_below="@+id/framgent_seek_ll"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </com.blanink.view.MyViewPager>
+
+
+</RelativeLayout>
+    </ScrollView>
+

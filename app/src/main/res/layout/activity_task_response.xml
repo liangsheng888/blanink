@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.TaskResponseDetailActivity">
+    <RelativeLayout
+        android:id="@+id/task_response_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="任务反馈"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/task_response_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"
+        android:text="  工序1"
+        android:drawableLeft="@drawable/shunxu"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_below="@id/task_response_rl"
+        android:id="@+id/task_response_tv_gongxu"/>
+    <RelativeLayout
+        android:id="@+id/task_response_rl_gongXuInfo"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:gravity="center"
+        android:layout_height="80dp"
+        android:layout_below="@+id/task_response_tv_gongxu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工序详情"/>
+
+
+    </RelativeLayout>
+    <com.blanink.view.NoScrollListview
+        android:layout_marginTop="5dp"
+        android:id="@+id/lv_task_response_info"
+        android:background="#fff"
+        android:layout_below="@id/task_response_rl_gongXuInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.blanink.view.NoScrollListview>
+  <LinearLayout
+      android:layout_marginTop="1dp"
+      android:layout_below="@id/lv_task_response_info"
+      android:id="@+id/task_response_ll"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"
+      android:background="#fff"
+      android:padding="10dp"
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="责任人:"
+          android:textColor="#000"
+          android:textSize="16sp"
+          />
+      <Spinner
+          android:layout_marginLeft="10dp"
+          android:id="@+id/task_response_sp_person"
+          android:entries="@array/customer"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+      </Spinner>
+
+  </LinearLayout>
+    <LinearLayout
+        android:id="@+id/task_response_ll2"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#fff"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_below="@+id/task_response_ll"
+        android:layout_alignParentLeft="true"
+
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="完成:"
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000"
+            />
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:background="@color/colorBackGround">
+            <EditText
+                android:id="@+id/task_response_et_finish_num"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:background="#fff"
+                android:ems="5"
+                android:layout_height="35dp"
+                android:layout_margin="1dp">
+
+            </EditText>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个"
+            android:textSize="16sp"
+            android:textColor="#000"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/task_response_ll2"
+        android:id="@+id/task_response_ll3"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#fff"
+        android:padding="5dp"
+
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="次品:"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            />
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:background="@color/colorBackGround">
+
+
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:id="@+id/task_response_et_bad_num"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:background="#fff"
+            android:ems="5"
+            android:layout_margin="1dp"
+            android:layout_height="35dp">
+        </EditText>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个"
+            android:textSize="16sp"
+            android:textColor="#000"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/task_response_tv_hand"
+        android:layout_below="@id/task_response_ll3"
+        android:background="#fff"
+        android:text="上传照片"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/task_response_rl_hand"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:layout_height="100dp"
+        android:layout_below="@+id/task_response_tv_hand"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:id="@+id/task_response_iv_hand"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tupian"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:layout_below="@id/task_response_rl_hand">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            android:text="完成状态:"/>
+        <Spinner
+            android:id="@+id/task_response_sp_state"
+
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:background="#fff"
+            android:layout_marginLeft="5dp"
+            android:layout_height="35dp">
+
+        </Spinner>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/task_response_rl2"
+        android:layout_below="@id/ll"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="2dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackGround"
+            android:layout_margin="10dp">
+
+        <EditText
+            android:layout_margin="1dp"
+            android:id="@+id/task_response_rl_edt_content"
+            android:background="#fff"
+            android:hint="请输入反馈"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:lines="5"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <Button
+        android:layout_below="@id/task_response_rl2"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:textColor="#fff"
+        android:text="提交"
+        android:textSize="18sp"
+        android:background="@drawable/corners_bg_red"
+        android:id="@+id/task_response_btn_commit"/>
+
+
+
+</RelativeLayout>
+    </ScrollView>

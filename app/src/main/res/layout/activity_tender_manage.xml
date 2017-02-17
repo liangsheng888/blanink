@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tender_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.MyTender">
+
+    <RelativeLayout
+        android:id="@+id/tender_manager"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我发布的招标"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/tender_manager_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+
+        <TextView
+            android:id="@+id/tv_publish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="15dp"
+            android:drawableRight="@mipmap/add_white" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tender_manager">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_sort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableRight="@drawable/sj"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="筛选"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:drawableRight="@drawable/sj"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="排序"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+
+            <com.blanink.view.RefreshListView
+                android:id="@+id/lv_tender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_sort"
+                android:layout_marginTop="1dp"
+                android:listSelector="#11FB731F"
+                android:drawSelectorOnTop="true"
+                android:background="#fff"></com.blanink.view.RefreshListView>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_not_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#fff">
+            <TextView
+                android:id="@+id/tv_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/data_not"
+                android:padding="10dp"
+                android:text="亲！你的招标空空的"/>
+            <TextView
+                android:layout_below="@id/tv_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="快去发布自己的招标需求"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_load"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:background="#fff">
+
+            <LinearLayout
+                android:id="@+id/ll_load"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="正在加载..." />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_load_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ll_load"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/loading_error_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/wb_request_loading_error" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/loading_error_img"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="加载失败，请点击屏幕重试"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </FrameLayout>
+</RelativeLayout>

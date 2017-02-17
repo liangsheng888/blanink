@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4efef"
+    tools:context=".activity.MainActivity">
+    <FrameLayout
+        android:id="@+id/main_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_alignParentTop="true">
+    </FrameLayout>
+    <RadioGroup
+        android:id="@+id/main_rg"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="60dp"
+        android:paddingTop="10dp"
+
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/main_rb_task"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="任务"
+            android:checked="true"
+            android:gravity="center"
+            android:textColor="@color/main_color_selector"
+            android:drawableTop="@drawable/main_selector_task"
+            android:button="@null"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/main_rb_seek"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="查看"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/main_color_selector"
+            android:drawableTop="@drawable/main_selector_seek"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/main_rb_talk"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="沟通"
+            android:gravity="center"
+            android:textColor="@color/main_color_selector"
+            android:drawableTop="@drawable/main_selector_talk"
+            android:button="@null"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/main_rb_notify"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="通知"
+            android:gravity="center"
+            android:textColor="@color/main_color_selector"
+            android:drawableTop="@drawable/main_selector_notify"
+            android:button="@null"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/main_rb_mine"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="我的"
+            android:gravity="center"
+            android:textColor="@color/main_color_selector"
+            android:drawableTop="@drawable/main_selector_mine"
+            android:button="@null"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+</RelativeLayout>

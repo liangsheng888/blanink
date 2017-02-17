@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/credit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#fff"
+            android:padding="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="公司诚信档案"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical"
+                android:text="更多"
+                android:textColor="#000" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#fff"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/vip"
+                android:text="5年付费用户"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/zhen"
+                android:text="实名认证"
+                android:textColor="#000" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/credit"
+                android:text="诚信用户"
+                android:textColor="#000" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#fff"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_credit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:text="公司信誉"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_credit"
+                android:text="2.8"
+                android:textColor="@color/colorTheme" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#fff">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:id="@+id/other_remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:layout_alignParentTop="true">
+
+                    <TextView
+                        android:id="@+id/tv_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="他评:"
+                        android:textColor="@color/colorTheme" />
+
+                    <TextView
+                        android:id="@+id/tv_other_remark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_other"
+                        android:text="4.5"
+                        android:textColor="@color/colorTheme" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/other_remark"
+                    android:id="@+id/rl_service"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="服务:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_service_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_service"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_service"
+                    android:id="@+id/rl_quality"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_quality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="质量:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_quality_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_quality"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_quality"
+                    android:id="@+id/rl_efficiency"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_efficiency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="时效:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_efficiency_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_efficiency"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_efficiency"
+                    android:id="@+id/rl_cost"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="成本:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_cost_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_cost"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_cost"
+                    android:id="@+id/rl_satisfy"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_satisfy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="付款满意度:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_satisfy_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_satisfy"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackGround"></View>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fff">
+
+                <RelativeLayout
+                    android:id="@+id/remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:layout_alignParentTop="true">
+
+                    <TextView
+                        android:id="@+id/tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="自评:"
+                        android:textColor="@color/colorTheme" />
+
+                    <TextView
+                        android:id="@+id/tv_remark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv"
+                        android:text="4.5"
+                        android:textColor="@color/colorTheme" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/remark"
+                    android:id="@+id/rl_service2"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_service2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="服务:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_service_content2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_service2"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_service2"
+                    android:id="@+id/rl_quality2"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_quality2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="质量:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_quality_content2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_quality2"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_quality2"
+                    android:id="@+id/rl_efficiency2"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_efficiency2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="时效:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_efficiency_content2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_efficiency2"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_efficiency2"
+                    android:id="@+id/rl_cost2"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_cost2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="成本:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_cost_content2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_cost2"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_below="@id/rl_cost2"
+                    android:id="@+id/rl_pay_time"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_pay_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="付款及时性:"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/tv_pay_time_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_pay_time"
+                        android:text="4.5"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.blanink.view.NoScrollGridview
+                android:id="@+id/gv_zhengshu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="2">
+            </com.blanink.view.NoScrollGridview>
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

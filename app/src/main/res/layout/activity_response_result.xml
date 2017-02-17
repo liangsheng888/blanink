@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_response_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.blanink.activity.Jpush.ResponseResult">
+
+    <RelativeLayout
+        android:id="@+id/last_family_manage_customer_apply_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/customer_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="通知详情"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/customer_apply_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_below="@id/last_family_manage_customer_apply_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="通知标题"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/tv_title">
+
+    <TextView
+        android:id="@+id/tv_content"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:background="#fff"
+        android:text="我要和你解除合作关系，我已经同意了你的申请，从现在开始我们之间没有任何的关系"
+        />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_below="@id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:background="#fff"
+            android:paddingRight="10dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="2012-6-10 12:00:00"/>
+    </RelativeLayout>
+
+</RelativeLayout>

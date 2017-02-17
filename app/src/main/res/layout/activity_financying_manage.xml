@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_financying_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.blanink.activity.FinancingManage">
+    <RelativeLayout
+        android:id="@+id/rl_financyingManage"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="融资管理"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_financyingManage_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/rl_financyingManage"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="match_parent">
+        <RadioGroup
+            android:id="@+id/rg_financying"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_satisfy"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/selector_rg"
+                android:text="符合条件的资金"
+                android:textColor="@color/text_color_selector"
+                android:checked="true"
+                android:gravity="center"
+                android:button="@null"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:id="@+id/rb_send"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/selector_rg"
+                android:text="已发出的申请"
+                android:gravity="center"
+                android:textColor="@color/text_color_selector"
+                android:button="@null"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/fl_financying"
+            android:layout_below="@id/rg_financying"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

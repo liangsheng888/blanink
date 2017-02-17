@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/lv_invite_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:layout_below="@+id/rl_customer_invite"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="申请日期:"
+                android:textColor="@color/colorTheme" />
+            <TextView
+
+                android:id="@+id/tv_apply_date"
+                android:layout_toRightOf="@id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorTheme"
+                android:text="2012-6-10"/>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_apply_date"
+                android:background="@color/colorBackGround"></View>
+
+            <TextView
+                android:id="@+id/tv_apply_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/view2"
+                android:text="XXXX公司"
+                android:textColor="@color/colorTheme" />
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="待处理"
+                android:textColor="@color/colorTheme" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/tv_apply_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="江苏 苏州" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_xin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/tv_company_apply_xin_yu"
+                android:text="公司信誉:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_xin_yu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="4.5"
+                android:textColor="#f00" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/tv_apply_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="负责人:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_apply_major_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_apply_major"
+                android:text="李四" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_zi_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/tv_company_apply_remark"
+                android:text="自评:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="4.5"
+                android:textColor="#f00" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/apply_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="电话:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_apply_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/apply_phone"
+                android:text="1301333546889" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_remark_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/tv_company_apply_other_remark"
+                android:text="他评:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_other_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="4.5"
+                android:textColor="#f00" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/apply_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="简介:"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tv_apply_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/apply_introduce"
+                android:text="公司是现代化高科技的创业型公司" />
+
+
+        </RelativeLayout>
+</LinearLayout>
+</LinearLayout>

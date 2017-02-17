@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/load_layout"
+    android:gravity="center"
+    android:background="#fff"
+    android:visibility="gone"
+    android:orientation="vertical">
+   <LinearLayout
+       android:id="@+id/ll_load_more"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center_horizontal"
+       android:background="@color/colorBackGround">
+    <ProgressBar
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/indeterminate_drawable"
+        android:indeterminateDuration="1000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="#aa000000"
+        android:layout_marginLeft="20dp"
+        android:textSize="16sp"
+        android:text="加载更多..."/>
+
+</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_load_not_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="没有更多的数据了"
+            android:padding="15dp"/>
+    </RelativeLayout>
+</LinearLayout>

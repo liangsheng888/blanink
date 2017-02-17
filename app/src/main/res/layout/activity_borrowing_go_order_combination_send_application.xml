@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_borrowing_go_order_combination_send_application"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.BorrowingGoOrderCombinationSendApplication">
+    <RelativeLayout
+        android:id="@+id/rl_send"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="(组合)发送申请"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_borrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <com.blanink.view.MyViewPager
+        android:id="@+id/send_viewPager"
+        android:layout_below="@id/rl_send"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="120dp">
+
+    </com.blanink.view.MyViewPager>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_below="@id/send_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="发款方:"
+            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_toRightOf="@id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorTheme"
+                android:text="空行互联"/>
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="申请标题:"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_title"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="收款央行号:"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_bank"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_tv_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="开户银行:"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_bank_name"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_bank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_branch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="分行:"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_branch"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_branch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_require"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="期望到款时间:"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_require"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_require_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="联系人:"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_contacts"
+                android:layout_toRightOf="@id/contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorTheme"
+                android:text="张三"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="联系电话:"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_toRightOf="@id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorTheme"
+                android:text="15036556995566"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_below="@id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/corners_bg_red"
+        android:text="确认发送申请"
+        android:layout_margin="15dp"
+        android:textColor="#fff"/>
+    <LinearLayout
+        android:layout_below="@id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="组合内的申请列表"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"/>
+            <Button
+                android:id="@+id/bt_delete"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="删除选中项"
+                android:textColor="#fff"
+                android:background="@drawable/corners_bg_blue"/>
+        </RelativeLayout>
+        <com.blanink.view.NoScrollListview
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+        </com.blanink.view.NoScrollListview>
+
+    </LinearLayout>
+</RelativeLayout>
+</ScrollView>

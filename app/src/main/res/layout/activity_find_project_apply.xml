@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    >
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/rl_financingApply"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="合作申请"
+            android:id="@+id/tv_last"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/financingApply_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <com.blanink.view.MyViewPager
+        android:id="@+id/financingApply_viewPager"
+        android:layout_below="@id/rl_financingApply"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="120dp"
+        ></com.blanink.view.MyViewPager>
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/financingApply_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#fff"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="40dp"
+                android:gravity="center_vertical"
+                android:text="标 题:" />
+
+            <RelativeLayout
+                android:id="@+id/rl_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/title"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff"
+                    android:singleLine="true">
+                </EditText>
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/detail_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="详细说明:" />
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_introduce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/detail_introduce"
+                android:background="@color/colorBackGround">
+                <EditText
+                    android:id="@+id/et_detail_introduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="#fff"
+                    android:gravity="top"
+                    android:layout_margin="1dp"
+                    >
+                </EditText>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#fff"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/attactment"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="选择附件:" />
+
+            <RelativeLayout
+                android:id="@+id/rl_attactment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/attactment"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_attactment"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dp"
+                    android:background="#fff"
+                    android:singleLine="true">
+                </EditText>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#fff"
+            android:padding="5dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/upload"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="上传图片:" />
+            <me.iwf.photopicker.widget.MultiPickResultView
+                android:id="@+id/financingApply_multiPickResultView"
+                android:layout_toRightOf="@id/upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </me.iwf.photopicker.widget.MultiPickResultView>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <Button
+        android:layout_below="@id/content"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="确认"
+        android:textColor="#fff"
+        android:layout_margin="15dp"
+        android:background="@drawable/corners_bg_red"/>
+</RelativeLayout>

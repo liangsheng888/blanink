@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.SortedNotHandProductionActivity">
+    <RelativeLayout
+        android:id="@+id/rl_sortedNotHandProduction"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="已排序未发布的产品"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/sortedNotHandProduction_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <com.jude.rollviewpager.RollPagerView
+        android:id="@+id/sortedNotHandProduction_sp_advertise"
+        android:layout_below="@id/rl_sortedNotHandProduction"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="140dp">
+
+    </com.jude.rollviewpager.RollPagerView>
+    <LinearLayout
+
+        android:id="@+id/framgent_seek_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/sortedNotHandProduction_sp_advertise"
+        android:layout_columnWeight="4"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="3"
+            android:paddingBottom="2dp"
+            android:paddingLeft="@dimen/padding_search_bar"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp">
+
+            <EditText
+                android:id="@+id/edt_query"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/seabar_input"
+                android:drawableLeft="@drawable/search_bar_icon_normal"
+                android:hint="请输入你需要的信息"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+            <!--  android:visibility="invisible" -->
+            <ImageButton
+                android:id="@+id/search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:src="@drawable/ease_search_clear" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:text="搜索"
+            android:textColor="@color/colorTheme"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        android:id="@+id/lv_sortedNotHandProduction"
+        android:layout_below="@id/rl_unsorted"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/rl_unsorted"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#fff"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_below="@+id/framgent_seek_ll"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <Spinner
+            android:id="@+id/rl_unsorted_product"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="5dp"
+            android:background="#fff"
+            android:entries="@array/product"
+            android:layout_height="match_parent">
+
+
+        </Spinner>
+        <View
+            android:layout_width="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/colorBackGround"
+            android:layout_height="match_parent"></View>
+
+        <TextView
+            android:id="@+id/tv_sorted"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="#fff"
+            android:text="排序"
+            android:gravity="center_vertical"
+            android:textColor="#000"
+            android:drawableRight="@drawable/sj"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <View
+            android:layout_width="1dp"
+            android:background="@color/colorBackGround"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"></View>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_handed_product"
+            android:layout_marginLeft="10dp"
+            android:text="查看已发布的"/>
+
+</LinearLayout>
+
+</RelativeLayout>

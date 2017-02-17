@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bank_come_oder_queue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.BankComeOderQueue">
+    <RelativeLayout
+        android:id="@+id/rl_BankComeOderQueue"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="银行来单列表"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_BankComeOderQueue">
+        <RelativeLayout
+            android:id="@+id/rl_sort"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#fff">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="产品"
+                android:gravity="center"
+                android:drawableRight="@drawable/sj"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="排序"
+                android:gravity="center"
+                android:drawableRight="@drawable/sj"
+                android:layout_centerInParent="true"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="查看已发布"
+                 android:layout_alignParentRight="true"
+                 android:layout_centerVertical="true"
+                 android:layout_marginRight="15dp"/>
+        </RelativeLayout>
+
+        <com.blanink.view.RefreshListView
+            android:id="@+id/rv_bank_come_order"
+            android:layout_below="@id/rl_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+        </com.blanink.view.RefreshListView>
+
+    </RelativeLayout>
+</RelativeLayout>

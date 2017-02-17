@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_remark_queue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.RemarkQueue">
+    <RelativeLayout
+        android:id="@+id/remark_queue_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="评论"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/remark_queue_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/last" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_remark_queue_come_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/remark_queue_rl">
+    <LinearLayout
+        android:id="@+id/remark_queue_ll"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#8e8686">
+
+        </View>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="来单待评论"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#8e8686">
+        </View>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/remark_queue_rl_content"
+        android:layout_below="@id/remark_queue_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#fff">
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/product"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/sp_product"></Spinner>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排序"
+            android:layout_centerInParent="true"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:drawableRight="@drawable/sj"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="更多"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorTheme" />
+    </RelativeLayout>
+   <!--<com.blanink.view.NoScrollListview
+       android:id="@+id/lv_come_order_not_remark"
+       android:layout_below="@id/remark_queue_rl_content"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+   </com.blanink.view.NoScrollListview>-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/remark_queue_rl_content"
+            android:src="@drawable/item_not_remark"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_remark_queue_go_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_remark_queue_come_order">
+        <LinearLayout
+            android:id="@+id/remark_queue_ll_go"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#8e8686">
+
+            </View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="去单待评论"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#8e8686">
+            </View>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/remark_queue_rl_content_go"
+            android:layout_below="@id/remark_queue_ll_go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#fff">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/product"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/sp_product_go"></Spinner>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="排序"
+                android:layout_centerInParent="true"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:drawableRight="@drawable/sj"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="更多"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorTheme" />
+        </RelativeLayout>
+       <!-- <com.blanink.view.NoScrollListview
+            android:id="@+id/lv_come_order_not_remark_go"
+            android:layout_below="@id/remark_queue_rl_content_go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.blanink.view.NoScrollListview>-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/item_not_remark"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/remark_queue_rl_content_go"
+          />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_remarked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_remark_queue_go_order">
+        <LinearLayout
+            android:id="@+id/remarked"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#8e8686">
+
+            </View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="已评论列表"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#8e8686">
+            </View>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/remark_sort"
+            android:layout_below="@id/remarked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#fff">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/product"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/sp_product_go_remarked"></Spinner>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="排序"
+                android:layout_centerInParent="true"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:drawableRight="@drawable/sj"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="更多"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorTheme" />
+        </RelativeLayout>
+       <!-- <com.blanink.view.NoScrollListview
+            android:id="@+id/lv__remarked"
+            android:layout_below="@id/remark_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+        </com.blanink.view.NoScrollListview>-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/item_remarked"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/remark_sort"
+       />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+    </ScrollView>
