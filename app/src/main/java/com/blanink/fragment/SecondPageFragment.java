@@ -1,18 +1,13 @@
 package com.blanink.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.ComeOrderActivity;
-import com.blanink.activity.GoOrderPurchase;
-import com.blanink.activity.TaskResponseQueue;
 
 /**
  * Created by Administrator on 2017/1/7.

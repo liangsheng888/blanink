@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.blanink.activity.Jpush.RemoveRelationIsAgree;
-import com.blanink.activity.Jpush.ResponseResult;
-import com.blanink.activity.Jpush.TestActivity;
-import com.blanink.activity.LastFamilyManageCustomerSupplierInvite;
+import com.blanink.activity.jPush.RemoveRelationIsAgree;
+import com.blanink.activity.jPush.ResponseResult;
+import com.blanink.activity.jPush.TestActivity;
+import com.blanink.activity.lastNext.LastFamilyManageCustomerSupplierInvite;
 
 import org.json.JSONException;
 import org.json.JSONObject;

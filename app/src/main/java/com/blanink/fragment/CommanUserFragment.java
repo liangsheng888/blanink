@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.BidAccordWithTender;
-import com.blanink.activity.ComeOrderActivity;
-import com.blanink.activity.GoOrderPurchase;
-import com.blanink.activity.TaskResponseQueue;
-import com.blanink.activity.TenderPublish;
+import com.blanink.activity.bidTender.BidAccordWithTender;
+import com.blanink.activity.order.ComeOrderActivity;
+import com.blanink.activity.order.GoOrderPurchase;
+import com.blanink.activity.task.TaskResponseQueue;
+import com.blanink.activity.bidTender.TenderPublish;
 
 /**
  * Created by Administrator on 2017/1/7.

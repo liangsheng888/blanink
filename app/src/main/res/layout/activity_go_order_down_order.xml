@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context=".activity.GoOrderDownOrdered">
+    tools:context=".activity.order.GoOrderDownOrdered">
     <RelativeLayout
         android:id="@+id/goOrderDownOrdered"
         android:layout_width="match_parent"

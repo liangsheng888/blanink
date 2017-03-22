@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.blanink.activity.LastFamilyManageNewAddCustomer">
+    tools:context="com.blanink.activity.lastNext.LastFamilyManageNewAddCustomer">
 
     <RelativeLayout
 

@@ -6,7 +6,7 @@
     android:id="@+id/activity_financing_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.FinancingDetail">
+    tools:context="com.blanink.activity.fincying.FinancingDetail">
     <RelativeLayout
         android:id="@+id/rl_financyingManage"
         android:layout_width="match_parent"

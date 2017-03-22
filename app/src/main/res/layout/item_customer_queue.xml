@@ -11,14 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#fff"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+       >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             >
 
             <TextView
@@ -28,7 +26,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:padding="5dp"
-                android:layout_marginLeft="5dp"
                 android:text="公司简称"
                 android:textColor="@color/colorTheme" />
             <TextView
@@ -37,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="30dp"
                 android:text="虚拟"
                 android:textColor="@color/colorTheme" />
 
@@ -65,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_honest"
                 android:text="公司信誉:"
-                android:textColor="#000" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/tv_honest"
@@ -73,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
+                android:layout_marginLeft="5dp"
                 android:textColor="#f00" />
 
         </RelativeLayout>
@@ -89,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="负责人:"
-                android:textColor="#000" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/tv_master"
@@ -105,13 +103,14 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_company_apply_remark"
                 android:text="自评:"
-                android:textColor="#000" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/tv_company_apply_remark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
                 android:layout_marginRight="20dp"
                 android:textColor="#f00" />
 
@@ -129,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="电话:"
-                android:textColor="#000" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/tv_phone"
@@ -145,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_company_apply_other_remark"
                 android:text="他评:"
-                android:textColor="#000" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/tv_company_apply_other_remark"
@@ -153,6 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
+                android:layout_marginLeft="5dp"
                 android:textColor="#f00" />
 
         </RelativeLayout>
@@ -161,6 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
+            android:paddingBottom="5dp"
             android:background="#fff">
 
             <TextView
@@ -170,7 +171,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="主营:"
                 android:layout_marginTop="5dp"
-                android:textColor="#000" />
+                android:textColor="@color/colorBlack" />
             <TextView
                 android:id="@+id/tv_scope"
                 android:layout_width="wrap_content"

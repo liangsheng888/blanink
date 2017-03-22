@@ -4,7 +4,7 @@
     android:id="@+id/activity_bank_pay_plan_queue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.ReceivedPayHistoryQueue">
+    tools:context="com.blanink.activity.borrowRepay.ReceivedPayHistoryQueue">
     <RelativeLayout
         android:id="@+id/activity_bank_pay_plan_queue_rl"
         android:layout_width="match_parent"

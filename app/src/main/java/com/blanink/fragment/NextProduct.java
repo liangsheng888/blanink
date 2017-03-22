@@ -1,5 +1,6 @@
 package com.blanink.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,18 +11,18 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.bean.CompanyProduct;
+import com.blanink.activity.lastNext.ProductDetail;
+import com.blanink.pojo.CompanyProduct;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
-import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.RefreshListView;
 import com.google.gson.Gson;
 import com.loopj.android.image.SmartImageView;
@@ -62,6 +63,7 @@ public class NextProduct extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         companyId=getActivity().getIntent().getStringExtra("id");
+        Log.e("partner","NextProduct  companyId:"+companyId);
         sp = getActivity().getSharedPreferences("DATA",getActivity().MODE_PRIVATE);
         View view=View.inflate(getActivity(), R.layout.fragment_company_product,null);
         initView(view);
@@ -98,6 +100,19 @@ public class NextProduct extends Fragment {
                 pageNo++;
                 getData();
 
+            }
+        });
+
+        //产品详情
+        lv_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CompanyProduct.Result.Row row=rowList.get(position-1);
+                Intent intent=new Intent(getActivity(),ProductDetail.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("ProductDetail",row);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

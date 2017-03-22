@@ -32,18 +32,10 @@
             android:layout_marginTop="5dp"
             android:textColor="#f00"
             android:text="iphone6s"/>
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_below="@id/tv_product_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="江苏南京"
-            />
+
         <LinearLayout
             android:id="@+id/ll_price"
-            android:layout_below="@id/tv_address"
+            android:layout_below="@id/tv_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <TextView
@@ -51,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:text="价格范围:"/>
+            android:text="最低价格:"/>
 
         <TextView
             android:id="@+id/tv_price"
@@ -59,12 +51,34 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:text="3000-8000"
+            android:text="3000"
             />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_price2"
+            android:layout_below="@id/ll_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="最高价格:"/>
+
+            <TextView
+                android:id="@+id/tv_price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="8000"
+                />
+        </LinearLayout>
+
        <TextView
            android:id="@+id/tv_specific_description"
-           android:layout_below="@id/ll_price"
+           android:layout_below="@id/ll_price2"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginTop="5dp"

@@ -4,7 +4,7 @@
     android:id="@+id/activity_received_pay_notify_queue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.ReceivedPayNotifyQueue">
+    tools:context="com.blanink.activity.borrowRepay.ReceivedPayNotifyQueue">
     <RelativeLayout
         android:id="@+id/ReceivedPayNotifyQueue_rl"
         android:layout_width="match_parent"

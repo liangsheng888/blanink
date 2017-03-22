@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.BorrowingGoOrderCombinationSendApplication">
+    tools:context="com.blanink.activity.borrowRepay.BorrowingGoOrderCombinationSendApplication">
     <RelativeLayout
         android:id="@+id/rl_send"
         android:layout_width="match_parent"

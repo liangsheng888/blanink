@@ -14,7 +14,21 @@
             android:drawSelectorOnTop="true"
             android:background="#fff">
         </com.blanink.view.RefreshListView>
-
+        <RelativeLayout
+            android:id="@+id/rl_not_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#fff">
+            <TextView
+                android:id="@+id/tv_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/data_not"
+                android:padding="10dp"
+                android:text="主人！暂时没有客户(⊙o⊙)…"/>
+        </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_load"
             android:layout_width="match_parent"

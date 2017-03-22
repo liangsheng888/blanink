@@ -4,7 +4,8 @@
     android:id="@+id/activity_next_family_manage_accord_company_queue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.NextFamilyManageMySupplierSeek">
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.lastNext.NextFamilyManageMySupplierSeek">
     <RelativeLayout
         android:id="@+id/rl_customer_manage"
         android:layout_width="match_parent"
@@ -19,21 +20,25 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/iv_accord_supplier_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:gravity="center"
+            android:drawableLeft="@drawable/last"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_seek"
         android:layout_below="@id/rl_customer_manage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@drawable/corner_common_border_gray"
         android:gravity="center_vertical"
         android:focusable="true"
         android:focusableInTouchMode="true"

@@ -8,7 +8,7 @@
         android:id="@+id/activity_next_family_manage_invite_bcome_supplier"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.blanink.activity.NextFamilyManageInviteBcomeSupplier">
+        tools:context="com.blanink.activity.lastNext.NextFamilyManageInviteBcomeSupplier">
 
         <RelativeLayout
             android:id="@+id/apply_rl"
@@ -1192,13 +1192,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="江苏 苏州" />
 
-                <TextView
-                    android:id="@+id/tv_company_apply_xin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/tv_company_apply_xin_yu"
-                    android:text="公司信誉:"
-                    android:textColor="#000" />
+
 
                 <TextView
                     android:id="@+id/tv_company_apply_xin_yu"
@@ -1208,7 +1202,13 @@
                     android:layout_marginRight="20dp"
                     android:text="4.5"
                     android:textColor="#f00" />
-
+                <TextView
+                    android:id="@+id/tv_company_apply_xin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/tv_company_apply_xin_yu"
+                    android:text="公司信誉:"
+                    android:textColor="#000" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -1233,13 +1233,7 @@
                     android:layout_toRightOf="@id/tv_apply_major"
                     android:text="李四" />
 
-                <TextView
-                    android:id="@+id/tv_company_apply_zi_remark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/tv_company_apply_remark"
-                    android:text="自评:"
-                    android:textColor="#000" />
+
 
                 <TextView
                     android:id="@+id/tv_company_apply_remark"
@@ -1249,6 +1243,13 @@
                     android:layout_marginRight="20dp"
                     android:text="4.5"
                     android:textColor="#f00" />
+                <TextView
+                    android:id="@+id/tv_company_apply_zi_remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/tv_company_apply_remark"
+                    android:text="自评:"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
@@ -1274,13 +1275,7 @@
                     android:layout_toRightOf="@id/apply_phone"
                     android:text="1301333546889" />
 
-                <TextView
-                    android:id="@+id/tv_company_apply_remark_other"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/tv_company_apply_other_remark"
-                    android:text="他评:"
-                    android:textColor="#000" />
+
 
                 <TextView
                     android:id="@+id/tv_company_apply_other_remark"
@@ -1290,6 +1285,13 @@
                     android:layout_marginRight="20dp"
                     android:text="4.5"
                     android:textColor="#f00" />
+                <TextView
+                    android:id="@+id/tv_company_apply_remark_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/tv_company_apply_other_remark"
+                    android:text="他评:"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 

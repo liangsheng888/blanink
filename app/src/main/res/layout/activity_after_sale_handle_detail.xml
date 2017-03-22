@@ -7,7 +7,7 @@
     android:id="@+id/activity_after_sale_handle_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.AfterSaleHandleDetail">
+    tools:context="com.blanink.activity.afterSale.AfterSaleHandleDetail">
     <RelativeLayout
         android:id="@+id/rl_after_sale_queue"
         android:layout_width="match_parent"

@@ -4,9 +4,16 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import com.blanink.R;
@@ -111,17 +118,67 @@ public class MainActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         Log.e("MainActivity","onNewIntent");
         //  接收返回的状态吗
-
         int backCode=intent.getIntExtra("DIRECT",0);
         changeFragments(backCode);
         buttons[backCode].setChecked(true);
     }
 
     @Override
+    protected void onPause() {
+        Log.e("MainActivity","onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.e("MainActivity","onStop");
+        super.onStop();
+    }
+    @Override
     protected void onDestroy() {
-        activityManager.popOneActivity(this);
+        Log.e("MainActivity","onDestroy");
         super.onDestroy();
     }
+    //监听菜单 防止用户不小心退出
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            showDialogExit();
+        }
+
+        return false;
+
+    }
+    private void showDialogExit() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.show();
+        alertDialog.setContentView(R.layout.dialog_custom_exit);
+        final Window window=alertDialog.getWindow();
+        WindowManager.LayoutParams lp =window.getAttributes();
+        window.setGravity(Gravity.CENTER);
+        Display d = getWindowManager().getDefaultDisplay(); // 获取屏幕宽、高用
+        //  lp.height = (int) (d.getHeight() * 0.6); // 高度设置为屏幕的0.6
+        lp.width = (int) (d.getWidth()*0.9); // 宽度设置为屏幕的1/2
+        window.setWindowAnimations(R.style.dialogAnimation);
+        window.setAttributes(lp);
+        window.findViewById(R.id.tv_continue).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        window.findViewById(R.id.tv_exit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                MyActivityManager.getInstance().finishAllActivity();
+            }
+        });
+    }
+
+
 }
 
 

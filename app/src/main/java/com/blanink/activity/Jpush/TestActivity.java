@@ -1,8 +1,7 @@
-package com.blanink.activity.Jpush;
+package com.blanink.activity.jPush;
 
 import cn.jpush.android.api.JPushInterface;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;

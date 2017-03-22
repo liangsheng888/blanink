@@ -1,7 +1,6 @@
-package com.blanink.activity.Jpush;
+package com.blanink.activity.jPush;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.RefuseReason;
-import com.blanink.bean.Response;
+import com.blanink.pojo.Response;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;

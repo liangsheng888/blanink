@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.blanink.R;
-import com.blanink.activity.LastFamilyManageCustomerApply;
-import com.blanink.activity.LastFamilyManageCustomerApplyDelete;
-import com.blanink.bean.ManyCustomer;
-import com.blanink.bean.SingleCustomer;
+import com.blanink.activity.lastNext.LastFamilyManageCustomerApply;
+import com.blanink.activity.lastNext.LastFamilyManageCustomerApplyDelete;
+import com.blanink.pojo.ManyCustomer;
+import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
 import org.xutils.common.Callback;
@@ -37,7 +37,7 @@ public class LastCustomerInfo extends Fragment {
     private static final String TAG ="LastCustomerInfo" ;
     private SharedPreferences sp;
     private String id;
-    private ManyCustomer.Result.CompanyA companyA;
+    private ManyCustomer.Result.Company companyA;
     private TextView tv_company;
     private TextView tv_address;
     private TextView tv_master;
@@ -53,13 +53,16 @@ public class LastCustomerInfo extends Fragment {
     private TextView tv_company_remark;
     private TextView tv_company_other_remark;
     private LinearLayout ll_talk;
+    private TextView tv_customer_num;
+    private TextView tv_url;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
         Intent intent = getActivity().getIntent();
-        id = intent.getStringExtra("companyId");
+        id = intent.getStringExtra("companyA.id");
+        Log.e("LastCustomerInfo","id:"+id) ;
         View view = View.inflate(getActivity(), R.layout.fragment_company_info, null);
         initView(view);
         return view;
@@ -77,9 +80,11 @@ public class LastCustomerInfo extends Fragment {
         tv_company_xin_yu = ((TextView) view.findViewById(R.id.tv_company_xin_yu));//公司信誉
         tv_company_remark = ((TextView) view.findViewById(R.id.tv_company_remark));//自评
         tv_company_other_remark = ((TextView) view.findViewById(R.id.tv_company_other_remark));//他评
+        tv_url = ((TextView) view.findViewById(R.id.tv_url));
         btn_state = ((Button) view.findViewById(R.id.btn_state));//申请合作/解除合作
         btn_consult = ((Button) view.findViewById(R.id.btn_consult));//在线咨询
         ll_talk = ((LinearLayout) view.findViewById(R.id.ll_talk));
+        tv_customer_num =(TextView) view.findViewById(R.id.tv_customer_num);
     }
 
     @Override
@@ -96,7 +101,7 @@ public class LastCustomerInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 //申请合作、解除关系
-                if ("1".equals(info.getResult().getType())) {
+                if ("1".equals(info.result.getType())) {
                     Intent intent = new Intent(getActivity(), LastFamilyManageCustomerApplyDelete.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("info", info);
@@ -127,7 +132,7 @@ public class LastCustomerInfo extends Fragment {
                 Gson gson = new Gson();
                 info = gson.fromJson(result, SingleCustomer.class);
                 Log.e(TAG, "info+++++++" + info.toString());
-                companyA = info.getResult().getCompanyA();
+                companyA = info.result;
                 Log.e(TAG, "companyA+++++++" + companyA.toString());
                 if (companyA.getCreateCompanyBy() != null) {
                     //如果该客户是虚拟客户
@@ -140,17 +145,19 @@ public class LastCustomerInfo extends Fragment {
                 tv_phone.setText(companyA.getPhone());
                 tv_major_content.setText(companyA.getScope());
                 tv_company_address.setText(companyA.getAddress());
+                tv_customer_num.setText(companyA.serviceCount+"");
                 tv_introduce.setText(companyA.getRemarks());
                 DecimalFormat df = new DecimalFormat("0.0");
-                tv_company_remark.setText(info.getResult().getComeOrderSelfRated() + "");
-                tv_company_other_remark.setText(info.getResult().getComeOrderOthersRated() + "");
-                tv_company_xin_yu.setText(df.format((info.getResult().getComeOrderSelfRated() + info.getResult().getComeOrderOthersRated()) / 2.0));
+                tv_company_remark.setText(info.result.reviewSelf + "");
+                tv_company_other_remark.setText(info.result.reviewOthers + "");
+                tv_company_xin_yu.setText((info.result.reviewSelf + info.result.reviewOthers) / 2.0+"");
+                tv_url.setText(companyA.homepage);
                 //
-                Log.e(TAG, "type:" + info.getResult().getType());
-                if ("1".equals(info.getResult().getType())) {
-                    btn_state.setText("解除关系");
-                } else {
-                    btn_state.setText("申请合作");
+                Log.e(TAG, "type:" + info.result.getType());
+                if ("1".equals(info.result.getType())) {
+                    btn_state.setText("已合作，解除合作");
+                } else if("0".equals(info.result.getType())) {
+                    btn_state.setText("潜在客户，申请合作");
                 }
             }
 

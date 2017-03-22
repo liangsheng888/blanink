@@ -1,5 +1,6 @@
 package com.blanink.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,19 +11,18 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.bean.CompanyProduct;
+import com.blanink.activity.lastNext.ProductDetail;
+import com.blanink.pojo.CompanyProduct;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
-import com.blanink.utils.XUtilsImageUtils;
-import com.blanink.view.LoadListView;
 import com.blanink.view.RefreshListView;
 import com.google.gson.Gson;
 import com.loopj.android.image.SmartImageView;
@@ -66,7 +66,7 @@ public class LastProduct extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        companyId=getActivity().getIntent().getStringExtra("companyId");
+        companyId=getActivity().getIntent().getStringExtra("companyA.id");
         sp = getActivity().getSharedPreferences("DATA",getActivity().MODE_PRIVATE);
         View view=View.inflate(getActivity(), R.layout.fragment_company_product,null);
         initView(view);
@@ -104,6 +104,19 @@ public class LastProduct extends Fragment {
                 requestDataFromServer(true);
             }
         });
+
+        //产品详情
+        lv_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CompanyProduct.Result.Row row=rowList.get(position-1);
+                Intent intent=new Intent(getActivity(),ProductDetail.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("ProductDetail",row);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     // 服务器访问数据库
@@ -133,6 +146,7 @@ public class LastProduct extends Fragment {
                 rp.addBodyParameter("pageNo",pageNo+"");
                 rp.addBodyParameter("company.id",companyId);
                 rp.addBodyParameter("userId",sp.getString("USER_ID",null));
+                Log.e("LastProduct","company.id"+companyId);
                 x.http().post(rp, new Callback.CacheCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
@@ -217,6 +231,7 @@ public class LastProduct extends Fragment {
                 viewHolder.tv_address=(TextView)convertView.findViewById(R.id.tv_address);
                 viewHolder.tv_price=(TextView)convertView.findViewById(R.id.tv_price);
                 viewHolder.tv_specific_description=(TextView)convertView.findViewById(R.id.tv_specific_description);
+                viewHolder.tv_hige_price=(TextView)convertView.findViewById(R.id.tv_price2);
                 convertView.setTag(viewHolder);
                 sparseArray.put(position,convertView);
             }else {
@@ -228,7 +243,8 @@ public class LastProduct extends Fragment {
            // XUtilsImageUtils.displayLoading(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
             viewHolder.iv_product_picture.setImageUrl(NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
             viewHolder.tv_product_name.setText(rowList.get(position).productName);
-            viewHolder.tv_price.setText(rowList.get(position).productPriceDownline+"-"+rowList.get(position).productPriceHighline);
+            viewHolder.tv_price.setText(rowList.get(position).productPriceDownline);
+            viewHolder.tv_hige_price.setText(rowList.get(position).productPriceHighline);
             viewHolder.tv_specific_description.setText(rowList.get(position).productDescription);
             return convertView;
         }
@@ -238,6 +254,7 @@ public class LastProduct extends Fragment {
         TextView  tv_product_name;
         TextView  tv_address;
         TextView  tv_price;
+        TextView  tv_hige_price;
         TextView  tv_specific_description;
     }
 }

@@ -45,7 +45,6 @@ public class LoadListView extends ListView implements OnScrollListener {
     private void initView(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
         footer = inflater.inflate(R.layout.layout_footer, null);
-      //  footer.findViewById(R.id.load_layout).setVisibility(View.GONE);
         this.addFooterView(footer);
         this.setOnScrollListener(this);
 
@@ -96,11 +95,6 @@ public class LoadListView extends ListView implements OnScrollListener {
     //加载更多数据的回调接口
     public interface ILoadListener{
         public void onLoad();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(ev);
     }
 }
 

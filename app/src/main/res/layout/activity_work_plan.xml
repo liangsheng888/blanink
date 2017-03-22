@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_work_plan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.blanink.activity.task.WorkPlan">
+
+    <RelativeLayout
+        android:id="@+id/rl_workStepQueue"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="工序列表"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_workStepQueue"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.blanink.view.MyViewPager
+                android:id="@+id/myViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="#fff"></com.blanink.view.MyViewPager>
+
+            <RelativeLayout
+                android:id="@+id/rl_work_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/myViewPager"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/task"
+                    android:text=" 任务列表"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/workStepQueue_lv_taskQueue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/rl_work_plan"
+                android:layout_marginTop="1dp"
+                android:drawSelectorOnTop="true"
+                android:listSelector="@color/listItemColorSelected"
+                android:background="#fff"></ListView>
+        </RelativeLayout>
+
+        <include layout="@layout/layout_load"></include>
+    </FrameLayout>
+</RelativeLayout>

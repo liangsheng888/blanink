@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.bean.LoginResult;
+import com.blanink.pojo.LoginResult;
 import com.blanink.utils.CheckNetIsConncet;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
@@ -28,6 +26,8 @@ import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
-        myActivityManager = (MyActivityManager) MyActivityManager.getInstance();
+        myActivityManager = MyActivityManager.getInstance();
         myActivityManager.pushOneActivity(this);
         initView();
         initData();
@@ -143,16 +143,18 @@ public class LoginActivity extends AppCompatActivity {
                                         //保存用户信息
                                         SharedPreferences.Editor ed = sp.edit();
                                         ed.putString("COMPANY_ID",loginResult.getResult().company.id);
-                                        ed.putString("USER_ID", loginResult.getResult().getId());
-                                        ed.putString("LOGIN_NAME", loginResult.getResult().getLoginName());
-                                        ed.putString("REMARKS", loginResult.getResult().getRemarks());
-                                        ed.putString("NAME", loginResult.getResult().getName());
-                                        ed.putString("PHONE", loginResult.getResult().getMobile());
-                                        ed.putString("MOBILE", loginResult.getResult().getMobile());
-                                        ed.putString("PHOTO", loginResult.getResult().getPhoto());
+                                        ed.putString("USER_ID", loginResult.getResult().id);
+                                        ed.putString("LOGIN_NAME", loginResult.getResult().loginName);
+                                        ed.putString("NAME", loginResult.getResult().name);
+                                        ed.putString("PHONE", loginResult.getResult().phone);
+                                        ed.putString("MOBILE", loginResult.getResult().mobile);
+                                        ed.putString("PHOTO", loginResult.getResult().photo);
+                                        ed.putString("ROLE_LIST",loginResult.getResult().roleList.toString());
+                                        ed.putString("PASSWORD",passWord);
+                                        ed.putString("COMPANY_TYPE",loginResult.getResult().office.serviceType);
                                         ed.commit();
-                                        setAlias(loginResult.getResult().getId());
-                                        RegisterUser(loginResult.getResult().getId(), passWord);
+                                        setAlias(loginResult.getResult().id);
+                                        RegisterUser(loginResult.getResult().id, passWord);
                                         if (loginResult.getResult().admin) {
                                             //跳转到管理员界面
                                             Intent intent = new Intent(LoginActivity.this, FlashActivity.class);

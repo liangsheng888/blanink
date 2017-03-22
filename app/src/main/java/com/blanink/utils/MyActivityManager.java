@@ -7,6 +7,7 @@ import java.util.Stack;
 
 /**
  * Created by Administrator on 2016/12/27.
+ * 界面activity控制器
  */
 public class MyActivityManager {
     private static MyActivityManager instance;

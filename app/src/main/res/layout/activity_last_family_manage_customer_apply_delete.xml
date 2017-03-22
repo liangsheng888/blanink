@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_last_family_manage_customer_appliu_delete"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
 
     <RelativeLayout
         android:id="@+id/last_family_manage_customer_apply_rl"
@@ -21,14 +22,18 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/customer_apply_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:textColor="#fff"
+            android:text="返回"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/last"  />
     </RelativeLayout>
 
     <LinearLayout

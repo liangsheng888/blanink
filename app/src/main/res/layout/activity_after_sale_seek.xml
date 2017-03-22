@@ -4,7 +4,7 @@
     android:id="@+id/activity_after_sale_seek"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.AfterSaleSeek">
+    tools:context="com.blanink.activity.afterSale.AfterSaleSeek">
     <RelativeLayout
         android:id="@+id/rl_after_sale_seek"
         android:layout_width="match_parent"

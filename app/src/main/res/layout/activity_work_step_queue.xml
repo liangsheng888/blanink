@@ -1,97 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.TaskResponseQueue">
-    <RelativeLayout
-        android:id="@+id/rl_workStepQueue"
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorTheme">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackGround"
+        tools:context="com.blanink.activity.task.TaskResponseQueue">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="任务反馈列表"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/workStepQueue_iv_last"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
-    </RelativeLayout>
-
-
-
-
-    <!--<com.jude.rollviewpager.RollPagerView
-        android:id="@+id/workStepQueue_rollPagerView"
-        android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_height="140dp"
-        android:layout_below="@+id/rl_workStepQueue"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-    </com.jude.rollviewpager.RollPagerView>-->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_height="140dp"
-        android:layout_below="@+id/rl_workStepQueue"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></android.support.v4.view.ViewPager>
-    <LinearLayout
-        android:id="@+id/ll_viewpager_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:gravity="center_horizontal"
-        android:layout_alignBottom="@id/viewPager"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/workStepQueue_taskQueue"
-        android:layout_marginTop="2dp"
-        android:layout_below="@id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:padding="10dp"
-        android:orientation="horizontal">
-        <TextView
+        <RelativeLayout
+            android:id="@+id/rl_workStepQueue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" 任务列表"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:drawableLeft="@drawable/task"
-            />
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorTheme">
 
-    </LinearLayout>
-    <!--<ListView
-        android:id="@+id/workStepQueue_lv_taskQueue"
-        android:layout_below="@id/workStepQueue_taskQueue"
-        android:layout_width="match_parent"
-        android:layout_marginTop="1dp"
-        android:background="#fff"
-        android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="工序列表"
+                android:textColor="#fff"
+                android:textSize="18sp" />
 
-    </ListView>-->
-    <ImageView
-        android:layout_below="@id/workStepQueue_taskQueue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/task_response"/>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/workStepQueue_iv_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/last"
+                android:gravity="center_vertical"
+                android:text="返回"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rl_workStepQueue"
+            android:background="#fff">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.blanink.view.MyViewPager
+                    android:id="@+id/myViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="#fff"></com.blanink.view.MyViewPager>
+
+                <RelativeLayout
+                    android:id="@+id/rl_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/myViewPager"
+                    android:layout_marginTop="1dp"
+                    android:background="#fff"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/task"
+                        android:text=" 任务列表"
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <ListView
+                    android:id="@+id/workStepQueue_lv_taskQueue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/rl_task"
+                    android:layout_marginTop="1dp"
+                    android:drawSelectorOnTop="true"
+                    android:listSelector="@color/listItemColorSelected"
+                    android:background="#fff"></ListView>
+            </RelativeLayout>
+
+            <include layout="@layout/layout_load"></include>
+        </FrameLayout>
+    </RelativeLayout>

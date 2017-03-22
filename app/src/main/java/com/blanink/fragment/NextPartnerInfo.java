@@ -14,12 +14,11 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.ConsultActivity;
-import com.blanink.activity.NextFamilyManageCompanyDetail;
-import com.blanink.activity.NextFamilyManageSupplierManageApplyCooperate;
-import com.blanink.activity.NextFamilyManageSupplierManageApplyDelete;
+import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyCooperate;
+import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyDelete;
 import com.blanink.activity.chat.ChatAcitivity;
-import com.blanink.bean.ManyCustomer;
-import com.blanink.bean.SingleCustomer;
+import com.blanink.pojo.ManyCustomer;
+import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMMessage;
@@ -41,7 +40,7 @@ public class NextPartnerInfo extends Fragment {
     private ManyCustomer.Result.Customer suppliers;
     private SharedPreferences sp;
     private String id;
-    private ManyCustomer.Result.CompanyB companyB;
+    private ManyCustomer.Result.Company companyB;
     private TextView tv_company;
     private TextView tv_address;
     private TextView tv_master;
@@ -57,11 +56,15 @@ public class NextPartnerInfo extends Fragment {
     private TextView tv_company_xin_yu;
     private TextView tv_company_remark;
     private TextView tv_company_other_remark;
+    private TextView tv_customer_num;
+    private TextView tv_url;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Intent intent=getActivity().getIntent();
-        id= intent.getStringExtra("id");
+        id= intent.getStringExtra("companyId");
+        Log.e("partner","NextPartnerInfo  id:"+id);
         sp=getActivity().getSharedPreferences("DATA",getActivity().MODE_PRIVATE);
         View view=View.inflate(getActivity(), R.layout.fragment_next_partner_info,null);
         initView(view);
@@ -93,7 +96,8 @@ public class NextPartnerInfo extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if("1".equals(info.getResult().getType())){
+                Log.e("partner","NextPartnerInfo  type:"+info.result.getType());
+                if("1".equals(info.result.getType())){
                     //跳到解除关系界面
                     Intent intent =new Intent(getActivity(),NextFamilyManageSupplierManageApplyDelete.class);
                     Bundle bundle=new Bundle();
@@ -124,23 +128,25 @@ public class NextPartnerInfo extends Fragment {
         tv_company_remark = ((TextView) view.findViewById(R.id.tv_company_remark));//自评
         tv_company_other_remark = ((TextView) view.findViewById(R.id.tv_company_other_remark));//他评
         tv_finished_order_num = ((TextView) view.findViewById(R.id.tv_finished_order_num));//已完成订单数
+        tv_url = ((TextView) view.findViewById(R.id.tv_url));
         btn = ((Button) view.findViewById(R.id.btn));//解除关系/申请合作
         btn_chat = ((Button) view.findViewById(R.id.btn_chat));//聊天
+        tv_customer_num = ((TextView) view.findViewById(R.id.tv_customer_num));
     }
     public void getData(){
-        RequestParams rp=new RequestParams(NetUrlUtils.NET_URL+"customer/info");
+        RequestParams rp=new RequestParams(NetUrlUtils.NET_URL+"partner/info");
         rp.addBodyParameter("userId",sp.getString("USER_ID",null));
         rp.addBodyParameter("id",id);
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e(TAG,"url+++++++"+NetUrlUtils.NET_URL+"customer/info?userId="+sp.getString("USER_ID",null)+"&id="+id);
+                Log.e(TAG,"url+++++++"+NetUrlUtils.NET_URL+"partner/info?userId="+sp.getString("USER_ID",null)+"&id="+id);
                 Log.e(TAG,"result+++++++"+result);
                 Gson gson=new Gson();
                 info=gson.fromJson(result, SingleCustomer.class);
                 Log.e(TAG,"info+++++++"+info.toString());
-                companyB=info.getResult().getCompanyB();
-                supplierId=info.getResult().getCompanyB().getId();
+                companyB=info.result;
+                supplierId=info.result.getId();
                 Log.e(TAG,"companyA+++++++"+companyB.toString());
 
                 //界面设置
@@ -150,12 +156,14 @@ public class NextPartnerInfo extends Fragment {
                 tv_phone.setText(companyB.getPhone());
                 //tv_major_content.setText(companyB.getScope());
                 tv_company_address.setText(companyB.getAddress());
+                tv_customer_num.setText(companyB.serviceCount+"");
                 DecimalFormat df=new DecimalFormat("0.0");
-                tv_company_remark.setText(info.getResult().getComeOrderSelfRated()+"");
-                tv_company_other_remark.setText(info.getResult().getComeOrderOthersRated()+"");
-                tv_company_xin_yu.setText(df.format((info.getResult().getComeOrderSelfRated()+info.getResult().getComeOrderOthersRated())/2.0));
+                tv_company_remark.setText(companyB.reviewSelf+"");
+                tv_company_other_remark.setText(companyB.reviewOthers+"");
+                tv_company_xin_yu.setText(df.format((companyB.reviewSelf+companyB.reviewOthers)/2.0));
                 tv_introduce.setText(companyB.getRemarks());
-                if("1".equals(info.getResult().getType())){
+                tv_url.setText(companyB.homepage);
+                if("1".equals(info.result.getType())){
                     btn.setText("解除关系");
                 }else {
                     btn.setText("申请合作");

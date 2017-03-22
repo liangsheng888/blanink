@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.MyTender">
+    tools:context="com.blanink.activity.bidTender.MyTender">
 
     <RelativeLayout
         android:id="@+id/tender_manager"
@@ -21,23 +21,18 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/tender_manager_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
-
-        <TextView
-            android:id="@+id/tv_publish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="15dp"
-            android:drawableRight="@mipmap/add_white" />
+            android:text="返回"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/last" />
     </RelativeLayout>
 
     <FrameLayout
@@ -55,27 +50,30 @@
                 android:layout_height="wrap_content"
                 android:background="#fff">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:drawableRight="@drawable/sj"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="筛选"
-                    android:textColor="#000" />
+                    android:background="#fff"
+                    android:padding="5dp">
+                    <Spinner
+                        android:id="@+id/sp_sort"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:entries="@array/sort"></Spinner>
+                    <Spinner
+                        android:id="@+id/sp_expire"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/sp_sort"
+                        android:gravity="center"
+                        android:entries="@array/expire"
+                        />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="20dp"
-                    android:drawableRight="@drawable/sj"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="排序"
-                    android:textColor="#000" />
-
+                </RelativeLayout>
             </RelativeLayout>
 
             <com.blanink.view.RefreshListView
@@ -103,13 +101,13 @@
                 android:layout_centerInParent="true"
                 android:drawableTop="@drawable/data_not"
                 android:padding="10dp"
-                android:text="亲！你的招标空空的"/>
+                android:text="主人！咱的招标空空的"/>
             <TextView
                 android:layout_below="@id/tv_not"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="快去发布自己的招标需求"/>
+                android:text="咱快去发布自己的招标需求吧"/>
 
         </RelativeLayout>
 
@@ -129,8 +127,8 @@
                 android:orientation="vertical">
 
                 <ProgressBar
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"

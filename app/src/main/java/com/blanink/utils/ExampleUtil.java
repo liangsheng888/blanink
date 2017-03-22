@@ -2,11 +2,13 @@ package com.blanink.utils;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -20,9 +22,15 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -130,7 +138,7 @@ public class ExampleUtil {
     public static Date stringToDate(String str){
         Date date= null;
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(str);
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(str);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -138,7 +146,7 @@ public class ExampleUtil {
     }
 
     public static String dateToString(Date date){
-        String str=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        String str=new SimpleDateFormat("yyyy-MM-dd").format(date);
         return str;
     }
    //获得系统本地文件路径
@@ -222,4 +230,66 @@ public class ExampleUtil {
         }
         return null;
     }
+    //比较日期大小
+    public static int compare_date(String DATE1, String DATE2) {
+
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dt1 = df.parse(DATE1);
+            Date dt2 = df.parse(DATE2);
+            if (dt1.getTime() > dt2.getTime()) {
+                System.out.println("dt1 在dt2前");
+                return 1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                System.out.println("dt1在dt2后");
+                return -1;
+            } else {
+                return 0;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
+    }
+    //保存照片到相册
+    public void saveImageToGallery(Context context, Bitmap bmp, File file) {
+        // 首先保存图片
+//        File appDir = new File(Environment.getExternalStorageDirectory(), "Boohee");
+//        if (!appDir.exists()) {
+//            appDir.mkdir();
+//        }
+//        String fileName = System.currentTimeMillis() + ".jpg";
+//        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 其次把文件插入到系统图库
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+                    file.getAbsolutePath(), file.getName(), null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 最后通知图库更新
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getAbsolutePath())));
+
+    }
+    // 使用系统当前日期加以调整作为照片的名称
+    private String getPhotoFileName() {
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+
+        System.out.println("============" + UUID.randomUUID());
+        Log.e("UUID:",UUID.randomUUID()+"");
+        return sdf.format(date) + "_" + UUID.randomUUID() + ".png";
+    }
+
+
 }

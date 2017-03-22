@@ -1,89 +1,133 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/charley/blanink">Blanink</a> All rights reserved.
- */
 package com.blanink.pojo;
-
-
+import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
- * 公司产品Entity
- * @author CaoYuan
- * @version 2016-11-03
+ * Created by Administrator on 2017/2/10.
  */
-public class CompanyProduct  {
-	
-	private static final long serialVersionUID = 1L;
-	private Office company;		// 公司编号
-	private CompanyCategory companyCategory;		// 产品类别编号
-	private String productName;		// 产品名称
-	private String productDescription;		// 产品描述
-	private String productPriceDownline;		// 公司产品价格下限
-	private String productPriceHighline;		// 公司产品价格上限
-	private String productPhotos;          // 产品图片
-	private List<CompanyProductSpecification> specificationList;   //公司产品规格表
 
-	public Office getCompany() {
-		return company;
-	}
+public class CompanyProduct implements Serializable {
+    public String errorCode;
+    public String reason;
+    public Result result;
+    @Override
+    public String toString() {
+        return "CompanyProduct{" +
+                "errorCode='" + errorCode + '\'' +
+                ", reason='" + reason + '\'' +
+                ", result=" + result +
+                '}';
+    }
 
-	public void setCompany(Office company) {
-		this.company = company;
-	}
+    public static class Result implements Serializable {
+        public Integer total;
+        public List<Row> rows;
 
-	public CompanyCategory getCompanyCategory() {
-		return companyCategory;
-	}
+        @Override
+        public String toString() {
+            return "Result{" +
+                    "total=" + total +
+                    ", ros=" + rows +
+                    '}';
+        }
 
-	public void setCompanyCategory(CompanyCategory companyCategory) {
-		this.companyCategory = companyCategory;
-	}
+        public static class Row implements Serializable {
+            public String id;
+            public Boolean isNewRecord;
+            public String remarks;
+            public ManyCustomer.Result.CreateBy createBy;
+            public String createDate;
+            public String updateDate;
+            public Company company;
+            public CompanyCategory companyCategory;
+            public String productName;
+            public String productDescription;
+            public String productPriceDownline;
+            public String productPriceHighline;
+            public String productPhotos;
+            public List specificationList;
+            public Map<String,String> map;
+            @Override
+            public String toString() {
+                return "Row{" +
+                        "id='" + id + '\'' +
+                        ", isNewRecord=" + isNewRecord +
+                        ", remarks='" + remarks + '\'' +
+                        ", createBy=" + createBy +
+                        ", createDate='" + createDate + '\'' +
+                        ", updateDate='" + updateDate + '\'' +
+                        ", company=" + company +
+                        ", companyCategory=" + companyCategory +
+                        ", productName='" + productName + '\'' +
+                        ", productDescription='" + productDescription + '\'' +
+                        ", productPriceDownline='" + productPriceDownline + '\'' +
+                        ", productPriceHighline='" + productPriceHighline + '\'' +
+                        ", productPhotos='" + productPhotos + '\'' +
+                        ", specificationList=" + specificationList +
+                        ", map=" + map +
+                        '}';
+            }
+        }
 
-	public String getProductName() {
-		return productName;
-	}
+            public static class Company implements Serializable {
+                public String id;
+                public Boolean isNewRecord;
+                public String name;
+                public Integer sort;
+                public String type;
+                public List customerServiceList;
+                public Integer serviceCount;
+                public String parentId;
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+                @Override
+                public String toString() {
+                    return "Company{" +
+                            "id='" + id + '\'' +
+                            ", isNewRecord=" + isNewRecord +
+                            ", name='" + name + '\'' +
+                            ", sort=" + sort +
+                            ", type='" + type + '\'' +
+                            ", customerServiceList=" + customerServiceList +
+                            ", serviceCount=" + serviceCount +
+                            ", parentId='" + parentId + '\'' +
+                            '}';
+                }
+            }
 
-	public String getProductDescription() {
-		return productDescription;
-	}
+            public static class CompanyCategory implements Serializable {
 
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
+                public String id;
+                public Boolean isNewRecord;
+                public String name;
+                public Integer sort;
+                public List categoryAttributeList;
+                public List relIndustryCompanyCategoryList;
+                public String attributeNames;
+                public String attributeIds;
+                public String parentId;
+                public String parentName;
+                public String industryCategoryIds;
+                public String industryCategoryNames;
+                @Override
+                public String toString() {
+                    return "CompanyCategory{" +
+                            "id='" + id + '\'' +
+                            ", isNewRecord=" + isNewRecord +
+                            ", name='" + name + '\'' +
+                            ", sort=" + sort +
+                            ", categoryAttributeList=" + categoryAttributeList +
+                            ", relIndustryCompanyCategoryList=" + relIndustryCompanyCategoryList +
+                            ", attributeNames='" + attributeNames + '\'' +
+                            ", industryCategoryIds='" + industryCategoryIds + '\'' +
+                            ", industryCategoryNames='" + industryCategoryNames + '\'' +
+                            ", parentId='" + parentId + '\'' +
+                            ", parentName='" + parentName + '\'' +
+                            ", attributeIds='" + attributeIds + '\'' +
+                            '}';
+                }
+            }
+        }
+    }
 
-	public String getProductPriceDownline() {
-		return productPriceDownline;
-	}
 
-	public void setProductPriceDownline(String productPriceDownline) {
-		this.productPriceDownline = productPriceDownline;
-	}
-
-	public String getProductPriceHighline() {
-		return productPriceHighline;
-	}
-
-	public void setProductPriceHighline(String productPriceHighline) {
-		this.productPriceHighline = productPriceHighline;
-	}
-
-	public String getProductPhotos() {
-		return productPhotos;
-	}
-
-	public void setProductPhotos(String productPhotos) {
-		this.productPhotos = productPhotos;
-	}
-
-	public List<CompanyProductSpecification> getSpecificationList() {
-		return specificationList;
-	}
-
-	public void setSpecificationList(List<CompanyProductSpecification> specificationList) {
-		this.specificationList = specificationList;
-	}
-}

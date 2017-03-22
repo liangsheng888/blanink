@@ -508,12 +508,12 @@
         "source": "E:\\project\\blanink\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_35.png"
     },
     {
-        "merged": "E:\\project\\blanink\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png",
-        "source": "E:\\project\\blanink\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png"
-    },
-    {
         "merged": "E:\\project\\blanink\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_groups_icon.png",
         "source": "E:\\project\\blanink\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_groups_icon.png"
+    },
+    {
+        "merged": "E:\\project\\blanink\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png",
+        "source": "E:\\project\\blanink\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_input_bar_bg_active.9.png"
     },
     {
         "merged": "E:\\project\\blanink\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_video_play_btn_small_nor.png",

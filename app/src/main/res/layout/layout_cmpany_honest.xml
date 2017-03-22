@@ -25,14 +25,7 @@
                 android:textColor="#000"
                 android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:gravity="center_vertical"
-                android:text="更多"
-                android:textColor="#000" />
+           />
         </RelativeLayout>
 
         <RelativeLayout
@@ -86,11 +79,12 @@
                 android:textColor="#000" />
 
             <TextView
+                android:id="@+id/tv_company_credit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_credit"
-                android:text="2.8"
+                android:text=""
                 android:textColor="@color/colorTheme" />
         </RelativeLayout>
 
@@ -126,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_other"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="@color/colorTheme" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -137,7 +131,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_service"
+                        android:id="@+id/service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -146,12 +140,12 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/tv_service_content"
+                        android:id="@+id/tv_service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/tv_service"
-                        android:text="4.5"
+                        android:layout_toRightOf="@id/service"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -164,7 +158,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_quality"
+                        android:id="@+id/quality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -173,12 +167,12 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/tv_quality_content"
+                        android:id="@+id/tv_quality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/tv_quality"
-                        android:text="4.5"
+                        android:layout_toRightOf="@id/quality"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -191,7 +185,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tv_efficiency"
+                        android:id="@+id/efficiency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -200,12 +194,12 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/tv_efficiency_content"
+                        android:id="@+id/tv_efficiency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/tv_efficiency"
-                        android:text="4.5"
+                        android:layout_toRightOf="@id/efficiency"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -232,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_cost"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -259,7 +253,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_satisfy"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -299,7 +293,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="@color/colorTheme" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -319,12 +313,12 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/tv_service_content2"
+                        android:id="@+id/tv_service_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_service2"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -346,12 +340,12 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/tv_quality_content2"
+                        android:id="@+id/tv_quality_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_quality2"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -373,12 +367,12 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/tv_efficiency_content2"
+                        android:id="@+id/tv_efficiency_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_efficiency2"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -405,7 +399,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_cost2"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 
@@ -432,7 +426,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_pay_time"
-                        android:text="4.5"
+                        android:text=""
                         android:textColor="#000" />
 
 

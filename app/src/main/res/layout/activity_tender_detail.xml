@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.TenderDetail">
+    tools:context="com.blanink.activity.bidTender.TenderDetail">
     <RelativeLayout
         android:id="@+id/bid_detail_rl"
         android:layout_width="match_parent"
@@ -15,18 +15,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="符合招标详情"
+            android:text="招标详情"
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/bid_detail_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:textColor="#fff"
+            android:text="返回"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/last"  />
     </RelativeLayout>
 
     <LinearLayout
@@ -320,13 +324,6 @@
                 android:layout_alignParentTop="true"
                 android:text="附件:"
                 />
-            <com.blanink.view.NoScrollListview
-                android:id="@+id/lv_attachment"
-                android:layout_below="@id/tv_attachment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </com.blanink.view.NoScrollListview>
 
         </RelativeLayout>
         <RelativeLayout
@@ -353,14 +350,22 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_bid_detail"
+        android:layout_alignParentStart="true">
+
     <Button
         android:id="@+id/bt_bid"
-        android:layout_below="@id/ll_bid_detail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:background="@drawable/btn_selector"
         android:text="我要投标"
         android:layout_margin="10dp"
         android:textColor="#fff"
         android:layout_height="35dp" />
-
+    </LinearLayout>
 </RelativeLayout>

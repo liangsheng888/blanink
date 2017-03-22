@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blanink">
 
-    <!-- Required -->
+    <!-- photopicker -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Required -->
     <uses-permission android:name="com.blanink.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -36,7 +44,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -58,60 +66,59 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleTask" />
         <activity android:name=".activity.LookSuperSeek" />
-        <activity android:name=".activity.LookBrowseOrder" />
+        <activity android:name=".activity.order.LookBrowseOrder" />
         <activity android:name=".activity.SeekActivity" />
-        <activity android:name=".activity.OrderDetailActivty" />
-        <activity android:name=".activity.NoteNotifyActivity" />
-        <activity android:name=".activity.TaskResponseDetailActivity" />
-        <activity android:name=".activity.TaskStepDetailActivity" />
-        <activity android:name=".activity.ProductionStepActivity" />
-        <activity android:name=".activity.SortedNotHandProductionActivity" />
-        <activity android:name=".activity.TaskResponseQueue" />
-        <activity android:name=".activity.ComeOrderActivity" />
-        <activity android:name=".activity.ComeOrderDetailActivity" />
-        <activity android:name=".activity.ComeOrderNewAddInfoActivity" />
-        <activity android:name=".activity.ComeOrderModifyProductActivity" />
-        <activity android:name=".activity.ComeOrderAddProductActivity" />
-        <activity android:name=".activity.GoOrderQueueItemDetail" />
-        <activity android:name=".activity.GoOrderPurchase" />
-        <activity android:name=".activity.GoOrderDownOrdered" />
-        <activity android:name=".activity.GoOrderModifyProductInfo" />
-        <activity android:name=".activity.GoOrderGroupDownOrder" />
-        <activity android:name=".activity.GoOrderSeeRemarks" />
-        <activity android:name=".activity.GoOrderAddProduct" />
-        <activity android:name=".activity.NextFamilyManageCompanyDetail" />
-        <activity android:name=".activity.NextFamilyManageCompanyCredit" />
-        <activity android:name=".activity.NextFamilyManageCompanySupplierManage" />
-        <activity android:name=".activity.NextFamilyManageMySupplierSeek" />
-        <activity android:name=".activity.NextFamilyManageProductDetail" />
-        <activity android:name=".activity.NextFamilyManageInviteBcomeSupplier" />
-        <activity android:name=".activity.NextAllSupplierSeek" />
-        <activity android:name=".activity.NextFamilyManageSupplierManageApplyCooperate" />
-        <activity android:name=".activity.NextFamilyManageSupplierManageApplyDelete" />
-        <activity android:name=".activity.LastFamilyManageCustomer" />
-        <activity android:name=".activity.LastFamilyManageNewAddCustomer" />
-        <activity android:name=".activity.LastFamilyManageCustomerSupplierInvite" />
-        <activity android:name=".activity.RefuseReason" />
-        <activity android:name=".activity.LastFamilyManageCustomerApply" />
-        <activity android:name=".activity.LastFamilyManageCustomerApplyDelete" />
-        <activity android:name=".activity.LastMyCustomerSeek" />
-        <activity android:name=".activity.LastCustomerDetail" />
-        <activity android:name=".activity.LastFamilyNewAddMatche" />
-        <activity android:name=".activity.BidApplication" />
-        <activity android:name=".activity.BidDetail" />
-        <activity android:name=".activity.BidAccordWithTender" />
-        <activity android:name=".activity.TenderDetail" />
-        <activity android:name=".activity.TenderPublish" />
-        <activity android:name=".activity.MyTender" />
-        <activity android:name=".activity.TenderBidQueue" />
-        <activity android:name=".activity.TenderBidAccord" />
-        <activity android:name=".activity.RemarkQueue" />
-        <activity android:name=".activity.RemarkComeOderPro" />
-        <activity android:name=".activity.RemarkComeOder" />
-        <activity android:name=".activity.RemarkGoOrder" />
-        <activity android:name=".activity.RemarkGoOrderPro" />
-        <activity android:name=".activity.AfterSaleQueue" />
-        <activity android:name=".activity.AfterSaleSeek" />
+        <activity android:name=".activity.flow.FlowNoteNotifyActivity" />
+        <activity android:name=".activity.task.TaskResponseDetailActivity" />
+        <activity android:name=".activity.flow.FlowProcessDetailActivity" />
+        <activity android:name=".activity.flow.FlowProductStepActivity" />
+        <activity android:name=".activity.flow.FlowSortedNotHandProductionActivity" />
+        <activity android:name=".activity.task.TaskResponseQueue" />
+        <activity android:name=".activity.order.ComeOrderActivity" />
+        <activity android:name=".activity.order.ComeOrderDetailActivity" />
+        <activity android:name=".activity.order.ComeOrderNewAddInfoActivity" />
+        <activity android:name=".activity.order.ComeOrderModifyProductActivity" />
+        <activity android:name=".activity.order.ComeOrderAddProductActivity" />
+        <activity android:name=".activity.order.GoOrderQueueItemDetail" />
+        <activity android:name=".activity.order.GoOrderPurchase" />
+        <activity android:name=".activity.order.GoOrderDownOrdered" />
+        <activity android:name=".activity.order.GoOrderModifyProductInfo" />
+        <activity android:name=".activity.order.GoOrderGroupDownOrder" />
+        <activity android:name=".activity.order.GoOrderSeeRemarks" />
+        <activity android:name=".activity.order.GoOrderAddProduct" />
+        <activity android:name=".activity.lastNext.NextFamilyManageCompanyDetail" />
+        <activity android:name=".activity.lastNext.NextFamilyManageCompanyCredit" />
+        <activity android:name=".activity.lastNext.NextFamilyManageCompanySupplierManage" />
+        <activity android:name=".activity.lastNext.NextFamilyManageMySupplierSeek" />
+        <activity android:name=".activity.lastNext.NextFamilyManageProductDetail" />
+        <activity android:name=".activity.lastNext.NextFamilyManageInviteBcomeSupplier" />
+        <activity android:name=".activity.lastNext.NextAllSupplierSeek" />
+        <activity android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyCooperate" />
+        <activity android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyDelete" />
+        <activity android:name=".activity.lastNext.LastFamilyManageCustomer" />
+        <activity android:name=".activity.lastNext.LastFamilyManageNewAddCustomer" />
+        <activity android:name=".activity.lastNext.LastFamilyManageCustomerSupplierInvite" />
+        <activity android:name=".activity.lastNext.RefuseReason" />
+        <activity android:name=".activity.lastNext.LastFamilyManageCustomerApply" />
+        <activity android:name=".activity.lastNext.LastFamilyManageCustomerApplyDelete" />
+        <activity android:name=".activity.lastNext.LastMyCustomerSeek" />
+        <activity android:name=".activity.lastNext.LastCustomerDetail" />
+        <activity android:name=".activity.lastNext.LastFamilyNewAddMatche" />
+        <activity android:name=".activity.bidTender.BidApplication" />
+        <activity android:name=".activity.bidTender.BidDetail" />
+        <activity android:name=".activity.bidTender.BidAccordWithTender" />
+        <activity android:name=".activity.bidTender.TenderDetail" />
+        <activity android:name=".activity.bidTender.TenderPublish" />
+        <activity android:name=".activity.bidTender.MyTender" />
+        <activity android:name=".activity.bidTender.TenderBidQueue" />
+        <activity android:name=".activity.bidTender.TenderBidAccord" />
+        <activity android:name=".activity.remark.RemarkQueue" />
+        <activity android:name=".activity.remark.RemarkComeOderPro" />
+        <activity android:name=".activity.remark.RemarkComeOder" />
+        <activity android:name=".activity.remark.RemarkGoOrder" />
+        <activity android:name=".activity.remark.RemarkGoOrderPro" />
+        <activity android:name=".activity.afterSale.AfterSaleQueue" />
+        <activity android:name=".activity.afterSale.AfterSaleSeek" />
         <activity android:name=".activity.AdvertiseActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
@@ -121,7 +128,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.FlashActivity" />
-        <activity android:name=".activity.Jpush.TestActivity" />
+        <activity android:name=".activity.jPush.TestActivity" />
         <!-- 设置环信应用的AppKey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
@@ -260,48 +267,68 @@
             android:name="JPUSH_APPKEY"
             android:value="fc2d806c5f4a412c809f9cb3" />
 
-        <activity android:name=".activity.Jpush.RemoveRelationIsAgree" />
-        <activity android:name=".activity.Jpush.ResponseResult" />
-        <activity android:name=".activity.RemarkGoOrderAfterSaleProduct" />
-        <activity android:name=".activity.AfterSaleHandleDetail" />
-        <activity android:name=".activity.AfterSaleDemand" />
+        <activity android:name=".activity.jPush.RemoveRelationIsAgree" />
+        <activity android:name=".activity.jPush.ResponseResult" />
+        <activity android:name=".activity.remark.RemarkGoOrderAfterSaleProduct" />
+        <activity android:name=".activity.afterSale.AfterSaleHandleDetail" />
+        <activity android:name=".activity.afterSale.AfterSaleDemand" />
+        <!-- photoPicker -->
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
-            android:theme="@style/customTheme" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
-            android:theme="@style/customTheme" />
-        <activity android:name=".activity.RePayQueue" />
-        <activity android:name=".activity.RePayNotify" />
-        <activity android:name=".activity.RePayBorrowDetail" />
-        <activity android:name=".activity.BorrowingComeOrderQueue" />
-        <activity android:name=".activity.BorrowingGoOrderQueue" />
-        <activity android:name=".activity.BorrowingComeOrderItemDetail" />
-        <activity android:name=".activity.BorrowingGoOrderToBorrow" />
-        <activity android:name=".activity.BorrowingGoOrderCombinationSendApplication" />
-        <activity android:name=".activity.BorrowingApplyDetail" />
-        <activity android:name=".activity.FinancingApply" />
-        <activity android:name=".activity.MyFinancing" />
-        <activity android:name=".activity.FinancingManage" />
-        <activity android:name=".activity.FinancingMoneyDetail" />
-        <activity android:name=".activity.FinancingDetail" />
-        <activity android:name=".activity.FinancingFindMoney" />
-        <activity android:name=".activity.FindProjectQueue" />
-        <activity android:name=".activity.FindProjectFinancingDemandDetail" />
-        <activity android:name=".activity.FindProjectResonseApply" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activity.borrowRepay.RePayQueue" />
+        <activity android:name=".activity.borrowRepay.RePayNotify" />
+        <activity android:name=".activity.borrowRepay.RePayBorrowDetail" />
+        <activity android:name=".activity.borrowRepay.BorrowingComeOrderQueue" />
+        <activity android:name=".activity.borrowRepay.BorrowingGoOrderQueue" />
+        <activity android:name=".activity.borrowRepay.BorrowingComeOrderItemDetail" />
+        <activity android:name=".activity.borrowRepay.BorrowingGoOrderToBorrow" />
+        <activity android:name=".activity.borrowRepay.BorrowingGoOrderCombinationSendApplication" />
+        <activity android:name=".activity.borrowRepay.BorrowingApplyDetail" />
+        <activity android:name=".activity.fincying.FinancingApply" />
+        <activity android:name=".activity.my.MyFinancing" />
+        <activity android:name=".activity.fincying.FinancingManage" />
+        <activity android:name=".activity.fincying.FinancingMoneyDetail" />
+        <activity android:name=".activity.fincying.FinancingDetail" />
+        <activity android:name=".activity.fincying.FinancingFindMoney" />
+        <activity android:name=".activity.findProject.FindProjectQueue" />
+        <activity android:name=".activity.findProject.FindProjectFinancingDemandDetail" />
+        <activity android:name=".activity.findProject.FindProjectResonseApply" />
         <activity android:name=".activity.MoneyTenderMine" />
         <activity android:name=".activity.MoneyTenderApplyDetail" />
         <activity android:name=".activity.BankComeOderQueue" />
         <activity android:name=".activity.BankLookCompanyDetail" />
-        <activity android:name=".activity.ReceivedPayNotifyQueue" />
-        <activity android:name=".activity.ReceivedPayHistoryQueue" />
-        <activity android:name=".activity.ReceivedPayPlanQueue" />
-        <activity android:name=".activity.ReceivedPayHistoryDetail" />
-        <activity android:name=".activity.ReceivedPayPlanDetail" />
+        <activity android:name=".activity.borrowRepay.ReceivedPayNotifyQueue" />
+        <activity android:name=".activity.borrowRepay.ReceivedPayHistoryQueue" />
+        <activity android:name=".activity.borrowRepay.ReceivedPayPlanQueue" />
+        <activity android:name=".activity.borrowRepay.ReceivedPayHistoryDetail" />
+        <activity android:name=".activity.borrowRepay.ReceivedPayPlanDetail" />
+        <activity android:name=".activity.bidTender.TenderModify" />
         <activity
-            android:name=".activity.MyBidQueue"
+            android:name=".activity.bidTender.MyBidQueue"
             android:label="@string/title_activity_my_bid_queue"
             android:theme="@style/AppTheme" />
+        <activity android:name=".activity.bidTender.BidDetailChatHistory" />
+        <activity android:name=".activity.my.MyProfile" />
+        <activity android:name=".activity.lastNext.ProductDetail" />
+        <activity android:name=".activity.my.ModifyProfile" />
+        <activity android:name=".activity.bidTender.BidSeekTender" />
+        <activity android:name=".activity.set.PersonSet" />
+        <activity android:name=".activity.set.ModifyPsd" />
+        <activity android:name=".activity.task.TaskResponseListPlanedTask" />
+        <activity android:name=".activity.task.TaskNotAllocationToResponse" />
+        <activity android:name=".activity.task.MoreResponseNoteActivty" />
+        <activity android:name=".activity.task.WorkPlan" />
+        <activity android:name=".activity.task.WorkPlanDetail" />
+        <activity android:name=".activity.task.WorkPlanToAllocation" />
+        <activity android:name=".activity.task.WorkPlanAllocationDetail" />
+        <activity android:name=".activity.flow.FlowOrder" />
+        <activity android:name=".activity.task.WorkPlanToAllocationHistory" />
+        <activity android:name=".activity.flow.FlowUseTheFlow" />
+        <activity android:name=".activity.flow.FlowOftenUse"></activity>
     </application>
 
 </manifest>

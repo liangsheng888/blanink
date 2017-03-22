@@ -4,117 +4,17 @@
     android:id="@+id/activity_next_family_manage_company_supplier_manage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
+    android:background="@color/colorBackGround"
     android:focusable="true"
-    tools:context="com.blanink.activity.NextFamilyManageCompanySupplierManage">
-
-    <RelativeLayout
-        android:id="@+id/rl_seek"
-        android:layout_below="@id/rl_customer_manage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:gravity="center_vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp">
-        <TextView
-            android:id="@+id/come_order_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:drawableLeft="@drawable/seek"/>
-        <EditText
-            android:id="@+id/et_supplier"
-            android:layout_toRightOf="@id/come_order_tv"
-            android:background="@null"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="请输入你需要的信息"/>
-        <TextView
-            android:id="@+id/tv_seek"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/colorTheme"
-            android:layout_alignParentRight="true"
-            android:text="搜索"/>
-    </RelativeLayout>
-
-     <com.blanink.view.RefreshListView
-          android:id="@+id/lv_supplier_queue"
-          android:background="#fff"
-          android:layout_below="@id/rl_seek"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:listSelector="#11FB731F"
-          android:drawSelectorOnTop="true">
-
-      </com.blanink.view.RefreshListView>
-
-    <RelativeLayout
-        android:layout_below="@id/lv_supplier_queue"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <LinearLayout
-            android:id="@+id/ll_load"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:visibility="visible"
-            android:orientation="vertical">
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="正在加载..." />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_load_fail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/ll_load"
-            android:gravity="center_vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/loading_error_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/wb_request_loading_error" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/loading_error_img"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="加载失败，请点击屏幕重试"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </RelativeLayout>
+    android:focusableInTouchMode="true"
+    tools:context="com.blanink.activity.lastNext.NextFamilyManageCompanySupplierManage">
 
     <RelativeLayout
         android:id="@+id/rl_customer_manage"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorTheme"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:background="@color/colorTheme">
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,23 +24,157 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/iv_customer_manage_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:textColor="#fff"
+            android:text="返回"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/last"  />
+
         <ImageView
             android:id="@+id/iv_seek_supplier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/add_white"/>
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/add_white" />
     </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_customer_manage">
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#fff"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/come_order_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/seek" />
+
+            <EditText
+                android:id="@+id/et_supplier"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/come_order_tv"
+                android:background="@null"
+                android:hint="请输入你需要的信息" />
+
+            <TextView
+                android:id="@+id/tv_seek"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="搜索"
+                android:textColor="@color/colorTheme"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <com.blanink.view.RefreshListView
+            android:id="@+id/lv_supplier_queue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_seek"
+            android:background="#fff"
+            android:dividerHeight="4dp"
+            android:drawSelectorOnTop="true"
+            android:listSelector="#11FB731F">
+
+        </com.blanink.view.RefreshListView>
+      </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_not_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/data_not"
+                android:padding="10dp"
+                android:text="主人！暂时还没有供应商(⊙o⊙)哦" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/lv_supplier_queue">
+
+
+            <LinearLayout
+                android:id="@+id/ll_load"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="正在加载..." />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_load_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ll_load"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/loading_error_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/wb_request_loading_error" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/loading_error_img"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="加载失败，请点击屏幕重试"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </FrameLayout>
 
 
 </RelativeLayout>

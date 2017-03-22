@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.TaskStepDetailActivity">
+    tools:context="com.blanink.activity.flow.FlowProcessDetailActivity">
 
     <RelativeLayout
         android:id="@+id/rl_workStepDetail"

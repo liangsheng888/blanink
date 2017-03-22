@@ -1,6 +1,5 @@
 package com.blanink.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,8 +10,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.blanink.R;
-import com.blanink.activity.LastFamilyManageCustomer;
-import com.blanink.activity.LastFamilyManageNewAddCustomer;
 
 /**
  * Created by Administrator on 2016/12/24.
@@ -31,29 +28,11 @@ public class TalkFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
     public void showPopupWindow(View v){
-        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.popuplayout, null);
+        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.popup_custom, null);
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 200, RelativeLayout.LayoutParams.WRAP_CONTENT, true);
         //添加客户
-        (contentView.findViewById(R.id.add_customer)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-                Intent intent =new Intent(getActivity(),LastFamilyManageNewAddCustomer.class);
-                startActivity(intent);
-            }
-        });
-        //我的客户
-        (contentView.findViewById(R.id.my_customer)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-                Intent intent =new Intent(getActivity(),LastFamilyManageCustomer.class);
-                startActivity(intent);
-
-            }
-        });
         popupWindow.setTouchable(true);
 
 //        popupWindow.setTouchInterceptor(new View.OnTouchListener() {

@@ -32,44 +32,10 @@
             android:src="@drawable/last" />
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/customer_apply_ll"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/last_family_manage_customer_apply_rl"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="申请合作"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-    </LinearLayout>
-    <LinearLayout
         android:id="@+id/company_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/customer_apply_ll"
+        android:layout_below="@id/last_family_manage_customer_apply_rl"
         android:background="#fff"
         android:orientation="vertical">
         <RelativeLayout
@@ -288,7 +254,7 @@
                 android:layout_toRightOf="@id/url"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="www.thinkhoodop.com"/>
+                android:text=""/>
 
 
         </RelativeLayout>
@@ -339,17 +305,7 @@
                 android:gravity="center_vertical"
                 android:textColor="#000"
                 android:text="填写申请信息" />
-            <Button
-                android:id="@+id/btn_apply"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/corners_bg_yellow"
-                android:text="发出申请"
-                android:layout_marginRight="10dp"
-                android:textColor="#fff"
-                android:layout_weight="0.5"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -394,6 +350,15 @@
             android:layout_marginLeft="10dp"
             android:text="上传照片:"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_apply"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/btn_selector"
+        android:text="发出申请"
+        android:textColor="#fff"
+        android:layout_margin="15dp"/>
 </LinearLayout>
 
     </ScrollView>

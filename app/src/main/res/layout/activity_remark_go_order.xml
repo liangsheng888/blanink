@@ -4,6 +4,6 @@
     android:id="@+id/activity_remark_go_order"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.RemarkGoOrder">
+    tools:context="com.blanink.activity.remark.RemarkGoOrder">
 
 </RelativeLayout>

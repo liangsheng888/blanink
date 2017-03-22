@@ -55,14 +55,21 @@
                 android:text="去单" />
 
             <TextView
+                android:id="@+id/tv_after_sale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/tv_fr_task_response"
-                android:drawableTop="@drawable/gzfk"
+                android:drawableTop="@drawable/sh"
                 android:gravity="center_horizontal"
-                android:text="工作反馈" />
-
+                android:text="售后" />
+            <TextView
+                android:id="@+id/tv_priority"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/rz"
+                android:gravity="center_horizontal"
+                android:text="排优先级" />
 
         </LinearLayout>
 
@@ -92,21 +99,21 @@
                 android:text="下家管理" />
 
             <TextView
+                android:id="@+id/tv_workPlan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/plc"
                 android:gravity="center_horizontal"
-                android:text="排流程" />
-
+                android:text="任务分工" />
             <TextView
-                android:id="@+id/tv_after_sale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/sh"
+                android:id="@+id/tv_fr_task_response"
+                android:drawableTop="@drawable/gzfk"
                 android:gravity="center_horizontal"
-                android:text="售后" />
+                android:text="工作反馈" />
 
             <TextView
                 android:id="@+id/tv_financying"
@@ -116,6 +123,14 @@
                 android:drawableTop="@drawable/rz"
                 android:gravity="center_horizontal"
                 android:text="融资" />
+            <TextView
+                android:id="@+id/tv_flow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/rz"
+                android:gravity="center_horizontal"
+                android:text="排流程" />
 
 
         </LinearLayout>

@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.LookBrowseOrder;
+import com.blanink.activity.order.LookBrowseOrder;
 import com.blanink.activity.LookSuperSeek;
 import com.blanink.activity.SeekActivity;
 import com.blanink.view.MyViewPager;

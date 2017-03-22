@@ -6,28 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround">
-    <RelativeLayout
-        android:id="@+id/mine_rl"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorTheme">
-        <TextView
-            android:id="@+id/mine_tv_seek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="我的"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_photo"
         android:layout_width="match_parent"
         android:background="#fff"
         android:layout_height="150dp"
-        android:layout_below="@+id/mine_rl"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        >
         <ImageView
             android:id="@+id/iv_user_photo"
             android:layout_width="80dp"
@@ -53,6 +38,7 @@
         android:background="#fff"
         android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/rl_profile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical">
@@ -80,6 +66,7 @@
             android:layout_height="1dp"
             android:background="@color/colorBackGround"></View>
         <RelativeLayout
+            android:id="@+id/rl_finance"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical">
@@ -107,6 +94,7 @@
             android:layout_height="1dp"
             android:background="@color/colorBackGround"></View>
         <RelativeLayout
+            android:id="@+id/rl_order"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical">
@@ -134,19 +122,20 @@
             android:layout_height="1dp"
             android:background="@color/colorBackGround"></View>
         <RelativeLayout
+            android:id="@+id/rl_my_tender"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical">
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/tv_my_tender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的地址"
+                android:text="我的招标"
                 android:textColor="#000"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_address"/>
+                android:drawableLeft="@drawable/my_order"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -161,6 +150,37 @@
             android:layout_height="1dp"
             android:background="@color/colorBackGround"></View>
         <RelativeLayout
+            android:id="@+id/rl_my_bid"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_my_bid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的投标"
+                android:textColor="#000"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/my_order"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+
+                android:src="@drawable/next_black"/>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+        <RelativeLayout
+            android:id="@+id/rl_response"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical">
@@ -188,6 +208,7 @@
             android:layout_height="1dp"
             android:background="@color/colorBackGround"></View>
         <RelativeLayout
+            android:id="@+id/rl_after_sale"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical">
@@ -201,6 +222,34 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:drawableLeft="@drawable/after_sale"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next_black"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+        <RelativeLayout
+            android:id="@+id/rl_set"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:textColor="#000"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/my_address"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

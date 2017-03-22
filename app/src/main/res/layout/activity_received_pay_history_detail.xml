@@ -4,7 +4,7 @@
     android:id="@+id/activity_received_pay_history_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.ReceivedPayHistoryDetail"
+    tools:context="com.blanink.activity.borrowRepay.ReceivedPayHistoryDetail"
     android:orientation="vertical"
     android:background="@color/colorBackGround">
     <RelativeLayout

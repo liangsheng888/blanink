@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.BorrowingApplyDetail">
+    tools:context="com.blanink.activity.borrowRepay.BorrowingApplyDetail">
     <RelativeLayout
         android:id="@+id/rl_apply"
         android:layout_width="match_parent"

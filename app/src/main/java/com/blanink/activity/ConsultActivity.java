@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.bean.ManyCustomer;
-import com.blanink.bean.Response;
+import com.blanink.pojo.ManyCustomer;
+import com.blanink.pojo.Response;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.NoScrollListview;
@@ -29,7 +29,7 @@ import java.util.List;
  * 咨询
  * */
 public class ConsultActivity extends AppCompatActivity {
-    private ManyCustomer.Result.CompanyB companyB;
+    private ManyCustomer.Result.Company companyB;
     private ImageView last;
     private MyActivityManager myActivityManager;
     private NoScrollListview lv;
@@ -82,7 +82,7 @@ public class ConsultActivity extends AppCompatActivity {
   //接收上个界面的信息
     private void receiveIntentfromNext() {
         Intent intent=getIntent();
-        companyB=(ManyCustomer.Result.CompanyB) intent.getExtras().getSerializable("companyB");
+        companyB=(ManyCustomer.Result.Company) intent.getExtras().getSerializable("companyB");
         Log.e("ConsultActivity","companyB+++++"+companyB.getCustomerServiceList().toString());
     }
 

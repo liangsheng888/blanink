@@ -21,7 +21,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorTheme"
                 android:layout_alignParentLeft="true"
-                android:text="xxxxx有限责任公司"/>
+                android:text=""/>
 
             <RelativeLayout
                 android:layout_centerInParent="true"
@@ -44,7 +44,7 @@
                 android:layout_toRightOf="@id/tv_customer"
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorTheme"
-                android:text="30家"/>
+                android:text=""/>
             </RelativeLayout>
             <TextView
                 android:id="@+id/tv_credit_customer"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
                 android:layout_marginRight="20dp"
-                android:text="4.5"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_company_xin"
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
                 android:layout_marginRight="20dp"
-                android:text="4.5"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_company_zi_remark"
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
                 android:layout_marginRight="20dp"
-                android:text="4.5"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_company_remark_other"
                 android:layout_width="wrap_content"

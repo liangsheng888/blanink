@@ -4,7 +4,7 @@
     android:id="@+id/activity_last_family_manage_customer_supplier_invite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.LastFamilyManageCustomerSupplierInvite">
+    tools:context="com.blanink.activity.lastNext.LastFamilyManageCustomerSupplierInvite">
 
     <RelativeLayout
         android:id="@+id/last_family_manage_customer_apply_rl"

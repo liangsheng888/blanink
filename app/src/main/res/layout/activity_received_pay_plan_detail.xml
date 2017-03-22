@@ -4,6 +4,6 @@
     android:id="@+id/activity_received_pay_plan_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.ReceivedPayPlanDetail">
+    tools:context="com.blanink.activity.borrowRepay.ReceivedPayPlanDetail">
 
 </RelativeLayout>

@@ -10,15 +10,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.AfterSaleQueue;
-import com.blanink.activity.BidAccordWithTender;
-import com.blanink.activity.ComeOrderActivity;
-import com.blanink.activity.FinancingManage;
-import com.blanink.activity.GoOrderPurchase;
-import com.blanink.activity.LastFamilyManageCustomer;
-import com.blanink.activity.NextFamilyManageCompanySupplierManage;
-import com.blanink.activity.TaskResponseQueue;
-import com.blanink.activity.MyTender;
+import com.blanink.activity.afterSale.AfterSaleQueue;
+import com.blanink.activity.bidTender.BidAccordWithTender;
+import com.blanink.activity.flow.FlowOrder;
+import com.blanink.activity.order.ComeOrderActivity;
+import com.blanink.activity.fincying.FinancingManage;
+import com.blanink.activity.order.GoOrderPurchase;
+import com.blanink.activity.lastNext.LastFamilyManageCustomer;
+import com.blanink.activity.lastNext.NextFamilyManageCompanySupplierManage;
+import com.blanink.activity.task.TaskResponseQueue;
+import com.blanink.activity.bidTender.TenderPublish;
+import com.blanink.activity.task.WorkPlan;
+import com.blanink.po.Flow;
 
 /**
  * Created by Administrator on 2017/1/7.
@@ -33,6 +36,8 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
     private TextView tv_next_manage;
     private TextView tv_after_sale;
     private TextView tv_financying;
+    private TextView tv_workPlan;
+    private TextView tv_flow;
 
     @Nullable
     @Override
@@ -40,7 +45,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
           View  view=View.inflate(getActivity(), R.layout.fragment_fisrt_page,null);
           initView(view);
         return view;
-
     }
 
 
@@ -60,8 +64,8 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         tv_next_manage = ((TextView) view.findViewById(R.id.tv_next_manage));
         tv_after_sale = ((TextView) view.findViewById(R.id.tv_after_sale));
         tv_financying = ((TextView) view.findViewById(R.id.tv_financying));
-
-
+        tv_workPlan = ((TextView) view.findViewById(R.id.tv_workPlan));
+        tv_flow = ((TextView) view.findViewById(R.id.tv_flow));
     }
     private void initData() {
         tv_fr_come_order.setOnClickListener(this);
@@ -73,6 +77,8 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         tv_next_manage.setOnClickListener(this);
         tv_after_sale.setOnClickListener(this);
         tv_financying.setOnClickListener(this);
+        tv_workPlan.setOnClickListener(this);
+        tv_flow.setOnClickListener(this);
     }
 
     @Override
@@ -80,7 +86,7 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
         switch (v.getId()){
             //招标
             case R.id.tv_fr_tender:
-                Intent intentTender=new Intent(getActivity(),MyTender.class);
+                Intent intentTender=new Intent(getActivity(),TenderPublish.class);
                 startActivity(intentTender);
                 break;
             //投标
@@ -113,7 +119,6 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             case R.id.tv_next_manage:
                 Intent intentNext=new Intent(getActivity(), NextFamilyManageCompanySupplierManage.class);
                 startActivity(intentNext);
-
                 break;
             //售后
             case R.id.tv_after_sale:
@@ -124,7 +129,16 @@ public class FirstPageFragment extends Fragment implements View.OnClickListener 
             case R.id.tv_financying:
                 Intent intentfinancying=new Intent(getActivity(), FinancingManage.class);
                 startActivity(intentfinancying);
-
+                break;
+            case R.id.tv_workPlan:
+                //分配任务
+                Intent workPlan=new Intent(getActivity(), WorkPlan.class);
+                startActivity(workPlan);
+                break;
+            case R.id.tv_flow:
+                //排流程
+                Intent flow=new Intent(getActivity(), FlowOrder.class);
+                startActivity(flow);
                 break;
         }
 

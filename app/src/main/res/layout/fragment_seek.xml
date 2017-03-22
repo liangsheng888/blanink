@@ -227,7 +227,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:text="更多"
-                    android:drawableRight="@drawable/more_red"
+                    android:drawableRight="@drawable/next_black"
                     android:gravity="center_vertical"
                     android:textColor="#f00" />
 
@@ -499,7 +499,7 @@
                 <EditText
                     android:id="@+id/framgent_seek_rl_seek"
                     android:layout_width="match_parent"
-                    android:background="@drawable/biankang_bg"
+                    android:background="@drawable/corner_common_border_gray"
                     android:singleLine="true"
                     android:hint="请输入关键词"
                     android:textSize="16sp"

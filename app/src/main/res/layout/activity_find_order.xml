@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.LookBrowseOrder">
+    tools:context="com.blanink.activity.order.LookBrowseOrder">
     <RelativeLayout
         android:id="@+id/findOrder_rl"
         android:layout_width="match_parent"

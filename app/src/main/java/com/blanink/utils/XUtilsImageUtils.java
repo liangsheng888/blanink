@@ -8,6 +8,7 @@ import org.xutils.image.ImageOptions;
 import org.xutils.x;
 /**
  * Created by Administrator on 2016/9/29.
+ * xutils 图片显示的工具类
  */
 public class XUtilsImageUtils {
     public static void display(ImageView imageView, String iconUrl) {
@@ -15,6 +16,7 @@ public class XUtilsImageUtils {
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setFailureDrawableId(R.mipmap.th_pda_net)
+                .setUseMemCache(true)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
 
@@ -26,6 +28,7 @@ public class XUtilsImageUtils {
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setFailureDrawableId(R.mipmap.th_pda_net)
                 .setLoadingDrawableId(R.mipmap.load)
+                .setUseMemCache(true)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
 
@@ -44,8 +47,9 @@ public class XUtilsImageUtils {
                 .setRadius(DensityUtil.dip2px(radius))
                 .setIgnoreGif(false)
                 .setCrop(true)//是否对图片进行裁剪
-                .setFailureDrawableId(R.mipmap.ic_launcher)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
+                .setUseMemCache(true)
+                .setFailureDrawableId(R.drawable.user_photo)
+                .setLoadingDrawableId(R.mipmap.load)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
     }
@@ -62,6 +66,7 @@ public class XUtilsImageUtils {
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setCircular(isCircluar)
                 .setCrop(true)
+                .setUseMemCache(true)
                 .setLoadingDrawableId(R.mipmap.ic_launcher)
                 .setFailureDrawableId(R.mipmap.ic_launcher)
                 .build();

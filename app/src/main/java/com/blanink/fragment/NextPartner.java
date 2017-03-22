@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.bean.ManyCustomer;
+import com.blanink.pojo.ManyCustomer;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.RefreshListView;
@@ -36,32 +36,38 @@ import java.util.List;
  * Created by Administrator on 2017/2/9.
  * 下家 合作伙伴
  */
-public class NextPartner extends Fragment  {
+public class NextPartner extends Fragment {
     private RefreshListView lv_partner;
     private SparseArray<View> sparseArray;
-    private List<ManyCustomer.Result.Customer> partnerLists=new ArrayList();
+    private List<ManyCustomer.Result.Customer> partnerLists = new ArrayList();
     private SharedPreferences sp;
     private String companyId;
-    private int pageNo=1;
+    private int pageNo = 1;
     private MyAdapter adapter;
-    private boolean isHasData=true;
-    private Handler handler=new Handler(){
+    private boolean isHasData = true;
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             lv_partner.completeRefresh(isHasData);
-            adapter.notifyDataSetChanged();
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            } else {
+                rl_not_data.setVisibility(View.VISIBLE);
+            }
         }
     };
     private LinearLayout ll_load;
     private RelativeLayout rl_load_fail;
+    private RelativeLayout rl_not_data;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         companyId = getActivity().getIntent().getStringExtra("id");
-        sp=getActivity().getSharedPreferences("DATA",getActivity().MODE_PRIVATE);
-        View view =View.inflate(getActivity(), R.layout.fragment_company_partner_queue,null);
+        Log.e("partner", "NextPartner companyId:" + companyId);
+        sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
+        View view = View.inflate(getActivity(), R.layout.fragment_company_partner_queue, null);
         initView(view);
         return view;
     }
@@ -70,6 +76,7 @@ public class NextPartner extends Fragment  {
         lv_partner = ((RefreshListView) view.findViewById(R.id.lv_partner));
         ll_load = ((LinearLayout) view.findViewById(R.id.ll_load));
         rl_load_fail = ((RelativeLayout) view.findViewById(R.id.rl_load_fail));
+        rl_not_data = (RelativeLayout) view.findViewById(R.id.rl_not_data);
 
     }
 
@@ -116,6 +123,7 @@ public class NextPartner extends Fragment  {
         public TextView tv_major;//主营
 
     }
+
     public class MyAdapter extends BaseAdapter {
 
 
@@ -136,7 +144,7 @@ public class NextPartner extends Fragment  {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-          ViewHolder viewHolder = null;
+            ViewHolder viewHolder = null;
             sparseArray = new SparseArray<>();
             Log.e("Next", "getView  supplier ：" + partnerLists.size() + "");
             if (sparseArray.get(position, null) == null) {
@@ -151,7 +159,7 @@ public class NextPartner extends Fragment  {
                 viewHolder.tv_company_apply_remark = (TextView) convertView.findViewById(R.id.tv_company_apply_remark);
                 viewHolder.tv_company_apply_remark_other = (TextView) convertView.findViewById(R.id.tv_company_apply_other_remark);
                 viewHolder.tv_apply_address = (TextView) convertView.findViewById(R.id.tv_apply_address);
-                viewHolder.tv_major=(TextView)convertView.findViewById(R.id.tv_major);
+                viewHolder.tv_major = (TextView) convertView.findViewById(R.id.tv_major);
                 convertView.setTag(viewHolder);
                 sparseArray.put(position, convertView);
             } else {
@@ -168,43 +176,44 @@ public class NextPartner extends Fragment  {
             viewHolder.tv_major.setText(customer.getCompanyA().getScope());
             // viewHolder.tv_customer_num.setText(customer.getCompanyA());
             DecimalFormat df = new DecimalFormat("0.0");
-            viewHolder.tv_honest.setText(df.format((partnerLists.get(position).getComeOrderSelfRated() + partnerLists.get(position).getComeOrderOthersRated()) / 2.0));
-            viewHolder.tv_company_apply_remark.setText(partnerLists.get(position).getComeOrderSelfRated() + "");
-            viewHolder.tv_company_apply_remark_other.setText(partnerLists.get(position).getComeOrderOthersRated() + "");
+            viewHolder.tv_honest.setText(df.format((partnerLists.get(position).getCompanyB().reviewOthers + partnerLists.get(position).getCompanyB().reviewSelf) / 2.0));
+            viewHolder.tv_company_apply_remark.setText(partnerLists.get(position).getCompanyB().reviewSelf+ "");
+            viewHolder.tv_company_apply_remark_other.setText(partnerLists.get(position).getCompanyB().reviewOthers  + "");
             return convertView;
         }
 
     }
+
     //访问网络
-    public void getData(){
-        if(!ExampleUtil.isConnected(getActivity())){
+    public void getData() {
+        if (!ExampleUtil.isConnected(getActivity())) {
             //判断网络是否连接
             ll_load.setVisibility(View.GONE);
             rl_load_fail.setVisibility(View.VISIBLE);
             Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        RequestParams rp=new RequestParams(NetUrlUtils.NET_URL+"customer/partnerList");
-        rp.addBodyParameter("userId",sp.getString("USER_ID",""));
-        rp.addBodyParameter("companyB.id",companyId);
-        rp.addBodyParameter("pageNo",pageNo+"");
+        Log.e("LastPartner", "url+++++++" + NetUrlUtils.NET_URL + "customer/partnerList?userId=" + sp.getString("USER_ID", null) + "&companyB.id=" + companyId);
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "customer/partnerList");
+        rp.addBodyParameter("userId", sp.getString("USER_ID", ""));
+        rp.addBodyParameter("companyB.id", companyId);
+        rp.addBodyParameter("pageNo", pageNo + "");
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 ll_load.setVisibility(View.GONE);
-                Log.e("LastPartner",result);
-                Gson gson=new Gson();
-                ManyCustomer manyCustomer=gson.fromJson(result,ManyCustomer.class);
-                Log.e("LastPartner","解析后"+manyCustomer.toString());
-                if(manyCustomer.getResult().getTotal()<=partnerLists.size()){
-                    isHasData=false;
-                }else {
+                Log.e("LastPartner", result);
+                Gson gson = new Gson();
+                ManyCustomer manyCustomer = gson.fromJson(result, ManyCustomer.class);
+                Log.e("LastPartner", "解析后" + manyCustomer.toString());
+                if (manyCustomer.getResult().getTotal() <= partnerLists.size()) {
+                    isHasData = false;
+                } else {
                     partnerLists.addAll(manyCustomer.getResult().getRows());
-                    if(adapter==null){
-                        adapter=new MyAdapter();
+                    if (adapter == null) {
+                        adapter = new MyAdapter();
                         lv_partner.setAdapter(adapter);
-                    }else {
+                    } else {
                         adapter.notifyDataSetChanged();
                     }
                 }

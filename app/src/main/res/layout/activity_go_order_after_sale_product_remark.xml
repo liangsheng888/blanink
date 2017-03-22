@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackGround"
-        tools:context="com.blanink.activity.RemarkGoOrderAfterSaleProduct">
+        tools:context="com.blanink.activity.remark.RemarkGoOrderAfterSaleProduct">
 
         <RelativeLayout
             android:id="@+id/goOrderAfterSaleProductRemark_rl"

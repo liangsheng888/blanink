@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.BidDetail">
+    tools:context="com.blanink.activity.bidTender.BidDetail">
     <RelativeLayout
         android:id="@+id/bid_detail_rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorTheme">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,61 +18,33 @@
             android:text="投标详情"
             android:textColor="#fff"
             android:textSize="18sp" />
-
-        <ImageView
+        <TextView
             android:id="@+id/bid_detail_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="返回"
+            android:drawableLeft="@drawable/last" />
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/customer_apply_ll"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/bid_detail_rl"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:gravity="center"
-            android:text="投标详情"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-        </View>
-
-    </LinearLayout>
-    <LinearLayout
         android:id="@+id/ll_bid_detail"
-        android:layout_below="@id/customer_apply_ll"
+        android:layout_below="@id/bid_detail_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
         android:orientation="vertical"
-        android:padding="5dp">
+       >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:background="#fff"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/tv_company"
@@ -83,53 +54,24 @@
                 android:text="XXXXX有限责任公司"
                 android:textColor="@color/colorTheme" />
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/tv_company"
-                android:background="@color/colorBackGround"></View>
-
             <TextView
-                android:id="@+id/tv_tag"
+                android:id="@+id/tv_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/view"
                 android:text="mac book pro "
                 android:textColor="@color/colorTheme" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/tv_tag"
-                android:background="@color/colorBackGround"></View>
-
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/view2"
-                android:text="500"
-                android:textColor="@color/colorTheme" />
-
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/tv_num" />
 
         </RelativeLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:background="#fff">
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -191,12 +133,15 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:background="#fff">
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="#fff">
 
                 <TextView
                     android:id="@+id/tv_pay"
@@ -244,7 +189,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:background="#fff">
             <TextView
                 android:id="@+id/tv_note"
                 android:layout_width="wrap_content"
@@ -262,12 +209,13 @@
                 android:gravity="top"
                 android:layout_marginLeft="5dp"
                 android:maxLines="6"
-                android:text="本公司采购mac book pro 500台，要去质量过硬，速度快，效率高"
                 android:ellipsize="end"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:background="#fff">
             <TextView
                 android:id="@+id/tv_attachment"
                 android:layout_width="wrap_content"
@@ -288,7 +236,9 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:background="#fff">
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_alignParentLeft="true"
@@ -306,11 +256,6 @@
                 android:text="2012-5-10"
                 />
         </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorTheme">
-        </View>
     </LinearLayout>
 
     <LinearLayout
@@ -325,6 +270,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
             android:background="#8e8686">
 
         </View>
@@ -332,7 +278,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="我的投标"
             android:textColor="#000"
@@ -342,6 +288,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
+            android:layout_marginRight="10dp"
             android:background="#8e8686">
         </View>
 
@@ -355,12 +302,13 @@
         android:orientation="vertical"
         android:padding="5dp"
         android:layout_below="@+id/my_bid"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
 
             <TextView
                 android:id="@+id/tv_name"
@@ -411,6 +359,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:text="2012-6-10"
+                android:layout_marginLeft="5dp"
                 android:singleLine="true"
                 android:layout_toRightOf="@id/bid_date" />
 
@@ -418,7 +367,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -461,7 +411,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="10dp"
                     android:textColor="#000"
-                    android:text="交货期:" />
+                    android:text="交货周期:" />
 
                 <TextView
                     android:id="@+id/tv_date_of_delivery"
@@ -475,6 +425,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
                >
 
                 <TextView
@@ -500,7 +451,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
             <TextView
                 android:id="@+id/tv_note_detail"
                 android:layout_width="wrap_content"
@@ -518,12 +470,12 @@
                 android:gravity="top"
                 android:layout_marginLeft="5dp"
                 android:maxLines="6"
-                android:text="本公司采购mac book pro 500台，要去质量过硬，速度快，效率高"
                 android:ellipsize="end"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
             <TextView
                 android:id="@+id/tv_attachment2"
                 android:layout_width="wrap_content"
@@ -546,31 +498,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_margin="10dp"
             android:gravity="center_vertical">
-            <TextView
+            <Button
                 android:id="@+id/tv_talk"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/talk_blue"
-                android:text="联系对方"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:text="编辑信息"
-                android:drawableLeft="@drawable/edit_blue" />
-        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorTheme">
-        </View>
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@drawable/corners_bg_red"
+                android:textColor="#fff"
+                android:text="联系对方"/>
+             />
+        </LinearLayout>
     </LinearLayout>
 
 

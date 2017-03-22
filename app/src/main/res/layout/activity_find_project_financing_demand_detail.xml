@@ -4,7 +4,7 @@
     android:id="@+id/activity_find_project_financing_demand_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.FindProjectFinancingDemandDetail">
+    tools:context="com.blanink.activity.findProject.FindProjectFinancingDemandDetail">
     <RelativeLayout
         android:layout_alignParentTop="true"
         android:id="@+id/rl_financingApply"

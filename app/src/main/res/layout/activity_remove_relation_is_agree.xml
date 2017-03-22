@@ -4,7 +4,7 @@
     android:id="@+id/activity_remove_relation_is_agree"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.Jpush.RemoveRelationIsAgree">
+    tools:context="com.blanink.activity.jPush.RemoveRelationIsAgree">
 
     <RelativeLayout
         android:id="@+id/last_family_manage_customer_apply_rl"

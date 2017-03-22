@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bid_seek_tender"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.bidTender.BidSeekTender">
+    <RelativeLayout
+        android:id="@+id/bid_seek"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="搜索"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:text="返回"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/last"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_seek"
+        android:layout_below="@id/bid_seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/corner_common_border_gray"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/come_order_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:drawableLeft="@drawable/seek" />
+
+        <EditText
+            android:id="@+id/et_seek"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/come_order_tv"
+            android:textSize="15sp"
+            android:background="@null"
+            android:hint="请输入你需要的信息" />
+
+        <TextView
+            android:id="@+id/tv_seek"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/colorTheme"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_seek">
+    <com.blanink.view.LoadListView
+        android:id="@+id/lv"
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="#11FB731F"
+        android:drawSelectorOnTop="true">
+    </com.blanink.view.LoadListView>
+        <RelativeLayout
+            android:id="@+id/seek_not_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#fff">
+            <TextView
+                android:id="@+id/tv_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/data_not"
+                android:padding="10dp"
+                android:text="主人！没有找到可利用的资源"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/ll_load"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="正在拼命加载中..." />
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>

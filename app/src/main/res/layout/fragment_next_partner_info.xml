@@ -34,7 +34,7 @@
                 android:text="服务客户:"
                 android:textColor="@color/colorBlack" />
             <TextView
-                android:id="@+id/tv_customer_name"
+                android:id="@+id/tv_customer_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:text="4.5"
+                android:text=""
                 android:textColor="#f00" />
 
         </RelativeLayout>
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:text="4.5"
+                android:text=""
                 android:textColor="#f00" />
 
         </RelativeLayout>
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:text="4.5"
+                android:text=""
                 android:textColor="#f00" />
         </RelativeLayout>
 

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_task_response_list_planed_task"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.task.TaskResponseListPlanedTask">
+
+    <RelativeLayout
+        android:id="@+id/rl_workStepQueue"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="任务反馈"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_task"
+        android:layout_below="@id/rl_workStepQueue"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="我的任务"
+            android:background="@drawable/selector_rg"
+            android:textColor="@color/text_color_selector"
+            android:checked="true"
+
+            android:gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/rb_not"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="待分配的任务"
+            android:background="@drawable/selector_rg"
+            android:textColor="@color/text_color_selector"
+            android:gravity="center"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/rb_history"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="历史反馈"
+            android:background="@drawable/selector_rg"
+            android:textColor="@color/text_color_selector"
+            android:gravity="center"
+            android:button="@null" />
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/fl_task"
+        android:layout_below="@id/rg_task"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    >
+    </FrameLayout>
+
+</RelativeLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.GoOrderGroupDownOrder">
+    tools:context="com.blanink.activity.order.GoOrderGroupDownOrder">
 
     <RelativeLayout
         android:id="@+id/go_order_group"

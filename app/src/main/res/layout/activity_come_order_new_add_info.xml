@@ -9,7 +9,7 @@
     android:focusableInTouchMode="true"
     android:focusable="true"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.ComeOrderNewAddInfoActivity">
+    tools:context="com.blanink.activity.order.ComeOrderNewAddInfoActivity">
     <RelativeLayout
         android:id="@+id/come_order_new_add_rl"
         android:layout_width="match_parent"
@@ -25,31 +25,26 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/come_order_new_add_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:drawableLeft="@drawable/last"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:text="返回"/>
     </RelativeLayout>
-    <com.blanink.view.MyViewPager
-        android:id="@+id/come_order_new_add_advertise"
-        android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_height="140dp"
-        android:layout_below="@+id/come_order_new_add_rl"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-    </com.blanink.view.MyViewPager>
     <LinearLayout
         android:id="@+id/come_order_new_add_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="#fff"
-        android:layout_below="@id/come_order_new_add_advertise"
+        android:layout_below="@id/come_order_new_add_rl"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -74,8 +69,6 @@
                 android:layout_marginLeft="10dp"
                 android:background="@color/colorBackGround"
                 android:layout_toRightOf="@id/tv_select_user">
-
-
                 <Spinner
                     android:id="@+id/come_order_new_add_sp_customer"
                     android:layout_width="100dp"
@@ -86,11 +79,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true">
-
-
                 </Spinner>
             </RelativeLayout>
-            <TextView
+            <Button
                 android:layout_width="80dp"
                 android:layout_height="35dp"
                 android:text="新增客户"
@@ -98,7 +89,7 @@
                 android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/corners_bg_red"
+                android:background="@drawable/btn_selector"
                 android:id="@+id/tv_newAdd"
                 android:layout_toRightOf="@id/come_order_new_add_rl2"/>
         </RelativeLayout>
@@ -326,7 +317,7 @@
     <Button
         android:id="@+id/btn_contiume_add"
         android:layout_width="match_parent"
-        android:background="@drawable/corners_bg_red"
+        android:background="@drawable/btn_selector"
         android:layout_below="@id/come_order_new_add_customer_info"
         android:text="继续添加产品"
         android:textSize="16sp"

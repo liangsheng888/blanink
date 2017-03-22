@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.BidAccordWithTender">
+    tools:context="com.blanink.activity.bidTender.BidAccordWithTender">
 
     <RelativeLayout
         android:id="@+id/bid_accord_with_tender_rl"
@@ -24,25 +24,31 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/bid_accord_with_tender_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:textColor="#fff"
+            android:text="返回"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/last"
+            />
     </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/bid_accord_with_tender_rl">
+         android:layout_below="@id/bid_accord_with_tender_rl">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
             <LinearLayout
                 android:id="@+id/ll_seek"
                 android:layout_width="match_parent"
@@ -85,37 +91,30 @@
                         android:textColor="@color/colorTheme"
                         android:textSize="16sp" />
                 </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/bid_accord_with_tender_rl_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:background="#fff"
-                android:padding="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dp">
+                    <Spinner
+                        android:id="@+id/sp_sort"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:entries="@array/sort"></Spinner>
+                    <Spinner
+                        android:id="@+id/sp_expire"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/sp_sort"
+                        android:gravity="center"
+                        android:entries="@array/expire"
+                        />
+                </RelativeLayout>
 
-                <Spinner
-                    android:id="@+id/sp_filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_alignParentLeft="true"
-                    android:entries="@array/category">
-
-                </Spinner>
-
-                <TextView
-                    android:id="@+id/tv_sort"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@id/sp_filter"
-                    android:drawableRight="@drawable/sj"
-                    android:gravity="center_vertical"
-                    android:text="排序"
-                    android:textColor="#000"
-                    android:textSize="16sp">
-
-                </TextView>
-            </RelativeLayout>
             </LinearLayout>
 
             <com.blanink.view.RefreshListView
@@ -130,14 +129,27 @@
 
             </com.blanink.view.RefreshListView>
         </RelativeLayout>
-
+        <RelativeLayout
+            android:id="@+id/rl_not_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#fff">
+            <TextView
+                android:id="@+id/tv_not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/data_not"
+                android:padding="10dp"
+                android:text="主人！暂时没有可投项目招标"/>
+        </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_load"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fff"
             >
-
             <LinearLayout
                 android:id="@+id/ll_load"
                 android:layout_width="match_parent"
@@ -147,8 +159,8 @@
                 android:orientation="vertical">
 
                 <ProgressBar
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"

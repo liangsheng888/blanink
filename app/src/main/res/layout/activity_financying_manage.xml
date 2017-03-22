@@ -4,7 +4,7 @@
     android:id="@+id/activity_financying_manage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.FinancingManage">
+    tools:context="com.blanink.activity.fincying.FinancingManage">
     <RelativeLayout
         android:id="@+id/rl_financyingManage"
         android:layout_width="match_parent"

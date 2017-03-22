@@ -1,179 +1,181 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/charley/blanink">Blanink</a> All rights reserved.
- */
 package com.blanink.pojo;
-
-import java.util.Date;
+import com.blanink.po.Flow;
+import java.io.Serializable;
 import java.util.List;
 
-
 /**
- * 订单Entity
- * @author CaoYuan
- * @version 2016-11-07
+ * Created by Administrator on 2017/3/8.
  */
-public class OrderProduct extends DataEntity<OrderProduct> {
-	
-	private static final long serialVersionUID = 1L;
-	private Order order;		// 订单编号 父类
-	private String actualFlowId;		// 流程实例编号
-	private CompanyCategory companyCategory;		// 公司叶子节点
-	private String price;		// 产品价格（借款资金额度）
-	private String amount;		// 产品数量
-	private String productDescription;		// 订单实例描述
-	private String rate;		// 利率
-	private String isAConfirm;		// 是否甲方确认
-	private String confirmUserid;		// 甲方确认人
-	private Date aConfirmTime;		// 确认时间
-	private Date deliveryTime;       //交付时间
-	private String orderProductType;		// 订单产品采购类型（外加工，采购）
-	private String crudType ;		// 添删改查状态
-	private String productName;     // 产品规格
-	private List<OrderProductSpecification> orderProductSpecificationList;
-	
-	public OrderProduct() {
-		super();
-	}
 
-	public OrderProduct(String id){
-		super(id);
-	}
+public class OrderProduct implements Serializable{
+    public String errorCode;
+    public String reason;
+    public List<Result> result;
 
-	public OrderProduct(Order order){
-		this.order = order;
-	}
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "errorCode='" + errorCode + '\'' +
+                ", reason='" + reason + '\'' +
+                ", result=" + result +
+                '}';
+    }
 
-	public Order getOrder() {
-		return order;
-	}
+    public static class  Result implements Serializable {
+        public String id;
+        public Boolean isNewRecord;
+        public LoginResult.CreateBy createBy;
+        public String createDate;
+        public String updateDate;
+        private Order  order;
+        // 订单编号 父类
+        public static class Order implements Serializable{
+            public String id;
+            public Boolean isNewRecord;
+            public Integer sort;
+            public String takeOrderTime;
+            public String takeOrderTimeString;
+            public String delieverTimeString;
+            public List orderProductList;
+            public List orderList;
+            public Integer historyOrderNumber;
+            public String parentId;
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	
-	
-	public String getProductName() {
-		return productName;
-	}
-	
+            @Override
+            public String toString() {
+                return "Order{" +
+                        "id='" + id + '\'' +
+                        ", isNewRecord=" + isNewRecord +
+                        ", sort=" + sort +
+                        ", takeOrderTime='" + takeOrderTime + '\'' +
+                        ", takeOrderTimeString='" + takeOrderTimeString + '\'' +
+                        ", delieverTimeString='" + delieverTimeString + '\'' +
+                        ", orderProductList=" + orderProductList +
+                        ", orderList=" + orderList +
+                        ", historyOrderNumber=" + historyOrderNumber +
+                        ", parentId='" + parentId + '\'' +
+                        '}';
+            }
+        }
+        public CompanyProduct.Result.CompanyCategory companyCategory;
+        public String price;		// 产品价格（借款资金额度）
+        public String amount;		// 产品数量
+        public String productDescription;
+        public String deliveryTime;// 订单实例描述
+        public String orderProductStatus;
+        public String productName;
+        public String companyAPriority ; //甲方优先级
+        public String companyBPriority ; //已方优先级
+        public RelFlowProcess relFlowProcess;
+        public static class RelFlowProcess implements Serializable{
+            public Boolean isNewRecord;
+            public Flow flow;
+            public static class Flow implements Serializable{
+                public String id;
+                public Boolean isNewRecord;
+                public List processList;
+                public List remaksList;
 
-	public Date getDeliveryTime() {
-		return deliveryTime;
-	}
+                @Override
+                public String toString() {
+                    return "Flow{" +
+                            "id='" + id + '\'' +
+                            ", isNewRecord=" + isNewRecord +
+                            ", processList=" + processList +
+                            ", remaksList=" + remaksList +
+                            '}';
+                }
+            }
+            public Process process;
+            public static class Process implements Serializable{
+                public String id;
+                public Boolean isNewRecord;
+                public String name;
+                public Integer sort;
+                public List relPPList;
+                public String parentId;
 
-	public void setDeliveryTime(Date deliveryTime) {
-		this.deliveryTime = deliveryTime;
-	}
+                @Override
+                public String toString() {
+                    return "Process{" +
+                            "id='" + id + '\'' +
+                            ", isNewRecord=" + isNewRecord +
+                            ", name='" + name + '\'' +
+                            ", sort=" + sort +
+                            ", relPPList=" + relPPList +
+                            ", parentId='" + parentId + '\'' +
+                            '}';
+                }
+            }
+            public Integer target;
+            public Integer totalCompletedQuantity;
+            public String status;
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+            @Override
+            public String toString() {
+                return "RelFlowProcess{" +
+                        "isNewRecord=" + isNewRecord +
+                        ", flow=" + flow +
+                        ", process=" + process +
+                        ", target=" + target +
+                        ", status='" + status + '\'' +
+                        '}';
+            }
+        }
+         public WorkPlan workPlan;
+         public static class WorkPlan implements Serializable{
+             public Boolean isNewRecord;
+             public String remarks;
+             public LoginResult.CreateBy createBy;
+             public RelFlowProcess.Flow flow;
+             public String planTime;
+             public String achieveAmount;
 
-	public List<OrderProductSpecification> getOrderProductSpecificationList() {
-		return orderProductSpecificationList;
-	}
+             @Override
+             public String toString() {
+                 return "WorkPlan{" +
+                         "isNewRecord=" + isNewRecord +
+                         ", remarks='" + remarks + '\'' +
+                         ", createBy=" + createBy +
+                         ", flow=" + flow +
+                         ", planTime='" + planTime + '\'' +
+                         ", achieveAmount='" + achieveAmount + '\'' +
+                         '}';
+             }
+         }
+        public Integer finishedAmount;
+        public List processFeedbackList;
+        public List processWorkerList;
+        public List workPlanList;
+        public CompanyProduct.Result.Company companyA;
+        public ManyCustomer.Result.CreateBy companyBOwner;
 
-	public void setOrderProductSpecificationList(List<OrderProductSpecification> orderProductSpecificationList) {
-		this.orderProductSpecificationList = orderProductSpecificationList;
-	}
-
-	//@Length(min=0, max=64, message="流程实例编号长度必须介于 0 和 64 之间")
-	public String getActualFlowId() {
-		return actualFlowId;
-	}
-
-	public void setActualFlowId(String actualFlowId) {
-		this.actualFlowId = actualFlowId;
-	}
-	
-	
-	
-	public CompanyCategory getCompanyCategory() {
-		return companyCategory;
-	}
-
-	public void setCompanyCategory(CompanyCategory companyCategory) {
-		this.companyCategory = companyCategory;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	
-	//@Length(min=1, max=11, message="产品数量长度必须介于 1 和 11 之间")
-	public String getAmount() {
-		return amount;
-	}
-
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-	
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
-	
-//	@Length(min=0, max=45, message="利率长度必须介于 0 和 45 之间")
-	public String getRate() {
-		return rate;
-	}
-
-	public void setRate(String rate) {
-		this.rate = rate;
-	}
-	//
-	//@Length(min=0, max=1, message="是否甲方确认长度必须介于 0 和 1 之间")
-	public String getIsAConfirm() {
-		return isAConfirm;
-	}
-
-	public void setIsAConfirm(String isAConfirm) {
-		this.isAConfirm = isAConfirm;
-	}
-	
-	//@Length(min=0, max=64, message="甲方确认人长度必须介于 0 和 64 之间")
-	public String getConfirmUserid() {
-		return confirmUserid;
-	}
-
-	public void setConfirmUserid(String confirmUserid) {
-		this.confirmUserid = confirmUserid;
-	}
-	
-	//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getAConfirmTime() {
-		return aConfirmTime;
-	}
-
-	public void setAConfirmTime(Date aConfirmTime) {
-		this.aConfirmTime = aConfirmTime;
-	}
-	
-	//@Length(min=0, max=1, message="订单产品采购类型（外加工，采购）长度必须介于 0 和 1 之间")
-	public String getOrderProductType() {
-		return orderProductType;
-	}
-
-	public void setOrderProductType(String orderProductType) {
-		this.orderProductType = orderProductType;
-	}
-
-	public String getCrudType() {
-		return crudType;
-	}
-
-	public void setCrudType(String crudType) {
-		this.crudType = crudType;
-	}
-	
-	
-	
+        @Override
+        public String toString() {
+            return "Result{" +
+                    "id='" + id + '\'' +
+                    ", isNewRecord=" + isNewRecord +
+                    ", createBy=" + createBy +
+                    ", createDate='" + createDate + '\'' +
+                    ", updateDate='" + updateDate + '\'' +
+                    ", order=" + order +
+                    ", companyCategory=" + companyCategory +
+                    ", price='" + price + '\'' +
+                    ", amount='" + amount + '\'' +
+                    ", productDescription='" + productDescription + '\'' +
+                    ", deliveryTime='" + deliveryTime + '\'' +
+                    ", orderProductStatus='" + orderProductStatus + '\'' +
+                    ", productName='" + productName + '\'' +
+                    ", companyAPriority='" + companyAPriority + '\'' +
+                    ", relFlowProcess=" + relFlowProcess +
+                    ", workPlan=" + workPlan +
+                    ", finishedAmount='" + finishedAmount + '\'' +
+                    ", processFeedbackList=" + processFeedbackList +
+                    ", processWorkerList=" + processWorkerList +
+                    ", workPlanList=" + workPlanList +
+                    ", companyA=" + companyA +
+                    ", companyBOwner=" + companyBOwner +
+                    '}';
+        }
+    }
 }

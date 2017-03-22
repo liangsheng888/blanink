@@ -4,7 +4,8 @@
     android:id="@+id/activity_last_family_manage_customer_apply"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.LastFamilyManageCustomerApply">
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.lastNext.LastFamilyManageCustomerApply">
     <RelativeLayout
         android:id="@+id/last_family_manage_customer_apply_rl"
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:text="商户管理"
+            android:text="申请合作"
             android:textColor="#fff"
             android:textSize="18sp" />
 
@@ -31,50 +32,18 @@
             android:src="@drawable/last" />
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/customer_apply_ll"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/last_family_manage_customer_apply_rl"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="申请合作"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-    </LinearLayout>
-    <LinearLayout
         android:id="@+id/company_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/customer_apply_ll"
+        android:layout_below="@id/last_family_manage_customer_apply_rl"
         android:background="#fff"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp">
             <TextView
                 android:id="@+id/tv_company_name"
                 android:layout_width="wrap_content"
@@ -100,7 +69,8 @@
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+            android:background="#fff"
+            android:paddingTop="5dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/tv_area"
@@ -130,7 +100,8 @@
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+            android:background="#fff"
+            android:paddingTop="5dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/tv_major"
@@ -167,7 +138,8 @@
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+            android:background="#fff"
+            android:paddingTop="5dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/phone"
@@ -205,7 +177,8 @@
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+            android:background="#fff"
+            android:paddingTop="5dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/introduce"
@@ -228,7 +201,8 @@
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+            android:background="#fff"
+            android:paddingTop="5dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/address"
@@ -250,7 +224,9 @@
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+            android:background="#fff"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/url"
@@ -270,19 +246,12 @@
         </RelativeLayout>
 
     </LinearLayout>
-    <View
-        android:id="@+id/view2"
-        android:layout_marginTop="5dp"
-        android:layout_below="@id/company_info"
-        android:background="@color/colorTheme"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"></View>
     <LinearLayout
         android:id="@+id/customer_delete_relation_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view2"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/company_info"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:background="#fff">
 
@@ -299,17 +268,7 @@
                 android:gravity="center_vertical"
                 android:textColor="#000"
                 android:text="填写申请信息" />
-            <Button
-                android:id="@+id/btn_apply"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/corners_bg_yellow"
-                android:text="发出申请"
-                android:layout_marginRight="10dp"
-                android:textColor="#fff"
-                android:layout_weight="0.5"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -325,6 +284,9 @@
                 android:hint="填写申请信息"
                 android:textSize="14sp"
                 android:gravity="top"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp"
+                android:layout_margin="1dp"
                 android:background="#fff"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
@@ -357,10 +319,14 @@
             android:layout_marginLeft="10dp"
             android:text="上传照片:"/>
     </LinearLayout>
-    <View
-        android:id="@+id/view3"
+    <Button
+        android:id="@+id/btn_apply"
         android:layout_below="@id/ll_upload_photo"
-        android:background="@color/colorTheme"
         android:layout_width="match_parent"
-        android:layout_height="1dp"></View>
+        android:layout_height="35dp"
+        android:background="@drawable/btn_selector"
+        android:text="发出申请"
+        android:textColor="#fff"
+        android:layout_margin="15dp"
+        />
 </RelativeLayout>
