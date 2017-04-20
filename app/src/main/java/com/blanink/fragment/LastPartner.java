@@ -68,7 +68,7 @@ public class LastPartner extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        companyId = getActivity().getIntent().getStringExtra("companyId");
+        companyId = getActivity().getIntent().getStringExtra("companyA.id");
         Log.e("Company","LastPartner companyId"+companyId);
         sp=getActivity().getSharedPreferences("DATA",getActivity().MODE_PRIVATE);
         View view =View.inflate(getActivity(), R.layout.fragment_company_partner_queue,null);
@@ -180,7 +180,7 @@ public class LastPartner extends Fragment {
             viewHolder.tv_master.setText(customer.getCompanyA().getMaster());
             viewHolder.tv_phone.setText(customer.getCompanyA().getPhone());
             viewHolder.tv_major.setText(customer.getCompanyA().getScope());
-           // viewHolder.tv_customer_num.setText(customer.getCompanyA());
+            viewHolder.tv_customer_num.setText(customer.getCompanyA().serviceCount+"家");
             DecimalFormat df = new DecimalFormat("0.0");
             viewHolder.tv_honest.setText(df.format((partnerLists.get(position).getCompanyA().reviewOthers + partnerLists.get(position).getCompanyA().reviewSelf) / 2.0));
             viewHolder.tv_company_apply_remark.setText(partnerLists.get(position).getCompanyA().reviewSelf + "");

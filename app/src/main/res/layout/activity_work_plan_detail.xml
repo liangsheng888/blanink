@@ -4,6 +4,7 @@
     android:id="@+id/activity_work_plan_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.task.WorkPlanDetail">
     <RelativeLayout
         android:id="@+id/rl_workStepQueue"
@@ -46,11 +47,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:text="待分配"
-            android:background="@drawable/selector_rg"
+            android:text="待分配的任务"
+            android:background="#fff"
             android:textColor="@color/text_color_selector"
             android:checked="true"
-
             android:gravity="center"/>
 
         <RadioButton
@@ -58,8 +58,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="已分配"
-            android:background="@drawable/selector_rg"
+            android:text="已分配的任务"
+            android:background="#fff"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
             android:button="@null" />
@@ -73,6 +73,7 @@
         android:layout_below="@id/rg_task"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
         >
     </FrameLayout>
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.lastNext.NextFamilyManageMySupplierSeek">
+
     <RelativeLayout
         android:id="@+id/rl_customer_manage"
         android:layout_width="match_parent"
@@ -27,48 +28,52 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
             android:drawableLeft="@drawable/last"
+            android:gravity="center"
             android:text="返回"
             android:textColor="#fff"
             android:textSize="16sp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_seek"
-        android:layout_below="@id/rl_customer_manage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/corner_common_border_gray"
-        android:gravity="center_vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/rl_customer_manage"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginTop="10dp"
+        android:background="@drawable/corner_common_border_gray"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical">
+
         <TextView
             android:id="@+id/come_order_tv"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
-            android:drawableLeft="@drawable/seek"/>
+            android:drawableLeft="@drawable/seek" />
+
         <EditText
             android:id="@+id/et_supplier"
-            android:layout_toRightOf="@id/come_order_tv"
-            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="16sp"
-            android:hint="请输入你要搜索的供应商"/>
+            android:layout_toRightOf="@id/come_order_tv"
+            android:background="@null"
+            android:hint="请输入你要搜索的供应商"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_seek"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/colorTheme"
             android:layout_alignParentRight="true"
-            android:text="搜索"/>
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/colorTheme"
+            android:textSize="16sp" />
     </RelativeLayout>
     <!--<ListView
         android:id="@+id/lv_supplier"
@@ -78,10 +83,17 @@
         android:background="#fff"
         android:layout_marginTop="10dp">
     </ListView>-->
-    <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:id="@+id/lv_supplier"
-        android:layout_below="@id/rl_seek"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.baoyz.swipemenulistview.SwipeMenuListView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_seek">
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/lv_supplier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.baoyz.swipemenulistview.SwipeMenuListView>
+
+        <include layout="@layout/layout_load_gone"></include>
+    </FrameLayout>
+
 </RelativeLayout>

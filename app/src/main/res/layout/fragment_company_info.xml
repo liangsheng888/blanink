@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/company_info"
         android:layout_width="match_parent"
@@ -33,7 +37,7 @@
                 android:id="@+id/tv_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorTheme"
                 android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
                 android:text="服务客户:"/>
@@ -297,33 +301,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </com.blanink.view.NoScrollListview>
+        <LinearLayout
+            android:id="@+id/ll_talk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackGround"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_state"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:textColor="#fff"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selector_blue"
+                android:text="加入潜在"/>
+            <Button
+                android:id="@+id/btn_consult"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="20dp"
+                android:background="@drawable/selector_corner_gray"
+                android:text="在线咨询"/>
+        </LinearLayout>
+    </LinearLayout>
+    <include layout="@layout/layout_load"></include>
+    </FrameLayout>
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_talk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/company_info">
-        <Button
-            android:id="@+id/btn_state"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="1"
-            android:textColor="#fff"
-            android:layout_margin="20dp"
-            android:background="@drawable/corners_bg_red"
-            android:text="加入潜在"/>
-        <Button
-            android:id="@+id/btn_consult"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="1"
-            android:textColor="#fff"
-            android:layout_margin="20dp"
-            android:background="@drawable/corners_bg_blue"
-            android:text="在线咨询"/>
-    </LinearLayout>
 </LinearLayout>

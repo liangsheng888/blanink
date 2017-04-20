@@ -159,7 +159,9 @@
                 android:layout_centerInParent="true"
                 android:drawableTop="@drawable/data_not"
                 android:padding="10dp"
-                android:text="主人！暂时没有客户(⊙o⊙)…" />
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="没有数据显示" />
         </RelativeLayout>
 
         <RelativeLayout

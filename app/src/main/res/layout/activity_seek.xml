@@ -1,238 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.SeekActivity">
-    <LinearLayout
-        android:id="@+id/SeekActivity_seek_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorTheme"
-        android:gravity="center"
-        android:orientation="horizontal">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="3"
-            android:paddingBottom="2dp"
-            android:paddingRight="10dp"
-            android:paddingTop="2dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/SeekActivity_edt_query"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/seabar_input"
-                android:drawableLeft="@drawable/search_bar_icon_normal"
-                android:hint="请输入你需要的信息"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:singleLine="true"
-                android:textSize="16sp" />
-
-            <!--  android:visibility="invisible" -->
-            <ImageButton
-                android:id="@+id/SeekActivity_search_clear"
+            <LinearLayout
+                android:id="@+id/SeekActivity_seek_ll"
                 android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorTheme"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="3"
+                    android:paddingBottom="2dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="2dp">
+
+                    <EditText
+                        android:id="@+id/SeekActivity_edt_query"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/seabar_input"
+                        android:drawableLeft="@drawable/search_bar_icon_normal"
+                        android:hint="请输入你需要的信息"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:singleLine="true"
+                        android:textSize="16sp" />
+
+                    <!--  android:visibility="invisible" -->
+                    <ImageButton
+                        android:id="@+id/SeekActivity_search_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="3dp"
+                        android:background="@android:color/transparent"
+                        android:padding="6dp"
+                        android:src="@drawable/ease_search_clear" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/SeekActivity_tv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
+                    android:text="搜索"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_company"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="3dp"
-                android:background="@android:color/transparent"
-                android:padding="6dp"
-                android:src="@drawable/ease_search_clear" />
+                android:layout_below="@id/SeekActivity_seek_ll"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/tv_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@mipmap/company_blue"
+                    android:gravity="center_vertical"
+                    android:text="公司"
+                    android:textColor="#4b4646" />
+                    <TextView
+                        android:id="@+id/tv_company_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:text="更多"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:drawableRight="@drawable/next_black"/>
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_not_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="暂无公司数据"
+                    android:visibility="gone" />
+
+                <com.blanink.view.NoScrollListview
+                    android:id="@+id/lv_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawSelectorOnTop="true"
+                    android:layout_marginTop="5dp"></com.blanink.view.NoScrollListview>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_company"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@mipmap/category_red"
+                        android:gravity="center_vertical"
+                        android:text="产品/资金"
+                        android:textColor="#4b4646" />
+                    <TextView
+                        android:id="@+id/tv_product_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:text="更多"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:drawableRight="@drawable/next_black"/>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_not_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="暂无该产品的数据"
+                    android:visibility="gone" />
+
+                <com.blanink.view.NoScrollListview
+                    android:id="@+id/lv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawSelectorOnTop="true"
+                    android:layout_marginTop="5dp"></com.blanink.view.NoScrollListview>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_bid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_product"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_bid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@mipmap/bid_yellow"
+        android:gravity="center_vertical"
+        android:text="招标"
+        android:textColor="#4b4646" />
+    <TextView
+        android:id="@+id/tv_bid_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:text="更多"
+        android:visibility="gone"
+
+        android:gravity="center"
+        android:drawableRight="@drawable/next_black"/>
+</RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_not_bid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="暂无招标数据"
+                    android:visibility="gone" />
+
+                <com.blanink.view.NoScrollListview
+                    android:id="@+id/lv_bid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawSelectorOnTop="true"
+                    android:layout_marginTop="5dp"></com.blanink.view.NoScrollListview>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_bid"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <TextView
+                 android:id="@+id/tv_project"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_marginLeft="10dp"
+                 android:drawableLeft="@mipmap/project"
+                 android:gravity="center_vertical"
+                 android:text="借贷"
+                 android:textColor="#4b4646" />
+             <TextView
+                 android:id="@+id/tv_fincying_more"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="15dp"
+                 android:text="更多"
+                 android:visibility="gone"
+                 android:gravity="center"
+                 android:drawableRight="@drawable/next_black"/>
+         </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_not_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="暂无借贷数据"
+                    android:visibility="gone" />
+
+                <com.blanink.view.NoScrollListview
+                    android:id="@+id/lv_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawSelectorOnTop="true"
+                    android:layout_marginTop="5dp"></com.blanink.view.NoScrollListview>
+
+            </LinearLayout>
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/SeekActivity_tv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="5dp"
-            android:text="搜索"
-            android:textColor="#FFFFFF"
-            android:textSize="18dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_bid"
-        android:layout_below="@id/SeekActivity_seek_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:padding="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_bid"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@mipmap/bid_yellow"
-            android:gravity="center_vertical"
-            android:textColor="#4b4646"
-            android:text="招标"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_not_bid"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="暂无招标数据"
-            />
-
-        <com.blanink.view.NoScrollListview
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_bid">
-        </com.blanink.view.NoScrollListview>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_product"
-        android:layout_below="@id/ll_bid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="#fff"
-        android:padding="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_category"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@mipmap/category_red"
-            android:gravity="center_vertical"
-            android:textColor="#4b4646"
-            android:text="产品类型"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_not_category"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="暂无该产品的数据"
-            />
-
-        <com.blanink.view.NoScrollListview
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_category">
-        </com.blanink.view.NoScrollListview>
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_company"
-        android:layout_below="@id/ll_product"
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:padding="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_company"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@mipmap/company_blue"
-            android:gravity="center_vertical"
-            android:textColor="#4b4646"
-            android:text="公司"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_not_company"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="暂无公司数据"
-            />
-        <com.blanink.view.NoScrollListview
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_company">
-        </com.blanink.view.NoScrollListview>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_money"
-        android:layout_below="@id/ll_company"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_marginTop="1dp"
-        android:padding="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_money"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@mipmap/money"
-            android:gravity="center_vertical"
-            android:textColor="#4b4646"
-            android:text="资金"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_not_money"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="暂无资金数据"
-            />
-
-        <com.blanink.view.NoScrollListview
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_money">
-        </com.blanink.view.NoScrollListview>
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_project"
-        android:layout_below="@id/ll_money"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:padding="5dp"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_project"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@mipmap/project"
-            android:gravity="center_vertical"
-            android:textColor="#4b4646"
-            android:text="项目"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_not_project"
-            android:layout_marginLeft="30dp"
-            android:text="暂无项目数据"
-            android:layout_marginTop="5dp"
-            />
-
-        <com.blanink.view.NoScrollListview
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_project">
-        </com.blanink.view.NoScrollListview>
-
-    </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>

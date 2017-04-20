@@ -16,8 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.adpater.CommonAdapter;
-import com.blanink.adpater.ViewHolder;
+import com.blanink.adapter.CommonAdapter;
+import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.WorkedTask;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;

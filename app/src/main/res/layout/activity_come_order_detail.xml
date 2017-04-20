@@ -1,311 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.order.ComeOrderDetailActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
+        android:id="@+id/come_order_detail_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackGround"
-        tools:context="com.blanink.activity.order.ComeOrderDetailActivity">
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
 
-        <RelativeLayout
-            android:id="@+id/come_order_detail_rl"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/colorTheme">
-
-            <TextView
-                android:id="@+id/come_order_detail_tv_seek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="浏览订单"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/come_order_detail_iv_last"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/last"
-                android:gravity="center_vertical"
-                android:text="返回"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/order_detail_rl"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/come_order_detail_tv_seek"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="浏览订单"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/come_order_detail_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+        <FrameLayout
             android:layout_below="@+id/come_order_detail_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/colorBackGround">
 
-            <RelativeLayout
-                android:id="@+id/come_order_detail_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:gravity="center_vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/order_detail_rl_tv_orderState"
-                    android:layout_width="wrap_content"
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/swipeRefreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <com.blanink.view.UpLoadListView
+                    android:id="@+id/come_order_detail_lv"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:text="生产中"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="#f00"
-                    android:textSize="18sp" />
+                    android:layout_marginTop="1dp"
+                    android:drawSelectorOnTop="true"
+                    android:listSelector="@color/listItemColorSelected"
+                    android:dividerHeight="2dp"></com.blanink.view.UpLoadListView>
+                </android.support.v4.widget.SwipeRefreshLayout>
 
-                <TextView
-                    android:id="@+id/come_order_detail_tv_modify"
-                    android:layout_width="100dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/corner_common_border_red"
-                    android:gravity="center"
-                    android:text="编辑订单"
-                    android:textColor="#f00"
-                    android:textSize="16sp" />
+            <include layout="@layout/layout_load"></include>
+        </FrameLayout>
 
-            </RelativeLayout>
+</RelativeLayout>
 
-
-            <LinearLayout
-                android:id="@+id/order_detail_rl_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/come_order_detail_ll"
-                android:layout_marginTop="1dp"
-                android:background="#fff"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:id="@+id/order_detail_rl_ll_companyName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:singleLine="true"
-                    android:text="空行互联有限公司"
-                    android:textColor="@color/colorTheme" />
-            </LinearLayout>
-
-
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/ll_ordera"
-            android:layout_below="@id/order_detail_rl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:padding="5dp"
-           >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="甲方订单号码:"
-                android:textColor="@color/colorBlack" />
-             <TextView
-                 android:id="@+id/tv_ordera"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="5dp"
-                 />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/order_detail_rl_ll_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_ordera"
-            android:background="#fff"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-          >
-
-            <LinearLayout
-                android:id="@+id/ll"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="下单日期:"
-                    android:textColor="@color/colorBlack" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_endTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="交货日期:"
-                    android:textColor="@color/colorBlack" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/order_detail_"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/order_detail_rl_ll_time"
-            android:background="#fff"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
-
-            <LinearLayout
-                android:id="@+id/ll3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="联系人:"
-                    android:textColor="@color/colorBlack" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="联系电话:"
-                    android:textColor="@color/colorBlack" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/order_detail_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/order_detail_"
-            android:background="#fff"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="发货地址:"
-                android:textColor="@color/colorBlack" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/ll_product_orderNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/order_detail_address"
-            android:background="#fff"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="生产订单号:"
-                android:textColor="@color/colorBlack"
-                android:id="@+id/textView6" />
-
-        </LinearLayout>
-        <RelativeLayout
-            android:id="@+id/rl_beizhu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll_product_orderNumber"
-            android:background="#fff"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
-
-            <TextView
-                android:id="@+id/order_detail_beizhu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="备注信息:"
-                android:textColor="@color/colorBlack" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_pro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rl_beizhu"
-            android:background="#fff"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="订单产品"
-                android:textSize="16sp"
-                android:textColor="@color/colorBlack"/>
-        </RelativeLayout>
-        <com.blanink.view.NoScrollListview
-            android:layout_marginTop="1dp"
-            android:id="@+id/come_order_detail_lv"
-            android:layout_below="@id/rl_pro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff">
-        </com.blanink.view.NoScrollListview>
-
-    </RelativeLayout>
-</ScrollView>

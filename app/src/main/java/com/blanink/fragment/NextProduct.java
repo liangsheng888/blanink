@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,9 +24,9 @@ import com.blanink.activity.lastNext.ProductDetail;
 import com.blanink.pojo.CompanyProduct;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.RefreshListView;
 import com.google.gson.Gson;
-import com.loopj.android.image.SmartImageView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -62,7 +63,7 @@ public class NextProduct extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        companyId=getActivity().getIntent().getStringExtra("id");
+        companyId=getActivity().getIntent().getStringExtra("companyB.id");
         Log.e("partner","NextProduct  companyId:"+companyId);
         sp = getActivity().getSharedPreferences("DATA",getActivity().MODE_PRIVATE);
         View view=View.inflate(getActivity(), R.layout.fragment_company_product,null);
@@ -209,10 +210,11 @@ public class NextProduct extends Fragment {
             if(sparseArray.get(position,null)==null){
                 viewHolder=new ViewHolder();
                 convertView=View.inflate(getActivity(),R.layout.item_product_queue,null);
-                viewHolder.iv_product_picture= ((SmartImageView) convertView.findViewById(R.id.iv_product_picture));
+                viewHolder.iv_product_picture= ((ImageView) convertView.findViewById(R.id.iv_product_picture));
                 viewHolder.tv_product_name=(TextView)convertView.findViewById(R.id.tv_product_name);
                 viewHolder.tv_address=(TextView)convertView.findViewById(R.id.tv_address);
-                viewHolder.tv_price=(TextView)convertView.findViewById(R.id.tv_price);
+                viewHolder.tv_high_price=(TextView)convertView.findViewById(R.id.tv_high_price);
+                viewHolder.tv_down_price=(TextView)convertView.findViewById(R.id.tv_down_price);
                 viewHolder.tv_specific_description=(TextView)convertView.findViewById(R.id.tv_specific_description);
                 convertView.setTag(viewHolder);
                 sparseArray.put(position,convertView);
@@ -222,19 +224,21 @@ public class NextProduct extends Fragment {
             }
             Log.e("LastProduct",rowList.toString());
             //x.image().bind(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
-            //XUtilsImageUtils.displayLoading(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
-            viewHolder.iv_product_picture.setImageUrl(NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
+            XUtilsImageUtils.displayLoading(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
+
             viewHolder.tv_product_name.setText(rowList.get(position).productName);
-            viewHolder.tv_price.setText(rowList.get(position).productPriceDownline+"-"+rowList.get(position).productPriceHighline);
+            viewHolder.tv_high_price.setText(rowList.get(position).productPriceHighline);
+            viewHolder.tv_down_price.setText(rowList.get(position).productPriceDownline);
             viewHolder.tv_specific_description.setText(rowList.get(position).productDescription);
             return convertView;
         }
     }
     static class ViewHolder{
-        SmartImageView iv_product_picture;
+       ImageView iv_product_picture;
         TextView  tv_product_name;
         TextView  tv_address;
-        TextView  tv_price;
+        TextView  tv_down_price;
+        TextView tv_high_price;
         TextView  tv_specific_description;
     }
 }

@@ -69,22 +69,19 @@
             android:textColor="@color/colorTheme"
             android:textSize="16sp" />
     </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_seek"
+        >
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/lv_matches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rl_seek"
         android:listSelector="#66FB731F"
         android:drawSelectorOnTop="true"
         ></com.baoyz.swipemenulistview.SwipeMenuListView>
-    <Button
-        android:id="@+id/btn_not_customer_queue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/corners_bg_red"
-        android:text="该公司不在列表中"
-        android:layout_margin="10dp"
-        android:visibility="gone"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"/>
+        <include layout="@layout/layout_load_gone"></include>
+    </FrameLayout>
+
 </RelativeLayout>

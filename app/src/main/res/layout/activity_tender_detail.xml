@@ -362,7 +362,7 @@
         android:id="@+id/bt_bid"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:background="@drawable/btn_selector"
+        android:background="@drawable/selector_red"
         android:text="我要投标"
         android:layout_margin="10dp"
         android:textColor="#fff"

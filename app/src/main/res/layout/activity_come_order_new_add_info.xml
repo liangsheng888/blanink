@@ -89,7 +89,7 @@
                 android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_selector"
+                android:background="@drawable/selector_red"
                 android:id="@+id/tv_newAdd"
                 android:layout_toRightOf="@id/come_order_new_add_rl2"/>
         </RelativeLayout>
@@ -317,7 +317,7 @@
     <Button
         android:id="@+id/btn_contiume_add"
         android:layout_width="match_parent"
-        android:background="@drawable/btn_selector"
+        android:background="@drawable/selector_red"
         android:layout_below="@id/come_order_new_add_customer_info"
         android:text="继续添加产品"
         android:textSize="16sp"

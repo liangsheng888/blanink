@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff">
-
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_width="match_parent"
@@ -14,15 +13,16 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
-                android:text="标题:" />
+                android:text="标题:"
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/tv_tile"
@@ -30,31 +30,29 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/title"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/colorTheme"
-                android:singleLine="true"
-                android:text="" />
+                android:textSize="16sp"
+                android:singleLine="true" />
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+           >
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/tv_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="下单时间:"
-                />
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/date"
-                android:layout_marginLeft="5dp"
-                android:singleLine="true"
-                android:text="" />
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:text="待下发" />
+
+
         </RelativeLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -89,24 +87,34 @@
 
     </LinearLayout>
 
-
-
     <RelativeLayout
-        android:id="@+id/rl"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true">
+        android:layout_below="@id/ll"
+        android:padding="5dp"
+     >
 
         <TextView
-            android:id="@+id/tv_state"
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="5dp"
-            android:drawableRight="@drawable/next_black"
-            android:gravity="center_vertical"
-            android:text="待下发" />
-
+            android:text="下单时间:"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/date"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:text="" />
     </RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/next_black"/>
 </RelativeLayout>

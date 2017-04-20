@@ -6,7 +6,6 @@
         android:layout_height="match_parent"
         android:background="@color/colorBackGround"
         tools:context="com.blanink.activity.lastNext.NextFamilyManageCompanyDetail">
-
         <RelativeLayout
             android:id="@+id/last_family_manage_customer_apply_rl"
             android:layout_width="match_parent"
@@ -52,30 +51,32 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="公司信息"
+            android:textSize="14sp"
             android:checked="true"
-            android:background="@drawable/selector_rg"
             android:textColor="@color/text_color_selector"
             android:button="@null"/>
+
         <RadioButton
             android:id="@+id/rb_product"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="公司产品"
-            android:background="@drawable/selector_rg"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
+            android:textSize="14sp"
             android:layout_marginLeft="1dp"
             android:button="@null"/>
+
         <RadioButton
             android:id="@+id/rb_honest"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="诚信档案"
-            android:background="@drawable/selector_rg"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
+            android:textSize="14sp"
             android:layout_marginLeft="1dp"
             android:button="@null"/>
         <RadioButton
@@ -85,7 +86,7 @@
             android:layout_weight="1"
             android:text="合作伙伴"
             android:layout_marginLeft="1dp"
-            android:background="@drawable/selector_rg"
+            android:textSize="14sp"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
             android:button="@null"/>
@@ -96,7 +97,7 @@
             android:layout_weight="1"
             android:text="评价详情"
             android:layout_marginLeft="1dp"
-            android:background="@drawable/selector_rg"
+            android:textSize="14sp"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
             android:button="@null"/>
@@ -106,6 +107,7 @@
         android:layout_below="@id/rg_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
         android:background="#fff"
         >
     </FrameLayout>

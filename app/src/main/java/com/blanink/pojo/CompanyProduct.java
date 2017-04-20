@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2017/2/10.
+ * 公司产品
  */
 
 public class CompanyProduct implements Serializable {

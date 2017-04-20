@@ -7,32 +7,58 @@
         android:id="@+id/go_order_add_rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorTheme">
-        <TextView
-            android:id="@+id/go_order_add_tv_seek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="通知"
-            android:layout_marginLeft="20dp"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-        <ImageView
-            android:id="@+id/iv_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/add_white"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            />
-
+        android:background="@color/colorGray">
+        <RadioGroup
+            android:id="@+id/rg_notify"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:id="@+id/my_notify"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:checked="true"
+                android:textSize="16sp"
+                android:background="@drawable/selector_red_checked"
+                android:textColor="@color/text_color_black_white"
+                android:text="收件箱"/>
+            <RadioButton
+                android:id="@+id/notify_manage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:background="@drawable/selector_red_checked"
+                android:textColor="@color/text_color_black_white"
+                android:text="发件箱"/>
+        </RadioGroup>
+            <TextView
+                android:id="@+id/tv_add_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:drawableLeft="@mipmap/add_white"
+              />
     </RelativeLayout>
-    <ListView
-        android:id="@+id/lv_notify"
-        android:layout_below="@id/go_order_add_rl"
+
+    <FrameLayout
+        android:id="@+id/fl_notify"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_below="@id/go_order_add_rl"
+        android:background="@color/colorBackGround">
+    </FrameLayout>
 
 </RelativeLayout>

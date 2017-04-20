@@ -11,7 +11,6 @@ public class BidDetailInfo implements Serializable {
     public String errorCode;
     public String reason;
     public Result result;
-
     @Override
     public String toString() {
         return "BidDetailInfo{" +

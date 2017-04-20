@@ -4,7 +4,7 @@
     android:id="@+id/activity_bank_look_coompany_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.BankLookCompanyDetail">
+    tools:context="com.blanink.activity.bank.BankLookCompanyDetail">
     <RelativeLayout
         android:id="@+id/rl_BankComeOderQueue"
         android:layout_width="match_parent"

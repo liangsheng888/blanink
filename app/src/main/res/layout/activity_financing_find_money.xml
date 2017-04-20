@@ -303,7 +303,7 @@
                     <Button
                         android:layout_width="100dp"
                         android:layout_height="30dp"
-                        android:background="@color/orange"
+                        android:background="@color/colorTheme"
                         android:text="选择/修改地区"
                         android:textColor="#fff" />
                 </RelativeLayout>

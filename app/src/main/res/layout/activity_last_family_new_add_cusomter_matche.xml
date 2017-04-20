@@ -2,16 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:background="@color/colorBackGround">
+    android:focusableInTouchMode="true">
     <RelativeLayout
         android:id="@+id/rl_customer_manage"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:background="@color/colorTheme">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,8 +26,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
             android:drawableLeft="@drawable/last"
+            android:gravity="center"
             android:text="返回"
             android:textColor="#fff"
             android:textSize="16sp" />
@@ -57,8 +56,9 @@
             android:layout_height="40dp"
             android:layout_toRightOf="@id/come_order_tv"
             android:background="@null"
-            android:textSize="16sp"
-            android:hint="请输入你要添加的客户名称" />
+            android:hint="请输入你要添加的客户名称"
+            android:textColor="@color/colorGray"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_seek"
@@ -70,25 +70,37 @@
             android:textColor="@color/colorTheme"
             android:textSize="16sp" />
     </RelativeLayout>
-    <ListView
-        android:id="@+id/lv_matches"
+
+    <FrameLayout
+        android:id="@+id/fl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:listSelector="#66FB731F"
-        android:drawSelectorOnTop="true"
-        android:layout_below="@+id/rl_seek"
-      ></ListView>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_seek">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ListView
+                android:id="@+id/lv_matches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dividerHeight="2dp"
+                android:drawSelectorOnTop="true"
+                android:listSelector="#66FB731F"></ListView>
+        </LinearLayout>
+
+        <include layout="@layout/layout_load_gone"></include>
+    </FrameLayout>
     <Button
         android:id="@+id/btn_not_customer_queue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/corners_bg_red"
-        android:text="该公司不在列表中"
+        android:layout_height="40dp"
         android:layout_margin="10dp"
-        android:visibility="gone"
-        android:textColor="#fff"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/lv_matches"/>
-
-
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/selector_red"
+        android:text="该公司不在列表中"
+        android:textColor="#fff"
+        android:visibility="gone" />
 </RelativeLayout>

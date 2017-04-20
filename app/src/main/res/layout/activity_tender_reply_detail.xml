@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -33,11 +34,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:textColor="#fff"
-                android:textSize="16sp"
+                android:drawableLeft="@drawable/last"
                 android:gravity="center"
                 android:text="返回"
-                android:drawableLeft="@drawable/last" />
+                android:textColor="#fff"
+                android:textSize="16sp" />
         </RelativeLayout>
 
 
@@ -198,21 +199,22 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/tv_first_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="10dp"
-                        android:text="预付定金:"
-                        android:textColor="@color/colorBlack" />
-
-                    <TextView
                         android:id="@+id/tv_first_cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_first_price"
                         android:text="30%" />
+
+                    <TextView
+                        android:id="@+id/tv_first_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="预付定金:"
+                        android:textColor="@color/colorBlack"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
 
 
                 </RelativeLayout>
@@ -255,6 +257,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="详情:"
                     android:textColor="@color/colorBlack" />
+
                 <TextView
                     android:id="@+id/tv_note_detail_content"
                     android:layout_width="wrap_content"
@@ -335,7 +338,7 @@
                     android:id="@+id/btn_update"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/btn_selector"
+                    android:background="@drawable/selector_red"
                     android:text="编辑"
                     android:textColor="#fff" />
             </LinearLayout>
@@ -343,78 +346,55 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/my_publish_tender"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/ll_my_bid_detail"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="#8e8686">
-
-            </View>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:gravity="center"
-                android:text="投标公司列表"
-                android:textColor="#000"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="#8e8686"></View>
-
-        </LinearLayout>
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/my_publish_tender">
+            android:layout_below="@id/ll_my_bid_detail">
 
 
             <RelativeLayout
                 android:id="@+id/my_publish_tender_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:background="#fff">
-               <RelativeLayout
-                   android:id="@+id/more"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:drawableRight="@drawable/sj"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="筛选"
-                    android:textColor="#000" />
 
-                <TextView
-                    android:id="@+id/tv_more"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/more"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawableRight="@drawable/next_black"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="更多" />
-               </RelativeLayout>
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:padding="5dp"
+                        android:text="投标公司"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/tv_bid_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/num"
+                         />
+
+                    <TextView
+                        android:id="@+id/tv_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawableRight="@drawable/next_black"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="更多" />
+                </RelativeLayout>
+
                 <com.blanink.view.NoScrollListview
                     android:id="@+id/lv_tender"
                     android:layout_width="match_parent"
@@ -431,17 +411,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/colorBackGround"
+                android:background="#fff"
                 android:visibility="gone">
+
                 <TextView
                     android:id="@+id/tv_not"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:drawableTop="@drawable/data_not"
-                    android:padding="10dp"
                     android:gravity="center"
-                    android:text="主人！没有公司向咱投标！！！" />
+                    android:padding="10dp"
+                    android:text="没有投标数据！！！" />
 
             </RelativeLayout>
         </FrameLayout>

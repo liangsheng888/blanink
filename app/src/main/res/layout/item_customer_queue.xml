@@ -26,7 +26,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:padding="5dp"
-                android:text="公司简称"
+                android:text=""
                 android:textColor="@color/colorTheme" />
             <TextView
                 android:id="@+id/tv_state"
@@ -35,7 +35,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="30dp"
-                android:text="虚拟"
+                android:text=""
                 android:textColor="@color/colorTheme" />
 
         </RelativeLayout>
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="江苏 苏州" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/honest"
@@ -95,15 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/master"
-                android:text="李四" />
-
-            <TextView
-                android:id="@+id/tv_company_apply_zi_remark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/tv_company_apply_remark"
-                android:text="自评:"
-                android:textColor="@color/colorBlack" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_company_apply_remark"
@@ -113,6 +105,14 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="20dp"
                 android:textColor="#f00" />
+
+            <TextView
+                android:id="@+id/tv_company_apply_zi_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/tv_company_apply_remark"
+                android:text="自评:"
+                android:textColor="@color/colorBlack" />
 
         </RelativeLayout>
 
@@ -136,15 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/phone"
-                android:text="1301333546889" />
+                android:text="" />
 
-            <TextView
-                android:id="@+id/tv_company_apply_remark_other"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/tv_company_apply_other_remark"
-                android:text="他评:"
-                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/tv_company_apply_other_remark"
@@ -155,6 +148,13 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="#f00" />
 
+            <TextView
+                android:id="@+id/tv_company_apply_remark_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/tv_company_apply_other_remark"
+                android:text="他评:"
+                android:textColor="@color/colorBlack" />
         </RelativeLayout>
 
         <RelativeLayout

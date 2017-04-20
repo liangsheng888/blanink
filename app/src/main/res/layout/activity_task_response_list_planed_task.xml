@@ -41,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginTop="1dp"
+        android:background="#fff"
         android:orientation="horizontal">
 
         <RadioButton
@@ -50,7 +51,6 @@
             android:layout_weight="1"
             android:button="@null"
             android:text="我的任务"
-            android:background="@drawable/selector_rg"
             android:textColor="@color/text_color_selector"
             android:checked="true"
 
@@ -62,7 +62,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="待分配的任务"
-            android:background="@drawable/selector_rg"
+            android:layout_marginLeft="1dp"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
             android:button="@null" />
@@ -72,8 +72,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginLeft="1dp"
             android:text="历史反馈"
-            android:background="@drawable/selector_rg"
             android:textColor="@color/text_color_selector"
             android:gravity="center"
             android:button="@null" />
@@ -84,6 +84,7 @@
         android:id="@+id/fl_task"
         android:layout_below="@id/rg_task"
         android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
         android:layout_height="match_parent"
     >
     </FrameLayout>

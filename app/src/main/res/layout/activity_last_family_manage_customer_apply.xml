@@ -22,14 +22,17 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/customer_apply_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:text="返回"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:drawableLeft="@drawable/last" />
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/company_info"
@@ -53,7 +56,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/colorTheme"
-                android:text="XXXX公司"/>
+                android:textSize="16sp"
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_state"
                 android:layout_width="wrap_content"
@@ -62,6 +66,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
+                android:textSize="16sp"
                 android:text="实有"/>
 
         </RelativeLayout>
@@ -76,7 +81,7 @@
                 android:id="@+id/tv_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="江苏 苏州"/>
+                android:text=""/>
 
             <TextView
                 android:layout_alignParentRight="true"
@@ -85,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#f00"
                 android:layout_marginRight="20dp"
-                android:text="4.5"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_company_xin"
                 android:layout_width="wrap_content"
@@ -115,7 +120,7 @@
                 android:layout_toRightOf="@id/tv_major"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="李四"/>
+                android:text=""/>
             <TextView
                 android:layout_alignParentRight="true"
                 android:id="@+id/tv_company_remark"
@@ -123,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#f00"
                 android:layout_marginRight="20dp"
-                android:text="4.5"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_company_zi_remark"
                 android:layout_width="wrap_content"
@@ -153,7 +158,7 @@
                 android:layout_toRightOf="@id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1301333546889"/>
+                android:text=""/>
 
             <TextView
                 android:layout_alignParentRight="true"
@@ -162,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#f00"
                 android:layout_marginRight="20dp"
-                android:text="4.5"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/tv_company_remark_other"
                 android:layout_width="wrap_content"
@@ -192,7 +197,7 @@
                 android:layout_toRightOf="@id/introduce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="公司是现代化高科技的创业型公司"/>
+                android:text=""/>
 
 
         </RelativeLayout>
@@ -216,7 +221,7 @@
                 android:layout_toRightOf="@id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="江苏省苏州市XX路XX"/>
+                android:text=""/>
 
 
         </RelativeLayout>
@@ -240,7 +245,7 @@
                 android:layout_toRightOf="@id/url"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="www.thinkhoodop.com"/>
+                android:text=""/>
 
 
         </RelativeLayout>
@@ -259,7 +264,6 @@
             android:id="@+id/apply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:id="@+id/tv_delete"
                 android:layout_width="wrap_content"
@@ -267,6 +271,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:textColor="#000"
+                android:textSize="16sp"
                 android:text="填写申请信息" />
 
         </RelativeLayout>
@@ -275,7 +280,6 @@
             android:layout_height="150dp"
             android:layout_margin="10dp"
             android:background="@color/colorBackGround">
-
             <EditText
                 android:id="@+id/et_apply_info"
                 android:layout_width="match_parent"
@@ -286,45 +290,19 @@
                 android:gravity="top"
                 android:paddingTop="5dp"
                 android:paddingLeft="5dp"
-                android:layout_margin="1dp"
-                android:background="#fff"
+                android:background="@drawable/corner_common_border_gray"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/customer_delete_relation_rl"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="上传附件:"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_upload_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@id/ll_upload"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="上传照片:"/>
-    </LinearLayout>
     <Button
         android:id="@+id/btn_apply"
-        android:layout_below="@id/ll_upload_photo"
+        android:layout_below="@id/customer_delete_relation_rl"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@drawable/btn_selector"
+        android:background="@drawable/selector_red"
         android:text="发出申请"
         android:textColor="#fff"
         android:layout_margin="15dp"

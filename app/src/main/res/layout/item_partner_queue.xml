@@ -43,14 +43,14 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="服务客户:"
-                    android:textColor="#000" />
+                    android:textColor="@color/colorTheme" />
                 <TextView
                     android:id="@+id/tv_customer_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/tv_customer_service"
-                    android:text="20家"
+                    android:text=""
                     android:textColor="@color/colorTheme" />
 
             </RelativeLayout>

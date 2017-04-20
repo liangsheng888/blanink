@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_flow_use_the_flow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.blanink.activity.flow.FlowUseTheFlow">
+    <RelativeLayout
+        android:id="@+id/come_order_detail_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="流程详情"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+ <RelativeLayout
+     android:id="@+id/rl_flow"
+     android:layout_below="@id/come_order_detail_rl"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content">
+     <com.blanink.view.RoundProgressBar
+         android:id="@+id/roundProgressBar"
+         android:layout_width="40dip"
+         android:layout_height="40dip"
+         android:layout_centerInParent="true"
+         android_custom:roundColor="#D1D1D1"
+         android_custom:roundProgressColor="@android:color/black"
+         android_custom:roundWidth="10dip"
+         android_custom:textColor="#9A32CD"
+         android_custom:textIsDisplayable="false"
+         android_custom:textSize="18sp">
+     </com.blanink.view.RoundProgressBar>
+ </RelativeLayout>
+    <Button
+        android:id="@+id/bt_use"
+        android:layout_below="@id/rl_flow"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="15dp"
+        android:text="使用本流程"
+        android:background="@drawable/selector_red"
+        android:textSize="16sp"
+        android:textColor="#fff"/>
 </RelativeLayout>

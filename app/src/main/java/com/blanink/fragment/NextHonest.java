@@ -19,6 +19,8 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Administrator on 2017/2/9.
  * 下家 诚信档案
@@ -103,7 +105,8 @@ public class NextHonest extends android.support.v4.app.Fragment {
                 tv_efficiency_content.setText(review.result.selfTime==null?"0":review.result.selfTime+"");
                 tv_cost_content2.setText(review.result.selfCosting==null?"0":review.result.selfCosting+"");
                 tv_pay_time_content.setText(review.result.selfPayment==null?"0":review.result.selfPayment+"");
-                tv_company_credit.setText((review.result.reviewOthers+review.result.reviewSelf)/2.0+"");
+                DecimalFormat df=new DecimalFormat("0.0");
+                tv_company_credit.setText(df.format((review.result.reviewOthers+review.result.reviewSelf)/2.0));
 
             }
             @Override
