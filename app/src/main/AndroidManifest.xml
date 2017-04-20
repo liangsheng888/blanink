@@ -65,6 +65,13 @@
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".activity.FlashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.LookSuperSeek" />
         <activity android:name=".activity.order.LookBrowseOrder" />
         <activity android:name=".activity.SeekActivity" />
@@ -120,20 +127,15 @@
         <activity android:name=".activity.afterSale.AfterSaleQueue" />
         <activity android:name=".activity.afterSale.AfterSaleSeek" />
         <activity android:name=".activity.AdvertiseActivity" />
-        <activity android:name=".activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.FlashActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.FlashActivity2" />
         <activity android:name=".activity.jPush.TestActivity" />
         <!-- 设置环信应用的AppKey -->
+        <!--
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="1144170109178678#blanink" />
-        <!-- 声明SDK所需的service SDK核心功能 -->
+        &lt;!&ndash; 声明SDK所需的service SDK核心功能 &ndash;&gt;
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true" />
@@ -141,14 +143,14 @@
             android:name="com.hyphenate.chat.EMJobService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <!-- 声明SDK所需的receiver -->
+        &lt;!&ndash; 声明SDK所需的receiver &ndash;&gt;
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
                 <data android:scheme="package" />
             </intent-filter>
-            <!-- 可选filter -->
+            &lt;!&ndash; 可选filter &ndash;&gt;
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -158,6 +160,7 @@
         <activity android:name=".activity.chat.ChatAcitivity" />
         <activity android:name=".activity.chat.ConversationList" />
         <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity" />
+        -->
         <activity android:name=".activity.ConsultActivity" />
 
         <!-- Required SDK 核心功能 -->
@@ -297,10 +300,10 @@
         <activity android:name=".activity.findProject.FindProjectQueue" />
         <activity android:name=".activity.findProject.FindProjectFinancingDemandDetail" />
         <activity android:name=".activity.findProject.FindProjectResonseApply" />
-        <activity android:name=".activity.MoneyTenderMine" />
-        <activity android:name=".activity.MoneyTenderApplyDetail" />
-        <activity android:name=".activity.BankComeOderQueue" />
-        <activity android:name=".activity.BankLookCompanyDetail" />
+        <activity android:name=".activity.money.MoneyTenderMine" />
+        <activity android:name=".activity.money.MoneyTenderApplyDetail" />
+        <activity android:name=".activity.bank.BankComeOderQueue" />
+        <activity android:name=".activity.bank.BankLookCompanyDetail" />
         <activity android:name=".activity.borrowRepay.ReceivedPayNotifyQueue" />
         <activity android:name=".activity.borrowRepay.ReceivedPayHistoryQueue" />
         <activity android:name=".activity.borrowRepay.ReceivedPayPlanQueue" />
@@ -328,7 +331,23 @@
         <activity android:name=".activity.flow.FlowOrder" />
         <activity android:name=".activity.task.WorkPlanToAllocationHistory" />
         <activity android:name=".activity.flow.FlowUseTheFlow" />
-        <activity android:name=".activity.flow.FlowOftenUse"></activity>
+        <activity android:name=".activity.flow.FlowOftenUse" />
+        <activity android:name=".activity.order.ComeOrderProductDetail" />
+        <activity android:name=".activity.notify.NotifyMangeDetail" />
+        <activity android:name=".activity.lastNext.LastDeleteRelationIsAgree" />
+        <activity android:name=".activity.notify.NotifyReplayDetail" />
+        <activity android:name=".activity.lastNext.NextDeleteRelationIsAgree" />
+        <activity android:name=".activity.notify.OtherNotifyDetail" />
+        <activity android:name=".activity.UpdateActivity" />
+        <activity android:name=".activity.lastNext.CompanyDetail" />
+        <activity android:name=".activity.lastNext.CompanyProductDetail" />
+        <activity android:name=".activity.lastNext.CompanyMore" />
+        <activity android:name=".activity.lastNext.ProductMore" />
+        <activity android:name=".activity.bidTender.BidMore" />
+        <activity android:name=".activity.fincying.FincyingMore" />
+        <activity android:name=".activity.notify.NotifySend" />
+        <activity android:name=".activity.notify.NotifyDraftSend" />
+        <activity android:name=".activity.lastNext.ReviewDetail"></activity>
     </application>
 
 </manifest>

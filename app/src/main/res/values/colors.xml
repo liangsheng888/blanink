@@ -5,9 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTheme">#FB731F</color>
     <color name="colorBackGround">#EFF2F6</color>
-    <color name="colorBlue">#1EA8FF</color>
+    <color name="colorBlue">#57b3e3</color>
     <color name="colorRed">#ff5B36</color>
     <color name="colorBlack">#464242</color>
     <color name="colorGray">#9b9a9a</color>
+    <color name="colorWhite">#fff</color>
     <color name="listItemColorSelected">#11FB731F</color>
 </resources>

@@ -2,20 +2,14 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/linear_interpolator"
     android:shareInterpolator="true"
-    android:repeatMode="reverse">
-
-    <alpha
-        android:duration="60"
-        android:fromAlpha="0.2"
-        android:toAlpha="1" />
-    <rotate
-        android:duration="90"
-        android:fromDegrees="-5"
-        android:pivotX="50%"
-        android:pivotY="50%"
-        android:toDegrees="5"
-        android:repeatCount="4"
-        ></rotate>
-
+    >
+   <rotate
+       android:fromDegrees="-5"
+       android:pivotX="50%"
+       android:pivotY="50%"
+       android:repeatCount="2"
+       android:duration="100"
+       android:repeatMode="reverse"
+       android:toDegrees="5"></rotate>
 
 </set>
