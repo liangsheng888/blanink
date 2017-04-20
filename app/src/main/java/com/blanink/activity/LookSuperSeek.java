@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.blanink.R;
-import com.blanink.utils.AutoAdvertise;
 import com.blanink.utils.MyActivityManager;
 
 import java.util.ArrayList;
@@ -19,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/27.
+ * 高级查看
  */
 public class LookSuperSeek extends Activity {
     private static final int SEEK = 1;
@@ -29,9 +29,6 @@ public class LookSuperSeek extends Activity {
     private ViewPager viewPager;
     private LinearLayout ll_viewpager_bottom;
     private List<Integer> drawableLists;
-    private AutoAdvertise autoAdvertise;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +51,6 @@ public class LookSuperSeek extends Activity {
         drawableLists.add(R.drawable.guanggao2);
         drawableLists.add(R.drawable.guanggao3);
         //初始化得到autoAdvertise对象
-        autoAdvertise=new AutoAdvertise(this,viewPager,ll_viewpager_bottom,drawableLists);
-        //广告轮播
-        autoAdvertise.pictureRoll();
         //清空super_seek_rulerName的焦点
         super_seek_rulerName.clearFocus();
         super_seek_rulerName.setCursorVisible(false);

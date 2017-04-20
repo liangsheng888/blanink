@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.Response;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -100,6 +101,9 @@ public class ModifyPsd extends AppCompatActivity {
             Toast.makeText(this, "两次输入的新密码不一致", Toast.LENGTH_SHORT).show();
             return;
         }
+        DialogLoadUtils.getInstance(ModifyPsd.this);
+        DialogLoadUtils.showDialogLoad(ModifyPsd.this);
+
         loadData(newPsd);
     }
 
@@ -113,16 +117,20 @@ public class ModifyPsd extends AppCompatActivity {
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                DialogLoadUtils.dismissDialog();
                 Gson gson = new Gson();
                 Response response = gson.fromJson(result, Response.class);
                 if (response.getErrorCode().equals("00000")) {
                     showDialog();
+                }else {
+                    Toast.makeText(ModifyPsd.this, "修改失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                DialogLoadUtils.dismissDialog();
+                Toast.makeText(ModifyPsd.this, "服务器异常", Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.pojo.BidTender;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
@@ -21,7 +23,7 @@ import java.util.Date;
  * 符合招标列表   招标详情
  */
 public class TenderDetail extends AppCompatActivity {
-    private TenderAndBid.Result.Row row = new TenderAndBid.Result.Row();
+    private TenderAndBid.Result.Row row ;
     private MyActivityManager myActivityManager;
     private SharedPreferences sp;
     private TextView back;
@@ -39,6 +41,7 @@ public class TenderDetail extends AppCompatActivity {
     private TextView tv_publish_date;
     private Button bt_bid;
     private Button btn_chat;
+    private BidTender.ResultBean.ListBean bidDetailInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +58,12 @@ public class TenderDetail extends AppCompatActivity {
     private void receivedIntentInfo() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        row = (TenderAndBid.Result.Row) bundle.getSerializable("TenderDetail");
-        Log.e("TenderDetail", row.toString());
+        if (intent.getIntExtra("flag", 0) != 1) {
+            row = (TenderAndBid.Result.Row) bundle.getSerializable("TenderDetail");
+            Log.e("TenderDetail", row.toString());
+        }else {
+            bidDetailInfo = ((BidTender.ResultBean.ListBean) bundle.getSerializable("BidDetail"));
+        }
     }
 
     private void initView() {
@@ -80,25 +87,39 @@ public class TenderDetail extends AppCompatActivity {
     private void initData() {
 
         //set data
-        tv_product_name.setText(row.buyProductName);
-        tv_bids_num.setText(row.bidList.size() + "");
-        tv_total_price.setText((Double.parseDouble(row.targetPrice)*row.count)+"");
-        tv_company.setText(row.inviteCompany.name);
-        tv_single_price.setText(row.targetPrice);//单价
-        tv_purchase_num.setText(row.count + "");
-        tv_note_content.setText(row.remarks);
-        tv_first_pay.setText(row.downPayment + "%");
-        tv_publish_date.setText(row.inviteDate);
-        tv_end_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
+        if (row != null) {
+            tv_product_name.setText(row.buyProductName);
+            tv_bids_num.setText(row.bidList.size() + "");
+            tv_total_price.setText((Double.parseDouble(row.targetPrice) * row.count) + "");
+            tv_company.setText(row.inviteCompany.name);
+            tv_single_price.setText(row.targetPrice);//单价
+            tv_purchase_num.setText(row.count + "");
+            tv_note_content.setText(row.remarks);
+            tv_first_pay.setText(row.downPayment + "%");
+            tv_publish_date.setText(row.inviteDate);
+            tv_end_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
 
-        //附件浏览
-        tv_attachment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            //附件浏览
+            tv_attachment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            }
-        });
-
+                }
+            });
+        }
+        if (bidDetailInfo != null) {
+            //大搜索点击进入的详情
+            tv_bids_num.setText(bidDetailInfo.getBidCount() + "");
+            tv_total_price.setText((Double.parseDouble(bidDetailInfo.getInviteBid().getTargetPrice()) * bidDetailInfo.getInviteBid().getCount()) + "");
+            tv_company.setText(bidDetailInfo.getInviteBid().getInviteCompany().getName());
+            tv_product_name.setText(bidDetailInfo.getInviteBid().getBuyProductName());
+            tv_single_price.setText(bidDetailInfo.getInviteBid().getTargetPrice());
+            tv_purchase_num.setText(bidDetailInfo.getInviteBid().getCount() + "");
+            tv_first_pay.setText(bidDetailInfo.getInviteBid().getDownPayment() + "%");
+            tv_publish_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidDetailInfo.getInviteBid().getInviteDate())));
+            tv_end_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidDetailInfo.getInviteBid().getExpireDate())));
+            tv_note_content.setText(bidDetailInfo.getInviteBid().getRemarks());
+        }
         //返回
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,41 +128,75 @@ public class TenderDetail extends AppCompatActivity {
             }
         });
         //我要投标
-        Log.e("TenderDetail", "TenderId:" + row.inviteCompany.id);
         Log.e("TenderDetail", "BidId:" + sp.getString("COMPANY_ID", null));
-        if (row.inviteCompany.id.equals(sp.getString("COMPANY_ID", null))) {
-            bt_bid.setText("该招标信息是你公司发布的，不能投标");
-            bt_bid.setEnabled(false);
-            bt_bid.setBackgroundColor(Color.GRAY);
+        if (row != null) {
+            if (row.inviteCompany.id.equals(sp.getString("COMPANY_ID", null))) {
+                bt_bid.setText("该招标信息是你公司发布的，不能投标");
+                bt_bid.setEnabled(false);
+                bt_bid.setBackgroundColor(Color.GRAY);
+            }
+        }
+        if (bidDetailInfo != null) {
+            if (bidDetailInfo.getInviteBid().getInviteCompany().getId().equals(sp.getString("COMPANY_ID", null))) {
+                bt_bid.setText("该招标信息是你公司发布的，不能投标");
+                bt_bid.setEnabled(false);
+                bt_bid.setBackgroundColor(Color.GRAY);
+            }
         }
         //如果已失效 ，不能投标
-        if (ExampleUtil.compare_date(row.expireDate,ExampleUtil.dateToString(new Date(System.currentTimeMillis())))<0){
-            bt_bid.setText("本次招标已失效，你不能投标！");
-            bt_bid.setEnabled(false);
-            bt_bid.setBackgroundColor(Color.GRAY);
-        }
-        //如果投标公司的id 在bidList 中 表明 已投标 不能再次投标
-        if (row.bidList.size() > 0) {
-            for (int i = 0; i < row.bidList.size(); i++) {
-                if (sp.getString("COMPANY_ID", null).equals(row.bidList.get(i).bidCompany.id)) {
-                    bt_bid.setText("你已经投过标了，不能再次投标");
-                    bt_bid.setEnabled(false);
-                    bt_bid.setBackgroundColor(Color.GRAY);
-                }
+        if (row != null) {
+            if (ExampleUtil.compare_date(row.expireDate, ExampleUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
+                bt_bid.setText("本次招标已失效，你不能投标！");
+                bt_bid.setEnabled(false);
+                bt_bid.setBackgroundColor(Color.GRAY);
             }
         }
         bt_bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //  Toast.makeText(TenderDetail.this, "taio", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(TenderDetail.this, BidApplication.class);
                 intent.putExtra("userId", sp.getString("USER_ID", null));
-                intent.putExtra("inviteBid.id", row.id);
+                if (row!= null) {
+                    intent.putExtra("inviteBid.id", row.id);
+                }
+                if (bidDetailInfo!= null) {
+                    intent.putExtra("inviteBid.id", bidDetailInfo.getInviteBid().getId());
+                }
                 startActivity(intent);
             }
         });
 
+        if (bidDetailInfo != null) {
+            if (ExampleUtil.compare_date(bidDetailInfo.getInviteBid().getExpireDate(), ExampleUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
+                bt_bid.setText("本次招标已失效，你不能投标！");
+                bt_bid.setEnabled(false);
+                bt_bid.setBackgroundColor(Color.GRAY);
+            }}
+            //如果投标公司的id 在bidList 中 表明 已投标 不能再次投标
+            if (row != null) {
+                if (row.bidList.size() > 0) {
+                    for (int i = 0; i < row.bidList.size(); i++) {
+                        if (sp.getString("COMPANY_ID", null).equals(row.bidList.get(i).bidCompany.id)) {
+                            bt_bid.setText("你已经投过标了，不能再次投标");
+                            bt_bid.setEnabled(false);
+                            bt_bid.setBackgroundColor(Color.GRAY);
+                        }
+                    }
+                }
+            }
+            if (bidDetailInfo != null) {
+                if (bidDetailInfo.getMyBidCount() > 0) {
+                    bt_bid.setText("你已经投过标了，不能再次投标");
+                    bt_bid.setEnabled(false);
+                    bt_bid.setBackgroundColor(Color.GRAY);
+                }
+            }
 
-    }
+
+
+
+        }
 
     @Override
     protected void onDestroy() {

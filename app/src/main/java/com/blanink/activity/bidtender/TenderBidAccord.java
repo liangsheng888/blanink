@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -112,7 +113,10 @@ public class TenderBidAccord extends AppCompatActivity {
                 window.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        DialogLoadUtils.getInstance(TenderBidAccord.this);
+                        DialogLoadUtils.showDialogLoad(TenderBidAccord.this);
                         upLoadData();
+
                     }
                 });
                 window.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
@@ -138,6 +142,7 @@ public class TenderBidAccord extends AppCompatActivity {
         });
     }
     public void upLoadData() {
+
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "partner/savePartner");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         rp.addBodyParameter("companyA.id", id);
@@ -146,6 +151,7 @@ public class TenderBidAccord extends AppCompatActivity {
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                DialogLoadUtils.dismissDialog();
                 Log.e("TenderBidAccord", "result：" + result);
                 Gson gson = new Gson();
                 Response response = gson.fromJson(result, Response.class);
@@ -160,7 +166,8 @@ public class TenderBidAccord extends AppCompatActivity {
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                DialogLoadUtils.dismissDialog();
+                Toast.makeText(TenderBidAccord.this, "服务器异常", Toast.LENGTH_SHORT).show();
             }
 
             @Override

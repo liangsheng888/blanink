@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.blanink.R;
 
 /***
- * 上家管理 客户管理 解除关系
+ * 拒绝
  */
 public class RefuseReason extends AppCompatActivity {
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.pojo.BidDetailInfo;
+import com.blanink.pojo.BidTender;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
@@ -24,8 +25,8 @@ import org.xutils.x;
  * 投标详情
  */
 public class BidDetail extends AppCompatActivity {
-    private TenderAndBid.Result.Row row=new TenderAndBid.Result.Row();
-    private  BidDetailInfo bidinfo=new BidDetailInfo();
+    private TenderAndBid.Result.Row row = new TenderAndBid.Result.Row();
+    private BidDetailInfo bidinfo = new BidDetailInfo();
     private TextView tv_company;
     private TextView tv_product_name;
     private TextView tv_single_price;
@@ -50,7 +51,7 @@ public class BidDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bid_detail);
-        sp=getSharedPreferences("DATA",MODE_PRIVATE);
+        sp = getSharedPreferences("DATA", MODE_PRIVATE);
         myActivityManager = MyActivityManager.getInstance();
         myActivityManager.pushOneActivity(this);
         receivedDataFromMyBidQueue();
@@ -59,11 +60,12 @@ public class BidDetail extends AppCompatActivity {
     }
 
     private void receivedDataFromMyBidQueue() {
-        Intent intent= getIntent();
-        Bundle bundle=intent.getExtras();
-        row=(TenderAndBid.Result.Row)bundle.getSerializable("BidDetailInfo");
-        Log.e("BidDetail",row.toString());
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        row = (TenderAndBid.Result.Row) bundle.getSerializable("BidDetailInfo");
+
     }
+
     private void initView() {
         bid_detail_iv_last = ((TextView) findViewById(R.id.bid_detail_iv_last));
         tv_company = ((TextView) findViewById(R.id.tv_company));
@@ -83,16 +85,19 @@ public class BidDetail extends AppCompatActivity {
         tv_note_detail_content = ((TextView) findViewById(R.id.tv_note_detail_content));
         tv_talk = ((TextView) findViewById(R.id.tv_talk));
     }
+
     private void initData() {
         //
-        tv_company.setText(row.inviteCompany.name);
-        tv_product_name.setText(row.buyProductName);
-        tv_single_price.setText(row.targetPrice);
-        tv_purchase_num.setText(row.count+"");
-        tv_first_pay.setText(row.downPayment+"%");
-        tv_publish_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.inviteDate)));
-        tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
-        tv_note_detail_content.setText(row.remarks);
+        if (row != null) {
+            tv_company.setText(row.inviteCompany.name);
+            tv_product_name.setText(row.buyProductName);
+            tv_single_price.setText(row.targetPrice);
+            tv_purchase_num.setText(row.count + "");
+            tv_first_pay.setText(row.downPayment + "%");
+            tv_publish_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.inviteDate)));
+            tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
+            tv_note_detail_content.setText(row.remarks);
+        }
         //返回
         bid_detail_iv_last.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,37 +116,38 @@ public class BidDetail extends AppCompatActivity {
         myActivityManager.popOneActivity(this);
     }
 
+    public void loadDataFromServer() {
+        RequestParams requestParams = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/bidDetail");
+        requestParams.addBodyParameter("userId", sp.getString("USER_ID", null));
 
-    public void loadDataFromServer(){
-        RequestParams requestParams=new RequestParams(NetUrlUtils.NET_URL+"inviteBid/bidDetail");
-        requestParams.addBodyParameter("userId",sp.getString("USER_ID",null));
-        requestParams.addBodyParameter("id",row.id);
+        requestParams.addBodyParameter("id", row.id);
+
         x.http().post(requestParams, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("BidDetail","result:"+result.toString());
-                Gson gson=new Gson();
-                bidinfo= gson.fromJson(result, BidDetailInfo.class);
-                Log.e("BidDetail","bidinfo:"+bidinfo.toString());
+                Log.e("BidDetail", "result:" + result.toString());
+                Gson gson = new Gson();
+                bidinfo = gson.fromJson(result, BidDetailInfo.class);
+                Log.e("BidDetail", "bidinfo:" + bidinfo.toString());
                 tv_name.setText(bidinfo.result.bidCompany.master);
                 tv_company_name.setText(bidinfo.result.bidCompany.name);
                 tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidinfo.result.bidDate)));
                 tv_single_cost.setText(bidinfo.result.bidPrice);
-                String date="";
-                if(bidinfo.result.productionCycleUnit==5){
-                    date=bidinfo.result.productionCycle+"年";
+                String date = "";
+                if (bidinfo.result.productionCycleUnit == 5) {
+                    date = bidinfo.result.productionCycle + "年";
                 }
-                if(bidinfo.result.productionCycleUnit==4){
-                    date=bidinfo.result.productionCycle+"个月";
+                if (bidinfo.result.productionCycleUnit == 4) {
+                    date = bidinfo.result.productionCycle + "个月";
                 }
-                if(bidinfo.result.productionCycleUnit==3){
-                    date=bidinfo.result.productionCycle+"周";
+                if (bidinfo.result.productionCycleUnit == 3) {
+                    date = bidinfo.result.productionCycle + "周";
                 }
-                if(bidinfo.result.productionCycleUnit==2){
-                    date=bidinfo.result.productionCycle+"天";
+                if (bidinfo.result.productionCycleUnit == 2) {
+                    date = bidinfo.result.productionCycle + "天";
                 }
-                if(bidinfo.result.productionCycleUnit==1){
-                    date=bidinfo.result.productionCycle+"个小时";
+                if (bidinfo.result.productionCycleUnit == 1) {
+                    date = bidinfo.result.productionCycle + "个小时";
                 }
                 tv_date_of_delivery.setText(date);
                 tv_area.setText(bidinfo.result.bidCompany.address);
@@ -150,10 +156,10 @@ public class BidDetail extends AppCompatActivity {
                 tv_talk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(BidDetail.this,BidDetailChatHistory.class);
-                        intent.putExtra("bid.id",bidinfo.result.id);
-                        intent.putExtra("inviteBid.id",row.id);
-                        intent.putExtra("createBy",row.createBy.id);
+                        Intent intent = new Intent(BidDetail.this, BidDetailChatHistory.class);
+                        intent.putExtra("bid.id", bidinfo.result.id);
+                        intent.putExtra("inviteBid.id", row.id);
+                        intent.putExtra("createBy", row.createBy.id);
                         startActivity(intent);
                     }
                 });

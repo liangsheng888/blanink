@@ -31,6 +31,7 @@ import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.blanink.R;
 import com.blanink.pojo.Response;
 import com.blanink.oss.OssService;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -160,6 +161,8 @@ public class BidApplication extends AppCompatActivity {
                     Toast.makeText(BidApplication.this, "请填写详情备注", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                DialogLoadUtils.getInstance(BidApplication.this);
+                DialogLoadUtils.showDialogLoad(BidApplication.this);
                 uploadDateToServer();
             }
         });
@@ -202,6 +205,7 @@ public class BidApplication extends AppCompatActivity {
             x.http().post(rp, new Callback.CacheCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
+                    DialogLoadUtils.dismissDialog();
                     Gson gson = new Gson();
                     Response response = gson.fromJson(result, Response.class);
                     Log.e("BidApplication", result);
@@ -225,7 +229,9 @@ public class BidApplication extends AppCompatActivity {
                             public void onClick(View v) {
                                 Intent intent = new Intent(BidApplication.this, BidAccordWithTender.class);
                                 startActivity(intent);
+
                                 alertDialog.dismiss();
+                                finish();
                             }
                         });
                         window.findViewById(R.id.tv_seek).setOnClickListener(new View.OnClickListener() {
@@ -234,16 +240,11 @@ public class BidApplication extends AppCompatActivity {
                                 Intent intent = new Intent(BidApplication.this, MyBidQueue.class);
                                 startActivity(intent);
                                 alertDialog.dismiss();
+                                finish();
+
                             }
                         });
                         alertDialog.getWindow().setWindowAnimations(R.style.dialogAnimationTranslate);
-                       /* AnimatorSet animatorSet = new AnimatorSet();
-                        ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(view, "alpha", 1, 1, 1, 1, 1, 1, 1, 1);
-                        ObjectAnimator animatorRotation = ObjectAnimator.ofFloat(view, "rotation", 0, 10, -10, 6, -6, 3, -3, 0);
-                        animatorSet.playTogether(animatorAlpha, animatorRotation);
-                        animatorSet.setDuration(1500);
-                        animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
-                        animatorSet.start();*/
 
                     } else {
                         Toast.makeText(BidApplication.this, "投标失败！", Toast.LENGTH_SHORT).show();
@@ -253,7 +254,8 @@ public class BidApplication extends AppCompatActivity {
 
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
-                    Toast.makeText(BidApplication.this, "投标失败！", Toast.LENGTH_SHORT).show();
+                    DialogLoadUtils.dismissDialog();
+                    Toast.makeText(BidApplication.this, "服务器异常！", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

@@ -27,10 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.adpater.CommonAdapter;
-import com.blanink.adpater.PhotoAdapter;
-import com.blanink.adpater.RecyclerItemClickListener;
-import com.blanink.adpater.ViewHolder;
+import com.blanink.adapter.CommonAdapter;
+import com.blanink.adapter.PhotoAdapter;
+import com.blanink.adapter.RecyclerItemClickListener;
+import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.FeedBackingTask;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.WorkedTask;

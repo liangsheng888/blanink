@@ -1,5 +1,8 @@
 package com.blanink.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -14,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import com.blanink.R;
@@ -137,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.e("MainActivity","onDestroy");
+        activityManager.pushOneActivity(this);
         super.onDestroy();
     }
     //监听菜单 防止用户不小心退出
@@ -158,9 +164,6 @@ public class MainActivity extends AppCompatActivity {
         final Window window=alertDialog.getWindow();
         WindowManager.LayoutParams lp =window.getAttributes();
         window.setGravity(Gravity.CENTER);
-        Display d = getWindowManager().getDefaultDisplay(); // 获取屏幕宽、高用
-        //  lp.height = (int) (d.getHeight() * 0.6); // 高度设置为屏幕的0.6
-        lp.width = (int) (d.getWidth()*0.9); // 宽度设置为屏幕的1/2
         window.setWindowAnimations(R.style.dialogAnimation);
         window.setAttributes(lp);
         window.findViewById(R.id.tv_continue).setOnClickListener(new View.OnClickListener() {
@@ -173,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                MyActivityManager.getInstance().finishAllActivity();
+                activityManager.finishAllActivity();
+
             }
         });
     }

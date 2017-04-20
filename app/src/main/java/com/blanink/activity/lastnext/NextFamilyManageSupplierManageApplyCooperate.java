@@ -1,17 +1,23 @@
 package com.blanink.activity.lastNext;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.pojo.Response;
 import com.blanink.pojo.SingleCustomer;
+import com.blanink.utils.DialogLoadUtils;
+import com.blanink.utils.DialogNotifyUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -45,12 +51,15 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
     private Button btn_apply;
     private SingleCustomer info;
     private String companyId;
+    private String message;
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_family_manage_company_supplier_manage_apply_cooperate);
         myActivityManager = MyActivityManager.getInstance();
         myActivityManager.pushOneActivity(this);
+        sp=getSharedPreferences("DATA",MODE_PRIVATE);
         receiveIntentInfo();
         initView();
         initData();
@@ -103,13 +112,71 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
             tv_phone.setText(info.result.getPhone());
             tv_detail_address.setText(info.result.getAddress());
             tv_introduce.setText(info.result.getRemarks());
-            DecimalFormat df=new DecimalFormat("0.00");
+            DecimalFormat df=new DecimalFormat("0.0");
             tv_company_remark.setText(info.result.reviewSelf + "");
             tv_company_other_remark.setText(info.result.reviewOthers + "");
             tv_company_honest.setText(df.format((info.result.reviewSelf + info.result.reviewOthers) / 2.0));
         }
-
+        btn_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(et_apply_info.getText().toString())){
+                    Toast.makeText(NextFamilyManageSupplierManageApplyCooperate.this, "请填写申请信息", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                message=et_apply_info.getText().toString();
+                DialogLoadUtils.getInstance(NextFamilyManageSupplierManageApplyCooperate.this);
+                DialogLoadUtils.showDialogLoad(NextFamilyManageSupplierManageApplyCooperate.this);
+                uploadApplyInfo();
+            }
+        });
     }
+
+    private void uploadApplyInfo() {
+        //上传申请信息
+            RequestParams requestParams = new RequestParams(NetUrlUtils.NET_URL + "customer/nextHomeApply");
+            requestParams.addBodyParameter("userId", sp.getString("USER_ID", null));
+            requestParams.addBodyParameter("companyB.id", info.result.getId());
+            requestParams.addBodyParameter("companyA.id", sp.getString("COMPANY_ID", null));
+            requestParams.addBodyParameter("notify.content", message);
+           requestParams.addBodyParameter("isApply","0");
+            x.http().post(requestParams, new Callback.CacheCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    DialogLoadUtils.dismissDialog();
+                    Gson gson = new Gson();
+                    Response response=gson.fromJson(result, Response.class);
+                    if(response.getErrorCode().equals("00000")){
+                        DialogNotifyUtils.showNotify(NextFamilyManageSupplierManageApplyCooperate.this,"你的申请已发出,请等待！");
+                    }else {
+                        Toast.makeText(NextFamilyManageSupplierManageApplyCooperate.this, "操作失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    DialogLoadUtils.dismissDialog();
+                    Toast.makeText(NextFamilyManageSupplierManageApplyCooperate.this, "服务器异常", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+
+                @Override
+                public boolean onCache(String result) {
+                    return false;
+                }
+            });
+        }
+
 
     @Override
     protected void onDestroy() {
@@ -120,6 +187,8 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
     public void getData() {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "partner/info");
         rp.addBodyParameter("id",companyId);
+        rp.addBodyParameter("userId",sp.getString("USER_ID",null));
+        Log.e("@@@@", "url+++++++" + NetUrlUtils.NET_URL + "partner/info?userId=" + sp.getString("USER_ID", null) + "&id=" + companyId);
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -131,7 +200,7 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
                 tv_phone.setText(info.result.getPhone());
                 tv_detail_address.setText(info.result.getAddress());
                 tv_introduce.setText(info.result.getRemarks());
-                DecimalFormat df=new DecimalFormat("0.00");
+                DecimalFormat df=new DecimalFormat("0.0");
                 tv_company_remark.setText(info.result.reviewSelf + "");
                 tv_company_other_remark.setText(info.result.reviewOthers + "");
                 tv_company_honest.setText(df.format((info.result.reviewSelf + info.result.reviewOthers ) / 2.0));  }

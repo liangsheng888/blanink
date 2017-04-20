@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.adpater.ChatMsgViewAdapter;
+import com.blanink.adapter.ChatMsgViewAdapter;
 import com.blanink.pojo.TalkHistoryLog;
 import com.blanink.pojo.ChatMsgEntity;
 import com.blanink.utils.MyActivityManager;

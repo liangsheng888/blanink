@@ -19,15 +19,13 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.pojo.LoginResult;
 import com.blanink.utils.CheckNetIsConncet;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.exceptions.HyphenateException;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -43,15 +41,14 @@ import cn.jpush.android.api.TagAliasCallback;
 public class LoginActivity extends AppCompatActivity {
     private static final int MSG_SET_ALIAS = 1001;
     private static final int MSG_SET_TAGS = 1002;
-
     private static final String TAG = "LoginActivity";
+    private static final int FRAGMENT_TASK = 0;
     private EditText et_user;
     private EditText et_psd;
     private Button btn_login;
     private TextView tv_forget;
     private RelativeLayout rl_login_progress;
     private ImageView imageView;
-    private AnimationDrawable loadingDrawable;
     private MyActivityManager myActivityManager;
     private SharedPreferences sp;
     private final Handler mHandler = new Handler() {
@@ -115,10 +112,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 final Boolean isConnect = CheckNetIsConncet.isNetWorkConnected(LoginActivity.this);
                 //检查网络是否连接，
-                rl_login_progress.setVisibility(View.VISIBLE);
-               /* loadingDrawable = (AnimationDrawable) imageView.getBackground();
-                loadingDrawable.start();*/
-
+                DialogLoadUtils.getInstance(LoginActivity.this);
+                DialogLoadUtils.showDialogLoad(LoginActivity.this);
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
@@ -133,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                             x.http().post(requestParams, new Callback.CacheCallback<String>() {
                                 @Override
                                 public void onSuccess(String result) {
-                                    rl_login_progress.setVisibility(View.INVISIBLE);
+                                    DialogLoadUtils.dismissDialog();
                                     Log.e("LoginActivity", "result:" + result.toString());
                                     Gson gson = new Gson();
                                     LoginResult loginResult = gson.fromJson(result, LoginResult.class);
@@ -153,20 +148,24 @@ public class LoginActivity extends AppCompatActivity {
                                         ed.putString("PASSWORD",passWord);
                                         ed.putString("COMPANY_TYPE",loginResult.getResult().office.serviceType);
                                         ed.commit();
+                                        //
                                         setAlias(loginResult.getResult().id);
-                                        RegisterUser(loginResult.getResult().id, passWord);
+                                        //RegisterUser(loginResult.getResult().id, passWord);
                                         if (loginResult.getResult().admin) {
                                             //跳转到管理员界面
-                                            Intent intent = new Intent(LoginActivity.this, FlashActivity.class);
+                                            Intent intent =new Intent(LoginActivity.this,MainActivity.class);
+                                            intent.putExtra("DATA",result);
+                                            intent.putExtra("DIRECT",FRAGMENT_TASK);
                                             startActivity(intent);
                                         } else {
                                             //跳转到普通用户界面
-                                            Intent intent = new Intent(LoginActivity.this, FlashActivity.class);
+                                            Intent intent =new Intent(LoginActivity.this,MainActivity.class);
+                                            intent.putExtra("DATA",result);
+                                            intent.putExtra("DIRECT",FRAGMENT_TASK);
                                             startActivity(intent);
                                         }
 
                                     } else {
-                                        rl_login_progress.setVisibility(View.GONE);
                                         Toast.makeText(LoginActivity.this, "用户或密码错误, 请重试！", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -174,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onError(Throwable ex, boolean isOnCallback) {
                                     Log.e("LoginActivity",ex.toString());
-                                    rl_login_progress.setVisibility(View.INVISIBLE);
+                                    DialogLoadUtils.dismissDialog();
                                     Toast.makeText(LoginActivity.this, "服务器无响应！", Toast.LENGTH_SHORT).show();
                                 }
 
@@ -195,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                             });
 
                         } else {
-                            rl_login_progress.setVisibility(View.INVISIBLE);
+                            DialogLoadUtils.dismissDialog();
                             Toast.makeText(LoginActivity.this, "你的网络有问题，请检查网络", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -217,10 +216,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        myActivityManager.popOneActivity(this);
+       myActivityManager.finishAllActivity();
     }
 
-    //注册环信账户
+  /*  //注册环信账户
     private void RegisterUser(final String username, final String psd) {
 
         new Thread(new Runnable() {
@@ -236,7 +235,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }).start();
-    }
+    }*/
 
     //设置别名（Jpush）
     private void setAlias(String alias) {

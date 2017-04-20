@@ -20,8 +20,6 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.activity.MainActivity;
-import com.blanink.adpater.CommonAdapter;
-import com.blanink.adpater.ViewHolder;
 import com.blanink.pojo.Order;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
@@ -80,7 +78,6 @@ public class ComeOrderActivity extends AppCompatActivity {
     private MyActivityManager myActivityManager;
     private SharedPreferences sp;
     private List<Order.Result.Rows> rowsList = new ArrayList<>();
-    private CommonAdapter commonAdapter;
     private boolean isHasData = true;
     private Integer pageNo = 1;
     private SparseArray<View> sparseArray;
@@ -225,6 +222,8 @@ public class ComeOrderActivity extends AppCompatActivity {
 
     @OnClick(R.id.rl_load_fail)
     public void onClick() {
+        rlLoadFail.setVisibility(View.GONE);
+        llLoad.setVisibility(View.VISIBLE);
         loadData();
     }
 
@@ -265,10 +264,10 @@ public class ComeOrderActivity extends AppCompatActivity {
                 convertView = sparseArray.get(position);
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            Log.e("ComeOrderActivity","标题:"+order.name==null?"无标题":order.name);
+            Log.e("ComeOrderActivity","标题:");
             viewHolder.tv_company.setText(order.aCompany.name);
             //产品类
-            viewHolder.tv_title.setText(order.name);
+            viewHolder.tv_title.setText(order.name==null?"无标题":order.name);
             viewHolder.tv_date.setText(order.takeOrderTime);
             viewHolder.tv_master.setText(order.aCompany.master);
             viewHolder.tv_state.setText(OrderStatuUtils.orderStatus(order.orderStatus));

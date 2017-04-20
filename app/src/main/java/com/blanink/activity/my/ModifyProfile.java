@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.LoginResult;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -101,6 +102,8 @@ public class ModifyProfile extends AppCompatActivity {
                 name = etNick.getText().toString().trim();
                 phone = etPhone.getText().toString().trim();
                 Log.e("ModifyProfile", name + "------" + phone);
+                DialogLoadUtils.getInstance(ModifyProfile.this);
+                DialogLoadUtils.showDialogLoad(ModifyProfile.this);
                 uploadDataToServer();
             }
         });
@@ -133,6 +136,7 @@ public class ModifyProfile extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("ModifyProfile", result);
+                DialogLoadUtils.dismissDialog();
                 Gson gson = new Gson();
                 LoginResult response = gson.fromJson(result, LoginResult.class);
                 if (response.getErrorCode().equals("00000")) {
@@ -146,6 +150,9 @@ public class ModifyProfile extends AppCompatActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 Log.e("ModifyProfile",ex.toString());
+                DialogLoadUtils.dismissDialog();
+                Toast.makeText(ModifyProfile.this, "服务器异常", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

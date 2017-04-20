@@ -3,7 +3,6 @@ package com.blanink.activity.task;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,10 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.adpater.CommonAdapter;
-import com.blanink.adpater.ViewHolder;
+import com.blanink.adapter.CommonAdapter;
+import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.*;
-import com.blanink.pojo.WorkPlan;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.NoScrollListview;
 import com.google.gson.Gson;
@@ -280,11 +278,9 @@ public class WorkPlanToAllocation extends AppCompatActivity {
                     @Override
                     public void convert(ViewHolder viewHolder, com.blanink.pojo.WorkPlanToAllocation.ResultBean.WorkPlanListBean workPlanBean, int position) {
                         workPlanBean = workPlan.getResult().getWorkPlanList().get(position);
-                        TextView tv_worker = viewHolder.getViewById(R.id.tv_worker);
                         TextView tv_allocation_time = viewHolder.getViewById(R.id.tv_allocation_time);
                         TextView tv_task_person = viewHolder.getViewById(R.id.tv_task_person);
                         TextView tv_allocation_num = viewHolder.getViewById(R.id.tv_allocation_num);
-                        tv_worker.setText(workPlanBean.getCreateBy().getName());
                         tv_allocation_time.setText(workPlanBean.getCreateDate());
                         tv_task_person.setText(workPlanBean.getWorker().getName());
                         tv_allocation_num.setText(workPlanBean.getAchieveAmount());

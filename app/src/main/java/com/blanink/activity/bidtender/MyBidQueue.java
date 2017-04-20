@@ -122,7 +122,7 @@ public class MyBidQueue extends AppCompatActivity {
         lv_my_bid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 1 && position < myBidList.size() + 1) {
+                if (position < myBidList.size() + 1) {
                     Intent intent = new Intent(MyBidQueue.this, BidDetail.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("BidDetailInfo", myBidList.get(position - 1));

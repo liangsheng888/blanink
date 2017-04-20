@@ -8,14 +8,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.activity.bidTender.BidAccordWithTender;
+import com.blanink.activity.bidTender.BidApplication;
+import com.blanink.activity.bidTender.MyBidQueue;
+import com.blanink.pojo.Response;
 import com.blanink.pojo.SingleCustomer;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.MyActivityManager;
+import com.blanink.utils.NetUrlUtils;
+import com.google.gson.Gson;
+
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -48,6 +61,7 @@ public class LastFamilyManageCustomerApplyDelete extends AppCompatActivity {
     private TextView customer_apply_iv_last;
     private  SingleCustomer info;
     private SharedPreferences sp;
+    private  AlertDialog alertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +88,7 @@ public class LastFamilyManageCustomerApplyDelete extends AppCompatActivity {
         tv_url = ((TextView) findViewById(R.id.tv_url));//主頁
         tv_company_remark = ((TextView) findViewById(R.id.tv_company_remark));//自評
         tv_company_other_remark = ((TextView) findViewById(R.id.tv_company_other_remark));//他評
-        et_apply_info = ((TextView) findViewById(R.id.et_apply_delete_info));//申請信息
+        et_apply_info = ((EditText) findViewById(R.id.et_apply_delete_info));//申請信息
         btn_apply = ((Button) findViewById(R.id.tv_apply_delete));//發送請求
     }
     private void initData(){
@@ -87,7 +101,7 @@ public class LastFamilyManageCustomerApplyDelete extends AppCompatActivity {
         tv_company_name.setText(info.result.getName());
         tv_state.setText(info.result.getCreateCompanyBy()==null?"实有":"虚拟");
         tv_area.setText(info.result.getArea().getName());
-        DecimalFormat df=new DecimalFormat("0.00");
+        DecimalFormat df=new DecimalFormat("0.0");
         tv_company_xin_yu.setText(df.format((info.result.reviewOthers+info.result.reviewSelf)/2.0));
         tv_major_person.setText(info.result.getMaster());
         tv_phone.setText(info.result.getPhone());
@@ -95,78 +109,86 @@ public class LastFamilyManageCustomerApplyDelete extends AppCompatActivity {
         tv_company_address.setText(info.result.getAddress());
         tv_company_remark.setText(info.result.reviewSelf+"");
         tv_company_other_remark.setText(info.result.reviewOthers+"");
+        tv_url.setText(info.result.homepage);
 
         //申请解除
         btn_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String message=et_apply_info.getText().toString().trim();
+                String message=et_apply_info.getText().toString().trim();
                 if(TextUtils.isEmpty(message)){
                     Toast.makeText(LastFamilyManageCustomerApplyDelete.this, "请填写解除合作关系的理由！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                final AlertDialog alertDialog=new AlertDialog.Builder(LastFamilyManageCustomerApplyDelete.this).create();
-                alertDialog.setTitle("提示");
-                alertDialog.setIcon(R.mipmap.jcxy);
-                alertDialog.setMessage("确定要解除合作关系吗？");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "确定", new DialogInterface.OnClickListener() {
+                message=et_apply_info.getText().toString();
+                DialogLoadUtils.getInstance(LastFamilyManageCustomerApplyDelete.this);
+                DialogLoadUtils.showDialogLoad(LastFamilyManageCustomerApplyDelete.this);
+                RequestParams rp=new RequestParams(NetUrlUtils.NET_URL+"partner/customerApply");
+                rp.addBodyParameter("userId",sp.getString("USER_ID",null));
+                rp.addBodyParameter("companyA.id",info.result.getId());
+                rp.addBodyParameter("companyB.id",sp.getString("COMPANY_ID",null));
+                rp.addBodyParameter("notify.remarks",message);
+                rp.addBodyParameter("isApply","1");
+                x.http().post(rp, new Callback.CacheCallback<String>() {
                     @Override
-                    public void onClick(final DialogInterface dialog, int which) {
-
-                        //向对方发送解除关系请求 别名发送到服务器
-
-                        RequestParams rp=new RequestParams("http://192.168.199.147:8080/Jpush/jpushServlet");
-                        for (int i=0;i<info.result.customerServiceList.size();i++){
-                            rp.addBodyParameter("alias",info.result.customerServiceList.get(i).getId());
-                            //rp.addBodyParameter("");
+                    public void onSuccess(String result) {
+                        DialogLoadUtils.dismissDialog();
+                        Log.e(TAG,result.toString());
+                        Gson gson=new Gson();
+                        Response response=gson.fromJson(result, Response.class);
+                        if(response.getErrorCode().equals("00000")){
+                           showDialog();
+                        }else {
+                            Toast.makeText(LastFamilyManageCustomerApplyDelete.this, "操作失败", Toast.LENGTH_SHORT).show();
                         }
-                        rp.addBodyParameter("content",message);
-                        rp.addBodyParameter("title","来自"+info.result.getName()+"供应商的消息");
-                        rp.addBodyParameter("userId",sp.getString("USER_ID",null));
-                        rp.addBodyParameter("type",DELETE);
-
-                        x.http().post(rp, new Callback.CacheCallback<String>() {
-                            @Override
-                            public void onSuccess(String result) {
-                                Log.e(TAG,info.result.customerServiceList.toString());
-                                Log.e(TAG,result.toString());
-                                dialog.dismiss();
-                                Toast.makeText(LastFamilyManageCustomerApplyDelete.this, "申请已发出,正在等待对方同意！", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onError(Throwable ex, boolean isOnCallback) {
-                                Toast.makeText(LastFamilyManageCustomerApplyDelete.this, "net error!", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onCancelled(CancelledException cex) {
-
-                            }
-
-                            @Override
-                            public void onFinished() {
-
-                            }
-
-                            @Override
-                            public boolean onCache(String result) {
-                                return false;
-                            }
-                        });
                     }
-                });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "取消", new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        DialogLoadUtils.dismissDialog();
+                        Toast.makeText(LastFamilyManageCustomerApplyDelete.this, "服务器异常，稍后重试", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+
+                    }
+
+                    @Override
+                    public boolean onCache(String result) {
+                        return false;
                     }
                 });
-                alertDialog.show();
             }
         });
 
     }
+
+    private void showDialog() {
+        alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setContentView(R.layout.dialog_custom_apply_delete_relation);
+        Window window=alertDialog.getWindow();
+        WindowManager.LayoutParams lp =window.getAttributes();
+        window.setGravity(Gravity.CENTER);
+        Display d = getWindowManager().getDefaultDisplay(); // 获取屏幕宽、高用
+        lp.width = (int) (d.getWidth()*0.9); // 宽度设置为屏幕的1/2
+        window.setAttributes(lp);
+        window.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.getWindow().setWindowAnimations(R.style.dialogAnimationTranslate);
+    }
+
     private void receiveIntentInfo() {
         Intent intent=getIntent();
         Bundle bundle =intent.getExtras();

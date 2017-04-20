@@ -71,6 +71,8 @@ public class LastFamilyManageNewAddCustomer extends AppCompatActivity {
     }
 
     private void initData() {
+
+
         customer_add_iv_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

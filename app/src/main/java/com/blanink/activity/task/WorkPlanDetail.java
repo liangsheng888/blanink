@@ -52,6 +52,7 @@ public class WorkPlanDetail extends AppCompatActivity {
     private List<Fragment> fragmentList;
     private int newIndex;//下一个即将可见的
     private int oldIndex;//当前可见的碎片
+    private RadioButton[] radioButtons;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +70,10 @@ public class WorkPlanDetail extends AppCompatActivity {
         fragmentList=new ArrayList<>();
         fragmentList.add(new WorkPlanNotAllocation());
         fragmentList.add(new WorkPlanAllocation());
+        radioButtons=new RadioButton[]{rbNotWork,rbWorked};
         //默认显示我的任务
         getSupportFragmentManager().beginTransaction().add(R.id.fl_task,fragmentList.get(0)).commit();
+        radioButtons[0].setTextSize(18);
         //切换界面
         rgTask.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -110,8 +113,11 @@ public class WorkPlanDetail extends AppCompatActivity {
             ft.show(fragmentList.get(newIndex)).commit();//显示
 
         }
+        radioButtons[newIndex].setTextSize(18);
+        radioButtons[oldIndex].setTextSize(14);
         //改变当前的选中项
         oldIndex=newIndex;
+
     }
     @Override
     protected void onDestroy() {

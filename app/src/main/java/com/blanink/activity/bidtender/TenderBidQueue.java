@@ -1,6 +1,7 @@
 package com.blanink.activity.bidTender;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class TenderBidQueue extends AppCompatActivity {
     private NoScrollListview lv_tender;
     private List<TenderAndBid.Result.Row.Bid> bidList = new ArrayList<>();
     private RelativeLayout rl_not_data;
+    private TextView tv_bid_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class TenderBidQueue extends AppCompatActivity {
         tv_total_price = ((TextView) findViewById(R.id.tv_total_price));//总价
         lv_tender = ((NoScrollListview) findViewById(R.id.lv_tender));//投标人列表
         rl_not_data = ((RelativeLayout) findViewById(R.id.rl_not_data));
+        tv_bid_num = ((TextView) findViewById(R.id.tv_bid_num));
     }
 
     private void initData() {
@@ -97,7 +100,7 @@ public class TenderBidQueue extends AppCompatActivity {
                 finish();
             }
         });
-
+        tv_bid_num.setText("("+bidList.size()+")");
         //投标列表
         lv_tender.setAdapter(new BidQueueAdapter());
 
@@ -117,7 +120,8 @@ public class TenderBidQueue extends AppCompatActivity {
         //如果有投标，不能编辑
         if(row.bidList.size()>0){
             btn_update.setEnabled(false);
-            btn_update.setBackgroundColor(getResources().getColor(R.color.colorBackGround));
+            btn_update.setBackgroundColor(Color.GRAY);
+
         }
         else {
             rl_not_data.setVisibility(View.VISIBLE);
@@ -184,20 +188,20 @@ public class TenderBidQueue extends AppCompatActivity {
             viewHolder.tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bid.bidDate)));
             viewHolder.tv_single_price.setText(bid.bidPrice);
             String productionCycle="";
-            if (bid.productionCycle.equals("1")){
+            if ("1".equals(bid.productionCycle)){
                 productionCycle="个小时";
 
-            } if (bid.productionCycle.equals("2")){
+            } if ("2".equals(bid.productionCycle)){
                 productionCycle="天";
             }
-            if (bid.productionCycle.equals("3")){
+            if ("3".equals(bid.productionCycle)){
                 productionCycle="周";
 
             }
-            if (bid.productionCycle.equals("4")){
+            if ("4".equals(bid.productionCycle)){
                 productionCycle="个月";
             }
-            if (bid.productionCycle.equals("5")){
+            if ("5".equals(bid.productionCycle)){
                 productionCycle="年";
             }
 

@@ -135,8 +135,9 @@ public class NextFamilyManageCompanySupplierManage extends AppCompatActivity {
                 if (position > 0 && position < suppliers.size() + 1) {
                     Intent intent = new Intent(NextFamilyManageCompanySupplierManage.this, NextFamilyManageCompanyDetail.class);
                     intent.putExtra("id", suppliers.get(position - 1).getId());
-                    intent.putExtra("partnerName",suppliers.get(position-1).getCompanyB().name);
-                    intent.putExtra("companyId",suppliers.get(position-1).getCompanyB().id);
+                    intent.putExtra("companyName",suppliers.get(position-1).getCompanyB().name);
+                    intent.putExtra("companyB.id",suppliers.get(position-1).getCompanyB().id);
+                    intent.putExtra("type",suppliers.get(position-1).getType());
                     startActivity(intent);
                 }
             }

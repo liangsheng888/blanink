@@ -134,7 +134,7 @@ public class MyTender extends AppCompatActivity {
         lv_tender.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position>1&&position<rowList.size()+1) {
+                if(position<rowList.size()+1) {
                     Intent intent = new Intent(MyTender.this, TenderBidQueue.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("TenderBid", rowList.get(position - 1));

@@ -4,7 +4,6 @@
 package com.blanink.po;
 
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * 行业类别属性Entity
@@ -74,8 +73,7 @@ public class RelIndustryCategoryAttribute extends DataEntity<RelIndustryCategory
 		super();
 		this.category = industryCategory;
 	}
-
-	@NotNull("类别编号不能为空")
+	//@NotNull("类别编号不能为空")
 	public IndustryCategory getCategory() {
 		return category;
 	}
@@ -84,7 +82,7 @@ public class RelIndustryCategoryAttribute extends DataEntity<RelIndustryCategory
 		this.category = category;
 	}
 	
-	@NotNull("属性编号不能为空")
+//	@NotNull("属性编号不能为空")
 	public Attribute getAttribute() {
 		return attribute;
 	}

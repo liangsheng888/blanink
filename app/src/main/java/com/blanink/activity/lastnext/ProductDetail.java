@@ -12,11 +12,14 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.pojo.CompanyProduct;
 import com.blanink.utils.MyActivityManager;
+import com.blanink.view.MyPager;
 import com.blanink.view.MyViewPager;
 import com.blanink.view.NoScrollGridview;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.blanink.R.id.iv_product_picture;
 
 /***
  * 产品详情
@@ -27,11 +30,10 @@ public class ProductDetail extends AppCompatActivity {
     private MyActivityManager myActivityManager;
     private TextView tv_product_name;
     private TextView tv_price;
-    private MyViewPager iv_product_picture;
     private TextView tv_remark;
     private NoScrollGridview gv_keyField;
     private Map<String, String> map = new HashMap<>();
-
+    private MyPager iv_product_picture;
     private Map<Integer, Map<String, String>> maps = new HashMap<>();
 
     @Override
@@ -70,7 +72,7 @@ public class ProductDetail extends AppCompatActivity {
         activity_product_detail_iv_last = ((TextView) findViewById(R.id.activity_product_detail_iv_last));
         tv_product_name = ((TextView) findViewById(R.id.tv_product_name));
         tv_price = ((TextView) findViewById(R.id.tv_price));
-        iv_product_picture = ((MyViewPager) findViewById(R.id.iv_product_picture));
+        iv_product_picture = ((MyPager) findViewById(R.id.iv_product_picture));
         tv_remark = ((TextView) findViewById(R.id.tv_remark));
         gv_keyField = ((NoScrollGridview) findViewById(R.id.gv_keyField));
     }
@@ -89,6 +91,8 @@ public class ProductDetail extends AppCompatActivity {
         tv_remark.setText(row.remarks);
         //属性
         gv_keyField.setAdapter(new MapAdapter());
+        String[] pics=row.productPhotos.split(",");
+        iv_product_picture.pictureRoll(pics);//显示图片
     }
 
     @Override

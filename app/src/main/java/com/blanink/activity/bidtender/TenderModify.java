@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -130,6 +131,8 @@ public class TenderModify extends Activity {
                 count = et_num.getText().toString().trim();
                 expireTime = et_end_date.getText().toString().trim();
                 remarks = et_note.getText().toString().trim();
+                DialogLoadUtils.getInstance(TenderModify.this);
+                DialogLoadUtils.showDialogLoad(TenderModify.this);
 
                 uploadDataToServer();
             }
@@ -166,6 +169,7 @@ public class TenderModify extends Activity {
         x.http().post(rp, new Callback.CacheCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        DialogLoadUtils.dismissDialog();
                         Gson gson = new Gson();
                         Response rs = gson.fromJson(result, Response.class);
                         if (rs.getErrorCode().equals("00000")) {
@@ -196,6 +200,8 @@ public class TenderModify extends Activity {
 
                     @Override
                     public void onError(Throwable ex, boolean isOnCallback) {
+                        DialogLoadUtils.dismissDialog();
+                        Toast.makeText(TenderModify.this, "服务器异常", Toast.LENGTH_SHORT).show();
                         Log.e("TenderModify", ex.toString());
                     }
 

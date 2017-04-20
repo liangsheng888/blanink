@@ -34,6 +34,7 @@ import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.blanink.R;
 import com.blanink.activity.MainActivity;
 import com.blanink.pojo.Response;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -217,7 +218,8 @@ public class TenderPublish extends AppCompatActivity {
             return;
         }
 
-
+        DialogLoadUtils.getInstance(TenderPublish.this);
+        DialogLoadUtils.showDialogLoad(TenderPublish.this);
         RequestParams requestParams = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/save");
         requestParams.addBodyParameter("userId", sp.getString("USER_ID", ""));
         requestParams.addBodyParameter("title", title);
@@ -232,6 +234,7 @@ public class TenderPublish extends AppCompatActivity {
         x.http().post(requestParams, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                DialogLoadUtils.dismissDialog();
                 Gson gson = new Gson();
                 Response response = gson.fromJson(result, Response.class);
                 if ("00000".equals(response.getErrorCode())) {
@@ -272,7 +275,8 @@ public class TenderPublish extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                DialogLoadUtils.dismissDialog();
+                Toast.makeText(TenderPublish.this, "服务器异常！", Toast.LENGTH_SHORT).show();
             }
 
             @Override

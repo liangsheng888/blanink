@@ -3,15 +3,14 @@ package com.blanink.activity.lastNext;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,12 +23,25 @@ import com.blanink.fragment.LastProduct;
 import com.blanink.fragment.LastRemark;
 import com.blanink.utils.MyActivityManager;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /***
  * 上家 客户详情
  */
 public class LastCustomerDetail extends AppCompatActivity {
 
     private static final String TAG = "LastCustomerDetail";
+    @BindView(R.id.rb_info)
+    RadioButton rbInfo;
+    @BindView(R.id.rb_product)
+    RadioButton rbProduct;
+    @BindView(R.id.rb_honest)
+    RadioButton rbHonest;
+    @BindView(R.id.rb_partner)
+    RadioButton rbPartner;
+    @BindView(R.id.rb_remark)
+    RadioButton rbRemark;
     private MyActivityManager myActivityManager;
     private String id;
     private String companyName;
@@ -43,11 +55,13 @@ public class LastCustomerDetail extends AppCompatActivity {
     private String companyType;
     private SharedPreferences sp;
     private TextView tv_type;
+    private RadioButton[] radioButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last_customer_detail_info);
+        ButterKnife.bind(this);
         Intent intent = getIntent();
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
         companyName = intent.getStringExtra("companyName");
@@ -75,9 +89,10 @@ public class LastCustomerDetail extends AppCompatActivity {
         fragments[2] = new LastHonest();
         fragments[3] = new LastProduct();
         fragments[4] = new LastRemark();
-
+        radioButtons = new RadioButton[]{rbInfo,rbPartner,rbHonest,rbProduct,rbRemark};
         //默认选择公司信息将诶界面
         getSupportFragmentManager().beginTransaction().add(R.id.fl_customer_info, fragments[0]).commit();
+        radioButtons[0].setTextSize(16);
         //如果是虚拟客户 只能显示 一般信息
         if (!customerState) {
             findViewById(R.id.rb_partner).setEnabled(false);
@@ -153,9 +168,9 @@ public class LastCustomerDetail extends AppCompatActivity {
         v.getLocationOnScreen(location);
         popupWindow.setAnimationStyle(R.style.popAnimation);  //设置动画
         //这里就可自定义在上方和下方了 ，这种方式是为了确定在某个位置，某个控件的左边，右边，上边，下边都可以
-       // popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, (location[0] + v.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
+        // popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, (location[0] + v.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
 
-       //因为ppw提供了在某个控件下方的方法，所以有些时候需要直接定位在下方时并不用上面的这个方法
+        //因为ppw提供了在某个控件下方的方法，所以有些时候需要直接定位在下方时并不用上面的这个方法
         popupWindow.showAsDropDown(v);    // 以触发弹出窗的view为基准，出现在view的正下方，弹出的pop_view左上角正对view的左下角  偏移量默认为0,0
        /* ppwfilter.showAsDropDown(v, xoff, yoff);    // 有参数的话，就是一view的左下角进行偏移，xoff正的向左，负的向右. yoff没测，也应该是正的向下，负的向上
         ppwfilter.showAsDropDown(parent, xoff, yoff, gravity) //parent:传你当前Layout的id; gravity:Gravity.BOTTOM（以屏幕左下角为参照）... 偏移量会以它为基准点 当x y为0,0是出现在底部居中*/
@@ -166,6 +181,7 @@ public class LastCustomerDetail extends AppCompatActivity {
         super.onDestroy();
         myActivityManager.popOneActivity(this);
     }
+
     //切换界面
     private void changeFragments(int newIndex) {
         FragmentManager fm = getSupportFragmentManager();
@@ -178,6 +194,8 @@ public class LastCustomerDetail extends AppCompatActivity {
             ft.show(fragments[newIndex]).commit();//显示
         }
         //改变当前的选中项
+        radioButtons[newIndex].setTextSize(16);
+        radioButtons[oldIndex].setTextSize(14);
         oldIndex = newIndex;
     }
 }

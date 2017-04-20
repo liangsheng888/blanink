@@ -141,6 +141,7 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
                     intent.putExtra("companyName", customers.get(position - 1).getCompanyA().getName());
                     intent.putExtra("customerState", customers.get(position - 1).getCompanyA().getCreateCompanyBy() == null ? true : false);
                     intent.putExtra("companyType",customers.get(position-1).getCompanyA().serviceType);
+                    intent.putExtra("type",customers.get(position-1).getType());
                     startActivity(intent);
                 }
             }
@@ -365,7 +366,7 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             ManyCustomer.Result.Customer customer = customers.get(position);
-            Log.e("Last", " getView 上家管理 customer:" + customer.companyA.toString());
+            Log.e("Last", " getView 上家管理 type:" + customer.type);
             viewHolder.tv_scope.setText(customer.companyA.getScope());
             viewHolder.tv_master.setText(customer.companyA.getMaster());
             viewHolder.tv_name.setText(customer.companyA.getName());

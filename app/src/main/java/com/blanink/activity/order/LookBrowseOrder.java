@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 
 import com.blanink.R;
 import com.blanink.activity.MainActivity;
-import com.blanink.utils.AutoAdvertise;
 import com.blanink.utils.MyActivityManager;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class LookBrowseOrder extends AppCompatActivity {
     private static final int FIND_ORDER = 1;
     private MyActivityManager activityManager;
    // private RollPagerView rollViewPager;
-    private AutoAdvertise autoAdvertise;
     private ViewPager viewPager;
     private List<Integer> drawableLists;
     private LinearLayout viewpager_bottom_oval;
@@ -39,8 +37,6 @@ public class LookBrowseOrder extends AppCompatActivity {
         setContentView(R.layout.activity_find_order);
         activityManager= MyActivityManager.getInstance();
         activityManager.pushOneActivity(this);
-//        rollViewPager=(RollPagerView)this.findViewById(R.id.findOrder_guangao) ;
-//        AdvertiseUtils.pictureRoll(this,rollViewPager);
         initView();
         initData();
     }
@@ -53,9 +49,6 @@ public class LookBrowseOrder extends AppCompatActivity {
         drawableLists.add(R.drawable.guanggao2);
         drawableLists.add(R.drawable.guanggao3);
         //初始化得到autoAdvertise对象
-        autoAdvertise=new AutoAdvertise(this,viewPager,ll_viewpager_bottom,drawableLists);
-        //广告轮播
-        autoAdvertise.pictureRoll();
         findOrder_iv_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +63,6 @@ public class LookBrowseOrder extends AppCompatActivity {
         findOrder_iv_last = ((ImageView) findViewById(R.id.findOrder_iv_last));
         viewPager = ((ViewPager) findViewById(R.id.findOrder_guangao));
         ll_viewpager_bottom = ((LinearLayout) findViewById(R.id.ll_viewpager_bottom));
-
     }
 
     @Override
