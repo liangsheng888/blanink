@@ -17,8 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.LastFamilyManageCustomerApply;
-import com.blanink.activity.lastNext.LastFamilyManageCustomerApplyDelete;
+import com.blanink.activity.lastnext.LastFamilyManageCustomerApply;
+import com.blanink.activity.lastnext.LastFamilyManageCustomerApplyDelete;
 import com.blanink.pojo.ManyCustomer;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.SingleCustomer;

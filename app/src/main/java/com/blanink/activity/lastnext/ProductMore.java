@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.SeekActivity;
 import com.blanink.pojo.CompanyCateGory;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;

@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

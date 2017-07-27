@@ -1,24 +1,17 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.my.ModifyProfile;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.DialogLoadUtils;

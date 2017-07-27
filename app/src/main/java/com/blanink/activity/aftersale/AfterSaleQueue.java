@@ -1,4 +1,5 @@
-package com.blanink.activity.afterSale;
+package com.blanink.activity.aftersale;
+
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

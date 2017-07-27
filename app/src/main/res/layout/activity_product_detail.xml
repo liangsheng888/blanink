@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.lastNext.ProductDetail">
+    tools:context="com.blanink.activity.lastnext.ProductDetail">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

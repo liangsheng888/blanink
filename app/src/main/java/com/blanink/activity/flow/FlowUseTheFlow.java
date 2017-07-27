@@ -1,6 +1,5 @@
 package com.blanink.activity.flow;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -8,9 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -18,20 +15,15 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.LastDeleteRelationIsAgree;
 import com.blanink.pojo.FlowData;
 import com.blanink.pojo.FlowDetail;
 import com.blanink.pojo.Process;
 import com.blanink.pojo.RelFlowProcess;
-import com.blanink.pojo.Response;
-import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;

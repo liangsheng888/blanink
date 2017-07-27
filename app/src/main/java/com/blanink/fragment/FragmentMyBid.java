@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.bidTender.BidDetail;
+import com.blanink.activity.bidtender.BidDetail;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.GlideUtils;

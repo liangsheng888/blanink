@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -25,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.pojo.ManyCustomer;
 import com.blanink.pojo.Office;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;

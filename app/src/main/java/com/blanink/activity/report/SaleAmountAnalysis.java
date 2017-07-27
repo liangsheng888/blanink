@@ -1,19 +1,13 @@
 package com.blanink.activity.report;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,34 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.fragment.GoComeOrderFragment;
-import com.blanink.fragment.GoDownOrderFragment;
-import com.blanink.fragment.GoNotDownOrderFragment;
-import com.blanink.fragment.PieChartFragment;
-import com.blanink.fragment.StackBarChartFragment;
-import com.blanink.pojo.ReportSale;
-import com.blanink.utils.NetUrlUtils;
+import com.blanink.fragment.SalePieChartFragment;
+import com.blanink.fragment.SaleBarChartFragment;
 import com.blanink.view.CusViewPager;
-import com.blanink.view.PieChart01View;
-import com.blanink.view.StackBarChartVerView;
-import com.google.gson.Gson;
 
-import org.xclcharts.chart.BarData;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /***
  *
@@ -72,6 +47,8 @@ public class SaleAmountAnalysis extends AppCompatActivity {
     LinearLayout ll;
     @BindView(R.id.viewPager)
     CusViewPager viewPager;
+    @BindView(R.id.tv_name)
+    TextView tvName;
     private int mSelected = 0;
     private SharedPreferences sp;
     private List<Fragment> fragments = new ArrayList<>();
@@ -85,9 +62,10 @@ public class SaleAmountAnalysis extends AppCompatActivity {
     }
 
     private void initData() {
-        fragments.add(new StackBarChartFragment());
-        fragments.add(new PieChartFragment());
-        fragments.add(new PieChartFragment());
+        tvName.setText(getIntent().getStringExtra("name"));
+        fragments.add(new SaleBarChartFragment());
+        fragments.add(new SalePieChartFragment());
+        fragments.add(new SalePieChartFragment());
         radioButtons.add(rbComeOrder);
         radioButtons.add(rbNotDownOrder);
         radioButtons.add(rbDownOrder);

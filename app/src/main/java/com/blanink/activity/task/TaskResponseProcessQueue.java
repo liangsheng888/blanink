@@ -20,6 +20,7 @@ import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.ProcessFeedback;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.UrlPic;
 import com.blanink.view.MyViewPager;
 import com.google.gson.Gson;
 
@@ -79,13 +80,12 @@ public class TaskResponseProcessQueue extends AppCompatActivity {
 
     private void initData() {
         loadDatafromServer();
-        drawableLists = new ArrayList<>();
-        drawableLists.add(R.drawable.guanggao);
-        drawableLists.add(R.drawable.guanggao1);
-        drawableLists.add(R.drawable.guanggao2);
-        drawableLists.add(R.drawable.guanggao3);
+        List<String> picLis=new ArrayList<>();
+        picLis.add(UrlPic.pic);
+        picLis.add(UrlPic.pic2);
+        picLis.add(UrlPic.pic3);
 
-        myViewPager.pictureRoll(drawableLists);
+        myViewPager.pictureRoll(picLis);
         workStepQueueIvLast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

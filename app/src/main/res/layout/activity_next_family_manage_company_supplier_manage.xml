@@ -7,7 +7,7 @@
     android:background="@color/colorBackGround"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.blanink.activity.lastNext.NextFamilyManageCompanySupplierManage">
+    tools:context="com.blanink.activity.lastnext.NextFamilyManageCompanySupplierManage">
 
     <RelativeLayout
         android:id="@+id/rl_customer_manage"

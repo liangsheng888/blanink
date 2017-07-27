@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.lastNext.LastMyCustomerSeek">
+    tools:context="com.blanink.activity.lastnext.LastMyCustomerSeek">
     <RelativeLayout
         android:id="@+id/rl_customer_manage"
         android:layout_width="match_parent"

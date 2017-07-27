@@ -1,4 +1,4 @@
-package com.blanink.activity.bidTender;
+package com.blanink.activity.bidtender;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;

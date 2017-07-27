@@ -97,58 +97,58 @@
             android:name=".activity.order.GoOrderAddProduct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageCompanyDetail"
+            android:name=".activity.lastnext.NextFamilyManageCompanyDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageCompanyCredit"
+            android:name=".activity.lastnext.NextFamilyManageCompanyCredit"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageCompanySupplierManage"
+            android:name=".activity.lastnext.NextFamilyManageCompanySupplierManage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageMySupplierSeek"
+            android:name=".activity.lastnext.NextFamilyManageMySupplierSeek"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageProductDetail"
+            android:name=".activity.lastnext.NextFamilyManageProductDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageInviteBcomeSupplier"
+            android:name=".activity.lastnext.NextFamilyManageInviteBcomeSupplier"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextAllSupplierSeek"
+            android:name=".activity.lastnext.NextAllSupplierSeek"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyCooperate"
+            android:name=".activity.lastnext.NextFamilyManageSupplierManageApplyCooperate"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyDelete"
+            android:name=".activity.lastnext.NextFamilyManageSupplierManageApplyDelete"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastFamilyManageCustomer"
+            android:name=".activity.lastnext.LastFamilyManageCustomer"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastFamilyManageNewAddCustomer"
+            android:name=".activity.lastnext.LastFamilyManageNewAddCustomer"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastFamilyManageCustomerSupplierInvite"
+            android:name=".activity.lastnext.LastFamilyManageCustomerSupplierInvite"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.RefuseReason"
+            android:name=".activity.lastnext.RefuseReason"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastFamilyManageCustomerApply"
+            android:name=".activity.lastnext.LastFamilyManageCustomerApply"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastFamilyManageCustomerApplyDelete"
+            android:name=".activity.lastnext.LastFamilyManageCustomerApplyDelete"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastMyCustomerSeek"
+            android:name=".activity.lastnext.LastMyCustomerSeek"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastCustomerDetail"
+            android:name=".activity.lastnext.LastCustomerDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastFamilyNewAddMatche"
+            android:name=".activity.lastnext.LastFamilyNewAddMatche"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.bidTender.BidApplication"
@@ -454,7 +454,7 @@
             android:name=".activity.my.MyProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.ProductDetail"
+            android:name=".activity.lastnext.ProductDetail"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.my.ModifyProfile"
@@ -509,13 +509,13 @@
             android:name=".activity.notify.NotifyMangeDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.LastDeleteRelationIsAgree"
+            android:name=".activity.lastnext.LastDeleteRelationIsAgree"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.notify.NotifyReplayDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.NextDeleteRelationIsAgree"
+            android:name=".activity.lastnext.NextDeleteRelationIsAgree"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.notify.OtherNotifyDetail"
@@ -524,16 +524,16 @@
             android:name=".activity.UpdateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.CompanyDetail"
+            android:name=".activity.lastnext.CompanyDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.CompanyProductDetail"
+            android:name=".activity.lastnext.CompanyProductDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.CompanyMore"
+            android:name=".activity.lastnext.CompanyMore"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.ProductMore"
+            android:name=".activity.lastnext.ProductMore"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.bidTender.BidMore"
@@ -548,7 +548,7 @@
             android:name=".activity.notify.NotifyDraftSend"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.lastNext.ReviewDetail"
+            android:name=".activity.lastnext.ReviewDetail"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.order.OrderSeek"
@@ -799,7 +799,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.report.ReportType"></activity>
+        <activity android:name=".activity.report.ReportType" />
+        <activity android:name=".activity.report.CostAmountAnalysis"></activity>
     </application>
 
 </manifest>

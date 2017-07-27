@@ -17,9 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.EaseChat.EaseChatActivity;
-import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyCooperate;
-import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyDelete;
+import com.blanink.activity.lastnext.NextFamilyManageSupplierManageApplyCooperate;
+import com.blanink.activity.lastnext.NextFamilyManageSupplierManageApplyDelete;
 import com.blanink.pojo.ManyCustomer;
 import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.NetUrlUtils;

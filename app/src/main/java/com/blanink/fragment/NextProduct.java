@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.ProductDetail;
+import com.blanink.activity.lastnext.ProductDetail;
 import com.blanink.pojo.CompanyProduct;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.GlideUtils;

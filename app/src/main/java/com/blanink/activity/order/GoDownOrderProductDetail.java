@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.afterSale.AfterSaleDemand;
+import com.blanink.activity.aftersale.AfterSaleDemand;
 import com.blanink.activity.flow.FlowProgress;
 import com.blanink.activity.flow.FlowProgressDetail;
 import com.blanink.activity.remark.RemarkGoOrder;

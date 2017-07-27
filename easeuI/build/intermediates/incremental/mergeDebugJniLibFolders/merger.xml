@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\android\blanink\easeuI\libs"><file name="hyphenatechat_3.3.2.jar" path="D:\android\blanink\easeuI\libs\hyphenatechat_3.3.2.jar"/><file name="org.apache.http.legacy.jar" path="D:\android\blanink\easeuI\libs\org.apache.http.legacy.jar"/></source></dataSet><dataSet config="debug"><source path="D:\android\blanink\easeuI\src\debug\jniLibs"/></dataSet></merger>

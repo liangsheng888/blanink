@@ -1,30 +1,19 @@
 package com.blanink.activity.notify;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.LastDeleteRelationIsAgree;
 import com.blanink.pojo.NotifyOffice;
-import com.blanink.pojo.Response;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.DialogNotifyUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -37,7 +26,6 @@ import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /***
  * 通知回复详情

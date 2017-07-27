@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.blanink.R;
 import com.blanink.activity.AdvertiseActivity;
+import com.blanink.utils.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class MyViewPager extends RelativeLayout {
 
     }
 //初始化viewpager 底部小圆圈
-    private void initOval(List<Integer> drawableLists){
+    private void initOval(List<String> drawableLists){
          if(drawableLists==null){
              drawableLists=new ArrayList<>();
          }
@@ -64,14 +65,14 @@ public class MyViewPager extends RelativeLayout {
         }
     }
     //底部圆圈选中状态切换
-    private  void ovalselected(List<Integer> drawableLists) {
+    private  void ovalselected(List<String> drawableLists) {
         int currentPage=viewPager.getCurrentItem()%drawableLists.size();
         for (int i=0;i<drawableLists.size();i++){
             ll_viewpager_bottom.getChildAt(i).setEnabled(currentPage==i);
         }
     }
  //
-    public  void  pictureRoll(final List<Integer> drawableLists){
+    public  void  pictureRoll(final List<String> drawableLists){
         //动态初始化底部圆圈
         initOval(drawableLists);
 
@@ -105,9 +106,9 @@ public class MyViewPager extends RelativeLayout {
 
     //适配器
     private class MyPagerAdapter extends PagerAdapter {
-        private List<Integer> drawableLists;
+        private List<String> drawableLists;
 
-        public MyPagerAdapter(List<Integer> drawableLists) {
+        public MyPagerAdapter(List<String> drawableLists) {
             this.drawableLists = drawableLists;
         }
 
@@ -123,7 +124,7 @@ public class MyViewPager extends RelativeLayout {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView imageView=new ImageView(getContext());
-            imageView.setImageResource(drawableLists.get(position%drawableLists.size()));
+            GlideUtils.glideImageView(getContext(),imageView,drawableLists.get(position%drawableLists.size()),false);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 

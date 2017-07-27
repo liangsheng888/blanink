@@ -28,10 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.LastDeleteRelationIsAgree;
-import com.blanink.activity.lastNext.LastFamilyManageCustomerSupplierInvite;
-import com.blanink.activity.lastNext.NextDeleteRelationIsAgree;
-import com.blanink.activity.lastNext.NextFamilyManageInviteBcomeSupplier;
+import com.blanink.activity.lastnext.LastDeleteRelationIsAgree;
+import com.blanink.activity.lastnext.LastFamilyManageCustomerSupplierInvite;
+import com.blanink.activity.lastnext.NextDeleteRelationIsAgree;
+import com.blanink.activity.lastnext.NextFamilyManageInviteBcomeSupplier;
 import com.blanink.activity.notify.OtherNotifyDetail;
 import com.blanink.pojo.Notify;
 import com.blanink.pojo.Response;

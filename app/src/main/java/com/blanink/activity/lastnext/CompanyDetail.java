@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

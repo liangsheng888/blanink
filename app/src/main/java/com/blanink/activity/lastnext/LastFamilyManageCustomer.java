@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.animation.Animator;
 import android.content.Intent;

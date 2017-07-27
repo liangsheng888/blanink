@@ -17,8 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.LastFamilyManageCustomerApply;
-import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyCooperate;
+import com.blanink.activity.lastnext.LastFamilyManageCustomerApply;
+import com.blanink.activity.lastnext.NextFamilyManageSupplierManageApplyCooperate;
 import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.NoScrollListview;

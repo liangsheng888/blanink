@@ -24,8 +24,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.afterSale.AfterSaleDetail;
-import com.blanink.activity.afterSale.AfterSaleToHandle;
+import com.blanink.activity.aftersale.AfterSaleDetail;
+import com.blanink.activity.aftersale.AfterSaleToHandle;
 import com.blanink.pojo.AfterSales;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;

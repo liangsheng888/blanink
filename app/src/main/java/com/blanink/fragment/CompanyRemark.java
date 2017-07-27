@@ -21,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.lastNext.ReviewDetail;
+import com.blanink.activity.lastnext.ReviewDetail;
 import com.blanink.adapter.ReviewAdapter;
 import com.blanink.pojo.AllReview;
 import com.blanink.utils.NetUrlUtils;

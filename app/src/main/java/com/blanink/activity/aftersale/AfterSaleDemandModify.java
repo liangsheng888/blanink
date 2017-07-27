@@ -1,4 +1,5 @@
-package com.blanink.activity.afterSale;
+package com.blanink.activity.aftersale;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;

@@ -4,7 +4,7 @@
     android:id="@+id/activity_company_more"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blanink.activity.lastNext.CompanyMore">
+    tools:context="com.blanink.activity.lastnext.CompanyMore">
 
     <RelativeLayout
         android:id="@+id/rl_customer_manage"

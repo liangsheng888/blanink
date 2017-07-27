@@ -1,5 +1,4 @@
-package com.blanink.activity.bidTender;
-
+package com.blanink.activity.bidtender;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;

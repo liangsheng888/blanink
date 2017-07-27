@@ -17,6 +17,15 @@ public class ReportSale {
     private String reason;
     private List<ResultBean> result;
 
+    @Override
+    public String toString() {
+        return "ReportSale{" +
+                "errorCode='" + errorCode + '\'' +
+                ", reason='" + reason + '\'' +
+                ", result=" + result +
+                '}';
+    }
+
     public String getErrorCode() {
         return errorCode;
     }
@@ -57,6 +66,20 @@ public class ReportSale {
         private double totalLossAmount;
 
         private List<Report> reportList;
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "isNewRecord=" + isNewRecord +
+                    ", companyCategoryName='" + companyCategoryName + '\'' +
+                    ", totalSaleAmount=" + totalSaleAmount +
+                    ", totalCostAmount=" + totalCostAmount +
+                    ", totalProfitAmount=" + totalProfitAmount +
+                    ", totalaccountReceivable=" + totalaccountReceivable +
+                    ", totalLossAmount=" + totalLossAmount +
+                    ", reportList=" + reportList +
+                    '}';
+        }
 
         public double getTotalSaleAmount() {
             return totalSaleAmount;
@@ -141,41 +164,24 @@ public class ReportSale {
         private boolean isNewRecord;
         private long startDate;
         private long endDate;
-        private int saleAmount;
-        private int costAmount;
-        private int profitAmount;
-        private int accountReceivable;
-        private int lossAmount;
-        private CompanyCategoryBean companyCategory;
+        private double saleAmount;
+        private double costAmount;
+        private double profitAmount;
+        private double accountReceivable;
+        private double lossAmount;
         private String companyCategoryName;
-        private String  startDateString;
-        private String  endDateString;
-        public boolean isIsNewRecord() {
+        private String dateString;
+
+        public boolean isNewRecord() {
             return isNewRecord;
         }
 
-        public void setIsNewRecord(boolean isNewRecord) {
-            this.isNewRecord = isNewRecord;
+        public void setNewRecord(boolean newRecord) {
+            isNewRecord = newRecord;
         }
 
         public long getStartDate() {
             return startDate;
-        }
-
-        public String getStartDateString() {
-            return startDateString;
-        }
-
-        public void setStartDateString(String startDateString) {
-            this.startDateString = startDateString;
-        }
-
-        public String getEndDateString() {
-            return endDateString;
-        }
-
-        public void setEndDateString(String endDateString) {
-            this.endDateString = endDateString;
         }
 
         public void setStartDate(long startDate) {
@@ -190,52 +196,44 @@ public class ReportSale {
             this.endDate = endDate;
         }
 
-        public int getSaleAmount() {
+        public double getSaleAmount() {
             return saleAmount;
         }
 
-        public void setSaleAmount(int saleAmount) {
+        public void setSaleAmount(double saleAmount) {
             this.saleAmount = saleAmount;
         }
 
-        public int getCostAmount() {
+        public double getCostAmount() {
             return costAmount;
         }
 
-        public void setCostAmount(int costAmount) {
+        public void setCostAmount(double costAmount) {
             this.costAmount = costAmount;
         }
 
-        public int getProfitAmount() {
+        public double getProfitAmount() {
             return profitAmount;
         }
 
-        public void setProfitAmount(int profitAmount) {
+        public void setProfitAmount(double profitAmount) {
             this.profitAmount = profitAmount;
         }
 
-        public int getAccountReceivable() {
+        public double getAccountReceivable() {
             return accountReceivable;
         }
 
-        public void setAccountReceivable(int accountReceivable) {
+        public void setAccountReceivable(double accountReceivable) {
             this.accountReceivable = accountReceivable;
         }
 
-        public int getLossAmount() {
+        public double getLossAmount() {
             return lossAmount;
         }
 
-        public void setLossAmount(int lossAmount) {
+        public void setLossAmount(double lossAmount) {
             this.lossAmount = lossAmount;
-        }
-
-        public CompanyCategoryBean getCompanyCategory() {
-            return companyCategory;
-        }
-
-        public void setCompanyCategory(CompanyCategoryBean companyCategory) {
-            this.companyCategory = companyCategory;
         }
 
         public String getCompanyCategoryName() {
@@ -246,140 +244,28 @@ public class ReportSale {
             this.companyCategoryName = companyCategoryName;
         }
 
-        public static class CompanyCategoryBean {
-            /**
-             * id : 0f03365e4999401e8ec2926d5621dbc7
-             * isNewRecord : false
-             * name : 孙手机
-             * sort : 30
-             * size : 0
-             * categoryAttributeList : []
-             * relIndustryCompanyCategoryList : []
-             * attributeNames :
-             * parentId : 0
-             * parentName :
-             * attributeIds :
-             * industryCategoryIds :
-             * industryCategoryNames :
-             */
+        public String getDateString() {
+            return dateString;
+        }
 
-            private String id;
-            private boolean isNewRecord;
-            private String name;
-            private int sort;
-            private int size;
-            private String attributeNames;
-            private String parentId;
-            private String parentName;
-            private String attributeIds;
-            private String industryCategoryIds;
-            private String industryCategoryNames;
-            private List<?> categoryAttributeList;
-            private List<?> relIndustryCompanyCategoryList;
+        public void setDateString(String dateString) {
+            this.dateString = dateString;
+        }
 
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public boolean isIsNewRecord() {
-                return isNewRecord;
-            }
-
-            public void setIsNewRecord(boolean isNewRecord) {
-                this.isNewRecord = isNewRecord;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getSort() {
-                return sort;
-            }
-
-            public void setSort(int sort) {
-                this.sort = sort;
-            }
-
-            public int getSize() {
-                return size;
-            }
-
-            public void setSize(int size) {
-                this.size = size;
-            }
-
-            public String getAttributeNames() {
-                return attributeNames;
-            }
-
-            public void setAttributeNames(String attributeNames) {
-                this.attributeNames = attributeNames;
-            }
-
-            public String getParentId() {
-                return parentId;
-            }
-
-            public void setParentId(String parentId) {
-                this.parentId = parentId;
-            }
-
-            public String getParentName() {
-                return parentName;
-            }
-
-            public void setParentName(String parentName) {
-                this.parentName = parentName;
-            }
-
-            public String getAttributeIds() {
-                return attributeIds;
-            }
-
-            public void setAttributeIds(String attributeIds) {
-                this.attributeIds = attributeIds;
-            }
-
-            public String getIndustryCategoryIds() {
-                return industryCategoryIds;
-            }
-
-            public void setIndustryCategoryIds(String industryCategoryIds) {
-                this.industryCategoryIds = industryCategoryIds;
-            }
-
-            public String getIndustryCategoryNames() {
-                return industryCategoryNames;
-            }
-
-            public void setIndustryCategoryNames(String industryCategoryNames) {
-                this.industryCategoryNames = industryCategoryNames;
-            }
-
-            public List<?> getCategoryAttributeList() {
-                return categoryAttributeList;
-            }
-
-            public void setCategoryAttributeList(List<?> categoryAttributeList) {
-                this.categoryAttributeList = categoryAttributeList;
-            }
-
-            public List<?> getRelIndustryCompanyCategoryList() {
-                return relIndustryCompanyCategoryList;
-            }
-
-            public void setRelIndustryCompanyCategoryList(List<?> relIndustryCompanyCategoryList) {
-                this.relIndustryCompanyCategoryList = relIndustryCompanyCategoryList;
-            }
+        @Override
+        public String toString() {
+            return "Report{" +
+                    "isNewRecord=" + isNewRecord +
+                    ", startDate=" + startDate +
+                    ", endDate=" + endDate +
+                    ", saleAmount=" + saleAmount +
+                    ", costAmount=" + costAmount +
+                    ", profitAmount=" + profitAmount +
+                    ", accountReceivable=" + accountReceivable +
+                    ", lossAmount=" + lossAmount +
+                    ", companyCategoryName='" + companyCategoryName + '\'' +
+                    ", dateString='" + dateString + '\'' +
+                    '}';
         }
     }
 }

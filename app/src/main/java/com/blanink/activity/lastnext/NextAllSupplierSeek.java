@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,7 +27,6 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.blanink.R;
-import com.blanink.pojo.ManyCustomer;
 import com.blanink.pojo.Office;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;

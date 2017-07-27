@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.afterSale.AfterSaleToHandle;
+import com.blanink.activity.aftersale.AfterSaleToHandle;
 import com.blanink.pojo.AfterSaleHistory;
 import com.blanink.pojo.AfterSales;
 import com.blanink.pojo.OrderProductStatus;

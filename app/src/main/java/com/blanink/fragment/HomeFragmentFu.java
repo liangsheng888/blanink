@@ -21,19 +21,19 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.SeekActivity;
-import com.blanink.activity.report.ReportType;
-import com.blanink.activity.report.SaleAmountAnalysis;
 import com.blanink.activity.WorkResponseHistory;
-import com.blanink.activity.afterSale.AfterSaleQueue;
-import com.blanink.activity.afterSale.MyAfterSale;
-import com.blanink.activity.bidTender.BidManage;
-import com.blanink.activity.bidTender.TenderManage;
+import com.blanink.activity.aftersale.AfterSaleQueue;
+import com.blanink.activity.aftersale.MyAfterSale;
+import com.blanink.activity.bidtender.BidManage;
+import com.blanink.activity.bidtender.TenderManage;
 import com.blanink.activity.flow.FlowOrder;
-import com.blanink.activity.lastNext.LastFamilyManageCustomer;
-import com.blanink.activity.lastNext.NextFamilyManageCompanySupplierManage;
+
+import com.blanink.activity.lastnext.LastFamilyManageCustomer;
+import com.blanink.activity.lastnext.NextFamilyManageCompanySupplierManage;
 import com.blanink.activity.order.ComeOrder;
 import com.blanink.activity.order.GoOrderPurchase;
 import com.blanink.activity.order.ReceiveGoods;
+import com.blanink.activity.report.ReportType;
 import com.blanink.activity.task.TaskResponseProcessQueue;
 import com.blanink.activity.task.WorkPlanProcessQueue;
 import com.blanink.adapter.GridSpacingItemDecoration;
@@ -42,6 +42,7 @@ import com.blanink.adapter.RecyclerItemClickListener;
 import com.blanink.pojo.MenuControl;
 import com.blanink.pojo.OrderProduct;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.UrlPic;
 import com.blanink.view.MyViewPager;
 import com.google.gson.Gson;
 
@@ -142,12 +143,12 @@ public class HomeFragmentFu extends Fragment {
         });
 
 
-        drawableLists = new ArrayList<>();
-        drawableLists.add(R.drawable.guanggao);
-        drawableLists.add(R.drawable.guanggao2);
-        drawableLists.add(R.drawable.guanggao3);
+        List<String> picLis=new ArrayList<>();
+        picLis.add(UrlPic.pic);
+        picLis.add(UrlPic.pic2);
+        picLis.add(UrlPic.pic3);
         //广搞轮播
-        framgmentTaskVpAdvertise.pictureRoll(drawableLists);
+        framgmentTaskVpAdvertise.pictureRoll(picLis);
 
     }
 
@@ -222,15 +223,15 @@ public class HomeFragmentFu extends Fragment {
                             public void onItemClick(View view, int position) {
 
                                 if ("招标管理".equals(menuList.get(position))) {
-                                    Intent intentTender = new Intent(getActivity(), TenderManage.class);
+                                    Intent intentTender = new Intent(getActivity(),TenderManage.class);
                                     startActivity(intentTender);
                                 }
                                 if ("投标管理".equals(menuList.get(position))) {
-                                    Intent intentBid = new Intent(getActivity(), BidManage.class);
+                                    Intent intentBid = new Intent(getActivity(),BidManage.class);
                                     startActivity(intentBid);
                                 }
                                 if ("客户管理".equals(menuList.get(position))) {
-                                    Intent intentLast = new Intent(getActivity(), LastFamilyManageCustomer.class);
+                                    Intent intentLast = new Intent(getActivity(),LastFamilyManageCustomer.class);
                                     startActivity(intentLast);
                                 }
                                 if ("供应商管理".equals(menuList.get(position))) {

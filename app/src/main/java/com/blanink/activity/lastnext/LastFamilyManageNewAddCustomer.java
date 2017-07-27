@@ -1,4 +1,4 @@
-package com.blanink.activity.lastNext;
+package com.blanink.activity.lastnext;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -88,12 +88,11 @@ public class LastFamilyManageNewAddCustomer extends AppCompatActivity {
             }
         });
         //广告轮播
-        List<Integer> list = new ArrayList<>();
-        list.add(R.drawable.guanggao);
-        list.add(R.drawable.guanggao1);
-        list.add(R.drawable.guanggao2);
-        list.add(R.drawable.guanggao3);
-        myViewPager.pictureRoll(list);
+        List<String> picLis=new ArrayList<>();
+        picLis.add("http://b.hiphotos.baidu.com/image/pic/item/d01373f082025aaf95bdf7e4f8edab64034f1a15.jpg");
+        picLis.add("http://g.hiphotos.baidu.com/image/pic/item/6159252dd42a2834da6660c459b5c9ea14cebf39.jpg");
+        picLis.add("http://d.hiphotos.baidu.com/image/pic/item/adaf2edda3cc7cd976427f6c3901213fb80e911c.jpg");
+        myViewPager.pictureRoll(picLis);
 
     }
 

@@ -1,4 +1,4 @@
-package com.blanink.activity.borrowRepay;
+package com.blanink.activity.borrowrepay;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

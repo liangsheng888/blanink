@@ -25,8 +25,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.bidTender.BidSeekTender;
-import com.blanink.activity.bidTender.TenderDetail;
+import com.blanink.activity.bidtender.BidSeekTender;
+import com.blanink.activity.bidtender.TenderDetail;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.DateUtils;
 import com.blanink.utils.ExampleUtil;
