@@ -12,8 +12,11 @@ import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,10 +24,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.activity.order.OrderSeek;
+import com.blanink.pojo.ComeOder;
 import com.blanink.pojo.Order;
+import com.blanink.utils.DateUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.OrderStateUtils;
+import com.blanink.utils.SysConstants;
+import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.UpLoadListView;
 import com.google.gson.Gson;
 
@@ -50,25 +59,28 @@ public class FlowOrder extends AppCompatActivity {
     RelativeLayout comeOrder;
     @BindView(R.id.lv)
     UpLoadListView lv;
-    @BindView(R.id.tv_not)
-    TextView tvNot;
-    @BindView(R.id.rl_not_data)
-    RelativeLayout rlNotData;
+    @BindView(R.id.srl)
+    SwipeRefreshLayout srl;
     @BindView(R.id.ll_load)
     LinearLayout llLoad;
     @BindView(R.id.loading_error_img)
     ImageView loadingErrorImg;
     @BindView(R.id.rl_load_fail)
     RelativeLayout rlLoadFail;
-    @BindView(R.id.rl_load)
-    RelativeLayout rlLoad;
+    @BindView(R.id.tv_not)
+    TextView tvNot;
+    @BindView(R.id.rl_not_data)
+    RelativeLayout rlNotData;
+    @BindView(R.id.fl_load)
+    FrameLayout flLoad;
     @BindView(R.id.activity_flow_order)
     RelativeLayout activityFlowOrder;
-    @BindView(R.id.srl)
-    SwipeRefreshLayout srl;
+    @BindView(R.id.tv_sorted)
+    TextView tvSorted;
     private MyActivityManager myActivityManager;
     private SharedPreferences sp;
     private List<Order.Result.Rows> rowsList = new ArrayList<>();
+    private List<ComeOder.ResultBean.RowsBean> currentRowsList = new ArrayList<>();
     private boolean isHasData = true;
     private Integer pageNo = 1;
     private SparseArray<View> sparseArray;
@@ -83,9 +95,11 @@ public class FlowOrder extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             } else {
                 rlNotData.setVisibility(View.VISIBLE);
+                tvNot.setText("暂无可排订单");
             }
         }
     };
+    private EditText et_seek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +115,15 @@ public class FlowOrder extends AppCompatActivity {
     private void initData() {
         //初始化 加载数据
         loadData();
+        addSeekHeader();
+        //历史排流程
+        tvSorted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(FlowOrder.this,FlowSortCompleted.class);
+                startActivity(intent);
+            }
+        });
         //刷新
         srl.setProgressBackgroundColorSchemeResource(android.R.color.white);
         srl.setColorSchemeResources(android.R.color.holo_blue_light,
@@ -112,6 +135,8 @@ public class FlowOrder extends AppCompatActivity {
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
+                pageNo++;
                 loadDataRefresh();
             }
         });
@@ -122,18 +147,24 @@ public class FlowOrder extends AppCompatActivity {
                 pageNo++;
                 loadData();
             }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
         });
 
-        //跳转到详情 排流程
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position < rowsList.size()) {
-                    Intent intent = new Intent(FlowOrder.this, FlowOftenUse.class);
-                    startActivity(intent);
-                }
+
+                Intent intent = new Intent(FlowOrder.this, FlowProduct.class);
+                intent.putExtra("orderId", currentRowsList.get(position - 1).getId());
+                startActivity(intent);
+
             }
         });
+
     }
 
     @Override
@@ -143,45 +174,53 @@ public class FlowOrder extends AppCompatActivity {
     }
 
     public void loadDataRefresh() {
-
         if (!ExampleUtil.isConnected(this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
         }
-        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "order/orderList");
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "order/listJson_coming");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
+        rp.addBodyParameter("flag", "1");
+        rp.addBodyParameter("bCompany.id", sp.getString("COMPANY_ID", null));
+        rp.addBodyParameter("pageSize", "10");
         rp.addBodyParameter("pageNo", pageNo + "");
+        rp.addBodyParameter("sortOrder", "asc");
         Log.e("ComeOrderActivity", "pageNo:" + pageNo);
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                rlLoad.setVisibility(View.GONE);
+                llLoad.setVisibility(View.GONE);
                 Log.e("ComeOrderActivity", result);
                 Gson gson = new Gson();
-                Order order = gson.fromJson(result, Order.class);
-                Log.e("ComeOrderActivity", "order;" + order.toString());
-                if (rowsList.size() >= order.result.total) {
-                    Toast.makeText(FlowOrder.this, "没有刷新出来数据", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(FlowOrder.this, "刷新出来" + order.result.rows.size() + "条数据", Toast.LENGTH_SHORT).show();
-                    rowsList.addAll(0, order.result.rows);
-                    Log.e("ComeOrderActivity", "rowList.size():" + rowsList.toString());
-                    if (adapter == null) {
-                        adapter = new MyAdapter();
-                    } else {
-                        Log.e("ComeOrderActivity", "commonAdapter!=null");
-                        adapter.notifyDataSetChanged();
+                ComeOder order = gson.fromJson(result, ComeOder.class);
+                List<ComeOder.ResultBean.RowsBean> orderList = new ArrayList<ComeOder.ResultBean.RowsBean>();
+                for (int i = 0; i < order.getResult().getRows().size(); i++) {
+                    //过滤订单产品
+                    for (int j = 0; j < order.getResult().getRows().get(i).getOrderProductList().size(); j++) {
+                        if ("7".equals(order.getResult().getRows().get(i).getOrderProductList().get(j).getOrderProductStatus())) {
+                            orderList.add(order.getResult().getRows().get(i));
+                            continue;
+                        }
                     }
-                    lv.setAdapter(adapter);
                 }
+                if (orderList.size() == 0) {
+                    pageNo--;
+                } else {
+                    currentRowsList.addAll(0, orderList);
+                    rlNotData.setVisibility(View.GONE);
+                }
+                Toast.makeText(FlowOrder.this, "已刷新", Toast.LENGTH_SHORT).show();
+
                 srl.setRefreshing(false);
+                handler.sendEmptyMessage(0);//通知ui界面更新
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                rlLoadFail.setVisibility(View.VISIBLE);
-                llLoad.setVisibility(View.GONE);
+                pageNo--;
+                srl.setRefreshing(false);
+                Toast.makeText(FlowOrder.this, "服务器异常", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -199,37 +238,53 @@ public class FlowOrder extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
+    //访问服务器
     public void loadData() {
-
         if (!ExampleUtil.isConnected(this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
         }
-        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "order/orderList");
+
+
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "order/listJson_coming");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
+        rp.addBodyParameter("flag", "1");
+        rp.addBodyParameter("bCompany.id", sp.getString("COMPANY_ID", null));
+        rp.addBodyParameter("pageSize", "10");
         rp.addBodyParameter("pageNo", pageNo + "");
+        rp.addBodyParameter("sortOrder", "asc");
         Log.e("ComeOrderActivity", "pageNo:" + pageNo);
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                rlLoad.setVisibility(View.GONE);
+                llLoad.setVisibility(View.GONE);
                 Log.e("ComeOrderActivity", result);
                 Gson gson = new Gson();
-                Order order = gson.fromJson(result, Order.class);
+                ComeOder order = gson.fromJson(result, ComeOder.class);
+                List<ComeOder.ResultBean.RowsBean> orderList = new ArrayList<ComeOder.ResultBean.RowsBean>();
+                for (int i = 0; i < order.getResult().getRows().size(); i++) {
+                    //过滤订单产品
+                    for (int j = 0; j < order.getResult().getRows().get(i).getOrderProductList().size(); j++) {
+                        if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_DISTRIBUTE.equals(order.getResult().getRows().get(i).getOrderProductList().get(j).getOrderProductStatus())) {
+                            orderList.add(order.getResult().getRows().get(i));
+                            continue;
+                        }
+                    }
+                }
                 Log.e("ComeOrderActivity", "order;" + order.toString());
-                if (order.result.total <= rowsList.size()) {
+                if (orderList.size() == 0) {
+                    pageNo--;
                     isHasData = false;
                 } else {
-                    rowsList.addAll(order.result.rows);
-                    Log.e("ComeOrderActivity", "rowList.size():" + rowsList.toString());
+                    currentRowsList.addAll(orderList);
                     if (adapter == null) {
                         adapter = new MyAdapter();
                         lv.setAdapter(adapter);
                     } else {
-                        Log.e("ComeOrderActivity", "commonAdapter!=null");
                         adapter.notifyDataSetChanged();
                     }
 
@@ -239,6 +294,7 @@ public class FlowOrder extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                pageNo--;
                 rlLoadFail.setVisibility(View.VISIBLE);
                 llLoad.setVisibility(View.GONE);
             }
@@ -276,12 +332,12 @@ public class FlowOrder extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return rowsList.size();
+            return currentRowsList.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return rowsList.get(position);
+            return currentRowsList.get(position);
         }
 
         @Override
@@ -291,112 +347,31 @@ public class FlowOrder extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Order.Result.Rows order = rowsList.get(position);
+            ComeOder.ResultBean.RowsBean order = currentRowsList.get(position);
             sparseArray = new SparseArray<>();
             ViewHolder viewHolder = null;
             if (sparseArray.get(position, null) == null) {
                 viewHolder = new ViewHolder();
-                convertView = View.inflate(FlowOrder.this, R.layout.item_comeorder, null);
+                convertView = View.inflate(FlowOrder.this, R.layout.item_go_comeorder, null);
                 viewHolder.tv_company = (TextView) convertView.findViewById(R.id.tv_company);
                 viewHolder.tv_state = (TextView) convertView.findViewById(R.id.tv_state);
-                viewHolder.tv_master = (TextView) convertView.findViewById(R.id.tv_master);
                 viewHolder.tv_date = (TextView) convertView.findViewById(R.id.tv_date);
-                viewHolder.tv_title = (TextView) convertView.findViewById(R.id.tv_tile);
+                viewHolder.tv_remark = (TextView) convertView.findViewById(R.id.tv_remark);
+                viewHolder.iv_log = (ImageView) convertView.findViewById(R.id.iv_log);
+
                 convertView.setTag(viewHolder);
                 sparseArray.put(position, convertView);
-
             } else {
                 convertView = sparseArray.get(position);
                 viewHolder = (ViewHolder) convertView.getTag();
-
             }
-            viewHolder.tv_company.setText(order.aCompany.name);
+            Log.e("ComeOrderActivity", "标题:");
+            viewHolder.tv_company.setText(order.getACompany().getName());
             //产品类
-            viewHolder.tv_title.setText(order.name);
-            viewHolder.tv_date.setText(order.takeOrderTime);
-            viewHolder.tv_master.setText(order.aCompany.master);
-            //tv_proCate.setText();
-            if ("01".equals(order.orderStatus)) {
-                //甲方“去单产品”刚刚创建，但还没有形成订单下发
-                viewHolder.tv_state.setText("未下发");
-            }
-            if ("02".equals(order.orderStatus)) {
-                //甲方“去单产品”已经创建，且已经绑定订单，但还没有发送出去
-                viewHolder.tv_state.setText("已绑定");
-            }
-            if ("03".equals(order.orderStatus)) {
-                //甲方“去单产品"已经组合成订单，发送给乙方
-                viewHolder.tv_state.setText("待乙方接收");
-            }
-            if ("4".equals(order.orderStatus)) {
-                //乙方“来单"已经创建
-                viewHolder.tv_state.setText("待甲方确认");
-            }
-            if ("5".equals(order.orderStatus)) {
-                //乙方“来单"已经创建（或者编辑甲方发来的产品信息）,并打回甲方确认中
-                viewHolder.tv_state.setText("甲方确认中");
-            }
-            if ("6".equals(order.orderStatus)) {
-                //乙方“来单"已经创建（或者编辑甲方发来的产品信息）,并打回甲方确认后，
-                // 甲方已经确认，并重新发送给已方
-                viewHolder.tv_state.setText("待下发");
-            }
-            if ("7".equals(order.orderStatus)) {
-                //乙方内部下发生产中
-                viewHolder.tv_state.setText("生产中");
-            }
-            if ("8".equals(order.orderStatus)) {
-                //乙方内部流程已创建，未发布
-                viewHolder.tv_state.setText("生产中");
-            }
-            if ("9".equals(order.orderStatus)) {
-                //乙方内部流程已创建，并且已发布
-                viewHolder.tv_state.setText("生产中");
-            }
-            if ("10".equals(order.orderStatus)) {
-                //乙方内部生产已经完成，未发货-----在反馈任务，改变flow_process状态时候，进行修改本状态
-                viewHolder.tv_state.setText("未发货");
-            }
-            if ("11".equals(order.orderStatus)) {
-                //部分发货
-                viewHolder.tv_state.setText("部分发货");
-            }
-            if ("12".equals(order.orderStatus)) {
-                // 全部发货完成
-                viewHolder.tv_state.setText("全部发货");
-            }
-            if ("13".equals(order.orderStatus)) {
-                //   部分发货，并且已经确认收到
-                viewHolder.tv_state.setText("甲方部分收货");
-            }
-            if ("14".equals(order.orderStatus)) {
-                //全部发货完成，并且已经确认收到
-                viewHolder.tv_state.setText("甲方全部收货");
-            }
-            if ("15".equals(order.orderStatus)) {
-                // 本订单产品的售后已经发起，等待答复
-                viewHolder.tv_state.setText("售后处理，等待答复");
-            }
-            if ("16".equals(order.orderStatus)) {
-                // 本订单产品的售后正在处理中
-                viewHolder.tv_state.setText("生产中");
-            }
-            if ("17".equals(order.orderStatus)) {
-                viewHolder.tv_state.setText("售后处理结束");
-                //   本订单产品的售后处理结束
-            }
-            if ("18".equals(order.orderStatus)) {
-                viewHolder.tv_state.setText("售后处理结束");
-                //本订单产品的售后处理结束,并被确认ok
-            }
-            if ("19".equals(order.orderStatus)) {
-                viewHolder.tv_state.setText("发起还款");
-                // 本订单产品的还款已经发起
-            }
-            if ("20".equals(order.orderStatus)) {
-                // 本订单产品的还款已经确认
-                viewHolder.tv_state.setText("还款已确认");
-            }
+            viewHolder.tv_date.setText(DateUtils.format(DateUtils.stringToDate(order.getCreateDate())));
+            viewHolder.tv_state.setText(OrderStateUtils.orderStatus(order.getOrderStatus()));
+            viewHolder.tv_remark.setText(order.getRemarks());
+            XUtilsImageUtils.display(viewHolder.iv_log, order.getACompany().getPhoto(), true);
             return convertView;
         }
     }
@@ -404,9 +379,40 @@ public class FlowOrder extends AppCompatActivity {
     static class ViewHolder {
         TextView tv_company;
         TextView tv_state;
-        TextView tv_master;
         TextView tv_date;
-        TextView tv_title;
+        ImageView iv_log;
+        TextView tv_remark;
     }
 
+    public void addSeekHeader() {
+        View view = View.inflate(this, R.layout.layout_header_order, null);
+        et_seek = ((EditText) view.findViewById(R.id.et_seek));
+        lv.addHeaderView(view);
+        et_seek.clearFocus();
+        et_seek.setCursorVisible(false);
+        et_seek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et_seek.setFocusable(true);
+                et_seek.setCursorVisible(true);
+            }
+        });
+        //设立焦点改变监听事件
+        et_seek.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    //跳到搜索界面
+                    Log.e("HomeFragment", "焦点:" + hasFocus);
+                    et_seek.setCursorVisible(true);
+                    Intent intent = new Intent(FlowOrder.this, FlowSeek.class);
+                    intent.putExtra("flag", "1");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
+                    et_seek.setCursorVisible(false);
+                }
+            }
+        });
+    }
 }

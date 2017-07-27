@@ -98,7 +98,7 @@
         android:layout_marginTop="5dp"
         android:background="#fff"
         android:id="@+id/lv_sortedNotHandProduction"
-        android:layout_below="@id/rl_unsorted"
+        android:layout_below="@id/framgent_seek_ll"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

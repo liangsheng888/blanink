@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.lastNext.ProductDetail">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/rl_activity_product_detail"
         android:layout_width="match_parent"
@@ -28,6 +36,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:text="返回"
+            android:gravity="center"
             android:textColor="#fff"
             android:textSize="16sp"
             android:drawableLeft="@drawable/last" />
@@ -39,14 +48,18 @@
         android:background="#fff"
         android:padding="5dp"
         android:orientation="vertical">
-        <com.blanink.view.MyPager
+        <com.blanink.view.MyPagerList
             android:id="@+id/iv_product_picture"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_gravity="center"
-            android:padding="5dp"
+            android:padding="2dp"
             android:scaleType="centerCrop"
             />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorBackGround"></View>
         <RelativeLayout
             android:id="@+id/product_detail"
             android:layout_width="wrap_content"
@@ -59,6 +72,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#f00"
+                android:textSize="16sp"
                 android:text="iphone6s"/>
             <LinearLayout
                 android:id="@+id/ll_price"
@@ -70,6 +84,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
                     android:text="价格范围:"/>
 
                 <TextView
@@ -87,17 +103,36 @@
                 android:layout_below="@id/ll_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:numColumns="2">
             </com.blanink.view.NoScrollGridview>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/remark"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="描述:"/>
         <TextView
             android:id="@+id/tv_remark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/remark"
             android:maxLines="6"
             android:ellipsize="end"
             />
+        </RelativeLayout>
+
     </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>

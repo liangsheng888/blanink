@@ -202,7 +202,7 @@ public class NotifySend extends AppCompatActivity {
                     Toast.makeText(NotifySend.this, "请输入内容", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(NotifySend.this);
+                DialogLoadUtils.showDialogLoad("发送中...");
                 SendNotify();
             }
         });
@@ -220,7 +220,7 @@ public class NotifySend extends AppCompatActivity {
                     Toast.makeText(NotifySend.this, "请输入内容", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(NotifySend.this);
+                DialogLoadUtils.showDialogLoad("发送中...");
                 status = "0";
                 SendNotify();
             }
@@ -316,6 +316,7 @@ public class NotifySend extends AppCompatActivity {
                                 empList.add(companyInfoList.get(companyIndex).getRoleList().get(roleIndex).getEmpList().get(position));
                                 empAdapter = new EmpAdapter(empList);
                                 gvEmpName.setAdapter(empAdapter);
+                                empAdapter.notifyDataSetChanged();
 
                             }
                         Log.e("NotifySend","userIds:"+userIds);

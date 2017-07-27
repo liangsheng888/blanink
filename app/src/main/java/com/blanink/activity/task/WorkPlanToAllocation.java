@@ -29,7 +29,9 @@ import com.blanink.R;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.*;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.PriorityUtils;
 import com.blanink.view.NoScrollListview;
 import com.google.gson.Gson;
 
@@ -163,6 +165,8 @@ public class WorkPlanToAllocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_plan_to_allocation);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
+        DialogLoadUtils.getInstance(this);
+        DialogLoadUtils.showDialogLoad("拼命加载中...");
         ButterKnife.bind(this);
         receiveData();
         initData();
@@ -205,7 +209,8 @@ public class WorkPlanToAllocation extends AppCompatActivity {
                     Toast.makeText(WorkPlanToAllocation.this, "请填写备注信息", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                DialogLoadUtils.getInstance(WorkPlanToAllocation.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 saveAllocation();
             }
         });
@@ -226,6 +231,7 @@ public class WorkPlanToAllocation extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
                 rlLoad.setVisibility(View.GONE);
+                DialogLoadUtils.dismissDialog();
                 Log.e("WorkPlanToAllocation", result);
                 Gson gson = new Gson();
                 final com.blanink.pojo.WorkPlanToAllocation workPlan = gson.fromJson(result, com.blanink.pojo.WorkPlanToAllocation.class);
@@ -235,7 +241,7 @@ public class WorkPlanToAllocation extends AppCompatActivity {
                 tvProCategory.setText(workPlan.getResult().getCompanyCategory().getName());
                 tvProName.setText(workPlan.getResult().getProductName());
                 tvNum.setText(workPlan.getResult().getAmount());
-                tvPriority.setText(workPlan.getResult().getRelFlowProcess().getProcessPriority());
+                tvPriority.setText(PriorityUtils.getPriority(workPlan.getResult().getRelFlowProcess().getProcessPriority()));
                 tvResponse.setText(workPlan.getResult().getRelFlowProcess().getTotalCompletedQuantity() + "");
                 tvMyTaskNum.setText(workPlan.getResult().getRelFlowProcess().getTarget() + "");
                 tvDeliveryTime.setText(workPlan.getResult().getDeliveryTime());
@@ -252,9 +258,13 @@ public class WorkPlanToAllocation extends AppCompatActivity {
                 tvAllocation.setText(workPlan.getResult().getPlanedAmount() + "");
                 tvNoteNum.setText("("+workPlan.getResult().getWorkPlanList().size()+")");
                 //历史分配
-                if(workPlan.getResult().getWorkPlanList().size()<2){
+                if(workPlan.getResult().getWorkPlanList().size()<=2){
                     tvMore.setVisibility(View.GONE);
-                }else {
+                }
+                if (workPlan.getResult().getWorkPlanList().size()==0){
+                    rlHistory.setVisibility(View.GONE);
+                }
+                if(workPlan.getResult().getWorkPlanList().size()>2){
                     //更多
                     tvMore.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -291,7 +301,7 @@ public class WorkPlanToAllocation extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                DialogLoadUtils.dismissDialog();
             }
 
             @Override
@@ -314,8 +324,8 @@ public class WorkPlanToAllocation extends AppCompatActivity {
     //select master
     private void showSpinner(List<String> masterItem) {
         Log.e("TaskResponse", masterItem.toString());
-        ArrayAdapter<String> _Adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner_item
-                , R.id.tv_name, masterItem);
+        ArrayAdapter<String> _Adapter = new ArrayAdapter<String>(this, R.layout.spanner_item
+                ,masterItem);
         taskResponseSpPerson.setAdapter(_Adapter);
         //选择责任人
         taskResponseSpPerson.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -350,14 +360,18 @@ public class WorkPlanToAllocation extends AppCompatActivity {
                 Gson gson = new Gson();
                 Response response = gson.fromJson(result, Response.class);
                 if (response.getErrorCode().equals("00000")) {
+                    DialogLoadUtils.dismissDialog();
                     showDialog();
                 } else {
+                    DialogLoadUtils.dismissDialog();
                     Toast.makeText(WorkPlanToAllocation.this, "反馈失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                DialogLoadUtils.dismissDialog();
+                Toast.makeText(WorkPlanToAllocation.this, "服务器开了会儿小差，稍后再试", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -417,14 +431,14 @@ public class WorkPlanToAllocation extends AppCompatActivity {
             public void onSuccess(String result) {
                 Log.e("WorkPlanToAllocation", result);
                 Gson gson = new Gson();
-                Priority prioritys = gson.fromJson(result, Priority.class);
+                TypeCateGory prioritys = gson.fromJson(result, TypeCateGory.class);
                 for (int i = 0; i < prioritys.getResult().size(); i++) {
                     priorityValue.add(prioritys.getResult().get(i).getValue());
                     priorityName.add(prioritys.getResult().get(i).getLabel());
                 }
 
-                spPriority.setAdapter(new ArrayAdapter<String>(WorkPlanToAllocation.this, R.layout.simple_spinner_item
-                        , R.id.tv_name, priorityName));
+                spPriority.setAdapter(new ArrayAdapter<String>(WorkPlanToAllocation.this, R.layout.spanner_item
+                        ,priorityName));
 
                 spPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override

@@ -84,7 +84,7 @@ public class FlowDetail implements Serializable {
         private String isCommon;
         private String name;
         private String flowData;
-        private long internalDeliveryDate;
+        private String internalDeliveryDate;
         private List<?> processList;
         private List<?> remaksList;
 
@@ -203,14 +203,6 @@ public class FlowDetail implements Serializable {
 
         public void setFlowData(String flowData) {
             this.flowData = flowData;
-        }
-
-        public long getInternalDeliveryDate() {
-            return internalDeliveryDate;
-        }
-
-        public void setInternalDeliveryDate(long internalDeliveryDate) {
-            this.internalDeliveryDate = internalDeliveryDate;
         }
 
         public List<?> getProcessList() {

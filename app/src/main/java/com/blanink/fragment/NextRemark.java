@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -97,6 +98,11 @@ public class NextRemark extends Fragment {
             public void onLoadingMore() {
                 pageNo++;
                 loadReview();
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
             }
         });
         //评价详情

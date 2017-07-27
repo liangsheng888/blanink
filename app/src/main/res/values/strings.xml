@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">空行互联</string>
-    <string name="title_activity_login_activityssss">Sign in</string>
-
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -15,4 +13,6 @@
         completions."
     </string>
     <string name="title_activity_my_bid_queue">MyBidQueue</string>
+    <string name="title_activity_come_order">ComeOrder</string>
+
 </resources>

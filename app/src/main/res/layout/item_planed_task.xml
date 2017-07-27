@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackGround">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_common_border">
 
     <LinearLayout
         android:id="@+id/order_item_ll2"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/order_item_ll"
-        android:layout_marginTop="1dp"
-        android:background="#fff"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -18,6 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/colorBlack"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:text="产品类" />
@@ -31,6 +34,7 @@
                 android:id="@+id/order_item_ll2_guigeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
                 android:text="规格名称:" />
 
             <TextView
@@ -48,9 +52,11 @@
     <LinearLayout
         android:id="@+id/order_item_ll3"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
         android:layout_below="@id/order_item_ll2"
-        android:background="#fff"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <RelativeLayout
@@ -65,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:textColor="@color/colorBlack"
                 android:text="产品数量:" />
 
             <TextView
@@ -84,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
                 android:text="优先级:" />
 
             <TextView
@@ -97,9 +105,11 @@
     <LinearLayout
         android:id="@+id/order_item"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="15dp"
         android:layout_below="@id/order_item_ll3"
-        android:background="#fff"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <RelativeLayout
@@ -113,6 +123,7 @@
                 android:id="@+id/response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
                 android:text="我的反馈:" />
 
             <TextView
@@ -133,6 +144,7 @@
                 android:id="@+id/tv_my_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
                 android:text="我的任务:" />
 
             <TextView
@@ -145,35 +157,46 @@
 
 
     </LinearLayout>
+    <View
+        android:id="@+id/view"
+        android:background="@color/colorBackGround"
+        android:layout_below="@id/order_item_ll"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
 
+    </View>
     <RelativeLayout
         android:id="@+id/order_item_ll"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#fff"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:gravity="center_vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentTop="true">
         <TextView
             android:id="@+id/tv_companyName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp"
             android:text="空行互联有限责任公司"
             android:textColor="@color/colorTheme"/>
-
         <TextView
             android:id="@+id/tv_master"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/tv_companyName"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:paddingTop="10dp"
+            android:textSize="18sp"
             android:textColor="@color/colorTheme"
             android:text="李三" />
-
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -186,18 +209,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:paddingTop="10dp"
+                android:textSize="16sp"
                 android:textColor="@color/colorTheme"
 
-                android:text="下单日期:" />
+                android:text="限定完成时间:" />
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:paddingTop="10dp"
+                android:textSize="16sp"
                 android:layout_toRightOf="@id/tv_order_time"
                 android:textColor="@color/colorTheme"
-                android:text="2012-6-10" />
+                android:text="" />
         </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+    </RelativeLayout>
+

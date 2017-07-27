@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.activity.task.TaskResponseHistoryDetail;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.WorkedTask;
@@ -54,8 +56,8 @@ public class TaskResponseHistory extends Fragment {
     RelativeLayout rlNotData;
     private String processId;
     private SharedPreferences sp;
-    private CommonAdapter<WorkedTask.Result> commonAdapter;
-    private List<WorkedTask.Result> list;
+    private CommonAdapter<WorkedTask.ResultBean> commonAdapter;
+    private List<WorkedTask.ResultBean> list;
 
     @Nullable
     @Override
@@ -71,6 +73,19 @@ public class TaskResponseHistory extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         loadData();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), TaskResponseHistoryDetail.class);
+                intent.putExtra("id", list.get(position).getProcessFeedback().getId());
+                if (list.get(position).getCompanyCategory() != null) {
+                    intent.putExtra("productCategory", list.get(position).getCompanyCategory().getName());
+                }
+                intent.putExtra("productNum", list.get(position).getAmount());
+                intent.putExtra("productName", list.get(position).getProductName());
+                startActivity(intent);
+            }
+        });
     }
 
     private void receivedData() {
@@ -83,24 +98,26 @@ public class TaskResponseHistory extends Fragment {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "processFeedback/listWorkedTask");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         rp.addBodyParameter("process.id", processId);
+        Log.e("TaskResponse", NetUrlUtils.NET_URL + "processFeedback/listWorkedTask?userId=" + sp.getString("USER_ID", null) + "&processId=" + processId);
+
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
-            public void onSuccess(String result) {
-                Log.e("TaskResponse", result);
+            public void onSuccess(String ResultBean) {
+                Log.e("TaskResponse", ResultBean);
                 llLoad.setVisibility(View.GONE);
                 Gson gson = new Gson();
-                WorkedTask listPlanedTask = gson.fromJson(result, WorkedTask.class);
-                if (listPlanedTask.result.size()==0){
+                WorkedTask listPlanedTask = gson.fromJson(ResultBean, WorkedTask.class);
+                if (listPlanedTask.getResult().size() == 0) {
                     rlNotData.setVisibility(View.VISIBLE);
                 }
-                list = new ArrayList<WorkedTask.Result>();
-                list.addAll(listPlanedTask.result);
+                list = new ArrayList<WorkedTask.ResultBean>();
+                list.addAll(listPlanedTask.getResult());
                 Log.e("TaskResponse", listPlanedTask.toString());
                 if (commonAdapter == null) {
-                    commonAdapter = new CommonAdapter<WorkedTask.Result>(getActivity(), list, R.layout.item_history_task_response) {
+                    commonAdapter = new CommonAdapter<WorkedTask.ResultBean>(getActivity(), list, R.layout.item_history_task_response) {
                         @Override
-                        public void convert(ViewHolder viewHolder, WorkedTask.Result result, int position) {
-                            result = list.get(position);
+                        public void convert(ViewHolder viewHolder, WorkedTask.ResultBean ResultBean, int position) {
+                            ResultBean = list.get(position);
                             TextView tv_companyName = viewHolder.getViewById(R.id.tv_companyName);
                             TextView tv_time = viewHolder.getViewById(R.id.tv_time);
                             TextView tv_master = viewHolder.getViewById(R.id.tv_master);
@@ -109,16 +126,45 @@ public class TaskResponseHistory extends Fragment {
                             TextView tv_response = viewHolder.getViewById(R.id.tv_response);
                             TextView tv_bad = viewHolder.getViewById(R.id.tv_bad);
                             TextView tv_note = viewHolder.getViewById(R.id.tv_note);
-                            tv_companyName.setText(result.companyA.name);
-                            tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.createDate)));
-                            tv_master.setText(result.companyBOwner.name);
-                            tv_pro_name.setText(result.productName);
-                            tv_pro_category.setText(result.companyCategory.name);
-                            tv_response.setText(result.finishedAmount + "");//我的反馈
-                            tv_note.setText(result.productDescription);
-                            tv_bad.setText(result.processFeedback.faultAmount+"");
-                            //tv_bad.setText(result.);
+                            if (ResultBean != null) {
+                                Log.e("TaskResponseHistory", ResultBean.getProcessFeedback().toString());
+                                if (ResultBean.getCompanyA() != null) {
+                                    tv_companyName.setText(ResultBean.getCompanyA().getName());
+                                }
+                                if (ResultBean.getUpdateDate() != null) {
+                                    tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(ResultBean.getUpdateDate())));
+                                }
+                                /*if (ResultBean.getCompanyBOwner() != null) {
+                                    tv_master.setText(ResultBean.getCompanyBOwner().getName());
+                                }*/
+                                tv_pro_name.setText(ResultBean.getProductName());
+                                if ("3".equals(getActivity().getIntent().getStringExtra("processType"))) {
+                                    //tv_pro_category.setText(ResultBean.getProcessFeedback());
+                                    if(ResultBean.getProcessFeedback().getConfirmAmount()==ResultBean.getProcessFeedback().getAchieveAmount()){
+                                        tv_pro_category.setText("对方已收货");
+                                        tv_pro_category.setTextColor(getResources().getColor(R.color.colorBlue));
+                                    }
+                                    if(ResultBean.getProcessFeedback().getConfirmAmount()==-1){
+                                        tv_pro_category.setText("对方拒绝收货");
+                                        tv_pro_category.setTextColor(getResources().getColor(R.color.colorRed));
 
+                                    }
+                                    if(ResultBean.getProcessFeedback().getConfirmAmount()==0){
+                                        tv_pro_category.setText("对方暂未收货");
+                                        tv_pro_category.setTextColor(getResources().getColor(R.color.colorAccent));
+
+                                    }
+
+                                } else {
+                                    if (ResultBean.getCompanyCategory() != null) {
+                                        tv_pro_category.setText(ResultBean.getCompanyCategory().getName());
+                                    }
+                                }
+                                tv_response.setText(ResultBean.getProcessFeedback().getAchieveAmount() + "");//我的反馈
+                                tv_note.setText(ResultBean.getRemarks());
+                                tv_bad.setText(ResultBean.getProcessFeedback().getFaultAmount() + "");
+                                //tv_bad.setText(ResultBean.);
+                            }
                         }
                     };
                     lv.setAdapter(commonAdapter);
@@ -132,6 +178,7 @@ public class TaskResponseHistory extends Fragment {
             public void onError(Throwable ex, boolean isOnCallback) {
                 llLoad.setVisibility(View.GONE);
                 rlLoadFail.setVisibility(View.VISIBLE);
+                Log.e("TaskResponse", ex.toString());
             }
 
             @Override
@@ -145,7 +192,7 @@ public class TaskResponseHistory extends Fragment {
             }
 
             @Override
-            public boolean onCache(String result) {
+            public boolean onCache(String ResultBean) {
                 return false;
             }
         });

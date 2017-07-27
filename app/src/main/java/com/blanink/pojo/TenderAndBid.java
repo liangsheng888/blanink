@@ -77,6 +77,7 @@ public class TenderAndBid implements Serializable {
             public String title;
             public String bidStatus;
             public Boolean expired;
+
             @Override
             public String toString() {
                 return "Row{" +
@@ -101,7 +102,7 @@ public class TenderAndBid implements Serializable {
                         '}';
             }
 
-            public static class Bid implements Serializable{
+            public static class Bid implements Serializable {
                 public String id;
                 public Boolean isNewRecord;
                 public String remarks;
@@ -141,95 +142,97 @@ public class TenderAndBid implements Serializable {
                 }
             }
 
-                public static class InviteBid implements Serializable {
-                    public String id;
-                    public Boolean isNewRecord;
-                    public List bidList;
-                    public Integer count;
-                    public Boolean expired;
+            public static class InviteBid implements Serializable {
+                public String id;
+                public Boolean isNewRecord;
+                public List bidList;
+                public Integer count;
+                public Boolean expired;
 
-                    @Override
-                    public String toString() {
-                        return "InviteBid{" +
-                                "id='" + id + '\'' +
-                                ", isNewRecord=" + isNewRecord +
-                                ", bidList=" + bidList +
-                                ", count=" + count +
-                                ", expired=" + expired +
-                                '}';
-                    }
+                @Override
+                public String toString() {
+                    return "InviteBid{" +
+                            "id='" + id + '\'' +
+                            ", isNewRecord=" + isNewRecord +
+                            ", bidList=" + bidList +
+                            ", count=" + count +
+                            ", expired=" + expired +
+                            '}';
                 }
-
-                public static class Company implements Serializable {
-                        public String id;
-                        public Boolean isNewRecord;
-                        public String remarks;
-                        public String name;
-                        public Integer sort;
-                        public ManyCustomer.Area area;
-                        public String code;
-                        public String shortName;
-                        public String registTime;
-                        public String scope;
-                        public String type;
-                        public String grade;
-                        public String address;
-                        public String zipCode;
-                        public String master;
-                        public String phone;
-                        public String fax;
-                        public String email;
-                        public String useable;
-                        public LoginResult.Result.Company.Person primaryPerson;
-                        public ManyCustomer.Person deputyPerson;
-                        public List customerServiceList;
-                        public String homepage;
-                        public Double reviewOthers;
-                        public Double reviewSelf;
-                        public Double otherCosting;
-                        public Double otherPayment;
-                        public Double otherQuality;
-                        public Double otherService;
-                        public Double otherTime;
-                        public Double selfPayment;
-                        public Double selfQuality;
-                        public Double selfService;
-                        public Double selfCosting;
-                        public Double selfTime;
-                        public Integer serviceCount;
-                        public String parentId;
-                    @Override
-                    public String toString() {
-                        return "BidCompany{" +
-                                "id='" + id + '\'' +
-                                ", isNewRecord=" + isNewRecord +
-                                ", remarks='" + remarks + '\'' +
-                                ", name='" + name + '\'' +
-                                ", sort=" + sort +
-                                ", code='" + code + '\'' +
-                                ", scope='" + scope + '\'' +
-                                ", shortName='" + shortName + '\'' +
-                                ", registTime=" + registTime +
-                                ", type='" + type + '\'' +
-                                ", grade='" + grade + '\'' +
-                                ", address='" + address + '\'' +
-                                ", zipCode='" + zipCode + '\'' +
-                                ", master='" + master + '\'' +
-                                ", phone='" + phone + '\'' +
-                                ", fax='" + fax + '\'' +
-                                ", email='" + email + '\'' +
-                                ", customerServiceList=" + customerServiceList +
-                                ", parentId='" + parentId + '\'' +
-                                '}';
-                    }
-                }
-
-
             }
+
+            public static class Company implements Serializable {
+                public String id;
+                public Boolean isNewRecord;
+                public String remarks;
+                public String name;
+                public Integer sort;
+                public ManyCustomer.Area area;
+                public String code;
+                public String shortName;
+                public String registTime;
+                public String scope;
+                public String type;
+                public String grade;
+                public String address;
+                public String zipCode;
+                public String master;
+                public String phone;
+                public String fax;
+                public String email;
+                public String useable;
+                public ManyCustomer.Person primaryPerson;
+                public ManyCustomer.Person deputyPerson;
+                public List customerServiceList;
+                public String homepage;
+                public Double reviewOthers;
+                public Double reviewSelf;
+                public Double otherCosting;
+                public Double otherPayment;
+                public Double otherQuality;
+                public Double otherService;
+                public Double otherTime;
+                public Double selfPayment;
+                public Double selfQuality;
+                public Double selfService;
+                public Double selfCosting;
+                public Double selfTime;
+                public Integer serviceCount;
+                public String photo;
+                public String parentId;
+
+                @Override
+                public String toString() {
+                    return "BidCompany{" +
+                            "id='" + id + '\'' +
+                            ", isNewRecord=" + isNewRecord +
+                            ", remarks='" + remarks + '\'' +
+                            ", name='" + name + '\'' +
+                            ", sort=" + sort +
+                            ", code='" + code + '\'' +
+                            ", scope='" + scope + '\'' +
+                            ", shortName='" + shortName + '\'' +
+                            ", registTime=" + registTime +
+                            ", type='" + type + '\'' +
+                            ", grade='" + grade + '\'' +
+                            ", address='" + address + '\'' +
+                            ", zipCode='" + zipCode + '\'' +
+                            ", master='" + master + '\'' +
+                            ", phone='" + phone + '\'' +
+                            ", fax='" + fax + '\'' +
+                            ", email='" + email + '\'' +
+                            ", customerServiceList=" + customerServiceList +
+                            ", parentId='" + parentId + '\'' +
+                            '}';
+                }
+            }
+
 
         }
 
-
     }
+
+
+}
 
 

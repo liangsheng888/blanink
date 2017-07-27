@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
 import com.blanink.R;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -21,7 +22,8 @@ public class FlashActivity2 extends Activity {
     private static final int FRAGMENT_TASK = 0;
     private ImageView imageView;
     AnimationDrawable loadingDrawable;
-    MyActivityManager  myActivityManager;
+    MyActivityManager myActivityManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,48 +43,14 @@ public class FlashActivity2 extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 try {
                     Thread.sleep(2200);
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
-                        RequestParams requestParams=new RequestParams(NetUrlUtils.NET_URL+"");
-                        x.http().post(requestParams, new Callback.CacheCallback<String>() {
-                            @Override
-                            public void onSuccess(String result) {
-                                Intent intent =new Intent(FlashActivity2.this,MainActivity.class);
-                                intent.putExtra("DATA",result);
-                                intent.putExtra("DIRECT",FRAGMENT_TASK);
-                                startActivity(intent);
-                                loadingDrawable.stop();
-                                finish();
-                            }
-
-                            @Override
-                            public void onError(Throwable ex, boolean isOnCallback) {
-                                //setContentView(R.layout.loading_error);
-                                Intent intent =new Intent(FlashActivity2.this,MainActivity.class);
-                                intent.putExtra("DIRECT",FRAGMENT_TASK);
-                                startActivity(intent);
-                                loadingDrawable.stop();
-                                finish();
-                            }
-
-                            @Override
-                            public void onCancelled(CancelledException cex) {
-
-                            }
-
-                            @Override
-                            public void onFinished() {
-
-                            }
-
-                            @Override
-                            public boolean onCache(String result) {
-                                return false;
-                            }
-                        });
+                loadingDrawable.stop();
             }
         }).start();
     }

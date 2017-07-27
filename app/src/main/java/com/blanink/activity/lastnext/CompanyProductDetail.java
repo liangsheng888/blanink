@@ -125,7 +125,7 @@ public class CompanyProductDetail extends AppCompatActivity {
 
     public void loadProductAttributes() {
         // http://localhost:8080/blanink-api/customer/getAttribute?userId=d6c8e9bc4c2b476ba84b962c27882f41&companyProduct.id=a0e604fd2e2b44a3ac99af76b360423c
-        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "/customer/getAttribute");
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "/customer/getAttributes");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         rp.addBodyParameter("companyProduct.id", productDetail1.getCompanyProduct().getId());
         x.http().post(rp, new Callback.CacheCallback<String>() {

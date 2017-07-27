@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_seek"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:focusable="true"
+        android:background="@drawable/corner_common_border_gray"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/colorBackGround"
+            android:drawableLeft="@drawable/seek" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv"
+            android:background="@color/colorBackGround">
+
+            <EditText
+                android:id="@+id/et_seek"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:hint="请输入你需要的信息" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="@color/colorTheme"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</LinearLayout>

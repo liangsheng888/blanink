@@ -1,100 +1,158 @@
 package com.blanink.activity.afterSale;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.MainActivity;
 import com.blanink.fragment.AfterSaleHandleFinished;
 import com.blanink.fragment.AfterSaleNotHandle;
-import com.blanink.utils.MyActivityManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /***
  * 售后列表
  */
 public class AfterSaleQueue extends AppCompatActivity {
-
-    private ImageView customer_apply_iv_last;
-    private RadioGroup rg_after_sale;
-    private MyActivityManager myActivityManager;
-    private int newIndex;//下一个即将可见的
-    private int oldIndex;//当前可见的碎片
-    private Fragment[] fragments=new Fragment[2];
-    private RadioButton[] buttons=new RadioButton[2];
+    @BindView(R.id.after_sale_queue_iv_last)
+    TextView afterSaleQueueIvLast;
+    @BindView(R.id.rl_after_sale_queue)
+    RelativeLayout rlAfterSaleQueue;
+    @BindView(R.id.rb_not_handle)
+    RadioButton rbNotHandle;
+    @BindView(R.id.rb_handle_finished)
+    RadioButton rbHandleFinished;
+    @BindView(R.id.rg_after_sale)
+    RadioGroup rgAfterSale;
+    @BindView(R.id.ll_bottom)
+    LinearLayout llBottom;
+    @BindView(R.id.rl)
+    LinearLayout rl;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.activity_after_sale_queue)
+    RelativeLayout activityAfterSaleQueue;
+    private List<Fragment> fragments = new ArrayList<>();
+    private List<RadioButton> radioButtons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_sale_queue);
-        myActivityManager = MyActivityManager.getInstance();
-        myActivityManager.pushOneActivity(this);
-        initView();
+        ButterKnife.bind(this);
         initData();
     }
 
-    private void initView() {
-        customer_apply_iv_last = ((ImageView) findViewById(R.id.after_sale_queue_iv_last));
-        rg_after_sale = ((RadioGroup) findViewById(R.id.rg_after_sale));
-    }
-
     private void initData() {
-        fragments[0]=new AfterSaleNotHandle();
-        fragments[1]=new AfterSaleHandleFinished();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_after_sale,fragments[0]).commit();
-
-        customer_apply_iv_last.setOnClickListener(new View.OnClickListener() {
+        //初始化数据
+        fragments.add(new AfterSaleNotHandle());
+        fragments.add(new AfterSaleHandleFinished());
+        radioButtons.add(rbNotHandle);
+        radioButtons.add(rbHandleFinished);
+        //返回
+        afterSaleQueueIvLast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        rg_after_sale.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        //
+        rgAfterSale.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rb_not_handle:
-                        //待处理
-                        newIndex=0;
+                        viewPager.setCurrentItem(0);
                         break;
                     case R.id.rb_handle_finished:
-                        //已处理
-                        newIndex=1;
+                        viewPager.setCurrentItem(1);
                         break;
                 }
-                changeFragments(newIndex);
             }
         });
+        //设置切换
+        initLine(fragments);
+        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return fragments.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return fragments.size();
+            }
+        });
+
+        viewPager.setCurrentItem(0);//默认选中第一个
+        LineChange(fragments);
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                radioButtons.get(position).setChecked(true);
+                //radioButtons.get(position).setTextSize(18);
+                LineChange(fragments);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        //设置适配
+
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        myActivityManager.popOneActivity(this);
-        Intent intent=new Intent(AfterSaleQueue.this,MainActivity.class);
-        intent.putExtra("DIRECT",0);
-        startActivity(intent);
-    }
-    //切换界面
-    private void changeFragments(int newIndex) {
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        if(newIndex!=oldIndex){
-            ft.hide(fragments[oldIndex]);//隐藏当前的界面
-            if(!fragments[newIndex].isAdded()){//如果没有添加则添加
-                ft.add(R.id.fl_after_sale,fragments[newIndex]);
-            }
-            ft.show(fragments[newIndex]).commit();//显示
+    //底部直线选中状态切换
+    private void LineChange(List<Fragment> fragmentLists) {
+        Log.e("@@@@", "LineChange: " + fragmentLists.size());
+        int currentPage = viewPager.getCurrentItem() % fragmentLists.size();
+        for (int i = 0; i < fragmentLists.size(); i++) {
+            llBottom.getChildAt(i).setEnabled(currentPage == i);
         }
-        //改变当前的选中项
-        oldIndex=newIndex;
     }
+
+    //底部直线动态初始化
+    private void initLine(List<Fragment> fragmentLists) {
+        Log.e("@@@@", "initLine: " + fragmentLists.size());
+        if (fragmentLists == null) {
+            fragmentLists = new ArrayList<>();
+        }
+
+        for (int i = 0; i < fragmentLists.size(); i++) {
+            View view = new View(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+            //设置控件的显示位置,相当于控件的layout_gravity属性
+            params.gravity = Gravity.CENTER;
+
+
+            params.leftMargin = 50;
+            params.rightMargin = 50;
+            view.setLayoutParams(params);
+            view.setBackgroundResource(R.drawable.selector_line);
+            llBottom.addView(view);
+        }
+    }
+
 }

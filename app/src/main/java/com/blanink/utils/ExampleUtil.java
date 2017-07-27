@@ -1,5 +1,6 @@
 package com.blanink.utils;
 
+import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +53,7 @@ public class ExampleUtil {
             return true;
         return false;
     }
-    
+
     // 校验Tag Alias 只能是数字,英文字母和中文
     public static boolean isValidTagAndAlias(String s) {
         Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z_!@#$&*+=.|]+$");
@@ -80,17 +81,18 @@ public class ExampleUtil {
         }
         return appKey;
     }
-    
+
     // 取得版本号
     public static String getVersion(Context context) {
-		try {
-			PackageInfo manager = context.getPackageManager().getPackageInfo(
-					context.getPackageName(), 0);
-			return manager.versionName;
-		} catch (NameNotFoundException e) {
-			return "Unknown";
-		}
-	}
+        try {
+            PackageInfo manager = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), 0);
+            return manager.versionName;
+        } catch (NameNotFoundException e) {
+            return "Unknown";
+        }
+    }
+
     // 取得版本号
     public static int GetVersionCode(Context context) {
 
@@ -104,51 +106,69 @@ public class ExampleUtil {
         return manager.versionCode;
 
     }
-    public static void showToast(final String toast, final Context context)
-    {
-    	new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				Looper.prepare();
-				Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
-				Looper.loop();
-			}
-		}).start();
+
+    public static void showToast(final String toast, final Context context) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Looper.prepare();
+                Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+        }).start();
     }
-    
+
     public static boolean isConnected(Context context) {
         ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = conn.getActiveNetworkInfo();
         return (info != null && info.isConnected());
     }
-    
-	public static String getImei(Context context, String imei) {
-		try {
-			TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-			imei = telephonyManager.getDeviceId();
-		} catch (Exception e) {
-			Log.e(ExampleUtil.class.getSimpleName(), e.getMessage());
-		}
-		return imei;
-	}
+
+    public static String getImei(Context context, String imei) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            imei = telephonyManager.getDeviceId();
+        } catch (Exception e) {
+            Log.e(ExampleUtil.class.getSimpleName(), e.getMessage());
+        }
+        return imei;
+    }
+
     public static String getDeviceId(Context context) {
         String deviceId = JPushInterface.getUdid(context);
         return deviceId;
     }
-    public static String getFileName(String pathandname){
 
-        int start=pathandname.lastIndexOf("/");
-        int end=pathandname.lastIndexOf(".");
-        if(start!=-1 && end!=-1){
-            return pathandname.substring(start+1,end);
-        }else{
-            return null;
+    public static String getFileName(String pathandname) {
+        String prefix=null;
+        String pre=null;
+        int num =0;//得到后缀名长度
+        int num2=0;
+        if(pathandname.lastIndexOf("/")!=-1){
+            pre = pathandname.substring(0,pathandname.lastIndexOf("/"));
+            num2=pre.length();
+        }
+        if (pathandname.lastIndexOf(".") != -1) {
+            prefix = pathandname.substring(pathandname.lastIndexOf("."));
+             num = prefix.length();//得到后缀名长度
         }
 
+        String fileOtherName = pathandname.substring(num2+1, pathandname.length() - num);//得到文件名。去掉了后缀
+        return fileOtherName;
+
     }
-    public static Date stringToDate(String str){
-        Date date= null;
+
+    public static String getFileLastName(String pathandname) {
+        int end = pathandname.lastIndexOf(".");
+
+        return pathandname.substring(end);
+
+    }
+
+
+    public static Date stringToDate(String str) {
+        Date date = null;
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(str);
         } catch (ParseException e) {
@@ -157,11 +177,13 @@ public class ExampleUtil {
         return date;
     }
 
-    public static String dateToString(Date date){
-        String str=new SimpleDateFormat("yyyy-MM-dd").format(date);
+    public static String dateToString(Date date) {
+        String str = new SimpleDateFormat("yyyy-MM-dd").format(date);
         return str;
     }
-   //获得系统本地文件路径
+
+    //获得系统本地文件路径
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static String getPathByUri4kitkat(final Context context, final Uri uri) {
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
         // DocumentProvider
@@ -191,7 +213,7 @@ public class ExampleUtil {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] { split[1] };
+                final String[] selectionArgs = new String[]{split[1]};
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
         } else if ("content".equalsIgnoreCase(uri.getScheme())) {// MediaStore
@@ -209,8 +231,7 @@ public class ExampleUtil {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
     public static boolean isDownloadsDocument(Uri uri) {
@@ -218,8 +239,7 @@ public class ExampleUtil {
     }
 
     /**
-     * @param uri
-     *            The Uri to check.
+     * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
     public static boolean isMediaDocument(Uri uri) {
@@ -229,7 +249,7 @@ public class ExampleUtil {
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         final String column = "_data";
-        final String[] projection = { column };
+        final String[] projection = {column};
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
@@ -242,6 +262,7 @@ public class ExampleUtil {
         }
         return null;
     }
+
     //比较日期大小
     public static int compare_date(String DATE1, String DATE2) {
 
@@ -264,6 +285,7 @@ public class ExampleUtil {
         }
         return 0;
     }
+
     //保存照片到相册
     public void saveImageToGallery(Context context, Bitmap bmp, File file) {
         // 首先保存图片
@@ -293,13 +315,14 @@ public class ExampleUtil {
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getAbsolutePath())));
 
     }
+
     // 使用系统当前日期加以调整作为照片的名称
     private String getPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
         System.out.println("============" + UUID.randomUUID());
-        Log.e("UUID:",UUID.randomUUID()+"");
+        Log.e("UUID:", UUID.randomUUID() + "");
         return sdf.format(date) + "_" + UUID.randomUUID() + ".png";
     }
 

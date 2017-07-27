@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_common_border">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
@@ -20,12 +25,19 @@
                 android:id="@+id/master"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="工作人:"/>
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                android:text="反馈人:"/>
             <TextView
                 android:id="@+id/tv_master"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/master"/>
+                android:layout_toRightOf="@id/master"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                />
         </RelativeLayout>
 
         <RelativeLayout
@@ -34,16 +46,13 @@
             android:layout_height="wrap_content"
             >
             <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="反馈时间:"/>
-            <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:layout_toRightOf="@id/date"/>
+                android:layout_marginLeft="5dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorOrange"
+                android:singleLine="true" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -63,11 +72,17 @@
                 android:id="@+id/finished"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorBlack"
                 android:text="反馈数量:"/>
             <TextView
                 android:id="@+id/tv_finished"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+
                 android:layout_toRightOf="@id/finished"/>
         </RelativeLayout>
         <RelativeLayout
@@ -78,13 +93,26 @@
                 android:id="@+id/bad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
                 android:text="次品数量:"/>
             <TextView
                 android:id="@+id/tv_bad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/bad"/>
         </RelativeLayout>
     </LinearLayout>
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/next_gray"/>
+    </RelativeLayout>
 </RelativeLayout>

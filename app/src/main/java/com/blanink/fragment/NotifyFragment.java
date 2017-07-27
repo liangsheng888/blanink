@@ -57,8 +57,8 @@ public class NotifyFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //初始化数据
         fragments = new Fragment[2];
-        fragments[0] = new MyNotify();
-        fragments[1] = new NotifyMange();
+        fragments[0] = new ReceiveEmailFragment();
+        fragments[1] = new sendEmailFragment();
         radioButtons = new RadioButton[2];
         radioButtons[0] = myNotify;
         radioButtons[1] = notifyManage;

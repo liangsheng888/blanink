@@ -17,12 +17,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.task.TaskResponseDetailActivity;
+import com.blanink.activity.task.TaskResponseDeliver;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.OrderProduct;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.PriorityUtils;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -61,7 +62,7 @@ public class TaskResponseMyTask extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout_header_order for this fragment
         sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
         View view = View.inflate(getActivity(), R.layout.fragment_my_task, null);
         receivedData();
@@ -76,11 +77,20 @@ public class TaskResponseMyTask extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), TaskResponseDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("TaskDetail", list.get(position));
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if ("3".equals(getActivity().getIntent().getStringExtra("processType"))) {
+                    Intent intent = new Intent(getActivity(), TaskResponseDeliver.class);
+                    intent.putExtra("processId",processId);
+                    intent.putExtra("companyId", list.get(position).companyA.id);
+                    intent.putExtra("flowId",list.get(position).relFlowProcess.flow.id);
+                    startActivity(intent);
+
+                } else {
+                    Intent intent = new Intent(getActivity(), com.blanink.activity.task.TaskResponseMyTask.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("TaskDetail", list.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -102,7 +112,7 @@ public class TaskResponseMyTask extends Fragment {
                 Log.e("TaskResponse", result);
                 Gson gson = new Gson();
                 OrderProduct listPlanedTask = gson.fromJson(result, OrderProduct.class);
-                if (listPlanedTask.result.size()==0){
+                if (listPlanedTask.result.size() == 0) {
                     rlNotData.setVisibility(View.VISIBLE);
                 }
                 list = new ArrayList<OrderProduct.Result>();
@@ -124,13 +134,13 @@ public class TaskResponseMyTask extends Fragment {
                             TextView tv_num = viewHolder.getViewById(R.id.tv_num);
                             tv_companyName.setText(result.companyA.name);
                             tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.createDate)));
-                            tv_master.setText(result.companyBOwner.name);
+                          //  tv_master.setText(result.companyBOwner.name);
                             tv_pro_name.setText(result.productName);
                             tv_pro_category.setText(result.companyCategory.name);
-                            tv_response.setText(result.finishedAmount + "");//我的反馈
+                            tv_response.setText((result.finishedAmount == null ? 0 : result.finishedAmount) + "");//我的反馈
                             tv_my_task_num.setText(result.workPlan.achieveAmount);//我的任务
                             tv_num.setText(result.amount);//订单产品数量
-
+                            tv_priority.setText(PriorityUtils.getPriority(result.workPlan.priority));
 
                         }
                     };

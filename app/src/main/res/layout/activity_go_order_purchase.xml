@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.order.GoOrderPurchase">
+
     <RelativeLayout
         android:id="@+id/go_order_purchase"
         android:layout_width="match_parent"
@@ -23,317 +22,101 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/go_order_purchase_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
-    </RelativeLayout>
+            android:textSize="16sp"
+            android:text="返回"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:drawableLeft="@drawable/last" />
 
+        <TextView
+            android:id="@+id/tv_new_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="新增采购"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/ll"
         android:layout_below="@id/go_order_purchase"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorWhite"
 
-        </View>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:layout_height="match_parent"
-            android:text="下单"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
+            android:orientation="horizontal">
 
-        </View>
+            <RadioButton
+                android:id="@+id/rb_come_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/text_color_selector"
+                android:text="来单列表"
 
+                />
+
+            <RadioButton
+                android:id="@+id/rb_not_down_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/text_color_selector"
+                android:text="待下单" />
+
+            <RadioButton
+                android:id="@+id/rb_down_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:textColor="@color/text_color_selector"
+                android:text="已下单" />
+        </RadioGroup>
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:orientation="horizontal"></LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/rl_unsorted"
+   <!--<FrameLayout-->
+       <!--android:id="@+id/fl_main"-->
+       <!--android:layout_below="@id/ll"-->
+       <!--android:layout_width="match_parent"-->
+       <!--android:layout_height="match_parent">-->
+
+   <!--</FrameLayout>-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_below="@id/ll"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#fff"
-        android:padding="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <Spinner
-            android:id="@+id/rl_unsorted_product"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="#fff"
-            android:entries="@array/product"
-            android:layout_height="wrap_content">
-
-
-        </Spinner>
-        <TextView
-            android:id="@+id/rl_sorted"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:text="排序"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:drawableRight="@drawable/sj"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:background="#fff"
-            android:layout_height="wrap_content">
-        </TextView>
-        <View
-            android:layout_width="1dp"
-            android:background="@color/colorBackGround"
-            android:layout_height="match_parent"></View>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_handed_product"
-            android:layout_marginLeft="10dp"
-            android:text="查看已发布的"/>
-
-    </LinearLayout>
-    <com.blanink.view.NoScrollListview
-        android:layout_marginTop="5dp"
-        android:background="#fff"
-        android:id="@+id/lv_come_order_queue"
-        android:layout_below="@id/rl_unsorted"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.blanink.view.NoScrollListview>
-
-    <Button
-        android:id="@+id/btn_new_purchase"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/corners_bg_red"
-        android:text="新增采购"
-        android:layout_below="@id/lv_come_order_queue"
-        android:textSize="16sp"
-        android:textColor="#fff"/>
-    <LinearLayout
-        android:id="@+id/l2"
-        android:layout_below="@id/btn_new_purchase"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:layout_height="match_parent"
-            android:text="采单需求已安排/未下单"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll2"
-        android:layout_below="@id/l2"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#fff"
-        android:padding="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/sp_supplier"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="#fff"
-            android:layout_marginRight="20dp"
-            android:entries="@array/supplier"
-            android:layout_height="wrap_content">
-
-
-        </Spinner>
-
-        <TextView
-            android:id="@+id/sp_sorted"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:text="排序"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:drawableRight="@drawable/sj"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="20dp"
-            android:background="#fff"
-            android:layout_height="wrap_content">
-        </TextView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="更多"
-            android:textColor="#000"
-            android:gravity="center_vertical"
-            android:drawableRight="@drawable/next_black"
-            android:id="@+id/textView" />
-
-    </LinearLayout>
-
-    <com.blanink.view.NoScrollListview
-        android:layout_marginTop="5dp"
-        android:background="#fff"
-        android:id="@+id/lv_not_down_order_queue"
-        android:layout_below="@id/ll2"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.blanink.view.NoScrollListview>
-
-    <Button
-        android:id="@+id/btn_group_down_order"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/corners_bg_red"
-        android:text="组合并下单"
-        android:layout_below="@id/lv_not_down_order_queue"
-        android:textSize="16sp"
-        android:textColor="#fff"/>
-    <LinearLayout
-        android:id="@+id/ll4"
-        android:layout_below="@id/btn_group_down_order"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="#000"
-            android:layout_height="match_parent"
-            android:text="已下单"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#8e8686">
-
-        </View>
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll5"
-        android:layout_below="@id/ll4"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#fff"
-        android:padding="10dp"
-        android:gravity="center_vertical"
-
-        android:orientation="horizontal">
-        <Spinner
-            android:id="@+id/sp_supplier2"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="#fff"
-            android:layout_marginRight="20dp"
-            android:entries="@array/supplier"
-            android:layout_height="wrap_content">
-
-
-        </Spinner>
-        <TextView
-            android:id="@+id/sp_sorted2"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:background="#fff"
-            android:text="排序"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:drawableRight="@drawable/sj"
-            android:layout_height="wrap_content">
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="更多"
-            android:textColor="#000"
-
-            android:gravity="center_vertical"
-            android:drawableRight="@drawable/next_black"
-             />
-
-    </LinearLayout>
-
-    <!--<com.blanink.view.NoScrollListview
-        android:layout_marginTop="5dp"
-        android:background="#fff"
-        android:id="@+id/lv_down_order_queue"
-        android:layout_below="@id/ll5"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.blanink.view.NoScrollListview>
--->
-    <ImageView
-        android:id="@+id/lv_down_order_queue"
-        android:layout_below="@id/ll5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/go_order"/>
-
-
-
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 </RelativeLayout>
-    </ScrollView>
+

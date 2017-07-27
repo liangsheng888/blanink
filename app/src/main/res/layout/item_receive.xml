@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/selector_gray_pressed">
+    <ImageView
+        android:id="@+id/iv_log"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"/>
+    <RelativeLayout
+        android:layout_toRightOf="@id/iv_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:layout_centerVertical="true">
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/tv_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="空行互联"
+                    android:singleLine="true"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp"
+                    />
+                <ImageView
+                    android:layout_toRightOf="@id/tv_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/next_gray"></ImageView>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorRed"
+                android:text="已发货" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_deleiver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_title"
+            >
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:layout_gravity="center_vertical"
+                android:textSize="12sp"
+                android:text="2012-6-10" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_below="@id/rl_deleiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorBlack"
+            android:text="你好吗"/>
+    </RelativeLayout>
+
+</RelativeLayout>

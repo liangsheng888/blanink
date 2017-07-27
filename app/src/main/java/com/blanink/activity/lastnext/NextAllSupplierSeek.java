@@ -29,6 +29,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.blanink.R;
 import com.blanink.pojo.ManyCustomer;
 import com.blanink.pojo.Office;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -288,6 +289,8 @@ public class NextAllSupplierSeek extends Activity {
                 viewHolder.tv_major = (TextView) convertView.findViewById(R.id.tv_major);
                 viewHolder.tv_company_apply_remark = (TextView) convertView.findViewById(R.id.tv_company_apply_remark);
                 viewHolder.tv_company_apply_remark_other = (TextView) convertView.findViewById(R.id.tv_company_apply_other_remark);
+                viewHolder.iv = (ImageView) convertView.findViewById(R.id.iv);
+
                 convertView.setTag(viewHolder);
                 sparseArray.put(position,convertView);
             } else {
@@ -305,6 +308,8 @@ public class NextAllSupplierSeek extends Activity {
             viewHolder.tv_honest.setText(df.format((customer.get(position).getReviewOthers() + customer.get(position).getReviewSelf()) / 2.0));
             viewHolder.tv_company_apply_remark.setText(customer.get(position).getReviewSelf() + "");
             viewHolder.tv_company_apply_remark_other.setText(customer.get(position).getReviewOthers() + "");
+            GlideUtils.glideImageView(NextAllSupplierSeek.this,viewHolder.iv,customer.get(position).getPhoto(),true);
+
             return convertView;
         }
     }
@@ -319,6 +324,7 @@ public class NextAllSupplierSeek extends Activity {
         public TextView tv_company_apply_remark;//自评
         public TextView tv_company_apply_remark_other;//他评
         public TextView tv_major;//主营
+        ImageView iv;
     }
 
     public int dp2px(float dipValue) {

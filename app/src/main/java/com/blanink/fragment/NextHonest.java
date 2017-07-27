@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.pojo.Review;
 import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;

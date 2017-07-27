@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackGround"
-        tools:context="com.blanink.activity.task.TaskResponseQueue">
+        tools:context=".activity.task.TaskResponseProcessQueue">
 
         <RelativeLayout
             android:id="@+id/rl_workStepQueue"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/rl_workStepQueue"
-            android:background="#fff">
+            android:background="@color/colorBackGround">
 
             <RelativeLayout
                 android:layout_width="match_parent"

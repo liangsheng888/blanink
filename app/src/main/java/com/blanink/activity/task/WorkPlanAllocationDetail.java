@@ -4,14 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.LinearLayout;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.pojo.WorkPlaned;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.activity.AttachmentBrow;
+import com.blanink.pojo.FeedBackingTaskHistory;
 import com.blanink.utils.MyActivityManager;
+import com.blanink.utils.StringToListUtils;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,70 +27,52 @@ import butterknife.OnClick;
  */
 public class WorkPlanAllocationDetail extends AppCompatActivity {
 
-
     @BindView(R.id.iv_last)
     TextView ivLast;
     @BindView(R.id.rl_activity_work_plan_allocation_detail)
     RelativeLayout rlActivityWorkPlanAllocationDetail;
-    @BindView(R.id.tv_companyName)
-    TextView tvCompanyName;
-    @BindView(R.id.master)
-    TextView master;
-    @BindView(R.id.tv_master)
-    TextView tvMaster;
-    @BindView(R.id.order_item_ll)
-    LinearLayout orderItemLl;
-    @BindView(R.id.tv_woker)
-    TextView tvWoker;
-    @BindView(R.id.tv_woker_name)
-    TextView tvWokerName;
-    @BindView(R.id.priority)
-    TextView priority;
-    @BindView(R.id.tv_priority)
-    TextView tvPriority;
-    @BindView(R.id.ll_woker)
-    LinearLayout llWoker;
     @BindView(R.id.tv_pro_category)
     TextView tvProCategory;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.order_item_ll2)
+    RelativeLayout orderItemLl2;
     @BindView(R.id.order_item_ll2_guigeName)
     TextView orderItemLl2GuigeName;
     @BindView(R.id.tv_pro_name)
     TextView tvProName;
-    @BindView(R.id.order_item_ll2)
-    LinearLayout orderItemLl2;
+    @BindView(R.id.relativeLayout)
+    RelativeLayout relativeLayout;
     @BindView(R.id.num)
     TextView num;
     @BindView(R.id.tv_num)
     TextView tvNum;
-    @BindView(R.id.finish)
-    TextView finish;
-    @BindView(R.id.tv_finish)
-    TextView tvFinish;
-    @BindView(R.id.order_item)
-    LinearLayout orderItem;
-    @BindView(R.id.tv_order_time)
-    TextView tvOrderTime;
-    @BindView(R.id.tv_take_order_time)
-    TextView tvTakeOrderTime;
-    @BindView(R.id.ll_date)
-    LinearLayout llDate;
+    @BindView(R.id.task)
+    TextView task;
+    @BindView(R.id.tv_target)
+    TextView tvTarget;
+    @BindView(R.id.response)
+    TextView response;
+    @BindView(R.id.tv_response)
+    TextView tvResponse;
+    @BindView(R.id.tv_my_task)
+    TextView tvMyTask;
+    @BindView(R.id.bad_num)
+    TextView badNum;
+    @BindView(R.id.attactment)
+    TextView attactment;
+    @BindView(R.id.tv_attactment)
+    TextView tvAttactment;
+    @BindView(R.id.rl_down)
+    RelativeLayout rlDown;
     @BindView(R.id.note)
     TextView note;
     @BindView(R.id.tv_note)
     TextView tvNote;
-    @BindView(R.id.ll)
-    LinearLayout ll;
     @BindView(R.id.activity_work_plan_allocation_detail)
     RelativeLayout activityWorkPlanAllocationDetail;
-    @BindView(R.id.tv_category)
-    TextView tvCategory;
-    @BindView(R.id.achieveAmount)
-    TextView achieveAmount;
-    @BindView(R.id.tv_achieveAmount)
-    TextView tvAchieveAmount;
     private MyActivityManager myActivityManager;
-    private WorkPlaned.ResultBean.Rows workPlanAllocationDetail;
-    private List<WorkPlaned.ResultBean.Rows> list = new ArrayList<>();
+    private FeedBackingTaskHistory.ResultBean.ProcessFeedbackListBean workPlanAllocationDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,23 +88,35 @@ public class WorkPlanAllocationDetail extends AppCompatActivity {
     private void receiveDataFromWorkPlanAllocation() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        workPlanAllocationDetail = ((WorkPlaned.ResultBean.Rows) bundle.getSerializable("WorkPlanAllocationDetail"));
+        workPlanAllocationDetail = ((FeedBackingTaskHistory.ResultBean.ProcessFeedbackListBean) bundle.getSerializable("ResopnseDetail"));
         Log.e("AllocationDetail", workPlanAllocationDetail.toString());
-        list.add(workPlanAllocationDetail);
     }
 
     private void initData() {
-        tvCompanyName.setText(workPlanAllocationDetail.getCompanyA().getName());
-        tvMaster.setText(workPlanAllocationDetail.getCompanyBOwner().getName());
-        tvPriority.setText(workPlanAllocationDetail.getWorkPlan().getPriority());
-        tvProCategory.setText(workPlanAllocationDetail.getCompanyCategory().getName());
-        tvProName.setText(workPlanAllocationDetail.getProductName());
-        tvFinish.setText(workPlanAllocationDetail.getRelFlowProcess().getTotalCompletedQuantity() + "/" + workPlanAllocationDetail.getRelFlowProcess().getTarget());
-        tvTakeOrderTime.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(workPlanAllocationDetail.getWorkPlan().getCreateDate())));
-        tvNum.setText(workPlanAllocationDetail.getAmount());
-        tvWokerName.setText(workPlanAllocationDetail.getWorkPlan().getWorker().getName());
-        tvNote.setText(workPlanAllocationDetail.getWorkPlan().getRemarks());
-        tvAchieveAmount.setText(workPlanAllocationDetail.getWorkPlan().getAchieveAmount());
+        tvTarget.setText(workPlanAllocationDetail.getTarget() + "");
+        tvResponse.setText(workPlanAllocationDetail.getAchieveAmount() + "");
+        badNum.setText(workPlanAllocationDetail.getFaultAmount() + "");
+        tvNote.setText(workPlanAllocationDetail.getRemarks());
+        tvTime.setText(workPlanAllocationDetail.getCreateDate());
+        tvProName.setText(getIntent().getStringExtra("productName"));
+        tvProCategory.setText(getIntent().getStringExtra("productCategory"));
+        tvNum.setText(getIntent().getStringExtra("productNum"));
+        List<String> arrayList=null;
+        Log.e("WorkPlanAllocationDetail", workPlanAllocationDetail.getFeedbackAttachmentStr().toString());
+        if (workPlanAllocationDetail.getFeedbackAttachmentStr() != null && workPlanAllocationDetail.getFeedbackAttachmentStr() != ""&&!workPlanAllocationDetail.getFeedbackAttachmentStr().equals("")) {
+             arrayList = StringToListUtils.stringToList(workPlanAllocationDetail.getFeedbackAttachmentStr(), ",");
+        }else {
+            arrayList=new ArrayList<>();
+        }
+        final List<String> finalArrayList = arrayList;
+        tvAttactment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WorkPlanAllocationDetail.this, AttachmentBrow.class);
+                intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                startActivity(intent);
+            }
+        });
 
 
     }

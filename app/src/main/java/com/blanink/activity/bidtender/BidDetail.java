@@ -2,29 +2,122 @@ package com.blanink.activity.bidTender;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.BidDetailInfo;
-import com.blanink.pojo.BidTender;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.StringToListUtils;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /***
  * 投标详情
  */
 public class BidDetail extends AppCompatActivity {
+    @BindView(R.id.bid_detail_iv_last)
+    TextView bidDetailIvLast;
+    @BindView(R.id.bid_detail_rl)
+    RelativeLayout bidDetailRl;
+    @BindView(R.id.tv_company)
+    TextView tvCompany;
+    @BindView(R.id.tv_product_name)
+    TextView tvProductName;
+    @BindView(R.id.tv_price)
+    TextView tvPrice;
+    @BindView(R.id.tv_single_price)
+    TextView tvSinglePrice;
+    @BindView(R.id.tv_purchase)
+    TextView tvPurchase;
+    @BindView(R.id.tv_purchase_num)
+    TextView tvPurchaseNum;
+    @BindView(R.id.tv_pay)
+    TextView tvPay;
+    @BindView(R.id.tv_first_pay)
+    TextView tvFirstPay;
+    @BindView(R.id.tv_useful)
+    TextView tvUseful;
+    @BindView(R.id.tv_useful_time)
+    TextView tvUsefulTime;
+    @BindView(R.id.attactment)
+    TextView attactment;
+    @BindView(R.id.tv_attactment)
+    TextView tvAttactment;
+    @BindView(R.id.rl_down)
+    RelativeLayout rlDown;
+    @BindView(R.id.tv_date)
+    TextView tvDate;
+    @BindView(R.id.tv_publish_date)
+    TextView tvPublishDate;
+    @BindView(R.id.tv_note)
+    TextView tvNote;
+    @BindView(R.id.tv_note_content)
+    TextView tvNoteContent;
+    @BindView(R.id.ll_bid_detail)
+    LinearLayout llBidDetail;
+    @BindView(R.id.my_bid)
+    LinearLayout myBid;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.view3)
+    View view3;
+    @BindView(R.id.tv_company_name)
+    TextView tvCompanyName;
+    @BindView(R.id.view4)
+    View view4;
+    @BindView(R.id.bid_date)
+    TextView bidDate;
+    @BindView(R.id.tv_bid_date)
+    TextView tvBidDate;
+    @BindView(R.id.tv_unit_price)
+    TextView tvUnitPrice;
+    @BindView(R.id.tv_single_cost)
+    TextView tvSingleCost;
+    @BindView(R.id.date_of_delivery)
+    TextView dateOfDelivery;
+    @BindView(R.id.tv_date_of_delivery)
+    TextView tvDateOfDelivery;
+    @BindView(R.id.tv_address)
+    TextView tvAddress;
+    @BindView(R.id.tv_area)
+    TextView tvArea;
+    @BindView(R.id.attactment2)
+    TextView attactment2;
+    @BindView(R.id.tv_my_attactment)
+    TextView tvMyAttactment;
+    @BindView(R.id.rl_down2)
+    RelativeLayout rlDown2;
+    @BindView(R.id.tv_note_detail)
+    TextView tvNoteDetail;
+    @BindView(R.id.tv_note_detail_content)
+    TextView tvNoteDetailContent;
+    @BindView(R.id.ll_my_bid_detail)
+    LinearLayout llMyBidDetail;
+    @BindView(R.id.tv_talk)
+    Button tvTalk;
+    @BindView(R.id.activity_bid_detail)
+    RelativeLayout activityBidDetail;
     private TenderAndBid.Result.Row row = new TenderAndBid.Result.Row();
     private BidDetailInfo bidinfo = new BidDetailInfo();
     private TextView tv_company;
@@ -51,9 +144,12 @@ public class BidDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bid_detail);
+        ButterKnife.bind(this);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
         myActivityManager = MyActivityManager.getInstance();
         myActivityManager.pushOneActivity(this);
+        DialogLoadUtils.getInstance(this);
+        DialogLoadUtils.showDialogLoad("加载中...");
         receivedDataFromMyBidQueue();
         initView();
         initData();
@@ -97,6 +193,25 @@ public class BidDetail extends AppCompatActivity {
             tv_publish_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.inviteDate)));
             tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
             tv_note_detail_content.setText(row.remarks);
+            List<String> arrayList=null;
+            if (row.attachment!= null &&row.attachment != ""&&!"".equals(row.attachment)) {
+                Log.e("@@@",row.attachment);
+                arrayList = StringToListUtils.stringToList(row.attachment, "\\|");
+            }else {
+                arrayList=new ArrayList<>();
+            }
+
+
+            final List<String> finalArrayList = arrayList;
+            tvAttactment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BidDetail.this, AttachmentBrow.class);
+                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                    startActivity(intent);
+                }
+            });
+
         }
         //返回
         bid_detail_iv_last.setOnClickListener(new View.OnClickListener() {
@@ -120,11 +235,13 @@ public class BidDetail extends AppCompatActivity {
         RequestParams requestParams = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/bidDetail");
         requestParams.addBodyParameter("userId", sp.getString("USER_ID", null));
 
-        requestParams.addBodyParameter("id", row.id);
+        requestParams.addBodyParameter("id",row.id);
+        Log.e("BidDetail",  NetUrlUtils.NET_URL + "inviteBid/bidDetail?userId="+ sp.getString("USER_ID", null)+"&id="+row.id);
 
         x.http().post(requestParams, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                DialogLoadUtils.dismissDialog();
                 Log.e("BidDetail", "result:" + result.toString());
                 Gson gson = new Gson();
                 bidinfo = gson.fromJson(result, BidDetailInfo.class);
@@ -152,7 +269,23 @@ public class BidDetail extends AppCompatActivity {
                 tv_date_of_delivery.setText(date);
                 tv_area.setText(bidinfo.result.bidCompany.address);
                 tv_note_content.setText(bidinfo.result.remarks);
+                List<String> arrayList=null;
+                if (bidinfo.result.attachment!= null &&bidinfo.result.attachment != ""&&!"".equals(bidinfo.result.attachment)) {
+                    arrayList = StringToListUtils.stringToList(bidinfo.result.attachment, ",");
+                }else {
+                    arrayList=new ArrayList<>();
+                }
 
+
+                final List<String> finalArrayList = arrayList;
+                tvMyAttactment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(BidDetail.this, AttachmentBrow.class);
+                        intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                        startActivity(intent);
+                    }
+                });
                 tv_talk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -160,6 +293,7 @@ public class BidDetail extends AppCompatActivity {
                         intent.putExtra("bid.id", bidinfo.result.id);
                         intent.putExtra("inviteBid.id", row.id);
                         intent.putExtra("createBy", row.createBy.id);
+                        intent.putExtra("companyName",row.inviteCompany.name);
                         startActivity(intent);
                     }
                 });
@@ -167,7 +301,7 @@ public class BidDetail extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                DialogLoadUtils.dismissDialog();
             }
 
             @Override

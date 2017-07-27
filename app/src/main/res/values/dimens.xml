@@ -5,4 +5,7 @@
     <dimen name="padding_search_bar">5dp</dimen>
     <dimen name="title_height">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_middle">5dp</dimen>
+
+
 </resources>

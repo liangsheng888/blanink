@@ -12,56 +12,50 @@
         android:layout_marginBottom="60dp"
         android:layout_alignParentTop="true">
     </FrameLayout>
+
     <RadioGroup
         android:id="@+id/main_rg"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:background="#fff"
         android:layout_height="60dp"
-        android:paddingTop="10dp"
-
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/main_rb_task"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="任务"
+            android:text="首页"
             android:checked="true"
             android:gravity="center"
-            android:textColor="@color/main_color_selector"
-            android:drawableTop="@drawable/main_selector_task"
-            android:button="@null"
-            android:layout_height="match_parent" />
-        <RadioButton
-            android:id="@+id/main_rb_seek"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="查看"
-            android:gravity="center"
-            android:button="@null"
+            android:layout_gravity="center_vertical"
+
             android:textColor="@color/main_color_selector"
             android:drawableTop="@drawable/main_selector_seek"
-            android:layout_height="match_parent" />
+            android:button="@null"
+            android:layout_height="wrap_content" />
         <RadioButton
             android:id="@+id/main_rb_talk"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="沟通"
             android:gravity="center"
+            android:layout_gravity="center_vertical"
+
             android:textColor="@color/main_color_selector"
             android:drawableTop="@drawable/main_selector_talk"
             android:button="@null"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
         <RadioButton
             android:id="@+id/main_rb_notify"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="通知"
             android:gravity="center"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/main_color_selector"
             android:drawableTop="@drawable/main_selector_notify"
             android:button="@null"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
         <RadioButton
             android:id="@+id/main_rb_mine"
             android:layout_width="0dp"
@@ -71,6 +65,12 @@
             android:textColor="@color/main_color_selector"
             android:drawableTop="@drawable/main_selector_mine"
             android:button="@null"
-            android:layout_height="match_parent" />
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content" />
     </RadioGroup>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/main_rg"
+        android:background="@color/colorBackGround"></View>
 </RelativeLayout>

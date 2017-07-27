@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackGround"
-        tools:context="com.blanink.activity.task.TaskResponseDetailActivity">
+        tools:context=".activity.task.TaskResponseMyTask">
 
         <RelativeLayout
             android:id="@+id/task_response_rl"
@@ -37,11 +34,14 @@
                 android:textColor="#fff"
                 android:textSize="16sp" />
         </RelativeLayout>
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/task_response_rl">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/task_response_rl">
+           >
 
 
             <RelativeLayout
@@ -90,20 +90,11 @@
                             android:layout_marginRight="20dp">
 
                             <TextView
-                                android:id="@+id/tv_order_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="下单日期:"
-
-                                android:textColor="@color/colorTheme" />
-
-                            <TextView
                                 android:id="@+id/tv_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:layout_toRightOf="@id/tv_order_time"
-                                android:text=""
+                                android:text="2012-6-10"
                                 android:textColor="@color/colorTheme" />
                         </RelativeLayout>
                     </RelativeLayout>
@@ -132,6 +123,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
                         android:background="#fff">
 
                         <TextView
@@ -371,12 +363,12 @@
                     <EditText
                         android:id="@+id/task_response_et_finish_num"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:layout_margin="1dp"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/corner_common_border_gray"
-                        android:ems="5"
-                        android:gravity="center"
+                        android:ems="10"
+                        android:paddingLeft="5dp"
                         android:inputType="number"
                         android:singleLine="true"></EditText>
 
@@ -412,12 +404,12 @@
                     <EditText
                         android:id="@+id/task_response_et_bad_num"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:layout_margin="1dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/corner_common_border_gray"
-                        android:ems="5"
-                        android:gravity="center"
+                        android:ems="10"
+                        android:paddingLeft="5dp"
                         android:inputType="number"
                         android:singleLine="true"></EditText>
 
@@ -437,7 +429,7 @@
                     android:layout_below="@id/task_response_ll3"
                     android:layout_marginTop="5dp"
                     android:background="#fff"
-                    android:padding="10dp"
+                    android:padding="8dp"
                     android:text="上传照片"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp" />
@@ -448,7 +440,6 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:layout_marginTop="1dp"
                     android:layout_below="@+id/task_response_tv_hand"
                     android:background="#fff"
                     android:gravity="center_vertical">
@@ -473,8 +464,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/task_response_rl_hand"
-                    android:layout_marginTop="1dp"
                     android:background="#fff"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -484,16 +476,20 @@
                         android:text="完成状态:"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp" />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_common_border_gray">
 
                     <Spinner
                         android:id="@+id/task_response_sp_state"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:entries="@array/finish_state"
-                        android:padding="5dp">
+                        android:background="@drawable/corner_common_border_gray">
 
                     </Spinner>
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <RelativeLayout
@@ -501,7 +497,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ll"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="5dp"
                     android:background="#fff">
 
                     <RelativeLayout
@@ -546,8 +542,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="10dp"
-                    android:layout_alignTop="@+id/lv_task_response_info"
-                    android:layout_alignParentStart="true">
+                    android:layout_alignTop="@+id/lv_task_response_info">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -555,13 +550,18 @@
                         android:text="责任人:"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp" />
-
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:background="@drawable/corner_common_border_gray">
                     <Spinner
                         android:id="@+id/task_response_sp_person"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="213dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
+                        android:background="@drawable/corner_common_border_gray"
                         ></Spinner>
+                    </RelativeLayout>
 
                 </LinearLayout>
                 <RelativeLayout
@@ -605,6 +605,7 @@
                   android:background="#fff"
                   android:paddingLeft="10dp"
                   android:paddingRight="10dp"
+                  android:divider="@null"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
 
@@ -616,7 +617,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#fff"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ProgressBar
                     android:layout_width="wrap_content"
@@ -627,5 +628,5 @@
             </RelativeLayout>
 
         </FrameLayout>
+        </ScrollView>
     </RelativeLayout>
-</ScrollView>

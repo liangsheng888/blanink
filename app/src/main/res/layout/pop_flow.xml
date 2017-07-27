@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround"
+        android:layout_alignParentBottom="true">
+
+           <TextView
+            android:id="@+id/tv_modify"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="重新排流程"
+            android:textSize="18sp"
+            android:visibility="gone"
+
+            android:textColor="@color/colorBlack"
+            />
+        <TextView
+            android:id="@+id/tv_seek"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="流程详情"
+            android:textSize="18sp"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack"
+            />
+
+    <TextView
+        android:id="@+id/tv_seek_progress"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/selector_gray_pressed"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="查看进度"
+        android:layout_marginTop="1dp"
+        android:textColor="@color/colorBlack"
+
+        />
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="留言"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack"
+            />
+    <TextView
+        android:id="@+id/tv_public"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/selector_gray_pressed"
+        android:gravity="center"
+        android:text="发布流程"
+        android:visibility="gone"
+        android:layout_marginTop="1dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlack" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/selector_gray_pressed"
+        android:gravity="center"
+        android:text="取消"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorBlack"
+ />
+    </LinearLayout>
+
+</RelativeLayout>

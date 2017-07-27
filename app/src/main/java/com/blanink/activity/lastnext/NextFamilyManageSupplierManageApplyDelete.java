@@ -39,7 +39,6 @@ public class NextFamilyManageSupplierManageApplyDelete extends AppCompatActivity
     private MyActivityManager myActivityManager;
     private TextView customer_apply_iv_last;
     private TextView tv_company;
-    private TextView tv_customer_num;
     private TextView tv_address;
     private TextView tv_master;
     private TextView tv_phone;
@@ -73,7 +72,6 @@ public class NextFamilyManageSupplierManageApplyDelete extends AppCompatActivity
     private void initView() {
         customer_apply_iv_last = ((TextView) findViewById(R.id.customer_apply_iv_last));
         tv_company = ((TextView) findViewById(R.id.tv_company));//公司名
-        tv_customer_num = ((TextView) findViewById(R.id.tv_customer_name));//服务客户数量
         tv_address = ((TextView) findViewById(R.id.tv_address));//地址
         tv_master = ((TextView) findViewById(R.id.tv_major_person));//负责人
         tv_phone = ((TextView) findViewById(R.id.tv_phone));//手机
@@ -109,7 +107,6 @@ public class NextFamilyManageSupplierManageApplyDelete extends AppCompatActivity
             tv_company_other_remark.setText(info.result.reviewOthers + "");
             tv_company_remark.setText(info.result.reviewSelf + "");
             tv_company_honest.setText(df.format((info.result.reviewOthers + info.result.reviewSelf) / 2.0));
-            tv_customer_num.setText(info.result.serviceCount+"");
         }
         //发送申请
         btn_apply.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +117,7 @@ public class NextFamilyManageSupplierManageApplyDelete extends AppCompatActivity
                     return;
                 }
                 DialogLoadUtils.getInstance(NextFamilyManageSupplierManageApplyDelete.this);
-                DialogLoadUtils.showDialogLoad(NextFamilyManageSupplierManageApplyDelete.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 message = et_apply_info.getText().toString();
                 uploadApplyInfo();
             }
@@ -211,7 +208,6 @@ public class NextFamilyManageSupplierManageApplyDelete extends AppCompatActivity
                 tv_detail_address.setText(info.result.getAddress());
                 tv_introduce.setText(info.result.getRemarks());
                 DecimalFormat df = new DecimalFormat("0.0");
-                tv_customer_num.setText(info.result.serviceCount+"");
                 tv_company_remark.setText(info.result.reviewSelf + "");
                 tv_company_other_remark.setText(info.result.reviewOthers + "");
                 tv_url.setText(info.result.homepage);

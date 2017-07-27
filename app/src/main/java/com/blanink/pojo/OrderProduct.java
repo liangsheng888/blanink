@@ -1,5 +1,4 @@
 package com.blanink.pojo;
-import com.blanink.po.Flow;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class OrderProduct implements Serializable{
 
     @Override
     public String toString() {
-        return "OrderProduct{" +
+        return "OrderProd{" +
                 "errorCode='" + errorCode + '\'' +
                 ", reason='" + reason + '\'' +
                 ", result=" + result +
@@ -24,7 +23,7 @@ public class OrderProduct implements Serializable{
     public static class  Result implements Serializable {
         public String id;
         public Boolean isNewRecord;
-        public LoginResult.CreateBy createBy;
+        public LoginResult.ResultBean.CreateByBean createBy;
         public String createDate;
         public String updateDate;
         private Order  order;
@@ -126,20 +125,22 @@ public class OrderProduct implements Serializable{
          public static class WorkPlan implements Serializable{
              public Boolean isNewRecord;
              public String remarks;
-             public LoginResult.CreateBy createBy;
+             public LoginResult.ResultBean.CreateByBean createBy;
              public RelFlowProcess.Flow flow;
              public String planTime;
              public String achieveAmount;
+             public String priority;
 
              @Override
              public String toString() {
-                 return "WorkPlan{" +
+                 return "WorkPlanProcessQueue{" +
                          "isNewRecord=" + isNewRecord +
                          ", remarks='" + remarks + '\'' +
                          ", createBy=" + createBy +
                          ", flow=" + flow +
                          ", planTime='" + planTime + '\'' +
                          ", achieveAmount='" + achieveAmount + '\'' +
+                         ", priority='" + priority + '\'' +
                          '}';
              }
          }

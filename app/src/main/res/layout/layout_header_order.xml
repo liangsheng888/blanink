@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/colorBackGround">
+
+        <RelativeLayout
+            android:id="@+id/rl_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="5dp"
+            android:background="@drawable/corner_common_border_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@color/colorWhite"
+                android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/seek" />
+            <RelativeLayout
+                android:layout_toRightOf="@id/tv"
+
+                android:background="@color/colorWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_seek"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:hint="请输入你需要的信息" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+   <!-- <LinearLayout
+        android:id="@+id/rl_unsorted"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <Spinner
+            android:id="@+id/unsorted_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/category"></Spinner>
+
+        <TextView
+            android:id="@+id/rl_sorted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.5"
+            android:background="#fff"
+            android:drawableRight="@drawable/sj"
+            android:text="排序"
+            android:textColor="#000"
+            android:textSize="16sp"></TextView>
+
+        <TextView
+            android:id="@+id/come_order_handed_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="查看已发布的" />
+
+    </LinearLayout>-->
+</LinearLayout>

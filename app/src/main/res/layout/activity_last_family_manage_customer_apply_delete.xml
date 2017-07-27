@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
-            android:text="解除合作关系"
+            android:text="解除客户关系"
             android:textColor="#fff"
             android:textSize="18sp" />
 
@@ -307,6 +307,8 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:background="@color/colorBackGround">
             <EditText
                 android:id="@+id/et_apply_delete_info"
@@ -328,7 +330,7 @@
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/selector_blue"
+            android:background="@drawable/selector_red"
             android:text="申请解除"
             android:layout_margin="15dp"
             android:textColor="#fff" />

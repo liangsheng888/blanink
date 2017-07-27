@@ -40,8 +40,10 @@ public class DialogNotifyUtils {
         window.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 alertDialog.dismiss();
             }
         });
     }
+
 }

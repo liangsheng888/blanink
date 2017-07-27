@@ -197,7 +197,7 @@ public class NotifyDraftSend extends AppCompatActivity {
                     Toast.makeText(NotifyDraftSend.this, "请输入内容", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(NotifyDraftSend.this);
+                DialogLoadUtils.showDialogLoad("发送中...");
                 SendNotify();
             }
         });
@@ -215,7 +215,7 @@ public class NotifyDraftSend extends AppCompatActivity {
                     Toast.makeText(NotifyDraftSend.this, "请输入内容", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(NotifyDraftSend.this);
+                DialogLoadUtils.showDialogLoad("发送中...");
                 status = "0";
                 SendNotify();
             }

@@ -11,6 +11,7 @@ import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
@@ -105,6 +106,11 @@ public class CompanyMore extends AppCompatActivity {
             public void onLoadingMore() {
                 pageNo++;
                 loadData();
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
             }
         });
         //刷新
@@ -298,6 +304,8 @@ public class CompanyMore extends AppCompatActivity {
                 viewHolder.tvCompanyName=(TextView)convertView.findViewById(R.id.tv_company_name);
                 viewHolder.tvMaster=(TextView)convertView.findViewById(R.id.tv_company_master);
                 viewHolder.tvScope=(TextView)convertView.findViewById(R.id.tv_company_scope);
+                viewHolder.other=(TextView)convertView.findViewById(R.id.tv_other_cent);
+                viewHolder.reself=(TextView)convertView.findViewById(R.id.tv_self);
                 convertView.setTag(viewHolder);
                 sparseArray.put(position, convertView);
             } else {
@@ -308,6 +316,8 @@ public class CompanyMore extends AppCompatActivity {
             viewHolder.tvMaster.setText(listBean.get(position).getOffice().getMaster());
             viewHolder.tvScope.setText(listBean.get(position).getOffice().getScope());
             viewHolder.tvAddress.setText(listBean.get(position).getOffice().getAddress());
+            viewHolder.other.setText(listBean.get(position).getOffice().getReviewOthers()+"");
+            viewHolder.reself.setText(listBean.get(position).getOffice().getReviewSelf()+"");
             XUtilsImageUtils.display(viewHolder.ivCompany,listBean.get(position).getOffice().getPhoto());
             return convertView;
         }
@@ -319,5 +329,7 @@ public class CompanyMore extends AppCompatActivity {
        TextView tvMaster;
        TextView tvScope;
        TextView tvAddress;
+       TextView other;
+       TextView reself;
    }
 }

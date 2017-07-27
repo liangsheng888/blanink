@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackGround"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_common_border"
      >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
 
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/fail"
+            />
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/lv_invite_info"
+        android:layout_toRightOf="@id/rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#fff"
        >
 
         <RelativeLayout
@@ -27,6 +47,7 @@
                 android:layout_centerVertical="true"
                 android:padding="5dp"
                 android:text=""
+                android:textSize="16sp"
                 android:textColor="@color/colorTheme" />
             <TextView
                 android:id="@+id/tv_state"
@@ -36,6 +57,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="30dp"
                 android:text=""
+                android:textSize="16sp"
                 android:textColor="@color/colorTheme" />
 
         </RelativeLayout>
@@ -47,7 +69,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
+           >
 
             <TextView
                 android:id="@+id/tv_apply_address"
@@ -79,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="#fff">
+           >
 
             <TextView
                 android:id="@+id/master"
@@ -120,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="#fff">
+            >
 
             <TextView
                 android:id="@+id/phone"
@@ -162,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:paddingBottom="5dp"
-            android:background="#fff">
+           >
 
             <TextView
                 android:id="@+id/major"
@@ -183,4 +205,5 @@
 
         </RelativeLayout>
 </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

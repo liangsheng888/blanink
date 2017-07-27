@@ -7,11 +7,10 @@ The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
-* EaseUI.iml
+* .gitignore
 * LICENSE
 * README.md
 * build.xml
-* hyphenate.sh
 * ic_launcher-web.png
 * proguard-project.txt
 * simpledemo\
@@ -55,81 +54,33 @@ so manually move them:
 * simpledemo\res\values\strings.xml
 * simpledemo\src\
 * simpledemo\src\com\
-* simpledemo\src\com\hyphenate\
-* simpledemo\src\com\hyphenate\easeuisimpledemo\
-* simpledemo\src\com\hyphenate\easeuisimpledemo\DemoApplication.java
-* simpledemo\src\com\hyphenate\easeuisimpledemo\ui\
-* simpledemo\src\com\hyphenate\easeuisimpledemo\ui\ChatActivity.java
-* simpledemo\src\com\hyphenate\easeuisimpledemo\ui\LoginActivity.java
-* simpledemo\src\com\hyphenate\easeuisimpledemo\ui\MainActivity.java
-* simpledemo\src\com\hyphenate\easeuisimpledemo\ui\SettingsFragment.java
-
-Replaced Jars with Dependencies:
---------------------------------
-The importer recognized the following .jar files as third party
-libraries and replaced them with Gradle dependencies instead. This has
-the advantage that more explicit version information is known, and the
-libraries can be updated automatically. However, it is possible that
-the .jar file in your project was of an older version than the
-dependency we picked, which could render the project not compileable.
-You can disable the jar replacement in the import wizard and try again:
-
-android-support-v4.jar => com.android.support:support-v4:19.+
+* simpledemo\src\com\easemob\
+* simpledemo\src\com\easemob\easeuisimpledemo\
+* simpledemo\src\com\easemob\easeuisimpledemo\DemoApplication.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\ChatActivity.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\LoginActivity.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\MainActivity.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\SettingsFragment.java
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => easeui\src\main\AndroidManifest.xml
-* libs\arm64-v8a\libBaiduMapSDK_base_v4_0_0.so => easeui\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_base_v4_0_0.so
-* libs\arm64-v8a\libBaiduMapSDK_map_v4_0_0.so => easeui\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_map_v4_0_0.so
-* libs\arm64-v8a\libBaiduMapSDK_util_v4_0_0.so => easeui\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_util_v4_0_0.so
-* libs\arm64-v8a\libhyphenate.so => easeui\src\main\jniLibs\arm64-v8a\libhyphenate.so
-* libs\arm64-v8a\libhyphenate_av.so => easeui\src\main\jniLibs\arm64-v8a\libhyphenate_av.so
-* libs\arm64-v8a\libhyphenate_av_recorder.so => easeui\src\main\jniLibs\arm64-v8a\libhyphenate_av_recorder.so
-* libs\arm64-v8a\liblocSDK7.so => easeui\src\main\jniLibs\arm64-v8a\liblocSDK7.so
-* libs\arm64-v8a\libsqlite.so => easeui\src\main\jniLibs\arm64-v8a\libsqlite.so
-* libs\armeabi-v7a\libBaiduMapSDK_base_v4_0_0.so => easeui\src\main\jniLibs\armeabi-v7a\libBaiduMapSDK_base_v4_0_0.so
-* libs\armeabi-v7a\libBaiduMapSDK_map_v4_0_0.so => easeui\src\main\jniLibs\armeabi-v7a\libBaiduMapSDK_map_v4_0_0.so
-* libs\armeabi-v7a\libBaiduMapSDK_util_v4_0_0.so => easeui\src\main\jniLibs\armeabi-v7a\libBaiduMapSDK_util_v4_0_0.so
-* libs\armeabi-v7a\libhyphenate.so => easeui\src\main\jniLibs\armeabi-v7a\libhyphenate.so
-* libs\armeabi-v7a\libhyphenate_av.so => easeui\src\main\jniLibs\armeabi-v7a\libhyphenate_av.so
-* libs\armeabi-v7a\libhyphenate_av_recorder.so => easeui\src\main\jniLibs\armeabi-v7a\libhyphenate_av_recorder.so
-* libs\armeabi-v7a\liblocSDK7.so => easeui\src\main\jniLibs\armeabi-v7a\liblocSDK7.so
-* libs\armeabi-v7a\libsqlite.so => easeui\src\main\jniLibs\armeabi-v7a\libsqlite.so
-* libs\BaiduLBS_Android.jar => easeui\libs\BaiduLBS_Android.jar
-* libs\glide-3.6.1.jar => easeui\libs\glide-3.6.1.jar
-* libs\google-play-services.jar => easeui\libs\google-play-services.jar
-* libs\HwPush_SDK_V2705_nomap.jar => easeui\libs\HwPush_SDK_V2705_nomap.jar
-* libs\hyphenatechat_3.2.3.jar => easeui\libs\hyphenatechat_3.2.3.jar
-* libs\MiPush_SDK_Client_2_2_19.jar => easeui\libs\MiPush_SDK_Client_2_2_19.jar
-* libs\org.apache.http.legacy.jar => easeui\libs\org.apache.http.legacy.jar
-* libs\x86\libBaiduMapSDK_base_v4_0_0.so => easeui\src\main\jniLibs\x86\libBaiduMapSDK_base_v4_0_0.so
-* libs\x86\libBaiduMapSDK_map_v4_0_0.so => easeui\src\main\jniLibs\x86\libBaiduMapSDK_map_v4_0_0.so
-* libs\x86\libBaiduMapSDK_util_v4_0_0.so => easeui\src\main\jniLibs\x86\libBaiduMapSDK_util_v4_0_0.so
-* libs\x86\libhyphenate.so => easeui\src\main\jniLibs\x86\libhyphenate.so
-* libs\x86\libhyphenate_av.so => easeui\src\main\jniLibs\x86\libhyphenate_av.so
-* libs\x86\libhyphenate_av_recorder.so => easeui\src\main\jniLibs\x86\libhyphenate_av_recorder.so
-* libs\x86\liblocSDK7.so => easeui\src\main\jniLibs\x86\liblocSDK7.so
-* libs\x86\libsqlite.so => easeui\src\main\jniLibs\x86\libsqlite.so
-* lint.xml => easeui\lint.xml
-* res\ => easeui\src\main\res\
-* src\ => easeui\src\main\java\
-
-Missing Android Support Repository:
------------------------------------
-Some useful libraries, such as the Android Support Library, are
-installed from a special Maven repository, which should be installed
-via the SDK manager.
-
-It looks like this library is missing from your SDK installation at:
-null
-
-To install it, open the SDK manager, and in the Extras category,
-select "Android Support Repository". You may also want to install the
-"Google Repository" if you want to use libraries like Google Play
-Services.
+* AndroidManifest.xml => easeuI\src\main\AndroidManifest.xml
+* libs\arm64-v8a\libBaiduMapSDK_base_v3_6_1.so => easeuI\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_base_v3_6_1.so
+* libs\arm64-v8a\libBaiduMapSDK_map_v3_6_1.so => easeuI\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_map_v3_6_1.so
+* libs\arm64-v8a\libBaiduMapSDK_util_v3_6_1.so => easeuI\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_util_v3_6_1.so
+* libs\arm64-v8a\liblocSDK6a.so => easeuI\src\main\jniLibs\arm64-v8a\liblocSDK6a.so
+* libs\armeabi\libBaiduMapSDK_base_v3_6_1.so => easeuI\src\main\jniLibs\armeabi\libBaiduMapSDK_base_v3_6_1.so
+* libs\armeabi\libBaiduMapSDK_map_v3_6_1.so => easeuI\src\main\jniLibs\armeabi\libBaiduMapSDK_map_v3_6_1.so
+* libs\armeabi\libBaiduMapSDK_util_v3_6_1.so => easeuI\src\main\jniLibs\armeabi\libBaiduMapSDK_util_v3_6_1.so
+* libs\armeabi\liblocSDK6a.so => easeuI\src\main\jniLibs\armeabi\liblocSDK6a.so
+* libs\BaiduLBS_Android.jar => easeuI\libs\BaiduLBS_Android.jar
+* libs\glide-3.6.1.jar => easeuI\libs\glide-3.6.1.jar
+* res\ => easeuI\src\main\res\
+* src\ => easeuI\src\main\java\
 
 Next Steps:
 -----------

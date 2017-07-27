@@ -3,14 +3,18 @@ package com.blanink.activity.lastNext;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.adapter.CommonAdapter;
+import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.AllReview;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
+import com.blanink.view.NoScrollListview;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +29,8 @@ public class ReviewDetail extends AppCompatActivity {
     TextView tvLast;
     @BindView(R.id.rl_review)
     RelativeLayout rlReview;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
     @BindView(R.id.product_category)
     TextView productCategory;
     @BindView(R.id.tv_product)
@@ -59,14 +65,18 @@ public class ReviewDetail extends AppCompatActivity {
     TextView att;
     @BindView(R.id.tv_att)
     TextView tvAtt;
+    @BindView(R.id.iv)
+    ImageView iv;
     @BindView(R.id.tv_company_name)
     TextView tvCompanyName;
+    @BindView(R.id.tv_master)
+    TextView tvMaster;
     @BindView(R.id.tv_remark_time)
     TextView tvRemarkTime;
     @BindView(R.id.tv_content)
     TextView tvContent;
-    @BindView(R.id.tv_response)
-    TextView tvResponse;
+    @BindView(R.id.lv_review)
+    NoScrollListview lvReview;
     @BindView(R.id.activity_review_detail)
     RelativeLayout activityReviewDetail;
     private MyActivityManager myActivityManager;
@@ -87,23 +97,30 @@ public class ReviewDetail extends AppCompatActivity {
         reviewDetail = (AllReview.ResultBean.RowsBean) intent.getExtras().getSerializable("ReviewDetail");
         tvProduct.setText(reviewDetail.getOrderProduct().getProductName());
         tvProductRuler.setText(reviewDetail.getOrderProduct().getCompanyCategory().getName());
-        tvRequire.setText(reviewDetail.getOrder().getBCompany().getName());
-
         tvNum.setText(reviewDetail.getOrderProduct().getAmount());
         tvHonest.setText(reviewDetail.getIntegrityGrade());
         tvPay.setText(reviewDetail.getPaymentGrade());
         tvAtt.setText(reviewDetail.getServiceGrade());
         tvContent.setText(reviewDetail.getContents());
-        tvCompanyName.setText(reviewDetail.getOrder().getBCompany().getName());
+        tvCompanyName.setText(reviewDetail.getOrder().getACompany().getName());
         tvRemarkTime.setText(reviewDetail.getCreateDate());
-        if (reviewDetail.getReviewReplyList().size() > 0) {
-            tvResponse.setVisibility(View.VISIBLE);
-            tvResponse.setText("查看" + reviewDetail.getReviewReplyList().size() + "条回复");
-        }
-        tvResponse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        GlideUtils.glideImageView(ReviewDetail.this, iv, reviewDetail.getCreateBy().getPhoto(), true);
 
+        tvMaster.setText(reviewDetail.getOrder().getACompany().getMaster());
+       // tvEndDate.setText(reviewDetail.getOrder().getDelieverTimeString());
+        lvReview.setAdapter(new CommonAdapter<AllReview.ResultBean.RowsBean.ReviewReplyListBean>(this, reviewDetail.getReviewReplyList(), R.layout.item_review_detail) {
+            @Override
+            public void convert(ViewHolder viewHolder, AllReview.ResultBean.RowsBean.ReviewReplyListBean reviewReplyListBean, int position) {
+                reviewReplyListBean = reviewDetail.getReviewReplyList().get(position);
+                TextView company = viewHolder.getViewById(R.id.tv_company);
+                TextView reviewtime = viewHolder.getViewById(R.id.tv_time);
+                TextView content = viewHolder.getViewById(R.id.tv_review_content);
+                ImageView iv = viewHolder.getViewById(R.id.iv);
+
+                company.setText(reviewReplyListBean.getCompany().getName());
+                reviewtime.setText(reviewReplyListBean.getCreateDate());
+                content.setText(reviewReplyListBean.getContents());
+                GlideUtils.glideImageView(ReviewDetail.this, iv, reviewReplyListBean.getCompany().getPhoto(), true);
             }
         });
     }

@@ -1,6 +1,5 @@
 package com.blanink.activity.lastNext;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
@@ -19,9 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.bidTender.BidAccordWithTender;
-import com.blanink.activity.bidTender.BidApplication;
-import com.blanink.activity.bidTender.MyBidQueue;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.DialogLoadUtils;
@@ -122,7 +118,7 @@ public class LastFamilyManageCustomerApplyDelete extends AppCompatActivity {
                 }
                 message=et_apply_info.getText().toString();
                 DialogLoadUtils.getInstance(LastFamilyManageCustomerApplyDelete.this);
-                DialogLoadUtils.showDialogLoad(LastFamilyManageCustomerApplyDelete.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 RequestParams rp=new RequestParams(NetUrlUtils.NET_URL+"partner/customerApply");
                 rp.addBodyParameter("userId",sp.getString("USER_ID",null));
                 rp.addBodyParameter("companyA.id",info.result.getId());

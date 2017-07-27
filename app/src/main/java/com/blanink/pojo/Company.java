@@ -322,15 +322,15 @@ public class Company implements Serializable {
                 private String useable;
                 private PrimaryPersonBean primaryPerson;
                 private DeputyPersonBean deputyPerson;
-                private int reviewOthers;
+                private double reviewOthers;
                 private double reviewSelf;
                 private double otherCosting;
                 private double otherPayment;
-                private int otherQuality;
-                private int otherService;
-                private int otherTime;
+                private double otherQuality;
+                private double otherService;
+                private double otherTime;
                 private double selfCosting;
-                private int selfPayment;
+                private double selfPayment;
                 private double selfQuality;
                 private double selfService;
                 private double selfTime;
@@ -556,13 +556,11 @@ public class Company implements Serializable {
                     this.deputyPerson = deputyPerson;
                 }
 
-                public int getReviewOthers() {
+                public double getReviewOthers() {
                     return reviewOthers;
                 }
 
-                public void setReviewOthers(int reviewOthers) {
-                    this.reviewOthers = reviewOthers;
-                }
+
 
                 public double getReviewSelf() {
                     return reviewSelf;
@@ -588,27 +586,27 @@ public class Company implements Serializable {
                     this.otherPayment = otherPayment;
                 }
 
-                public int getOtherQuality() {
+                public double getOtherQuality() {
                     return otherQuality;
                 }
 
-                public void setOtherQuality(int otherQuality) {
+                public void setOtherQuality(double otherQuality) {
                     this.otherQuality = otherQuality;
                 }
 
-                public int getOtherService() {
+                public double getOtherService() {
                     return otherService;
                 }
 
-                public void setOtherService(int otherService) {
+                public void setOtherService(double otherService) {
                     this.otherService = otherService;
                 }
 
-                public int getOtherTime() {
+                public double getOtherTime() {
                     return otherTime;
                 }
 
-                public void setOtherTime(int otherTime) {
+                public void setOtherTime(double otherTime) {
                     this.otherTime = otherTime;
                 }
 
@@ -620,8 +618,12 @@ public class Company implements Serializable {
                     this.selfCosting = selfCosting;
                 }
 
-                public int getSelfPayment() {
+                public double getSelfPayment() {
                     return selfPayment;
+                }
+
+                public void setSelfPayment(double selfPayment) {
+                    this.selfPayment = selfPayment;
                 }
 
                 public void setSelfPayment(int selfPayment) {

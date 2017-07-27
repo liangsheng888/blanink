@@ -221,7 +221,7 @@ public class LastDeleteRelationIsAgree extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.bt_agree:
                 //同意
-                DialogLoadUtils.showDialogLoad(LastDeleteRelationIsAgree.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 agreeApply();
                 break;
             case R.id.bt_refuse:
@@ -253,7 +253,7 @@ public class LastDeleteRelationIsAgree extends AppCompatActivity {
                     Toast.makeText(LastDeleteRelationIsAgree.this, "请填写拒绝理由", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(LastDeleteRelationIsAgree.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 reject();
             }
         });

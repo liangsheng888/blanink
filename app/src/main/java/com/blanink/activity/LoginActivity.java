@@ -2,7 +2,6 @@ package com.blanink.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,19 +16,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.activity.EaseChat.modle.DemoHelper;
+import com.blanink.db.DemoDBManager;
 import com.blanink.pojo.LoginResult;
-import com.blanink.utils.CheckNetIsConncet;
+import com.blanink.utils.CheckNet;
 import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.RePsdUtils;
 import com.google.gson.Gson;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
@@ -69,6 +75,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     };
+    private String loginName;
+    private String psd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +101,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initData() {
-
+        //显示密码
+        Set<Map.Entry<String, String>> entrySet = RePsdUtils.getLoginPsd(this).entrySet();
+        for (Map.Entry<String, String> st : entrySet) {
+            loginName = st.getKey();
+            psd = st.getValue();
+        }
+        et_user.setText(loginName);
+        et_psd.setText(psd);
         //登录验证
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,10 +125,10 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                final Boolean isConnect = CheckNetIsConncet.isNetWorkConnected(LoginActivity.this);
+                final Boolean isConnect = CheckNet.isNetWorkConnected(LoginActivity.this);
                 //检查网络是否连接，
                 DialogLoadUtils.getInstance(LoginActivity.this);
-                DialogLoadUtils.showDialogLoad(LoginActivity.this);
+                DialogLoadUtils.showDialogLoad("登陆中...");
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
@@ -131,40 +146,73 @@ public class LoginActivity extends AppCompatActivity {
                                     DialogLoadUtils.dismissDialog();
                                     Log.e("LoginActivity", "result:" + result.toString());
                                     Gson gson = new Gson();
-                                    LoginResult loginResult = gson.fromJson(result, LoginResult.class);
+                                    final LoginResult loginResult = gson.fromJson(result, LoginResult.class);
                                     Log.e("LoginActivity", "loginResult:" + loginResult.toString());
                                     if ("00000".equals(loginResult.getErrorCode())) {
                                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                                         //保存用户信息
                                         SharedPreferences.Editor ed = sp.edit();
-                                        ed.putString("COMPANY_ID",loginResult.getResult().company.id);
+                                        //清空上个账号的信息
+                                        ed.clear();
+                                        ed.commit();
+                                        //保存当前账号信息
+                                        ed.putString("COMPANY_ID", loginResult.getResult().company.id);
                                         ed.putString("USER_ID", loginResult.getResult().id);
                                         ed.putString("LOGIN_NAME", loginResult.getResult().loginName);
                                         ed.putString("NAME", loginResult.getResult().name);
                                         ed.putString("PHONE", loginResult.getResult().phone);
                                         ed.putString("MOBILE", loginResult.getResult().mobile);
                                         ed.putString("PHOTO", loginResult.getResult().photo);
-                                        ed.putString("ROLE_LIST",loginResult.getResult().roleList.toString());
-                                        ed.putString("PASSWORD",passWord);
-                                        ed.putString("COMPANY_TYPE",loginResult.getResult().office.serviceType);
+                                        ed.putString("ROLE_LIST", loginResult.getResult().roleList.toString());
+                                        ed.putString("PASSWORD", passWord);
+                                        ed.putString("COMPANY_TYPE", loginResult.getResult().office.serviceType);
                                         ed.commit();
                                         //
+                                        RePsdUtils.saveLoginPsd(LoginActivity.this, userName, passWord);//记住密码
                                         setAlias(loginResult.getResult().id);
-                                        //RegisterUser(loginResult.getResult().id, passWord);
+                                        DemoDBManager.getInstance().closeDB();
+
+                                        // reset current user name before login
+
+                                        //退出上个环信账号
+                                        DemoHelper.getInstance().logout(true, new EMCallBack() {
+                                            @Override
+                                            public void onSuccess() {
+                                                Log.e("loginActivity","退出环信账号成功");
+                                                RegisterUser(loginResult.getResult().id, passWord);
+                                                login(loginResult.getResult().id, passWord,loginResult);//灯鹭当前账号
+                                            }
+
+                                            @Override
+                                            public void onError(int i, String s) {
+                                                Log.e("loginActivity","退出环信账号失败"+i+"---"+s.toString());
+
+                                            }
+
+                                            @Override
+                                            public void onProgress(int i, String s) {
+
+                                            }
+                                        });
+
+
+
                                         if (loginResult.getResult().admin) {
                                             //跳转到管理员界面
-                                            Intent intent =new Intent(LoginActivity.this,MainActivity.class);
-                                            intent.putExtra("DATA",result);
-                                            intent.putExtra("DIRECT",FRAGMENT_TASK);
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            intent.putExtra("DATA", result);
+                                            intent.putExtra("DIRECT", FRAGMENT_TASK);
                                             startActivity(intent);
                                         } else {
                                             //跳转到普通用户界面
-                                            Intent intent =new Intent(LoginActivity.this,MainActivity.class);
-                                            intent.putExtra("DATA",result);
-                                            intent.putExtra("DIRECT",FRAGMENT_TASK);
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            intent.putExtra("DATA", result);
+                                            intent.putExtra("DIRECT", FRAGMENT_TASK);
                                             startActivity(intent);
                                         }
 
+                                    } else if ("10004".equals(loginResult.getErrorCode())) {
+                                        Toast.makeText(LoginActivity.this, "您的账户已经过期，请联系客服解决！", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(LoginActivity.this, "用户或密码错误, 请重试！", Toast.LENGTH_SHORT).show();
                                     }
@@ -172,7 +220,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onError(Throwable ex, boolean isOnCallback) {
-                                    Log.e("LoginActivity",ex.toString());
+                                    Log.e("LoginActivity", ex.toString());
                                     DialogLoadUtils.dismissDialog();
                                     Toast.makeText(LoginActivity.this, "服务器无响应！", Toast.LENGTH_SHORT).show();
                                 }
@@ -216,11 +264,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-       myActivityManager.finishAllActivity();
+        myActivityManager.popOneActivity(this);
+
     }
 
-  /*  //注册环信账户
-    private void RegisterUser(final String username, final String psd) {
+    //注册环信账户
+    private void RegisterUser(final String userId, final String psd) {
 
         new Thread(new Runnable() {
             @Override
@@ -228,15 +277,54 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     // 注册方法，同步，需要自己异步执行，根据执行情况判断是否注册成功
 
-                    EMClient.getInstance().createAccount(username, psd);
+                    EMClient.getInstance().createAccount(userId, psd);
+
+                    Log.e("register", "注册环信账户成功");
                 } catch (HyphenateException e) {
                     e.printStackTrace();
-                    Log.e("register", "注册失败");
+                    Log.e("register", "注册环信失败" + e.getErrorCode());
+
                 }
             }
         }).start();
-    }*/
+    }
 
+    private void login(String username, String psd, final LoginResult loginResult) {
+        EMClient.getInstance().login(username, psd, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                Log.e("login", "登陆环信账号成功");
+                // ** manually load all local groups and conversation
+                EMClient.getInstance().groupManager().loadAllGroups();
+                EMClient.getInstance().chatManager().loadAllConversations();
+                // update current user's display name for APNs
+                boolean updatenick = EMClient.getInstance().pushManager().updatePushNickname(
+                        MyApplication.currentUserNick.trim());
+                if (updatenick) {
+                    Log.e("LoginActivity", "update current user nick success");
+                }
+                DemoHelper.getInstance().setCurrentUserName(loginResult.getResult().id);
+                DemoHelper.getInstance().getUserProfileManager().setCurrentUserNick(loginResult.getResult().name);
+                DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(loginResult.getResult().photo);
+                Log.e("loginActivity","当前用户信息:"+DemoHelper.getInstance().getUserProfileManager().getCurrentUserInfo().toString());
+                // get user's info (this should be get from App's server or 3rd party service)
+                // DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
+            }
+
+            @Override
+            public void onError(int code, String error) {
+                Log.e("login", "登陆环信账号失败" + code + "---" + error);
+
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+        });
+    }
+
+    //激光设置
     //设置别名（Jpush）
     private void setAlias(String alias) {
         if (TextUtils.isEmpty(alias)) {
@@ -270,7 +358,7 @@ public class LoginActivity extends AppCompatActivity {
                     logs = "Failed with errorCode = " + code;
                     Log.e(TAG, logs);
             }
-           // ExampleUtil.showToast(logs, getApplicationContext());
+            // ExampleUtil.showToast(logs, getApplicationContext());
         }
     };
 

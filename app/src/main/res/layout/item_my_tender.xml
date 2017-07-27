@@ -2,11 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackGround">
+    android:background="@color/colorWhite">
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/fail"
+        />
+    </RelativeLayout>
 
     <FrameLayout
+        android:layout_toRightOf="@id/rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,14 +67,13 @@
                         android:textColor="@color/colorTheme" />
 
                     <TextView
-                        android:id="@+id/tv"
+                        android:id="@+id/tv_publish"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:drawableRight="@drawable/next_black"
-                        android:gravity="center" />
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/colorBlack" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -185,39 +203,14 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:paddingTop="5dp">
 
-                <TextView
-                    android:id="@+id/tv_publish_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="发布时间:"
-                    android:textColor="@color/colorBlack" />
-
-                <TextView
-                    android:id="@+id/tv_publish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/tv_publish_date"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="" />
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
-                android:paddingTop="5dp">
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:id="@+id/tv_note"
@@ -251,6 +244,6 @@
             android:alpha="0.4"
             android:scaleType="centerCrop"
             android:src="@drawable/out_of_date"
-            android:visibility="gone" />
+            android:visibility="invisible" />
     </FrameLayout>
 </RelativeLayout>

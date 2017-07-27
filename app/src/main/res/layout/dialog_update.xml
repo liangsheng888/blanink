@@ -33,19 +33,22 @@
 
         <TextView
             android:id="@+id/tv_ingnore"
-            android:layout_width="130dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"
             android:layout_height="35dp"
             android:background="@drawable/selector_corner_gray"
             android:gravity="center"
-            android:text="忽略本次更新"
+            android:text="本次忽略"
             android:textColor="#AAAAAA"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_ok"
-            android:layout_width="130dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="30dp"            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/selector_blue"
             android:gravity="center"
             android:text="更新"

@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blanink">
 
-    <!-- photopicker -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
@@ -14,57 +16,40 @@
     <!-- Required -->
     <uses-permission android:name="com.blanink.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <!-- Optional. Required for location feature -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- Required -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name=".application.MyApplication"
+        android:name=".activity.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/yun"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity android:name=".activity.FlashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,64 +57,153 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LookSuperSeek" />
-        <activity android:name=".activity.order.LookBrowseOrder" />
-        <activity android:name=".activity.SeekActivity" />
-        <activity android:name=".activity.flow.FlowNoteNotifyActivity" />
-        <activity android:name=".activity.task.TaskResponseDetailActivity" />
-        <activity android:name=".activity.flow.FlowProcessDetailActivity" />
-        <activity android:name=".activity.flow.FlowProductStepActivity" />
-        <activity android:name=".activity.flow.FlowSortedNotHandProductionActivity" />
-        <activity android:name=".activity.task.TaskResponseQueue" />
-        <activity android:name=".activity.order.ComeOrderActivity" />
-        <activity android:name=".activity.order.ComeOrderDetailActivity" />
-        <activity android:name=".activity.order.ComeOrderNewAddInfoActivity" />
-        <activity android:name=".activity.order.ComeOrderModifyProductActivity" />
-        <activity android:name=".activity.order.ComeOrderAddProductActivity" />
-        <activity android:name=".activity.order.GoOrderQueueItemDetail" />
-        <activity android:name=".activity.order.GoOrderPurchase" />
-        <activity android:name=".activity.order.GoOrderDownOrdered" />
-        <activity android:name=".activity.order.GoOrderModifyProductInfo" />
-        <activity android:name=".activity.order.GoOrderGroupDownOrder" />
-        <activity android:name=".activity.order.GoOrderSeeRemarks" />
-        <activity android:name=".activity.order.GoOrderAddProduct" />
-        <activity android:name=".activity.lastNext.NextFamilyManageCompanyDetail" />
-        <activity android:name=".activity.lastNext.NextFamilyManageCompanyCredit" />
-        <activity android:name=".activity.lastNext.NextFamilyManageCompanySupplierManage" />
-        <activity android:name=".activity.lastNext.NextFamilyManageMySupplierSeek" />
-        <activity android:name=".activity.lastNext.NextFamilyManageProductDetail" />
-        <activity android:name=".activity.lastNext.NextFamilyManageInviteBcomeSupplier" />
-        <activity android:name=".activity.lastNext.NextAllSupplierSeek" />
-        <activity android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyCooperate" />
-        <activity android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyDelete" />
-        <activity android:name=".activity.lastNext.LastFamilyManageCustomer" />
-        <activity android:name=".activity.lastNext.LastFamilyManageNewAddCustomer" />
-        <activity android:name=".activity.lastNext.LastFamilyManageCustomerSupplierInvite" />
-        <activity android:name=".activity.lastNext.RefuseReason" />
-        <activity android:name=".activity.lastNext.LastFamilyManageCustomerApply" />
-        <activity android:name=".activity.lastNext.LastFamilyManageCustomerApplyDelete" />
-        <activity android:name=".activity.lastNext.LastMyCustomerSeek" />
-        <activity android:name=".activity.lastNext.LastCustomerDetail" />
-        <activity android:name=".activity.lastNext.LastFamilyNewAddMatche" />
-        <activity android:name=".activity.bidTender.BidApplication" />
-        <activity android:name=".activity.bidTender.BidDetail" />
-        <activity android:name=".activity.bidTender.BidAccordWithTender" />
-        <activity android:name=".activity.bidTender.TenderDetail" />
-        <activity android:name=".activity.bidTender.TenderPublish" />
-        <activity android:name=".activity.bidTender.MyTender" />
-        <activity android:name=".activity.bidTender.TenderBidQueue" />
-        <activity android:name=".activity.bidTender.TenderBidAccord" />
-        <activity android:name=".activity.remark.RemarkQueue" />
-        <activity android:name=".activity.remark.RemarkComeOderPro" />
-        <activity android:name=".activity.remark.RemarkComeOder" />
-        <activity android:name=".activity.remark.RemarkGoOrder" />
-        <activity android:name=".activity.remark.RemarkGoOrderPro" />
-        <activity android:name=".activity.afterSale.AfterSaleQueue" />
-        <activity android:name=".activity.afterSale.AfterSaleSeek" />
-        <activity android:name=".activity.AdvertiseActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.FlashActivity2" />
-        <activity android:name=".activity.jPush.TestActivity" />
+        <activity
+            android:name=".activity.order.LookBrowseOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SeekActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowNoteNotifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.TaskResponseMyTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProductStepActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.TaskResponseProcessQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderNewAddInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderAddProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderPurchase"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderGroupDownOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderSeeRemarks"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderAddProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageCompanyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageCompanyCredit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageCompanySupplierManage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageMySupplierSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageInviteBcomeSupplier"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextAllSupplierSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyCooperate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextFamilyManageSupplierManageApplyDelete"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastFamilyManageCustomer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastFamilyManageNewAddCustomer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastFamilyManageCustomerSupplierInvite"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.RefuseReason"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastFamilyManageCustomerApply"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastFamilyManageCustomerApplyDelete"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastMyCustomerSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastCustomerDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastFamilyNewAddMatche"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidApplication"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidAccordWithTender"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.TenderDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.TenderPublish"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.TenderBidQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.TenderBidAccord"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.remark.RemarkQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.remark.RemarkComeOder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.remark.RemarkGoOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AdvertiseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.FlashActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.jPush.TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderContinueAddProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderNewAddProduct"
+            android:screenOrientation="portrait" />
         <!-- 设置环信应用的AppKey -->
         <!--
         <meta-data
@@ -157,8 +231,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.chat.ChatAcitivity" />
-        <activity android:name=".activity.chat.ConversationList" />
+        <activity android:name=".activity.chat.EaseChatActivity" />
+        <activity android:name=".activity.chat.EaseConversationListActivity" />
         <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity" />
         -->
         <activity android:name=".activity.ConsultActivity" />
@@ -270,11 +344,18 @@
             android:name="JPUSH_APPKEY"
             android:value="fc2d806c5f4a412c809f9cb3" />
 
-        <activity android:name=".activity.jPush.RemoveRelationIsAgree" />
-        <activity android:name=".activity.jPush.ResponseResult" />
-        <activity android:name=".activity.remark.RemarkGoOrderAfterSaleProduct" />
-        <activity android:name=".activity.afterSale.AfterSaleHandleDetail" />
-        <activity android:name=".activity.afterSale.AfterSaleDemand" />
+        <activity
+            android:name=".activity.jPush.RemoveRelationIsAgree"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.jPush.ResponseResult"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleHandleDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleDemand"
+            android:screenOrientation="portrait" />
         <!-- photoPicker -->
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
@@ -282,72 +363,443 @@
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".activity.borrowRepay.RePayQueue" />
-        <activity android:name=".activity.borrowRepay.RePayNotify" />
-        <activity android:name=".activity.borrowRepay.RePayBorrowDetail" />
-        <activity android:name=".activity.borrowRepay.BorrowingComeOrderQueue" />
-        <activity android:name=".activity.borrowRepay.BorrowingGoOrderQueue" />
-        <activity android:name=".activity.borrowRepay.BorrowingComeOrderItemDetail" />
-        <activity android:name=".activity.borrowRepay.BorrowingGoOrderToBorrow" />
-        <activity android:name=".activity.borrowRepay.BorrowingGoOrderCombinationSendApplication" />
-        <activity android:name=".activity.borrowRepay.BorrowingApplyDetail" />
-        <activity android:name=".activity.fincying.FinancingApply" />
-        <activity android:name=".activity.my.MyFinancing" />
-        <activity android:name=".activity.fincying.FinancingManage" />
-        <activity android:name=".activity.fincying.FinancingMoneyDetail" />
-        <activity android:name=".activity.fincying.FinancingDetail" />
-        <activity android:name=".activity.fincying.FinancingFindMoney" />
-        <activity android:name=".activity.findProject.FindProjectQueue" />
-        <activity android:name=".activity.findProject.FindProjectFinancingDemandDetail" />
-        <activity android:name=".activity.findProject.FindProjectResonseApply" />
-        <activity android:name=".activity.money.MoneyTenderMine" />
-        <activity android:name=".activity.money.MoneyTenderApplyDetail" />
-        <activity android:name=".activity.bank.BankComeOderQueue" />
-        <activity android:name=".activity.bank.BankLookCompanyDetail" />
-        <activity android:name=".activity.borrowRepay.ReceivedPayNotifyQueue" />
-        <activity android:name=".activity.borrowRepay.ReceivedPayHistoryQueue" />
-        <activity android:name=".activity.borrowRepay.ReceivedPayPlanQueue" />
-        <activity android:name=".activity.borrowRepay.ReceivedPayHistoryDetail" />
-        <activity android:name=".activity.borrowRepay.ReceivedPayPlanDetail" />
-        <activity android:name=".activity.bidTender.TenderModify" />
         <activity
-            android:name=".activity.bidTender.MyBidQueue"
-            android:label="@string/title_activity_my_bid_queue"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".activity.bidTender.BidDetailChatHistory" />
-        <activity android:name=".activity.my.MyProfile" />
-        <activity android:name=".activity.lastNext.ProductDetail" />
-        <activity android:name=".activity.my.ModifyProfile" />
-        <activity android:name=".activity.bidTender.BidSeekTender" />
-        <activity android:name=".activity.set.PersonSet" />
-        <activity android:name=".activity.set.ModifyPsd" />
-        <activity android:name=".activity.task.TaskResponseListPlanedTask" />
-        <activity android:name=".activity.task.TaskNotAllocationToResponse" />
-        <activity android:name=".activity.task.MoreResponseNoteActivty" />
-        <activity android:name=".activity.task.WorkPlan" />
-        <activity android:name=".activity.task.WorkPlanDetail" />
-        <activity android:name=".activity.task.WorkPlanToAllocation" />
-        <activity android:name=".activity.task.WorkPlanAllocationDetail" />
-        <activity android:name=".activity.flow.FlowOrder" />
-        <activity android:name=".activity.task.WorkPlanToAllocationHistory" />
-        <activity android:name=".activity.flow.FlowUseTheFlow" />
-        <activity android:name=".activity.flow.FlowOftenUse" />
-        <activity android:name=".activity.order.ComeOrderProductDetail" />
-        <activity android:name=".activity.notify.NotifyMangeDetail" />
-        <activity android:name=".activity.lastNext.LastDeleteRelationIsAgree" />
-        <activity android:name=".activity.notify.NotifyReplayDetail" />
-        <activity android:name=".activity.lastNext.NextDeleteRelationIsAgree" />
-        <activity android:name=".activity.notify.OtherNotifyDetail" />
-        <activity android:name=".activity.UpdateActivity" />
-        <activity android:name=".activity.lastNext.CompanyDetail" />
-        <activity android:name=".activity.lastNext.CompanyProductDetail" />
-        <activity android:name=".activity.lastNext.CompanyMore" />
-        <activity android:name=".activity.lastNext.ProductMore" />
-        <activity android:name=".activity.bidTender.BidMore" />
-        <activity android:name=".activity.fincying.FincyingMore" />
-        <activity android:name=".activity.notify.NotifySend" />
-        <activity android:name=".activity.notify.NotifyDraftSend" />
-        <activity android:name=".activity.lastNext.ReviewDetail"></activity>
+            android:name=".activity.borrowRepay.RePayQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.RePayNotify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.RePayBorrowDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.BorrowingComeOrderQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.BorrowingGoOrderQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.BorrowingComeOrderItemDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.BorrowingGoOrderToBorrow"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.BorrowingGoOrderCombinationSendApplication"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.BorrowingApplyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.fincying.FinancingApply"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.my.MyFinancing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.fincying.FinancingManage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.fincying.FinancingMoneyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.fincying.FinancingDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.fincying.FinancingFindMoney"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.findProject.FindProjectQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.findProject.FindProjectFinancingDemandDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.findProject.FindProjectResonseApply"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.money.MoneyTenderMine"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.money.MoneyTenderApplyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bank.BankComeOderQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bank.BankLookCompanyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.ReceivedPayNotifyQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.ReceivedPayHistoryQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.ReceivedPayPlanQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.ReceivedPayHistoryDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.borrowRepay.ReceivedPayPlanDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.TenderModify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidDetailChatHistory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.my.MyProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.ProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.my.ModifyProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidSeekTender"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.set.PersonSet"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.set.ModifyPsd"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.TaskResponseParent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.TaskNotAllocationToResponse"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.MoreResponseNoteActivty"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.WorkPlanProcessQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.WorkPlanParent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.WorkPlanToAllocation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.WorkPlanAllocationDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.WorkPlanToAllocationHistory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowUseTheFlow"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.flow.FlowOftenUse"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.notify.NotifyMangeDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.LastDeleteRelationIsAgree"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.notify.NotifyReplayDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.NextDeleteRelationIsAgree"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.notify.OtherNotifyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UpdateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.CompanyDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.CompanyProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.CompanyMore"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.ProductMore"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidMore"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.fincying.FincyingMore"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.notify.NotifySend"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.notify.NotifyDraftSend"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.lastNext.ReviewDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.OrderSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderProductDetailTalkNote"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.OrderSeekContent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoComeOrderProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoDownOrderProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderGroupDownOrderProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderDownSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderDownSeekContent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoDownOrderProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoDownOrderProductDetailModifySupplier"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderModify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.OrderProductModify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderGroupDownOrderProductModify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoOrderAddProductHistory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoDownOrderModify"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSortCompleted"
+            android:screenOrientation="portrait" />
+
+        <receiver android:name=".activity.order.ComeOrder$RefreshBroReceiver">
+            <intent-filter>
+                <action android:name="com.blanink.REFRESH_DATA" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".fragment.GoDownOrderFragment$GoDownRefreshBroReceiver">
+            <intent-filter>
+                <action android:name="com.blanink.GO_ORDER_REFRESH_DATA" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".fragment.GoNotDownOrderFragment$GoFormProReceiver">
+            <intent-filter>
+                <action android:name="com.blanink.GO_ORDER_FORM_REFRESH_DATA" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.flow.FlowSet"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSortCompletedDetail"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.flow.FlowSortCompletedProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.GoComeOrderSeekContent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSave"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrderModifyNoModifyCustomer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowModifyFlow"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowComments"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSeekProcessDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSeek"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSeekContent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.TaskResponseHistoryDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.TaskResponseDeliver"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.task.WorkPlanedFinsihProgressQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProgress"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProgressDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProgressDetailHistory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowProgressProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ReceiveGoods"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ReceiveGoodsProduct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ReceiveGoodsProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ReceiveGoodsToReceive"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ReceiveGoodsProductReceiveQueue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ReceiveGoodsDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AttachmentDownLoad"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AttachmentBrow"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.remark.RemarkReview"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.order.ComeOrder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.flow.FlowSeekProgressDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.remark.RemarkGoOrderReview"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.BidManage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.bidTender.TenderManage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.MyAfterSale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleToHandle"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.afterSale.AfterSaleDemandModify"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.report.SaleAmountAnalysis" />
+        <activity android:name=".activity.WorkResponseHistory" />
+        <activity android:name=".activity.task.WorkResponseHistoryDetail" />
+        <activity android:name=".activity.WorkResponseHistorySeek" />
+        <activity android:name=".activity.EaseChat.EaseChatActivity" />
+        <activity android:name=".activity.EaseChat.EaseAddContactActivity" />
+        <activity android:name=".activity.EaseChat.NewFriendsMsgActivity" />
+        <activity android:name=".activity.EaseChat.ForwardMessageActivity" />
+        <activity android:name=".activity.EaseChat.PickAtUserActivity" />
+        <activity android:name=".activity.EaseChat.GroupSimpleDetailActivity" />
+        <activity android:name=".activity.EaseChat.NewGroupActivity" />
+        <activity android:name=".activity.EaseChat.GroupPickContactsActivity" />
+        <activity android:name=".activity.EaseChat.GroupsActivity" />
+        <activity android:name=".activity.EaseChat.PublicGroupsActivity" />
+        <activity android:name=".activity.EaseChat.PublicGroupsSeachActivity" />
+        <activity android:name=".activity.EaseChat.PickContactNoCheckboxActivity" />
+        <activity android:name=".activity.EaseChat.GroupDetailsActivity" />
+        <activity android:name=".activity.EaseChat.EditActivity" />
+        <activity android:name=".activity.EaseChat.GroupSearchMessageActivity" />
+        <activity android:name=".activity.EaseChat.SharedFilesActivity" />
+        <activity android:name=".activity.EaseChat.ExitGroupDialog" />
+        <activity android:name=".activity.EaseChat.ImageGridActivity" />
+        <activity android:name=".activity.EaseChat.RecorderVideoActivity" />
+        <activity android:name=".activity.EaseChat.VideoCallActivity" />
+        <activity android:name=".activity.EaseChat.CallActivity" />
+        <activity android:name=".activity.EaseChat.VoiceCallActivity" />
+        <activity android:name=".activity.EaseChat.EaseUserDetailActivity" />
+        <activity android:name=".activity.EaseChat.ContextMenuActivity" />
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <!-- 显示下载大图页面 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <!-- 下载文件 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1144170109178678#blanink" />
+        <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activity.report.ReportType"></activity>
     </application>
 
 </manifest>

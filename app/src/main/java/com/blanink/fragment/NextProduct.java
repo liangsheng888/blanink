@@ -23,8 +23,9 @@ import com.blanink.R;
 import com.blanink.activity.lastNext.ProductDetail;
 import com.blanink.pojo.CompanyProduct;
 import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
-import com.blanink.utils.XUtilsImageUtils;
+import com.blanink.utils.StringToListUtils;
 import com.blanink.view.RefreshListView;
 import com.google.gson.Gson;
 
@@ -224,7 +225,9 @@ public class NextProduct extends Fragment {
             }
             Log.e("LastProduct",rowList.toString());
             //x.image().bind(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
-            XUtilsImageUtils.displayLoading(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
+            if (rowList.get(position).productPhotos != null) {
+                GlideUtils.glideImageView(getActivity(), viewHolder.iv_product_picture, StringToListUtils.stringToList(rowList.get(position).productPhotos, "\\|").get(0),false);
+            }
 
             viewHolder.tv_product_name.setText(rowList.get(position).productName);
             viewHolder.tv_high_price.setText(rowList.get(position).productPriceHighline);

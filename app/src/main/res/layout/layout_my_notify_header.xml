@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+        <Spinner
+            android:id="@+id/sp_notify_cateGory"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/corner_common_border_gray"></Spinner>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/colorBackGround"></View>
+</LinearLayout>

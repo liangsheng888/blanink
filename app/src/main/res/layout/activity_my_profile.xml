@@ -46,7 +46,7 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:padding="15dp"
         android:background="#fff">
         <TextView
@@ -57,8 +57,9 @@
             android:text="头像"/>
         <ImageView
             android:id="@+id/iv_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/user_photo"/>
@@ -126,7 +127,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:text="123355666699"
+            android:text=""
             android:layout_marginRight="15dp"/>
 
     </RelativeLayout>
@@ -166,38 +167,17 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
             android:layout_centerVertical="true"
-            android:text="公司负责人"/>
-        <TextView
-            android:id="@+id/tv_master"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="公司图标"/>
+        <ImageView
+            android:id="@+id/iv_company_photo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:text=""/>
+            android:layout_centerVertical="true" />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="#fff"
-        android:padding="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:layout_centerVertical="true"
-            android:text="联系方式"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:text=""/>
-    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

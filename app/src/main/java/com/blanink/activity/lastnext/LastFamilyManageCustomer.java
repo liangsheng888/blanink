@@ -1,7 +1,6 @@
 package com.blanink.activity.lastNext;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -9,10 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -24,7 +21,8 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.activity.MainActivity;
 import com.blanink.pojo.ManyCustomer;
-import com.blanink.utils.CheckNetIsConncet;
+import com.blanink.utils.CheckNet;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.RefreshListView;
@@ -72,12 +70,11 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
     };
     private LinearLayout ll_load;
     private RelativeLayout ll_load_fail;
-    private TextView tv_seek;
-    private EditText et_seek;
     private LinearLayout ll_title;
     private RelativeLayout rl_seek;
     private RelativeLayout rl_load;
     private RelativeLayout rl_not_data;
+    private EditText et_seek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,15 +94,15 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
         iv_add = ((ImageView) findViewById(R.id.iv_add));
         ll_load = ((LinearLayout) findViewById(R.id.ll_load));//加载
         ll_load_fail = ((RelativeLayout) findViewById(R.id.rl_load_fail));//加载失败
-        tv_seek = ((TextView) findViewById(R.id.tv_seek));//
-        et_seek = ((EditText) findViewById(R.id.et_seek));
         ll_title = ((LinearLayout) findViewById(R.id.ll_title));
         rl_seek = ((RelativeLayout) findViewById(R.id.rl_seek));
         rl_load = ((RelativeLayout) findViewById(R.id.rl_load));
         rl_not_data = ((RelativeLayout) findViewById(R.id.rl_not_data));
     }
+
     private void initData() {
         getData();
+        addSeekHeader();
         ll_load_fail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,15 +130,15 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("Last", "点击position:" + position);
-                if (position > 0 && position < customers.size() + 1) {
+                if (position > 0 && position < customers.size() + 2) {
                     Intent intent = new Intent(LastFamilyManageCustomer.this, LastCustomerDetail.class);
-                    String customerId = customers.get(position - 1).getId();
+                    String customerId = customers.get(position - 2).getId();
                     intent.putExtra("companyId", customerId);
-                    intent.putExtra("companyA.id", customers.get(position - 1).getCompanyA().getId());
-                    intent.putExtra("companyName", customers.get(position - 1).getCompanyA().getName());
-                    intent.putExtra("customerState", customers.get(position - 1).getCompanyA().getCreateCompanyBy() == null ? true : false);
-                    intent.putExtra("companyType",customers.get(position-1).getCompanyA().serviceType);
-                    intent.putExtra("type",customers.get(position-1).getType());
+                    intent.putExtra("companyA.id", customers.get(position - 2).getCompanyA().getId());
+                    intent.putExtra("companyName", customers.get(position - 2).getCompanyA().getName());
+                    intent.putExtra("customerState", customers.get(position - 2).getCompanyA().getCreateCompanyBy() == null ? true : false);
+                    intent.putExtra("companyType", customers.get(position - 2).getCompanyA().serviceType);
+                    intent.putExtra("type", customers.get(position - 2).getType());
                     startActivity(intent);
                 }
             }
@@ -170,25 +167,6 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
             }
         });
 
-        tv_seek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LastFamilyManageCustomer.this, LastMyCustomerSeek.class);
-                startActivity(intent);
-            }
-        });
-        //
-        et_seek.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.e("@@@@", "focus true");
-                if (hasFocus) {
-                    Intent intent = new Intent(LastFamilyManageCustomer.this, LastMyCustomerSeek.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
     }
 
     @Override
@@ -214,7 +192,7 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!CheckNetIsConncet.isNetWorkConnected(LastFamilyManageCustomer.this)) {
+                if (!CheckNet.isNetWorkConnected(LastFamilyManageCustomer.this)) {
                     ll_load.setVisibility(View.GONE);
                     ll_load_fail.setVisibility(View.VISIBLE);
                 } else {
@@ -315,6 +293,7 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
         public TextView tv_honest;//公司信誉
         public TextView tv_company_apply_remark;//自评
         public TextView tv_company_apply_remark_other;//他评
+        ImageView iv;
 
     }
 
@@ -357,6 +336,8 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
                 viewHolder.tv_company_apply_remark = (TextView) convertView.findViewById(R.id.tv_company_apply_remark);
                 viewHolder.tv_company_apply_remark_other = (TextView) convertView.findViewById(R.id.tv_company_apply_other_remark);
                 viewHolder.tv_apply_address = (TextView) convertView.findViewById(R.id.tv_apply_address);
+                viewHolder.iv = (ImageView) convertView.findViewById(R.id.iv);
+
                 convertView.setTag(viewHolder);
                 viewArray.put(position, convertView);
             } else {
@@ -370,7 +351,9 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
             viewHolder.tv_scope.setText(customer.companyA.getScope());
             viewHolder.tv_master.setText(customer.companyA.getMaster());
             viewHolder.tv_name.setText(customer.companyA.getName());
-            viewHolder.tv_apply_address.setText(customer.companyA.getAddress());
+            if (customer.companyA.getArea() != null) {
+                viewHolder.tv_apply_address.setText(customer.companyA.getArea().getName());
+            }
             viewHolder.tv_master.setText(customer.companyA.getMaster());
             viewHolder.tv_phone.setText(customer.companyA.getPhone());
             viewHolder.tv_state.setText(customer.companyA.getCreateCompanyBy() == null ? "实有" : "虚拟");
@@ -382,13 +365,14 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
             viewHolder.tv_honest.setText(df.format((customers.get(position).getCompanyA().reviewOthers + customers.get(position).companyA.reviewSelf) / 2.0));
             viewHolder.tv_company_apply_remark.setText(customers.get(position).companyA.reviewSelf + "");
             viewHolder.tv_company_apply_remark_other.setText(customers.get(position).getCompanyA().reviewOthers + "");
+            GlideUtils.glideImageView(LastFamilyManageCustomer.this, viewHolder.iv, customers.get(position).getCompanyA().photo, true);
             return convertView;
         }
 
     }
 
     private void getData() {
-        if (!CheckNetIsConncet.isNetWorkConnected(LastFamilyManageCustomer.this)) {
+        if (!CheckNet.isNetWorkConnected(LastFamilyManageCustomer.this)) {
             ll_load.setVisibility(View.GONE);
             ll_load_fail.setVisibility(View.VISIBLE);
         } else {
@@ -460,50 +444,81 @@ public class LastFamilyManageCustomer extends AppCompatActivity implements Anima
         et_seek.clearFocus();
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        super.dispatchTouchEvent(event);
-        if (mIsAnim) {
-            return false;
-        }
-        final int action = event.getAction();
+    /* @Override
+     public boolean dispatchTouchEvent(MotionEvent event) {
+         super.dispatchTouchEvent(event);
+         if (mIsAnim) {
+             return false;
+         }
+         final int action = event.getAction();
 
-        float x = event.getX();
-        float y = event.getY();
+         float x = event.getX();
+         float y = event.getY();
 
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                lastY = y;
-                lastX = x;
-                return false;
-            case MotionEvent.ACTION_MOVE:
-                float dY = Math.abs(y - lastY);
-                float dX = Math.abs(x - lastX);
-                boolean down = y > lastY ? true : false;
-                lastY = y;
-                lastX = x;
-                if (dX < 4 && dY > 4 && !mIsTitleHide && !down) {
-                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(ll_title, "translationY", 0.0F, -0.5f);
-                    animator1.setInterpolator(new AccelerateDecelerateInterpolator());
-                    animator1.setDuration(100);
-                    animator1.start();
-                    animator1.addListener(this);
-                } else if (dX < 4 && dY > 4 && mIsTitleHide && down) {
-                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(ll_title, "translationY", -0.5f, 0.0F);
-                    animator1.setInterpolator(new AccelerateDecelerateInterpolator());
-                    animator1.setDuration(100);
-                    animator1.start();
-                    animator1.addListener(this);
+         switch (action) {
+             case MotionEvent.ACTION_DOWN:
+                 lastY = y;
+                 lastX = x;
+                 return false;
+             case MotionEvent.ACTION_MOVE:
+                 float dY = Math.abs(y - lastY);
+                 float dX = Math.abs(x - lastX);
+                 boolean down = y > lastY ? true : false;
+                 lastY = y;
+                 lastX = x;
+                 if (dX < 4 && dY > 4 && !mIsTitleHide && !down) {
+                     ObjectAnimator animator1 = ObjectAnimator.ofFloat(ll_title, "translationY", 0.0F, -0.5f);
+                     animator1.setInterpolator(new AccelerateDecelerateInterpolator());
+                     animator1.setDuration(100);
+                     animator1.start();
+                     animator1.addListener(this);
+                 } else if (dX < 4 && dY > 4 && mIsTitleHide && down) {
+                     ObjectAnimator animator1 = ObjectAnimator.ofFloat(ll_title, "translationY", -0.5f, 0.0F);
+                     animator1.setInterpolator(new AccelerateDecelerateInterpolator());
+                     animator1.setDuration(100);
+                     animator1.start();
+                     animator1.addListener(this);
+                 } else {
+                     return false;
+                 }
+                 mIsTitleHide = !mIsTitleHide;
+                 mIsAnim = true;
+                 break;
+             default:
+                 return false;
+         }
+         return false;
+     }
+ */
+    public void addSeekHeader() {
+        View view = View.inflate(LastFamilyManageCustomer.this, R.layout.layout_header_order, null);
+        et_seek = ((EditText) view.findViewById(R.id.et_seek));
+        lv_customer_queue.addHeaderView(view);
+        et_seek.clearFocus();
+        et_seek.setCursorVisible(false);
+        et_seek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et_seek.setFocusable(true);
+                et_seek.setCursorVisible(true);
+            }
+        });
+        //设立焦点改变监听事件
+        et_seek.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    //跳到搜索界面
+                    Log.e("HomeFragment", "焦点:" + hasFocus);
+                    et_seek.setCursorVisible(true);
+                    Intent intent = new Intent(LastFamilyManageCustomer.this, LastMyCustomerSeek.class);
+                    intent.putExtra("flag", "1");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 } else {
-                    return false;
+                    et_seek.setCursorVisible(false);
                 }
-                mIsTitleHide = !mIsTitleHide;
-                mIsAnim = true;
-                break;
-            default:
-                return false;
-        }
-        return false;
+            }
+        });
     }
-
 }

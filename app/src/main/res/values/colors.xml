@@ -4,11 +4,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTheme">#FB731F</color>
-    <color name="colorBackGround">#EFF2F6</color>
+    <color name="colorBackGround">#edf1f7</color>
     <color name="colorBlue">#57b3e3</color>
-    <color name="colorRed">#ff5B36</color>
+    <color name="colorRed">#f15a22</color>
     <color name="colorBlack">#464242</color>
     <color name="colorGray">#9b9a9a</color>
     <color name="colorWhite">#fff</color>
+    <color name="colorGreen">#7fb80e</color>
+    <color name="colorOrange">#f47920</color>
+    <color name="colorPurple">#6950a1</color>
     <color name="listItemColorSelected">#11FB731F</color>
+    <color name="transparent">#00000000</color>
+    <drawable name="transparent">#00000000</drawable>
 </resources>

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:hyphenate="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackGround">
     <RelativeLayout
         android:id="@+id/go_order_add_rl"
@@ -29,4 +30,14 @@
             />
 
     </RelativeLayout>
+
+   <!-- <com.hyphenate.easeui.widget.EaseConversationList
+        android:id="@+id/list"
+        android:layout_below="@id/go_order_add_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        hyphenate:cvsListPrimaryTextSize="16sp"/>-->
 </RelativeLayout>

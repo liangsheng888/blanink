@@ -554,21 +554,31 @@ public class BidTender implements Serializable {
                     private PrimaryPersonBean primaryPerson;
                     private DeputyPersonBean deputyPerson;
                     private String homepage;
-                    private int reviewOthers;
+                    private double reviewOthers;
                     private double reviewSelf;
                     private double otherCosting;
                     private double otherPayment;
-                    private int otherQuality;
-                    private int otherService;
-                    private int otherTime;
+                    private double otherQuality;
+                    private double otherService;
+                    private double otherTime;
                     private double selfCosting;
-                    private int selfPayment;
+                    private double selfPayment;
                     private double selfQuality;
                     private double selfService;
                     private double selfTime;
                     private int serviceCount;
                     private int grossProfit;
                     private String parentId;
+                    public String photo;
+
+                    public String getPhoto() {
+                        return photo;
+                    }
+
+                    public void setPhoto(String photo) {
+                        this.photo = photo;
+                    }
+
                     private List<CustomerServiceListBean> customerServiceList;
 
                     public String getId() {
@@ -771,6 +781,14 @@ public class BidTender implements Serializable {
                         this.deputyPerson = deputyPerson;
                     }
 
+                    public boolean isNewRecord() {
+                        return isNewRecord;
+                    }
+
+                    public void setNewRecord(boolean newRecord) {
+                        isNewRecord = newRecord;
+                    }
+
                     public String getHomepage() {
                         return homepage;
                     }
@@ -779,11 +797,11 @@ public class BidTender implements Serializable {
                         this.homepage = homepage;
                     }
 
-                    public int getReviewOthers() {
+                    public double getReviewOthers() {
                         return reviewOthers;
                     }
 
-                    public void setReviewOthers(int reviewOthers) {
+                    public void setReviewOthers(double reviewOthers) {
                         this.reviewOthers = reviewOthers;
                     }
 
@@ -811,27 +829,27 @@ public class BidTender implements Serializable {
                         this.otherPayment = otherPayment;
                     }
 
-                    public int getOtherQuality() {
+                    public double getOtherQuality() {
                         return otherQuality;
                     }
 
-                    public void setOtherQuality(int otherQuality) {
+                    public void setOtherQuality(double otherQuality) {
                         this.otherQuality = otherQuality;
                     }
 
-                    public int getOtherService() {
+                    public double getOtherService() {
                         return otherService;
                     }
 
-                    public void setOtherService(int otherService) {
+                    public void setOtherService(double otherService) {
                         this.otherService = otherService;
                     }
 
-                    public int getOtherTime() {
+                    public double getOtherTime() {
                         return otherTime;
                     }
 
-                    public void setOtherTime(int otherTime) {
+                    public void setOtherTime(double otherTime) {
                         this.otherTime = otherTime;
                     }
 
@@ -843,11 +861,11 @@ public class BidTender implements Serializable {
                         this.selfCosting = selfCosting;
                     }
 
-                    public int getSelfPayment() {
+                    public double getSelfPayment() {
                         return selfPayment;
                     }
 
-                    public void setSelfPayment(int selfPayment) {
+                    public void setSelfPayment(double selfPayment) {
                         this.selfPayment = selfPayment;
                     }
 

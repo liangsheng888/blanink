@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context=".activity.task.TaskResponseMyTask">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
+        android:id="@+id/task_response_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackGround"
-        tools:context="com.blanink.activity.task.TaskResponseDetailActivity">
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
 
-        <RelativeLayout
-            android:id="@+id/task_response_rl"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/colorTheme">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="任务反馈"
-                android:textColor="#fff"
-                android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="任务反馈"
+            android:textColor="#fff"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/task_response_iv_last"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/last"
-                android:gravity="center"
-                android:text="返回"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/task_response_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_response_rl">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/task_response_rl">
+            android:layout_height="match_parent">
 
 
             <RelativeLayout
@@ -61,6 +63,7 @@
                         android:layout_height="40dp"
                         android:background="#fff"
                         android:gravity="center_vertical">
+
                         <TextView
                             android:id="@+id/tv_companyName"
                             android:layout_width="wrap_content"
@@ -130,8 +133,8 @@
                         android:id="@+id/relativeLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="5dp"
-                        android:background="#fff">
+                        android:background="#fff"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:id="@+id/order_item_ll2_guigeName"
@@ -160,6 +163,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
+
                             <TextView
                                 android:id="@+id/num"
                                 android:layout_width="wrap_content"
@@ -180,12 +184,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
+
                             <TextView
                                 android:id="@+id/priority"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="甲方优先级:"
                                 android:layout_marginLeft="5dp"
+                                android:text="甲方优先级:"
                                 android:textColor="@color/colorBlack" />
 
                             <TextView
@@ -230,6 +235,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
+
                             <TextView
                                 android:id="@+id/tv_my_task"
                                 android:layout_width="wrap_content"
@@ -369,14 +375,14 @@
 
                     <EditText
                         android:id="@+id/task_response_et_finish_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_width="200dp"
+                        android:layout_height="35dp"
                         android:layout_margin="1dp"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/corner_common_border_gray"
                         android:ems="5"
-                        android:gravity="center"
                         android:inputType="number"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"></EditText>
 
                     <TextView
@@ -410,14 +416,14 @@
 
                     <EditText
                         android:id="@+id/task_response_et_bad_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_width="200dp"
+                        android:layout_height="35dp"
                         android:layout_margin="1dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/corner_common_border_gray"
                         android:ems="5"
-                        android:gravity="center"
                         android:inputType="number"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"></EditText>
 
                     <TextView
@@ -445,26 +451,26 @@
                     android:id="@+id/task_response_rl_hand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:layout_marginTop="1dp"
                     android:layout_below="@+id/task_response_tv_hand"
                     android:background="#fff"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        />
+                        android:layout_alignParentLeft="true" />
+
                     <ImageView
                         android:id="@+id/iv_picture"
-                        android:layout_toRightOf="@id/recycler_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/upload"/>
+                        android:layout_margin="5dp"
+                        android:layout_toRightOf="@id/recycler_view"
+                        android:src="@drawable/upload" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -472,9 +478,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/task_response_rl_hand"
-                    android:layout_marginTop="1dp"
                     android:background="#fff"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -484,15 +491,20 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp" />
 
-                    <Spinner
-                        android:id="@+id/task_response_sp_state"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        android:entries="@array/finish_state"
-                        android:padding="5dp">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_common_border_gray">
 
-                    </Spinner>
+
+                        <Spinner
+                            android:id="@+id/task_response_sp_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:background="@drawable/corner_common_border_gray">
+
+                        </Spinner>
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <RelativeLayout
@@ -541,12 +553,11 @@
                     android:id="@+id/task_response_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/lv_task_response_info"
                     android:background="#fff"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:layout_alignTop="@+id/lv_task_response_info"
-                    android:layout_alignParentStart="true">
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -555,58 +566,69 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp" />
 
-                    <Spinner
-                        android:id="@+id/task_response_sp_person"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        ></Spinner>
+                        android:background="@drawable/corner_common_border_gray">
+
+                        <Spinner
+                            android:id="@+id/task_response_sp_person"
+                            android:layout_width="200dp"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:background="@drawable/corner_common_border_gray"></Spinner>
+                    </RelativeLayout>
 
                 </LinearLayout>
+
                 <RelativeLayout
                     android:id="@+id/rl_history"
-                    android:layout_below="@id/task_response_btn_commit"
-                    android:background="#fff"
-                    android:layout_marginTop="10dp"
-                    android:padding="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/task_response_btn_commit"
+                    android:layout_marginTop="10dp"
+                    android:background="#fff"
+                    android:padding="5dp">
+
                     <TextView
                         android:id="@+id/note_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
                         android:text="反馈记录"
                         android:textColor="@color/colorBlack"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_note_num"
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/note_num"/>
+                        android:layout_toRightOf="@id/note_num" />
+
                     <TextView
                         android:id="@+id/tv_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="更多"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
                         android:drawableRight="@drawable/next_black"
                         android:gravity="center"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"/>
+                        android:text="更多" />
                 </RelativeLayout>
+
                 <com.blanink.view.NoScrollListview
-                    android:layout_below="@id/rl_history"
                     android:id="@+id/lv_response_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rl_history"
                     android:layout_marginTop="1dp"
                     android:background="#fff"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:paddingRight="10dp">
 
                 </com.blanink.view.NoScrollListview>
             </RelativeLayout>
@@ -616,16 +638,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#fff"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ProgressBar
+                    android:id="@+id/progressBar3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/progressBar3" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
         </FrameLayout>
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>
+

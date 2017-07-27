@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.lastNext.ReviewDetail">
-
     <RelativeLayout
         android:id="@+id/rl_review"
         android:layout_width="match_parent"
@@ -33,9 +32,17 @@
             android:textColor="#fff"
             android:textSize="16sp" />
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_review"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
     <RelativeLayout
         android:id="@+id/rl"
-        android:layout_below="@id/rl_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -49,6 +56,25 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="16sp" />
+        <!--<RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true">
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交货日期:"/>
+            <TextView
+                android:id="@+id/tv_end_date"
+                android:layout_toRightOf="@id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="2012-6-10"/>
+        </RelativeLayout>-->
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/rl_product"
@@ -82,7 +108,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/product_category"
-                android:text="水水水水" />
+                android:text="" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -104,7 +130,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/product_ruler"
-                android:text="木木" />
+                android:text="" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -138,7 +164,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/require"
-                android:text="空行" />
+                android:text="" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -160,7 +186,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/num"
-                android:text="1000" />
+                android:text="" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -214,7 +240,7 @@
                     android:layout_marginLeft="5dp"
                     android:textSize="16sp"
                     android:layout_toRightOf="@id/honest"
-                    android:text="3"
+                    android:text=""
                     android:textColor="@color/colorTheme" />
             </RelativeLayout>
 
@@ -239,7 +265,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/pay"
-                    android:text="4"
+                    android:text=""
                     android:textSize="16sp"
                     android:textColor="@color/colorTheme" />
             </RelativeLayout>
@@ -265,7 +291,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/att"
-                    android:text="3"
+                    android:text=""
                     android:textSize="16sp"
                     android:textColor="@color/colorTheme" />
             </RelativeLayout>
@@ -284,18 +310,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp">
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"></ImageView>
                 <TextView
+                    android:layout_toRightOf="@id/iv"
                     android:id="@+id/tv_company_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="空行互联"/>
-
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text=""/>
+                 <TextView
+                     android:id="@+id/tv_master"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_toRightOf="@id/tv_company_name"
+                     android:layout_marginLeft="5dp"
+                     android:layout_centerVertical="true"
+                     android:drawableRight="@drawable/next_gray"
+                     android:text="" />
                 <TextView
                     android:id="@+id/tv_remark_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_centerVertical="true"
                     android:text="2012-6-10"/>
             </RelativeLayout>
             <TextView
@@ -303,20 +348,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="45dp"
                 android:textColor="@color/colorBlack"
                 android:text="对方的无能"
+                android:layout_marginBottom="5dp"
                 />
-            <TextView
-                android:id="@+id/tv_response"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="4dp"
-                android:drawableRight="@drawable/next_black"
-                android:gravity="center"
-                android:visibility="gone"
-                android:text="查看全部回复"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+        <com.blanink.view.NoScrollListview
+            android:id="@+id/lv_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorWhite">
+        </com.blanink.view.NoScrollListview>
     </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_tender_publish"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
     android:background="@color/colorBackGround"
+    android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context="com.blanink.activity.bidTender.TenderPublish">
+
     <RelativeLayout
         android:id="@+id/bid_apply_rl"
         android:layout_width="match_parent"
@@ -18,11 +16,11 @@
         android:background="@color/colorTheme">
 
         <TextView
+            android:id="@+id/come_order_tv_seek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="发布招标"
-            android:id="@+id/come_order_tv_seek"
             android:textColor="#fff"
             android:textSize="18sp" />
 
@@ -33,404 +31,413 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:textColor="#fff"
-            android:text="返回"
+            android:drawableLeft="@drawable/last"
             android:gravity="center"
-            android:textSize="16sp"
-            android:drawableLeft="@drawable/last"  />
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/go_order_add_ll"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bid_apply_rl"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:background="#fff"
-        android:orientation="vertical">
-
+        android:layout_below="@id/bid_apply_rl">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tv_theme"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:gravity="center_vertical"
-                android:text="招标标题:" />
-
-            <RelativeLayout
-                android:id="@+id/rl_theme"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_theme"
-                android:background="@color/colorBackGround"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
-
-                <EditText
-                    android:id="@+id/tender_et_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="1dp"
-                    android:hint="请输入招标标题"
-                    android:gravity="center"
-                    android:textSize="14sp"
-                    android:singleLine="true"
-                    android:background="#fff">
-
-                </EditText>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tv_product"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="采购产品:" />
-
-            <RelativeLayout
-                android:id="@+id/rl_product"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_product"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/colorBackGround">
-
-                <EditText
-                    android:id="@+id/et_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="1dp"
-                    android:hint="采购产品名称"
-                    android:gravity="center"
-                    android:textSize="14sp"
-                    android:background="#fff"
-                    android:singleLine="true">
-
-                </EditText>
-
-            </RelativeLayout>
-
-
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:layout_marginTop="5dp"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tv_first_price"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="预付定金:" />
-
-            <RelativeLayout
-                android:id="@+id/rl_first_price"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_first_price"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/colorBackGround">
-
-                <EditText
-                    android:id="@+id/et_first_price"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="1dp"
-                    android:inputType="number"
-                    android:gravity="center"
-                    android:background="#fff"
-                    android:textSize="14sp"
-                    android:singleLine="true">
-
-                </EditText>
-
-            </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="%"
-                android:layout_toRightOf="@id/rl_first_price"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tv_price2"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignBaseline="@+id/rl_price"
-                android:layout_alignBottom="@+id/rl_price"
-                android:layout_alignParentLeft="true"
-                android:gravity="center_vertical"
-                android:text="目标价格:" />
-
-            <RelativeLayout
-                android:id="@+id/rl_price"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_price2"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/colorBackGround">
-
-                <EditText
-                    android:id="@+id/et_price"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="1dp"
-                    android:inputType="number"
-                    android:background="#fff"
-                    android:gravity="center"
-                    android:textSize="14sp"
-                    android:singleLine="true">
-
-                </EditText>
-
-            </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="元"
-                android:layout_toRightOf="@id/rl_price"
-                android:layout_centerVertical="true"></TextView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:text="产品数量:"
-                android:layout_alignParentLeft="true"
-               />
-            <RelativeLayout
-                android:id="@+id/rl_num"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_num"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/colorBackGround">
-
-                <EditText
-                    android:id="@+id/et_num"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="1dp"
-                    android:textSize="14sp"
-                    android:text="1"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:background="#fff">
-
-                </EditText>
-
-            </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="个"
-                android:layout_toRightOf="@id/rl_num"
-                android:layout_centerVertical="true"></TextView>
-
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/tv_hand_date"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignBaseline="@+id/rl_hand_date"
-                android:layout_alignBottom="@+id/rl_hand_date"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:gravity="center_vertical"
-                android:text="截止日期:" />
-
-            <RelativeLayout
-                android:id="@+id/rl_hand_date"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_hand_date"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/colorBackGround">
-
-                <EditText
-                    android:layout_margin="1dp"
-                    android:id="@+id/et_end_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="#fff"
-                    android:gravity="center"
-                    android:textSize="14sp"
-                    android:singleLine="true">
-
-                </EditText>
-
-            </RelativeLayout>
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@android:drawable/ic_menu_my_calendar"/>
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/go_order_add_ll2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/go_order_add_ll"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
-
-        <com.blanink.view.NoScrollListview
-            android:id="@+id/lv_major"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </com.blanink.view.NoScrollListview>
+            <LinearLayout
+                android:id="@+id/go_order_add_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:paddingLeft="15dp"
-            android:background="#fff"
-            android:paddingRight="10dp">
 
-            <TextView
-                android:id="@+id/tv_note"
-                android:layout_width="wrap_content"
-                android:layout_height="140dp"
-                android:layout_alignParentLeft="true"
-                android:text="备注信息:" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#fff"
+                    android:padding="5dp">
 
-            <RelativeLayout
-                android:id="@+id/rl_note"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_note"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/colorBackGround">
-                <EditText
-                    android:id="@+id/et_note"
+                    <TextView
+                        android:id="@+id/tv_theme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:gravity="center_vertical"
+                        android:text="招标标题:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_theme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tv_theme"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/tender_et_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="1dp"
+                            android:background="#fff"
+                            android:gravity="center"
+                            android:hint="请输入招标标题"
+                            android:singleLine="true"
+                            android:textSize="14sp">
+
+                        </EditText>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#fff"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="采购产品:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tv_product"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/et_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="1dp"
+                            android:background="#fff"
+                            android:gravity="center"
+                            android:hint="采购产品名称"
+                            android:singleLine="true"
+                            android:textSize="14sp">
+
+                        </EditText>
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#fff"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_first_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="预付定金:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_first_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tv_first_price"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/et_first_price"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="1dp"
+                            android:background="#fff"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textSize="14sp">
+
+                        </EditText>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/rl_first_price"
+                        android:text="%" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#fff"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_price2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignBaseline="@+id/rl_price"
+                        android:layout_alignBottom="@+id/rl_price"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="目标价格:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tv_price2"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/et_price"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="1dp"
+                            android:background="#fff"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textSize="14sp">
+
+                        </EditText>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/rl_price"
+                        android:text="元"></TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#fff"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="产品数量:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tv_num"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/et_num"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="1dp"
+                            android:background="#fff"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textSize="14sp">
+
+                        </EditText>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/rl_num"
+                        android:text="个"></TextView>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#fff"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_hand_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/rl_hand_date"
+                        android:layout_alignBottom="@+id/rl_hand_date"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:text="截止日期:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_hand_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tv_hand_date"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/et_end_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_margin="1dp"
+                            android:background="#fff"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textSize="14sp">
+
+                        </EditText>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawableRight="@android:drawable/ic_menu_my_calendar" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/go_order_add_ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/go_order_add_ll"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <com.blanink.view.NoScrollListview
+                    android:id="@+id/lv_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.blanink.view.NoScrollListview>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="1dp"
                     android:background="#fff"
-                    android:gravity="top"
-                    android:textSize="14sp">
-                </EditText>
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp">
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="140dp"
+                        android:paddingTop="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:text="备注信息:" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@id/tv_note"
+                        android:background="@color/colorBackGround">
+
+                        <EditText
+                            android:id="@+id/et_note"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/corner_common_border_gray"
+                            android:gravity="top"
+                            android:textSize="14sp"></EditText>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true" />
+
+                    <ImageView
+                        android:id="@+id/iv_picture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toEndOf="@+id/recycler_view"
+                        android:src="@drawable/upload" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/go_order_add_ll2"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/btn_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/selector_red"
+                    android:text="发布招标信息"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
         </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:background="#fff"
-            android:paddingRight="10dp">
-
-            <TextView
-                android:id="@+id/tv_upload"
-                android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="上传附件:"
-               />
-            <ImageView
-                android:id="@+id/iv_upload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/upload"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/tv_upload"
-                android:layout_centerVertical="true"
-                />
-            <TextView
-                android:id="@+id/tv_file_name"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/iv_upload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:singleLine="true"/>
-
-            <TextView
-                android:id="@+id/tv_file_size"
-                android:layout_toRightOf="@id/tv_file_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-               />
-        </RelativeLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/go_order_add_ll2"
-        android:layout_marginTop="20dp">
-
-        <Button
-            android:id="@+id/btn_ok"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="15dp"
-            android:background="@drawable/selector_red"
-            android:text="发布招标信息"
-            android:textColor="#fff"
-            android:textSize="16sp" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
-    </ScrollView>
+

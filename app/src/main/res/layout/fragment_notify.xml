@@ -7,21 +7,23 @@
         android:id="@+id/go_order_add_rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorGray">
+        android:background="@color/colorRed">
         <RadioGroup
             android:id="@+id/rg_notify"
-            android:layout_width="200dp"
-            android:layout_height="35dp"
+            android:layout_width="160dp"
+            android:layout_height="32dp"
             android:layout_centerInParent="true"
+            android:background="@color/colorWhite"
             android:orientation="horizontal"
             >
             <RadioButton
                 android:id="@+id/my_notify"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
+                android:layout_margin="1dp"
                 android:checked="true"
                 android:textSize="16sp"
                 android:background="@drawable/selector_red_checked"
@@ -30,9 +32,10 @@
             <RadioButton
                 android:id="@+id/notify_manage"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:button="@null"
+                android:layout_margin="1dp"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:background="@drawable/selector_red_checked"

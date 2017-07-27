@@ -166,7 +166,6 @@ public class SeekActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         activityManager = MyActivityManager.getInstance();
         activityManager.pushOneActivity(this);
-        lock = new ReentrantLock();
         index = getIntent().getIntExtra("DIRECT", -1);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
         initData();
@@ -205,12 +204,12 @@ public class SeekActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                content = SeekActivityEdtQuery.getText().toString().trim();
+                content = s.toString().trim();
                 listBean.clear();
                 listBean2.clear();
                 listBean3.clear();
                 listBean4.clear();
-                handler.sendEmptyMessage(0);
+                handler.sendEmptyMessageDelayed(0,150);
 
             }
         });
@@ -244,13 +243,16 @@ public class SeekActivity extends AppCompatActivity {
                     intent = new Intent(SeekActivity.this, LastCustomerDetail.class);
                     intent.putExtra("companyA.id", listBean.get(position).getOffice().getId());
                     intent.putExtra("type", listBean.get(position).getPartnershipAsA().getType());
+                    Log.e("SeekActivity", "客户");
                 } else if (listBean.get(position).getPartnershipAsB() != null) {
                     //供应商
+                    Log.e("SeekActivity", "供应商");
                     intent = new Intent(SeekActivity.this, NextFamilyManageCompanyDetail.class);
                     intent.putExtra("companyB.id", listBean.get(position).getOffice().getId());
                     intent.putExtra("type", listBean.get(position).getPartnershipAsB().getType());
                 } else {
                     //未合作
+                    Log.e("SeekActivity", "未合作");
                     intent = new Intent(SeekActivity.this, CompanyDetail.class);
                 }
                 intent.putExtra("companyId", customerId);
@@ -300,6 +302,8 @@ public class SeekActivity extends AppCompatActivity {
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                Log.e("SeekActivity","result："+ result.toString());
+
                 listBean.clear();
                 listBean2.clear();
                 listBean3.clear();
@@ -383,6 +387,7 @@ public class SeekActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("SeekActivity", ex.toString());
 
             }
 

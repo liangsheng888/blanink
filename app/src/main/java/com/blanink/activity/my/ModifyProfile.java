@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,22 +22,40 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.oss.ClientException;
+import com.alibaba.sdk.android.oss.OSSClient;
+import com.alibaba.sdk.android.oss.ServiceException;
+import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
+import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
+import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider;
+import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
+import com.alibaba.sdk.android.oss.model.DeleteObjectRequest;
+import com.alibaba.sdk.android.oss.model.DeleteObjectResult;
+import com.alibaba.sdk.android.oss.model.PutObjectRequest;
+import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.blanink.R;
+import com.blanink.activity.EaseChat.modle.DemoHelper;
+import com.blanink.oss.OssService;
 import com.blanink.pojo.LoginResult;
 import com.blanink.utils.DialogLoadUtils;
+import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.XUtilsImageUtils;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
 import java.io.File;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.iwf.photopicker.PhotoPicker;
 import me.iwf.photopicker.PhotoPreview;
+
 /***
  * 修改个人资料
  */
@@ -43,7 +63,7 @@ public class ModifyProfile extends AppCompatActivity {
     private static final int REQUEST_CODE = 2;
     @BindView(R.id.btn_update)
     Button btnUpdate;
-    private LoginResult result;
+    private LoginResult loginResult;
     private SharedPreferences sp;
     @BindView(R.id.iv_last)
     TextView ivLast;
@@ -65,6 +85,15 @@ public class ModifyProfile extends AppCompatActivity {
     private String photo;
     private MyActivityManager myActivityManager;
     private File file;
+    String path;
+    OSSClient oss;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            showNotify();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +110,17 @@ public class ModifyProfile extends AppCompatActivity {
     private void receivedData() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        result = (LoginResult) bundle.getSerializable("MyProfile");
-        Log.e("ModifyProfile", "result:" + result.toString());
+       loginResult = (LoginResult) bundle.getSerializable("MyProfile");
+        Log.e("ModifyProfile", "loginResult:" + loginResult.toString());
     }
 
     private void initData() {
-        etNick.setText(result.getResult().name);
-        etPhone.setText(result.getResult().phone);
+
+        OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(OssService.AccessKey, OssService.AccessKeySecret);
+        oss = new OSSClient(getApplicationContext(), OssService.endpoint, credentialProvider);
+        etNick.setText(loginResult.getResult().name);
+        etPhone.setText(loginResult.getResult().phone);
+        XUtilsImageUtils.display(ivPhoto, loginResult.getResult().photo, true);
         //返回
         ivLast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +136,7 @@ public class ModifyProfile extends AppCompatActivity {
                 phone = etPhone.getText().toString().trim();
                 Log.e("ModifyProfile", name + "------" + phone);
                 DialogLoadUtils.getInstance(ModifyProfile.this);
-                DialogLoadUtils.showDialogLoad(ModifyProfile.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 uploadDataToServer();
             }
         });
@@ -140,8 +173,53 @@ public class ModifyProfile extends AppCompatActivity {
                 Gson gson = new Gson();
                 LoginResult response = gson.fromJson(result, LoginResult.class);
                 if (response.getErrorCode().equals("00000")) {
+                    //上传图片到阿里云服务器
+
+
+                    PutObjectRequest put = new PutObjectRequest("blanink", ExampleUtil.getFileName(path), path);
+                    OSSAsyncTask task = oss.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
+                        @Override
+                        public void onSuccess(PutObjectRequest request, PutObjectResult result) {
+                            handler.sendEmptyMessage(0);
+                         /*   oss.asyncDeleteObject(new DeleteObjectRequest("blanink", loginResult.getResult().photo), new OSSCompletedCallback<DeleteObjectRequest, DeleteObjectResult>() {
+                                @Override
+                                public void onSuccess(DeleteObjectRequest deleteObjectRequest, DeleteObjectResult deleteObjectResult) {
+                                    handler.sendEmptyMessage(0);
+                                }
+
+                                @Override
+                                public void onFailure(DeleteObjectRequest deleteObjectRequest, ClientException e, ServiceException e1) {
+
+                                }
+                            });*/
+
+                            Log.d("TenderPublish", "UploadSuccess");
+                            Log.d("TenderPublish", "ETag:" + result.getETag());
+                            Log.d("TenderPublish", "RequestId:" + result.getRequestId());
+                            String backReuslt = result.getServerCallbackReturnBody();
+                            Log.d("TenderPublish", "ServerCallbackReturnBody():" + result.getServerCallbackReturnBody());
+                            //http://blanink.oss-cn-hangzhou.aliyuncs.com/com_blanink_96x96
+
+                        }
+
+                        @Override
+                        public void onFailure(PutObjectRequest request, ClientException clientExcepion, ServiceException serviceException) {
+                            // 请求异常
+                            if (clientExcepion != null) {
+                                // 本地异常如网络异常等
+                                clientExcepion.printStackTrace();
+                            }
+                            if (serviceException != null) {
+                                // 服务异常
+                                Log.e("TenderPublish", "ErrorCode:" + serviceException.getErrorCode());
+                                Log.e("TenderPublish", "RequestId:" + serviceException.getRequestId());
+                                Log.e("TenderPublish", "HostId:" + serviceException.getHostId());
+                                Log.e("TenderPublish", "RawMessage:" + serviceException.getRawMessage());
+                            }
+                        }
+                    });
                     //弹出对话框
-                    showNotify();
+
                 } else {
                     Toast.makeText(ModifyProfile.this, "修改失败", Toast.LENGTH_SHORT).show();
                 }
@@ -149,7 +227,7 @@ public class ModifyProfile extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e("ModifyProfile",ex.toString());
+                Log.e("ModifyProfile", ex.toString());
                 DialogLoadUtils.dismissDialog();
                 Toast.makeText(ModifyProfile.this, "服务器异常", Toast.LENGTH_SHORT).show();
 
@@ -204,7 +282,8 @@ public class ModifyProfile extends AppCompatActivity {
             List<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                String path = Uri.fromFile(new File(photos.get(0))).getPath();
+                path = Uri.fromFile(new File(photos.get(0))).getPath();
+                photo = OssService.OSS_URL + ExampleUtil.getFileName(path);
                 ivPhoto.setImageBitmap(BitmapFactory.decodeFile(path));
             }
 

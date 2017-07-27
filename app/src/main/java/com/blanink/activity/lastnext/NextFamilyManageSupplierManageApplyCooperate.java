@@ -36,7 +36,6 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
     private MyActivityManager myActivityManager;
     private ImageView customer_apply_iv_last;
     private TextView tv_company;
-    private TextView tv_customer_num;
     private TextView tv_address;
     private TextView tv_master;
     private TextView tv_phone;
@@ -81,7 +80,6 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
     private void initView() {
         customer_apply_iv_last = ((ImageView) findViewById(R.id.customer_apply_iv_last));
         tv_company = ((TextView) findViewById(R.id.tv_company));//公司名
-        tv_customer_num = ((TextView) findViewById(R.id.tv_customer_num));//服务客户数量
         tv_address = ((TextView) findViewById(R.id.tv_address));//地址
         tv_master = ((TextView) findViewById(R.id.tv_master));//负责人
         tv_phone = ((TextView) findViewById(R.id.tv_phone));//手机
@@ -126,7 +124,7 @@ public class NextFamilyManageSupplierManageApplyCooperate extends AppCompatActiv
                 }
                 message=et_apply_info.getText().toString();
                 DialogLoadUtils.getInstance(NextFamilyManageSupplierManageApplyCooperate.this);
-                DialogLoadUtils.showDialogLoad(NextFamilyManageSupplierManageApplyCooperate.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 uploadApplyInfo();
             }
         });

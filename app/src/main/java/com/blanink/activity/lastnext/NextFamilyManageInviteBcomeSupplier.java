@@ -223,7 +223,7 @@ public class NextFamilyManageInviteBcomeSupplier extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.bt_agree:
                 //同意
-                DialogLoadUtils.showDialogLoad(NextFamilyManageInviteBcomeSupplier.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 agreeApply();
                 break;
             case R.id.bt_refuse:
@@ -255,7 +255,7 @@ public class NextFamilyManageInviteBcomeSupplier extends AppCompatActivity {
                     Toast.makeText(NextFamilyManageInviteBcomeSupplier.this, "请填写拒绝理由", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(NextFamilyManageInviteBcomeSupplier.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 reject();
             }
         });

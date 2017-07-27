@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
@@ -21,6 +22,7 @@ import com.blanink.R;
 import com.blanink.pojo.BidTender;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.UpLoadListView;
@@ -101,6 +103,11 @@ public class BidMore extends AppCompatActivity {
                 pageNo++;
                 loadData();
             }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
         });
 
         //招标详情
@@ -167,10 +174,11 @@ public class BidMore extends AppCompatActivity {
                 viewHolder.tv_useful_time = (TextView) convertView.findViewById(R.id.tv_useful_time);
                 viewHolder.tv_single_price = (TextView) convertView.findViewById(R.id.tv_single_price);
                 viewHolder.tv_note_content = (TextView) convertView.findViewById(R.id.tv_note_content);
-                viewHolder.tv_attachment = (TextView) convertView.findViewById(R.id.tv_attachment);
                 viewHolder.tv_first_pay = (TextView) convertView.findViewById(R.id.tv_first_pay);
                 viewHolder.tv_publish = (TextView) convertView.findViewById(R.id.tv_publish);
                 viewHolder.iv_out_of_date = (ImageView) convertView.findViewById(R.id.iv_out_of_date);
+                viewHolder.iv = (ImageView) convertView.findViewById(R.id.iv);
+
                 viewSparseArray.put(position, convertView);
                 convertView.setTag(viewHolder);
             } else {
@@ -189,6 +197,8 @@ public class BidMore extends AppCompatActivity {
             if (ExampleUtil.compare_date(bidTenderList.get(position).getInviteBid().getExpireDate(), ExampleUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
                 viewHolder.iv_out_of_date.setVisibility(View.VISIBLE);
             }
+            GlideUtils.glideImageView(BidMore.this,viewHolder.iv,bidTenderList.get(position).getInviteBid().getInviteCompany().getPhoto(),true);
+
             return convertView;
         }
     }

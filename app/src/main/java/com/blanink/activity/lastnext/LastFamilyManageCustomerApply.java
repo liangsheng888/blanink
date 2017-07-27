@@ -117,7 +117,7 @@ public class LastFamilyManageCustomerApply extends AppCompatActivity {
                 }
                 message=et_apply_info.getText().toString();
                 DialogLoadUtils.getInstance(LastFamilyManageCustomerApply.this);
-                DialogLoadUtils.showDialogLoad(LastFamilyManageCustomerApply.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 uploadApplyInfo();
             }
         });

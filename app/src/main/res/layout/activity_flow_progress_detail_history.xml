@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="com.blanink.activity.order.OrderSeekContent">
+    <RelativeLayout
+        android:id="@+id/come_order"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:id="@+id/come_order_tv_seek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="工序反馈记录"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null">
+        </com.baoyz.swipemenulistview.SwipeMenuListView>
+        <include layout="@layout/layout_load"></include>
+    </FrameLayout>
+
+</LinearLayout>

@@ -12,13 +12,12 @@ public class Response implements Serializable {
     public String reason;
     public Boolean result;
 
-    @Override
-    public String toString() {
-        return "Response{" +
-                "errorCode='" + errorCode + '\'' +
-                ", reason='" + reason + '\'' +
-                ", result=" + result +
-                '}';
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
     public String getReason() {
@@ -27,14 +26,6 @@ public class Response implements Serializable {
 
     public void setReason(String reason) {
         this.reason = reason;
-    }
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
     }
 
     public Boolean getResult() {

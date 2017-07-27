@@ -249,6 +249,7 @@ public class ManyCustomer implements Serializable {
             public String zipCode;
             public String master;
             public String phone;
+            public String photo;
             public String fax;
             public String email;
             public String useable;

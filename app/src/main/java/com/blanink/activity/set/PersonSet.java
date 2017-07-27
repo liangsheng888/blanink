@@ -31,13 +31,10 @@ public class PersonSet extends AppCompatActivity {
     RelativeLayout rlSafe;
     @BindView(R.id.rl_exit)
     RelativeLayout rlExit;
-    private MyActivityManager myActivityManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myActivityManager = MyActivityManager.getInstance();
-        myActivityManager.pushOneActivity(this);
         setContentView(R.layout.activity_person_set);
         ButterKnife.bind(this);
     }
@@ -49,7 +46,7 @@ public class PersonSet extends AppCompatActivity {
                 finish();
                 break;
             case R.id.rl_safe:
-                Intent intent=new Intent(PersonSet.this,ModifyPsd.class);
+                Intent intent = new Intent(PersonSet.this, ModifyPsd.class);
                 startActivity(intent);
                 break;
             case R.id.rl_exit:
@@ -62,12 +59,12 @@ public class PersonSet extends AppCompatActivity {
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.show();
         alertDialog.setContentView(R.layout.dialog_custom_exit);
-        final Window window=alertDialog.getWindow();
-        WindowManager.LayoutParams lp =window.getAttributes();
+        final Window window = alertDialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER);
         Display d = getWindowManager().getDefaultDisplay(); // 获取屏幕宽、高用
         //  lp.height = (int) (d.getHeight() * 0.6); // 高度设置为屏幕的0.6
-        lp.width = (int) (d.getWidth()*0.9); // 宽度设置为屏幕的1/2
+        lp.width = (int) (d.getWidth() * 0.9); // 宽度设置为屏幕的1/2
         window.setWindowAnimations(R.style.dialogAnimation);
         window.setAttributes(lp);
         window.findViewById(R.id.tv_continue).setOnClickListener(new View.OnClickListener() {
@@ -80,7 +77,7 @@ public class PersonSet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                Intent intent=new Intent(PersonSet.this,LoginActivity.class);
+                Intent intent = new Intent(PersonSet.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,6 +86,6 @@ public class PersonSet extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        myActivityManager.popOneActivity(this);
+
     }
 }

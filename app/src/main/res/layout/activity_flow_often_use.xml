@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="常用流程"
+            android:text="请选择生产流程"
             android:textColor="#fff"
             android:textSize="18sp" />
 

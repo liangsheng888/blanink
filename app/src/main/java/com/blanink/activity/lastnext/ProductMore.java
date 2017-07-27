@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
@@ -99,6 +100,11 @@ public class ProductMore extends AppCompatActivity {
             public void onLoadingMore() {
                 pageNo++;
                 loadData();
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
             }
         });
        //enter detail

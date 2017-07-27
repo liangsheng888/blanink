@@ -47,11 +47,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="修改密码"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_profile"/>
+                android:drawableLeft="@drawable/sec"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -74,12 +75,13 @@
                 android:id="@+id/tv_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="退出登录"
+                android:text="切换账号"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_finance"/>
+                android:drawableLeft="@drawable/exit"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

@@ -247,15 +247,15 @@ public class BigSeekContent implements Serializable {
                 private String useable;
                 private PrimaryPersonBean primaryPerson;
                 private DeputyPersonBean deputyPerson;
-                private int reviewOthers;
+                private double reviewOthers;
                 private double reviewSelf;
                 private double otherCosting;
                 private double otherPayment;
-                private int otherQuality;
-                private int otherService;
-                private int otherTime;
+                private double otherQuality;
+                private double otherService;
+                private double otherTime;
                 private double selfCosting;
-                private int selfPayment;
+                private double selfPayment;
                 private double selfQuality;
                 private double selfService;
                 private double selfTime;
@@ -318,12 +318,12 @@ public class BigSeekContent implements Serializable {
                     this.id = id;
                 }
 
-                public boolean isIsNewRecord() {
+                public boolean isNewRecord() {
                     return isNewRecord;
                 }
 
-                public void setIsNewRecord(boolean isNewRecord) {
-                    this.isNewRecord = isNewRecord;
+                public void setNewRecord(boolean newRecord) {
+                    isNewRecord = newRecord;
                 }
 
                 public String getRemarks() {
@@ -502,11 +502,11 @@ public class BigSeekContent implements Serializable {
                     this.deputyPerson = deputyPerson;
                 }
 
-                public int getReviewOthers() {
+                public double getReviewOthers() {
                     return reviewOthers;
                 }
 
-                public void setReviewOthers(int reviewOthers) {
+                public void setReviewOthers(double reviewOthers) {
                     this.reviewOthers = reviewOthers;
                 }
 
@@ -534,27 +534,27 @@ public class BigSeekContent implements Serializable {
                     this.otherPayment = otherPayment;
                 }
 
-                public int getOtherQuality() {
+                public double getOtherQuality() {
                     return otherQuality;
                 }
 
-                public void setOtherQuality(int otherQuality) {
+                public void setOtherQuality(double otherQuality) {
                     this.otherQuality = otherQuality;
                 }
 
-                public int getOtherService() {
+                public double getOtherService() {
                     return otherService;
                 }
 
-                public void setOtherService(int otherService) {
+                public void setOtherService(double otherService) {
                     this.otherService = otherService;
                 }
 
-                public int getOtherTime() {
+                public double getOtherTime() {
                     return otherTime;
                 }
 
-                public void setOtherTime(int otherTime) {
+                public void setOtherTime(double otherTime) {
                     this.otherTime = otherTime;
                 }
 
@@ -566,11 +566,11 @@ public class BigSeekContent implements Serializable {
                     this.selfCosting = selfCosting;
                 }
 
-                public int getSelfPayment() {
+                public double getSelfPayment() {
                     return selfPayment;
                 }
 
-                public void setSelfPayment(int selfPayment) {
+                public void setSelfPayment(double selfPayment) {
                     this.selfPayment = selfPayment;
                 }
 
@@ -1311,15 +1311,15 @@ public class BigSeekContent implements Serializable {
                     private boolean isNewRecord;
                     private int sort;
                     private String type;
-                    private int reviewOthers;
-                    private int reviewSelf;
-                    private int otherCosting;
-                    private int otherPayment;
-                    private int otherQuality;
-                    private int otherService;
-                    private int otherTime;
-                    private int selfCosting;
-                    private int selfPayment;
+                    private double reviewOthers;
+                    private double reviewSelf;
+                    private double otherCosting;
+                    private double otherPayment;
+                    private double otherQuality;
+                    private double otherService;
+                    private double otherTime;
+                    private double selfCosting;
+                    private double selfPayment;
                     private int serviceCount;
                     private int grossProfit;
                     private String parentId;
@@ -1380,23 +1380,15 @@ public class BigSeekContent implements Serializable {
                         this.type = type;
                     }
 
-                    public int getReviewOthers() {
+                    public double getReviewOthers() {
                         return reviewOthers;
                     }
 
-                    public void setReviewOthers(int reviewOthers) {
-                        this.reviewOthers = reviewOthers;
-                    }
-
-                    public int getReviewSelf() {
+                    public double getReviewSelf() {
                         return reviewSelf;
                     }
 
-                    public void setReviewSelf(int reviewSelf) {
-                        this.reviewSelf = reviewSelf;
-                    }
-
-                    public int getOtherCosting() {
+                    public double getOtherCosting() {
                         return otherCosting;
                     }
 
@@ -1404,51 +1396,72 @@ public class BigSeekContent implements Serializable {
                         this.otherCosting = otherCosting;
                     }
 
-                    public int getOtherPayment() {
+
+                    public boolean isNewRecord() {
+                        return isNewRecord;
+                    }
+
+                    public void setNewRecord(boolean newRecord) {
+                        isNewRecord = newRecord;
+                    }
+
+                    public void setReviewOthers(double reviewOthers) {
+                        this.reviewOthers = reviewOthers;
+                    }
+
+                    public void setReviewSelf(double reviewSelf) {
+                        this.reviewSelf = reviewSelf;
+                    }
+
+                    public void setOtherCosting(double otherCosting) {
+                        this.otherCosting = otherCosting;
+                    }
+
+                    public double getOtherPayment() {
                         return otherPayment;
                     }
 
-                    public void setOtherPayment(int otherPayment) {
+                    public void setOtherPayment(double otherPayment) {
                         this.otherPayment = otherPayment;
                     }
 
-                    public int getOtherQuality() {
+                    public double getOtherQuality() {
                         return otherQuality;
                     }
 
-                    public void setOtherQuality(int otherQuality) {
+                    public void setOtherQuality(double otherQuality) {
                         this.otherQuality = otherQuality;
                     }
 
-                    public int getOtherService() {
+                    public double getOtherService() {
                         return otherService;
                     }
 
-                    public void setOtherService(int otherService) {
+                    public void setOtherService(double otherService) {
                         this.otherService = otherService;
                     }
 
-                    public int getOtherTime() {
+                    public double getOtherTime() {
                         return otherTime;
                     }
 
-                    public void setOtherTime(int otherTime) {
+                    public void setOtherTime(double otherTime) {
                         this.otherTime = otherTime;
                     }
 
-                    public int getSelfCosting() {
+                    public double getSelfCosting() {
                         return selfCosting;
                     }
 
-                    public void setSelfCosting(int selfCosting) {
+                    public void setSelfCosting(double selfCosting) {
                         this.selfCosting = selfCosting;
                     }
 
-                    public int getSelfPayment() {
+                    public double getSelfPayment() {
                         return selfPayment;
                     }
 
-                    public void setSelfPayment(int selfPayment) {
+                    public void setSelfPayment(double selfPayment) {
                         this.selfPayment = selfPayment;
                     }
 
@@ -1958,19 +1971,19 @@ public class BigSeekContent implements Serializable {
                     private PrimaryPersonBean primaryPerson;
                     private DeputyPersonBean deputyPerson;
                     private String homepage;
-                    private int reviewOthers;
+                    private double reviewOthers;
                     private double reviewSelf;
                     private double otherCosting;
                     private double otherPayment;
-                    private int otherQuality;
-                    private int otherService;
-                    private int otherTime;
+                    private double otherQuality;
+                    private double otherService;
+                    private double otherTime;
                     private double selfCosting;
-                    private int selfPayment;
+                    private double selfPayment;
                     private double selfQuality;
                     private double selfService;
                     private double selfTime;
-                    private int serviceCount;
+                    private double serviceCount;
                     private int grossProfit;
                     private String parentId;
                     private List<CustomerServiceListBean> customerServiceList;
@@ -2227,15 +2240,23 @@ public class BigSeekContent implements Serializable {
                         return homepage;
                     }
 
+                    public boolean isNewRecord() {
+                        return isNewRecord;
+                    }
+
+                    public void setNewRecord(boolean newRecord) {
+                        isNewRecord = newRecord;
+                    }
+
                     public void setHomepage(String homepage) {
                         this.homepage = homepage;
                     }
 
-                    public int getReviewOthers() {
+                    public double getReviewOthers() {
                         return reviewOthers;
                     }
 
-                    public void setReviewOthers(int reviewOthers) {
+                    public void setReviewOthers(double reviewOthers) {
                         this.reviewOthers = reviewOthers;
                     }
 
@@ -2263,27 +2284,27 @@ public class BigSeekContent implements Serializable {
                         this.otherPayment = otherPayment;
                     }
 
-                    public int getOtherQuality() {
+                    public double getOtherQuality() {
                         return otherQuality;
                     }
 
-                    public void setOtherQuality(int otherQuality) {
+                    public void setOtherQuality(double otherQuality) {
                         this.otherQuality = otherQuality;
                     }
 
-                    public int getOtherService() {
+                    public double getOtherService() {
                         return otherService;
                     }
 
-                    public void setOtherService(int otherService) {
+                    public void setOtherService(double otherService) {
                         this.otherService = otherService;
                     }
 
-                    public int getOtherTime() {
+                    public double getOtherTime() {
                         return otherTime;
                     }
 
-                    public void setOtherTime(int otherTime) {
+                    public void setOtherTime(double otherTime) {
                         this.otherTime = otherTime;
                     }
 
@@ -2295,8 +2316,16 @@ public class BigSeekContent implements Serializable {
                         this.selfCosting = selfCosting;
                     }
 
-                    public int getSelfPayment() {
+                    public double getSelfPayment() {
                         return selfPayment;
+                    }
+
+                    public void setSelfPayment(double selfPayment) {
+                        this.selfPayment = selfPayment;
+                    }
+
+                    public void setServiceCount(double serviceCount) {
+                        this.serviceCount = serviceCount;
                     }
 
                     public void setSelfPayment(int selfPayment) {
@@ -2327,7 +2356,7 @@ public class BigSeekContent implements Serializable {
                         this.selfTime = selfTime;
                     }
 
-                    public int getServiceCount() {
+                    public double getServiceCount() {
                         return serviceCount;
                     }
 
@@ -3209,15 +3238,15 @@ public class BigSeekContent implements Serializable {
                     private String useable;
                     private PrimaryPersonBean primaryPerson;
                     private DeputyPersonBean deputyPerson;
-                    private int reviewOthers;
+                    private double reviewOthers;
                     private double reviewSelf;
                     private double otherCosting;
                     private double otherPayment;
-                    private int otherQuality;
-                    private int otherService;
-                    private int otherTime;
+                    private double otherQuality;
+                    private double otherService;
+                    private double otherTime;
                     private double selfCosting;
-                    private int selfPayment;
+                    private double selfPayment;
                     private double selfQuality;
                     private double selfService;
                     private double selfTime;
@@ -3473,11 +3502,19 @@ public class BigSeekContent implements Serializable {
                         this.deputyPerson = deputyPerson;
                     }
 
-                    public int getReviewOthers() {
+                    public boolean isNewRecord() {
+                        return isNewRecord;
+                    }
+
+                    public void setNewRecord(boolean newRecord) {
+                        isNewRecord = newRecord;
+                    }
+
+                    public double getReviewOthers() {
                         return reviewOthers;
                     }
 
-                    public void setReviewOthers(int reviewOthers) {
+                    public void setReviewOthers(double reviewOthers) {
                         this.reviewOthers = reviewOthers;
                     }
 
@@ -3505,27 +3542,27 @@ public class BigSeekContent implements Serializable {
                         this.otherPayment = otherPayment;
                     }
 
-                    public int getOtherQuality() {
+                    public double getOtherQuality() {
                         return otherQuality;
                     }
 
-                    public void setOtherQuality(int otherQuality) {
+                    public void setOtherQuality(double otherQuality) {
                         this.otherQuality = otherQuality;
                     }
 
-                    public int getOtherService() {
+                    public double getOtherService() {
                         return otherService;
                     }
 
-                    public void setOtherService(int otherService) {
+                    public void setOtherService(double otherService) {
                         this.otherService = otherService;
                     }
 
-                    public int getOtherTime() {
+                    public double getOtherTime() {
                         return otherTime;
                     }
 
-                    public void setOtherTime(int otherTime) {
+                    public void setOtherTime(double otherTime) {
                         this.otherTime = otherTime;
                     }
 
@@ -3537,11 +3574,11 @@ public class BigSeekContent implements Serializable {
                         this.selfCosting = selfCosting;
                     }
 
-                    public int getSelfPayment() {
+                    public double getSelfPayment() {
                         return selfPayment;
                     }
 
-                    public void setSelfPayment(int selfPayment) {
+                    public void setSelfPayment(double selfPayment) {
                         this.selfPayment = selfPayment;
                     }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.afterSale.AfterSaleDetail">
+    <RelativeLayout
+        android:id="@+id/rl_after_sale_queue"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="售后处理记录"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/after_sale_queue_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:text="返回"
+            android:gravity="center"
+            android:drawableLeft="@drawable/last" />
+    </RelativeLayout>
+        <FrameLayout
+            android:layout_below="@id/rl_after_sale_queue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.blanink.view.UpLoadListView
+                android:id="@+id/lv_after_sale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"></com.blanink.view.UpLoadListView>
+            <include layout="@layout/layout_load"></include>
+        </FrameLayout>
+</RelativeLayout>

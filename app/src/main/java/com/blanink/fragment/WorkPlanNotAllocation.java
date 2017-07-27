@@ -24,6 +24,7 @@ import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.WorkPlan;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.PriorityUtils;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -131,12 +132,12 @@ public class WorkPlanNotAllocation extends Fragment {
                             TextView tv_note = viewHolder.getViewById(R.id.tv_note);
                             tv_companyName.setText(result.getCompanyA().getName());
                             tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.getCreateDate())));
-                            tv_master.setText(result.getCompanyBOwner().getName());
+                          //  tv_master.setText(result.getCompanyBOwner().getName());
                             tv_pro_name.setText(result.getProductName());
                             tv_pro_category.setText(result.getCompanyCategory().getName());
                             tv_num.setText(result.getRelFlowProcess().getTarget()+"");//数量
                             tv_note.setText(result.getProductDescription());
-                            tv_priority.setText(result.getRelFlowProcess().getProcessPriority());
+                            tv_priority.setText(PriorityUtils.getPriority(result.getRelFlowProcess().getProcessPriority()));
 
 
                         }

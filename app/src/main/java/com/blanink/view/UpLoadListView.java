@@ -21,8 +21,6 @@ import java.util.Date;
 public class UpLoadListView extends ListView implements OnScrollListener{
 	private View footerView;
 	private int footerViewHeight;
-	int totalItemCount;// 总数量；
-	int lastVisibleItem;// 最后一个可见的item；
 	private RotateAnimation upAnimation,downAnimation;
 	private boolean isLoadingMore = false;//当前是否正在处于加载更多
 	public UpLoadListView(Context context) {
@@ -93,6 +91,7 @@ public class UpLoadListView extends ListView implements OnScrollListener{
 	}
 	public interface OnRefreshListener{
 		void onLoadingMore();
+		void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount);
 	}
 	
 	/**
@@ -118,8 +117,9 @@ public class UpLoadListView extends ListView implements OnScrollListener{
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
-		this.lastVisibleItem = firstVisibleItem + visibleItemCount;
-		this.totalItemCount = totalItemCount;
+		    if(listener!=null){
+		    listener.onScroll(view,firstVisibleItem,
+		    visibleItemCount,totalItemCount);}
 		}
 
 }

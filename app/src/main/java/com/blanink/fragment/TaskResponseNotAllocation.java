@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.task.TaskNotAllocationToResponse;
+import com.blanink.activity.task.TaskResponseDeliver;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.WorkedTask;
@@ -51,13 +52,13 @@ public class TaskResponseNotAllocation extends Fragment {
     RelativeLayout rlNotData;
     private String processId;
     private SharedPreferences sp;
-    private CommonAdapter<WorkedTask.Result> commonAdapter;
-    private List<WorkedTask.Result> list;
+    private CommonAdapter<WorkedTask.ResultBean> commonAdapter;
+    private List<WorkedTask.ResultBean> list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout_header_order for this fragment
         sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
         receivedData();
         View view = inflater.inflate(R.layout.fragment_my_task, container, false);
@@ -72,19 +73,32 @@ public class TaskResponseNotAllocation extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), TaskNotAllocationToResponse.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("TaskDetail", list.get(position));
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if ("3".equals(getActivity().getIntent().getStringExtra("processType"))) {
+                    Intent intent = new Intent(getActivity(), TaskResponseDeliver.class);
+                    intent.putExtra("processId", processId);
+                    if (list.get(position).getACompany() != null) {
+                        intent.putExtra("companyId", list.get(position).getACompany().getId());
+                    }
+                    intent.putExtra("flowId", list.get(position).getRelFlowProcess().getFlow().getId());
+                    startActivity(intent);
+
+                } else {
+                    Intent intent = new Intent(getActivity(), TaskNotAllocationToResponse.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("TaskDetail", list.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
+
     private void receivedData() {
         Intent intent = getActivity().getIntent();
         processId = intent.getStringExtra("processId");
         Log.e("TaskResponse", "processId:" + processId + ",userId:" + sp.getString("USER_ID", null));
     }
+
     public void loadData() {
 
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "processFeedback/listTask");
@@ -97,17 +111,17 @@ public class TaskResponseNotAllocation extends Fragment {
                 Log.e("TaskResponse", result);
                 Gson gson = new Gson();
                 WorkedTask listPlanedTask = gson.fromJson(result, WorkedTask.class);
-                if(listPlanedTask.result.size()==0){
+                if (listPlanedTask.getResult().size() == 0) {
                     rlNotData.setVisibility(View.VISIBLE);
                 }
-                list = new ArrayList<WorkedTask.Result>();
+                list = new ArrayList<WorkedTask.ResultBean>();
 
-                list.addAll(listPlanedTask.result);
+                list.addAll(listPlanedTask.getResult());
                 Log.e("TaskResponse", listPlanedTask.toString());
                 if (commonAdapter == null) {
-                    commonAdapter = new CommonAdapter<WorkedTask.Result>(getActivity(), list, R.layout.item_not_task) {
+                    commonAdapter = new CommonAdapter<WorkedTask.ResultBean>(getActivity(), list, R.layout.item_not_task) {
                         @Override
-                        public void convert(ViewHolder viewHolder, WorkedTask.Result result, int position) {
+                        public void convert(ViewHolder viewHolder, WorkedTask.ResultBean result, int position) {
                             result = list.get(position);
                             TextView tv_companyName = viewHolder.getViewById(R.id.tv_companyName);
                             TextView tv_time = viewHolder.getViewById(R.id.tv_time);
@@ -117,14 +131,14 @@ public class TaskResponseNotAllocation extends Fragment {
                             TextView tv_num = viewHolder.getViewById(R.id.tv_num);
                             TextView tv_note = viewHolder.getViewById(R.id.tv_note);
                             TextView tv_finished_percent = viewHolder.getViewById(R.id.tv_finished_percent);
-                            tv_companyName.setText(result.companyA.name);
-                            tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.createDate)));
-                            tv_master.setText(result.companyBOwner.name);
-                            tv_pro_name.setText(result.productName);
-                            tv_pro_category.setText(result.companyCategory.name);
-                            tv_num.setText(result.amount + "");//数量
-                            tv_note.setText(result.productDescription);
-                            tv_finished_percent.setText((result.relFlowProcess.totalCompletedQuantity==null?0:result.relFlowProcess.totalCompletedQuantity)+"/"+result.relFlowProcess.target);
+                            tv_companyName.setText(result.getCompanyA().getName());
+                            tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.getCreateDate())));
+                           // tv_master.setText(result.getCompanyBOwner().getName());
+                            tv_pro_name.setText(result.getProductName());
+                            tv_pro_category.setText(result.getCompanyCategory().getName());
+                            tv_num.setText(result.getAmount() + "");//数量
+                            tv_note.setText(result.getProductDescription());
+                            tv_finished_percent.setText((result.getRelFlowProcess().getTotalCompletedQuantity()) + "/" + result.getRelFlowProcess().getTarget());
                         }
                     };
                     lv.setAdapter(commonAdapter);
@@ -138,6 +152,8 @@ public class TaskResponseNotAllocation extends Fragment {
             public void onError(Throwable ex, boolean isOnCallback) {
                 llLoad.setVisibility(View.GONE);
                 rlLoadFail.setVisibility(View.VISIBLE);
+                Log.e("TaskResponse", ex.toString());
+
             }
 
             @Override

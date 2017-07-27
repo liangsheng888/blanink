@@ -4,44 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackGround">
-    <LinearLayout
-        android:id="@+id/ll_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:padding="10dp">
-        <Spinner
-            android:id="@+id/sp_notify_cateGory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/notify_cateGory"></Spinner>
 
-    </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:background="#fff">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
-                android:layout_marginTop="1dp"
                 android:layout_height="wrap_content">
 
                 <com.blanink.view.UpLoadListView
                     android:id="@+id/lv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:dividerHeight="2dp"
+                    android:divider="@null"
                     >
-
                 </com.blanink.view.UpLoadListView>
             </android.support.v4.widget.SwipeRefreshLayout>
+       <include layout="@layout/layout_load"></include>
         </RelativeLayout>
-        <include layout="@layout/layout_load"></include>
-    </FrameLayout>
+
+
 </LinearLayout>

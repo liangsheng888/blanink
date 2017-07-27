@@ -223,7 +223,7 @@ public class NextDeleteRelationIsAgree extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.bt_agree:
                 //同意
-                DialogLoadUtils.showDialogLoad(NextDeleteRelationIsAgree.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 agreeApply();
                 break;
             case R.id.bt_refuse:
@@ -255,7 +255,7 @@ public class NextDeleteRelationIsAgree extends AppCompatActivity {
                     Toast.makeText(NextDeleteRelationIsAgree.this, "请填写拒绝理由", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                DialogLoadUtils.showDialogLoad(NextDeleteRelationIsAgree.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
                 reject();
             }
         });

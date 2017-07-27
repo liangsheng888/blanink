@@ -4,8 +4,7 @@
     android:id="@+id/activity_tender_manage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.bidTender.MyTender">
+    android:background="@color/colorBackGround">
 
     <RelativeLayout
         android:id="@+id/tender_manager"
@@ -33,6 +32,16 @@
             android:gravity="center"
             android:textSize="16sp"
             android:drawableLeft="@drawable/last" />
+        <TextView
+            android:id="@+id/tv_add"
+            android:text="发布"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
     <FrameLayout
@@ -76,7 +85,7 @@
                 </RelativeLayout>
             </RelativeLayout>
 
-            <com.blanink.view.RefreshListView
+            <com.blanink.view.UpLoadListView
                 android:id="@+id/lv_tender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +93,7 @@
                 android:layout_marginTop="1dp"
                 android:listSelector="#11FB731F"
                 android:drawSelectorOnTop="true"
-                android:background="#fff"></com.blanink.view.RefreshListView>
+                android:background="#fff"></com.blanink.view.UpLoadListView>
         </RelativeLayout>
 
 
@@ -107,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="咱快去发布自己的招标需求吧"/>
+                android:text="点击我去发布自己的招标需求"/>
 
         </RelativeLayout>
 
@@ -126,16 +135,11 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+              <com.blanink.view.CusProgressView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="正在加载..." />
+              </com.blanink.view.CusProgressView>
             </LinearLayout>
 
             <RelativeLayout

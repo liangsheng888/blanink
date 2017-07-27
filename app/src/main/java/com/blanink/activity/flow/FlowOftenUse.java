@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
@@ -77,9 +78,18 @@ public class FlowOftenUse extends AppCompatActivity {
             super.handleMessage(msg);
             if (adpter == null) {
                 rlNotData.setVisibility(View.VISIBLE);
+                tvNot.setText("没有常用流程，请登录电脑版创建常用流程");
+
+            } else {
+                lv.completeRefresh(isHasData);
+                if (adpter.getCount() == 0) {
+                    rlNotData.setVisibility(View.VISIBLE);
+                    tvNot.setText("没有常用流程，请登录电脑版创建常用流程");
+                }else {
+                    rlNotData.setVisibility(View.GONE);
+                }
+                adpter.notifyDataSetChanged();
             }
-            lv.completeRefresh(isHasData);
-            adpter.notifyDataSetChanged();
         }
     };
 
@@ -118,6 +128,11 @@ public class FlowOftenUse extends AppCompatActivity {
                 pageNo++;
                 loadUsefulFlow();
             }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
         });
         //流程详情
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,7 +140,8 @@ public class FlowOftenUse extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position < lists.size()) {
                     Intent intent = new Intent(FlowOftenUse.this, FlowUseTheFlow.class);
-                    intent.putExtra("id",lists.get(position).getId());
+                    intent.putExtra("id", lists.get(position).getId());
+                    intent.putExtra("orderProductId",getIntent().getStringExtra("orderProductId"));
                     startActivity(intent);
                 }
             }
@@ -137,6 +153,7 @@ public class FlowOftenUse extends AppCompatActivity {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "flow/commonList");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         rp.addBodyParameter("pageNo", pageNo + "");
+        Log.e("FlowOftenUse",NetUrlUtils.NET_URL + "flow/commonList?userId="+sp.getString("USER_ID",null));
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -163,6 +180,7 @@ public class FlowOftenUse extends AppCompatActivity {
             public void onError(Throwable ex, boolean isOnCallback) {
                 llLoad.setVisibility(View.GONE);
                 rlLoadFail.setVisibility(View.VISIBLE);
+                Log.e("FlowUse",ex.toString());
             }
 
             @Override

@@ -18,7 +18,7 @@
             <LinearLayout
                 android:id="@+id/SeekActivity_seek_ll"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_alignParentTop="true"
                 android:background="@color/colorTheme"
                 android:gravity="center"
@@ -26,7 +26,7 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_weight="3"
                     android:paddingBottom="2dp"
                     android:paddingRight="10dp"
@@ -38,7 +38,7 @@
                         android:layout_height="40dp"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="5dp"
-                        android:background="@drawable/seabar_input"
+                        android:background="@drawable/corner_common_border_gray"
                         android:drawableLeft="@drawable/search_bar_icon_normal"
                         android:hint="请输入你需要的信息"
                         android:paddingBottom="2dp"
@@ -67,7 +67,7 @@
                     android:layout_marginRight="5dp"
                     android:text="搜索"
                     android:textColor="#FFFFFF"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout

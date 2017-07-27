@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.blanink.activity.order.GoComeOrderProduct">
+
+    <RelativeLayout
+        android:id="@+id/receive"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="工作记录"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/receive"
+        android:background="@color/colorBackGround">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smartRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <com.blanink.view.UpLoadListView
+                android:id="@+id/lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:divider="@null"
+                android:background="#fff"
+                ></com.blanink.view.UpLoadListView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <include layout="@layout/layout_load"></include>
+    </FrameLayout>
+
+</RelativeLayout>
+

@@ -10,9 +10,7 @@
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:drawSelectorOnTop="true"
-            android:dividerHeight="2dp"
-            android:listSelector="@color/listItemColorSelected">
+            android:divider="@null">
         </com.blanink.view.UpLoadListView>
         <include layout="@layout/layout_load"></include>
     </FrameLayout>

@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.activity.lastNext.LastFamilyManageCustomerApply;
@@ -47,14 +46,6 @@ import butterknife.ButterKnife;
 public class LastCustomerInfo extends Fragment {
 
     private static final String TAG = "LastCustomerInfo";
-    @BindView(R.id.tv_company)
-    TextView tvCompany;
-    @BindView(R.id.tv_customer)
-    TextView tvCustomer;
-    @BindView(R.id.tv_customer_num)
-    TextView tvCustomerNum;
-    @BindView(R.id.tv_credit_customer)
-    TextView tvCreditCustomer;
     @BindView(R.id.tv_address)
     TextView tvAddress;
     @BindView(R.id.tv_company_xin_yu)
@@ -129,7 +120,6 @@ public class LastCustomerInfo extends Fragment {
     private TextView tv_major_content;
     private TextView tv_company_address;
     private TextView tv_introduce;
-    private TextView tv_finished_order_num;
     private Button btn_state;
     private Button btn_consult;
     private SingleCustomer info;
@@ -137,10 +127,10 @@ public class LastCustomerInfo extends Fragment {
     private TextView tv_company_remark;
     private TextView tv_company_other_remark;
     private LinearLayout ll_talk;
-    private TextView tv_customer_num;
     private TextView tv_url;
     private String type;
-    Boolean flag=false;
+    Boolean flag = false;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -156,14 +146,12 @@ public class LastCustomerInfo extends Fragment {
     }
 
     private void initView(View view) {
-        tv_company = ((TextView) view.findViewById(R.id.tv_company));
         tv_address = ((TextView) view.findViewById(R.id.tv_address));
         tv_master = ((TextView) view.findViewById(R.id.tv_major_person));//负责人
         tv_phone = ((TextView) view.findViewById(R.id.tv_phone));//手机
         tv_major_content = ((TextView) view.findViewById(R.id.tv_major_content));//主营
         tv_company_address = ((TextView) view.findViewById(R.id.tv_company_address));//详细地址
         tv_introduce = ((TextView) view.findViewById(R.id.tv_introduce));//公司简介
-        tv_finished_order_num = ((TextView) view.findViewById(R.id.tv_finished_order_num));//已完成订单数
         tv_company_xin_yu = ((TextView) view.findViewById(R.id.tv_company_xin_yu));//公司信誉
         tv_company_remark = ((TextView) view.findViewById(R.id.tv_company_remark));//自评
         tv_company_other_remark = ((TextView) view.findViewById(R.id.tv_company_other_remark));//他评
@@ -171,7 +159,6 @@ public class LastCustomerInfo extends Fragment {
         btn_state = ((Button) view.findViewById(R.id.btn_state));//申请合作/解除合作
         btn_consult = ((Button) view.findViewById(R.id.btn_consult));//在线咨询
         ll_talk = ((LinearLayout) view.findViewById(R.id.ll_talk));
-        tv_customer_num = (TextView) view.findViewById(R.id.tv_customer_num);
     }
 
     @Override
@@ -187,24 +174,25 @@ public class LastCustomerInfo extends Fragment {
         btn_state.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               isCanRemoveRelation();
+                isCanRemoveRelation();
             }
         });
     }
+
     //检查是否存在订单关联
     private void isCanRemoveRelation() {
 
-        RequestParams rp=new RequestParams(NetUrlUtils.NET_URL+"partner/CanRemove");
-        rp.addBodyParameter("userId",sp.getString("USER_ID",null));
-        rp.addBodyParameter("companyA.id",companyA.getId());
-        rp.addBodyParameter("companyB.id",sp.getString("COMPANY_ID",null));
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "partner/CanRemove");
+        rp.addBodyParameter("userId", sp.getString("USER_ID", null));
+        rp.addBodyParameter("companyA.id", companyA.getId());
+        rp.addBodyParameter("companyB.id", sp.getString("COMPANY_ID", null));
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
-            Gson gson=new Gson();
-             Response response= gson.fromJson(result, Response.class);
-                if(response.getResult()){
-                    flag= true;
+                Gson gson = new Gson();
+                Response response = gson.fromJson(result, Response.class);
+                if (response.getResult()) {
+                    flag = true;
                 }
                 //申请合作、解除关系
                 if ("1".equals(type)) {
@@ -215,7 +203,7 @@ public class LastCustomerInfo extends Fragment {
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else {
-                        DialogNotifyUtils.showNotify(getActivity(),"存在订单关联，不能解除合作关系！");
+                        DialogNotifyUtils.showNotify(getActivity(), "存在订单关联，不能解除合作关系！");
                     }
                 } else {
                     Intent intent = new Intent(getActivity(), LastFamilyManageCustomerApply.class);
@@ -269,18 +257,17 @@ public class LastCustomerInfo extends Fragment {
                     ll_talk.setVisibility(View.GONE);
                 }
                 //界面设置
-                tv_company.setText(companyA.getName());
-                tv_address.setText(companyA.getAddress());
+               // tv_company.setText(companyA.getName());
+                tv_address.setText(companyA.getArea().getName());
                 tv_master.setText(companyA.getMaster());
                 tv_phone.setText(companyA.getPhone());
                 tv_major_content.setText(companyA.getScope());
                 tv_company_address.setText(companyA.getAddress());
-                tv_customer_num.setText(companyA.serviceCount + "");
                 tv_introduce.setText(companyA.getRemarks());
                 DecimalFormat df = new DecimalFormat("0.0");
                 tv_company_remark.setText(info.result.reviewSelf + "");
                 tv_company_other_remark.setText(info.result.reviewOthers + "");
-                tv_company_xin_yu.setText((info.result.reviewSelf + info.result.reviewOthers) / 2.0 + "");
+                tv_company_xin_yu.setText(df.format((info.result.reviewSelf + info.result.reviewOthers) / 2.0) + "");
                 tv_url.setText(companyA.homepage);
                 //
 
@@ -300,6 +287,7 @@ public class LastCustomerInfo extends Fragment {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("@@@",ex.toString());
                 llLoad.setVisibility(View.GONE);
                 rlLoadFail.setVisibility(View.VISIBLE);
             }
@@ -319,5 +307,10 @@ public class LastCustomerInfo extends Fragment {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

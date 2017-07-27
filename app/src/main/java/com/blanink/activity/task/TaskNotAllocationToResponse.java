@@ -3,6 +3,8 @@ package com.blanink.activity.task;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
@@ -26,15 +28,27 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.oss.ClientException;
+import com.alibaba.sdk.android.oss.OSSClient;
+import com.alibaba.sdk.android.oss.ServiceException;
+import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
+import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
+import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
+import com.alibaba.sdk.android.oss.model.PutObjectRequest;
+import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.blanink.R;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.PhotoAdapter;
 import com.blanink.adapter.RecyclerItemClickListener;
 import com.blanink.adapter.ViewHolder;
+import com.blanink.oss.OssService;
 import com.blanink.pojo.FeedBackingTask;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.WorkedTask;
+import com.blanink.utils.DialogLoadUtils;
+import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.PriorityUtils;
 import com.blanink.view.NoScrollListview;
 import com.google.gson.Gson;
 
@@ -42,6 +56,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +67,7 @@ import me.iwf.photopicker.PhotoPicker;
 import me.iwf.photopicker.PhotoPreview;
 
 /***
- * 任务反馈 未分配的任务
+ * 任务反馈 去反馈
  */
 public class TaskNotAllocationToResponse extends AppCompatActivity {
 
@@ -152,7 +167,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     TextView tvNoteNum;
     @BindView(R.id.tv_more)
     TextView tvMore;
-    private WorkedTask.Result taskDetail;
+    private WorkedTask.ResultBean taskDetail;
     private String faultAmount;
     private String isFinished;
     private String achieveAmount;
@@ -163,13 +178,24 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     private String feedbackUserId;
     private PhotoAdapter photoAdapter;
     private ArrayList<String> selectedPhotos = new ArrayList<>();
-    private CommonAdapter<FeedBackingTask.Result.ProcessFeedbackUser> commonAdapter;
-
+    private CommonAdapter<FeedBackingTask.ResultBean.ProcessFeedbackListBean> commonAdapter;
+    private String feedbackAttachmentStr="";
+    OSSClient oss;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+           showDialog();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not_allocation_detail);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
+        oss=OssService.getOSSClientInstance(this);
+        DialogLoadUtils.getInstance(this);
+        DialogLoadUtils.showDialogLoad("拼命加载中...");
         ButterKnife.bind(this);
         receiveDataFromIntent();
         initData();
@@ -179,6 +205,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
         checkUserRoleType();
 
 //判断用户角色类型 assignment yes 显示下拉责任人 否不显示
+        taskResponseSpState.setAdapter(new ArrayAdapter<String>(this,R.layout.spanner_item,new String[]{"未完成","已完成"}));
         taskResponseSpState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -224,7 +251,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     private void checkUserRoleType() {
         RequestParams requestParams = new RequestParams(NetUrlUtils.NET_URL + "processFeedback/accessControl");
         requestParams.addBodyParameter("currentUser.id", sp.getString("USER_ID", null));
-        requestParams.addBodyParameter("id", taskDetail.relFlowProcess.process.id);
+        requestParams.addBodyParameter("id", taskDetail.getRelFlowProcess().getProcess().getId());
         x.http().post(requestParams, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -261,7 +288,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     private void receiveDataFromIntent() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        taskDetail = ((WorkedTask.Result) bundle.getSerializable("TaskDetail"));
+        taskDetail = ((WorkedTask.ResultBean) bundle.getSerializable("TaskDetail"));
         Log.e("TaskResponse", "待分配的任务:" + taskDetail.toString());
     }
 
@@ -269,21 +296,22 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     public void loadData(final Response response) {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "processFeedback/listFeedbackingTask");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
-        rp.addBodyParameter("process.id", taskDetail.relFlowProcess.process.id);
-        rp.addBodyParameter("flow.id", taskDetail.relFlowProcess.flow.id);
+        rp.addBodyParameter("process.id", taskDetail.getRelFlowProcess().getProcess().getId());
+        rp.addBodyParameter("flow.id", taskDetail.getRelFlowProcess().getFlow().getId());
         x.http().post(rp, new Callback.CacheCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
                 Log.e("TaskResponse", "我反馈过的:" + result);
+                DialogLoadUtils.dismissDialog();
                 rlLoad.setVisibility(View.GONE);
                 Gson gson = new Gson();
                 final FeedBackingTask feedbackingTask = gson.fromJson(result, FeedBackingTask.class);
                 Log.e("TaskResponse", "我反馈过的2:" + feedbackingTask.toString());
                 if (response.getErrorCode().equals("00000") && response.getResult()) {
-                    for (int i = 0; i < feedbackingTask.result.processWorkerList.size(); i++) {
-                        masterItem.add(i, feedbackingTask.result.processWorkerList.get(i).name);
-                        userIdList.add(i, feedbackingTask.result.processWorkerList.get(i).id);
+                    for (int i = 0; i < feedbackingTask.getResult().getProcessFeedbackList().size(); i++) {
+                        masterItem.add(i, feedbackingTask.getResult().getProcessWorkerList().get(i).getName());
+                        userIdList.add(i, feedbackingTask.getResult().getProcessWorkerList().get(i).getId());
                         Log.e("TaskResponse", "该用户有权限:" + userIdList.toString() + "----" + masterItem.toString());
                     }
                 } else {
@@ -291,38 +319,41 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                     masterItem.add(sp.getString("NAME", null));
                     Log.e("TaskResponse", "该用户没有有权限:" + userIdList.toString() + "----" + masterItem.toString());
                 }
-                tvCompanyName.setText(taskDetail.companyA.name);
-                tvMaster.setText(taskDetail.companyBOwner.name);
-                tvTime.setText(taskDetail.createDate);
-                tvProCategory.setText(taskDetail.companyCategory.name);
-                tvProName.setText(taskDetail.productName);
-                tvNum.setText(taskDetail.amount);
-                tvDeliveryTime.setText(taskDetail.deliveryTime);
-                tvMyTaskNum.setText(taskDetail.relFlowProcess.target + "");
-                tvNote.setText(taskDetail.productDescription);
-                tvPriority.setText(taskDetail.companyAPriority);
-                tvMyMyPriority.setText(taskDetail.companyBPriority);
-                tvResponse.setText((feedbackingTask.result.allFinishedAmount==null?0:feedbackingTask.result.allFinishedAmount) + "");
-                tvNoteNum.setText("("+feedbackingTask.result.processFeedbackList.size()+")");
+                tvCompanyName.setText(taskDetail.getCompanyA().getName());
+                tvMaster.setText(taskDetail.getCompanyBOwner().getName());
+                tvTime.setText(taskDetail.getCreateDate());
+                tvProCategory.setText(taskDetail.getCompanyCategory().getName());
+                tvProName.setText(taskDetail.getProductName());
+                tvNum.setText(taskDetail.getAmount());
+                tvDeliveryTime.setText(taskDetail.getDeliveryTime());
+                tvMyTaskNum.setText(taskDetail.getRelFlowProcess().getTarget() + "");
+                tvNote.setText(taskDetail.getProductDescription());
+                tvPriority.setText(PriorityUtils.getPriority(taskDetail.getCompanyAPriority()));
+                tvMyMyPriority.setText(PriorityUtils.getPriority(taskDetail.getCompanyBPriority()));
+                tvResponse.setText((feedbackingTask.getResult().getAllFinishedAmount() + ""));
+                tvNoteNum.setText("("+feedbackingTask.getResult().getProcessFeedbackList().size()+")");
 
-                if(feedbackingTask.result.processFeedbackList.size()<=4){
+                if(feedbackingTask.getResult().getProcessFeedbackList().size()<=4){
                     tvMore.setVisibility(View.GONE);
                     tvMore.setEnabled(false);
                 }
+                if(feedbackingTask.getResult().getProcessFeedbackList().size()==0) {
+                    rlHistory.setVisibility(View.GONE);
+                }
                 showSpinner(masterItem);//显示下拉列表
                 //历史反馈记录
-                commonAdapter = new CommonAdapter<FeedBackingTask.Result.ProcessFeedbackUser>(TaskNotAllocationToResponse.this, feedbackingTask.result.processFeedbackList, R.layout.item_history_note_response, 4) {
+                commonAdapter = new CommonAdapter<FeedBackingTask.ResultBean.ProcessFeedbackListBean>(TaskNotAllocationToResponse.this, feedbackingTask.getResult().getProcessFeedbackList(), R.layout.item_history_note_response, 4) {
                     @Override
-                    public void convert(ViewHolder viewHolder, FeedBackingTask.Result.ProcessFeedbackUser processFeedbackUser, int position) {
-                        processFeedbackUser = feedbackingTask.result.processFeedbackList.get(position);
+                    public void convert(ViewHolder viewHolder, FeedBackingTask.ResultBean.ProcessFeedbackListBean processFeedbackUser, int position) {
+                        processFeedbackUser = feedbackingTask.getResult().getProcessFeedbackList().get(position);
                         TextView date = viewHolder.getViewById(R.id.tv_date);
                         TextView tv_master = viewHolder.getViewById(R.id.tv_master);
                         TextView tv_finished = viewHolder.getViewById(R.id.tv_finished);
                         TextView tv_bad = viewHolder.getViewById(R.id.tv_bad);
-                        tv_master.setText(processFeedbackUser.feedbackUser.name);
-                        date.setText(processFeedbackUser.createDate);
-                        tv_finished.setText((processFeedbackUser.achieveAmount == null ? 0 : processFeedbackUser.achieveAmount) + "个");
-                        tv_bad.setText((processFeedbackUser.faultAmount == null ? 0 : processFeedbackUser.faultAmount) + "个");
+                        tv_master.setText(processFeedbackUser.getFeedbackUser().getName());
+                        date.setText(processFeedbackUser.getCreateDate());
+                        tv_finished.setText((processFeedbackUser.getAchieveAmount()) + "个");
+                        tv_bad.setText((processFeedbackUser.getFaultAmount()) + "个");
                     }
                 };
                 lvResponseNote.setAdapter(commonAdapter);
@@ -331,6 +362,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 rlLoad.setVisibility(View.GONE);
+                DialogLoadUtils.dismissDialog();
             }
 
             @Override
@@ -365,6 +397,11 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
+                    for (int i = 0; i < selectedPhotos.size(); i++){
+                        feedbackAttachmentStr = feedbackAttachmentStr + "," + OssService.OSS_URL+"alioss_"+ ExampleUtil.getFileName(selectedPhotos.get(i))+ExampleUtil.getFileLastName(selectedPhotos.get(i));
+                    }
+                    feedbackAttachmentStr = feedbackAttachmentStr.substring(1);
+                    Log.e("ComeOrder",feedbackAttachmentStr);
                 }
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
                 recyclerView.setAdapter(photoAdapter);
@@ -415,6 +452,8 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                     Toast.makeText(this, "请填写备注", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                DialogLoadUtils.getInstance(this);
+                DialogLoadUtils.showDialogLoad("反馈中...");
                 uploadData();
                 break;
             case R.id.iv_picture:
@@ -430,8 +469,8 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                 break;
             case R.id.tv_more://更多
                 Intent intent=new Intent(TaskNotAllocationToResponse.this,MoreResponseNoteActivty.class);
-                intent.putExtra("flow.id",taskDetail.relFlowProcess.flow.id);
-                intent.putExtra("process.id",taskDetail.relFlowProcess.process.id);
+                intent.putExtra("flow.id",taskDetail.getRelFlowProcess().getFlow().getId());
+                intent.putExtra("process.id",taskDetail.getRelFlowProcess().getProcess().getId());
                 startActivity(intent);
                 break;
         }
@@ -441,29 +480,34 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     private void uploadData() {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "processFeedback/save");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
-        rp.addBodyParameter("process.id", taskDetail.relFlowProcess.process.id);
-        rp.addBodyParameter("flow.id", taskDetail.relFlowProcess.flow.id);
+        rp.addBodyParameter("process.id", taskDetail.getRelFlowProcess().getProcess().getId());
+        rp.addBodyParameter("flow.id", taskDetail.getRelFlowProcess().getFlow().getId());
         rp.addBodyParameter("feedbackUser.id", feedbackUserId);
         rp.addBodyParameter("faultAmount", faultAmount);
         rp.addBodyParameter("isFinished", isFinished);
         rp.addBodyParameter("achieveAmount", achieveAmount);
+        rp.addBodyParameter("feedbackAttachmentStr", feedbackAttachmentStr);
         rp.addBodyParameter("remarks", remarks);
-        Log.e("Response", "process.id:" + taskDetail.relFlowProcess.process.id + ",flow.id:" + taskDetail.relFlowProcess.flow.id + ",feedbackUser.id:" + feedbackUserId + ",isFinished:" + isFinished);
+
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();
                 Response response = gson.fromJson(result, Response.class);
                 if (response.getErrorCode().equals("00000")) {
-                    showDialog();
-
+                    List<String> photos=new ArrayList<String>();
+                    photos.addAll(selectedPhotos);
+                    uploadFiles(oss,photos);
                 } else {
+                    DialogLoadUtils.dismissDialog();
                     Toast.makeText(TaskNotAllocationToResponse.this, "反馈失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                DialogLoadUtils.dismissDialog();
+                Toast.makeText(TaskNotAllocationToResponse.this, "服务器开了会儿小差,请稍后重试", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -512,6 +556,85 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
             }
         });
     }
+    public  void uploadFiles(OSSClient oss, List<String> urls) {
+        if (null == urls || urls.size() == 0) {
+            return ;
+        } // 上传文件
+        ossUpload(oss,urls);
+    }
 
+    public void ossUpload(final OSSClient oss, final List<String> urls) {
+        Log.e("ComeOrder","图片个数:"+urls.size());
+        if (urls.size() <= 0) {
+            Log.e("ComeOrder","通知提醒");
+            DialogLoadUtils.dismissDialog();
+            handler.sendEmptyMessage(0);
+            // 文件全部上传完毕，这里编写上传结束的逻辑，如果要在主线程操作，最好用Handler或runOnUiThead做对应逻辑
+            return ;// 这个return必须有，否则下面报越界异常，原因自己思考下哈
+        }
+        final String url = urls.get(0);
+        if (TextUtils.isEmpty(url)) {
+            urls.remove(0);
+            // url为空就没必要上传了，这里做的是跳过它继续上传的逻辑。
+            ossUpload(oss, urls);
+            return ;
+        }
+
+        File file = new File(url);
+        if (null == file || !file.exists()) {
+            urls.remove(0);
+            // 文件为空或不存在就没必要上传了，这里做的是跳过它继续上传的逻辑。
+            ossUpload(oss, urls);
+            return ;
+        }
+        // 文件后缀
+        String fileSuffix = "";
+        if (file.isFile()) {
+            // 获取文件后缀名
+            fileSuffix = ExampleUtil.getFileName(url)+ExampleUtil.getFileLastName(url);
+        }
+        // 文件标识符objectKey
+        final String objectKey = "alioss_"+ fileSuffix;
+        // 下面3个参数依次为bucket名，ObjectKey名，上传文件路径
+        PutObjectRequest put = new PutObjectRequest("blanink", objectKey, url);
+
+        // 设置进度回调
+        put.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
+            @Override
+            public void onProgress(PutObjectRequest request, long currentSize, long totalSize) {
+                // 进度逻辑
+            }
+        });
+
+        // 异步上传
+        OSSAsyncTask task = oss.asyncPutObject(put,
+                new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
+                    @Override
+                    public void onSuccess(PutObjectRequest request, PutObjectResult result) { // 上传成功
+                        urls.remove(0);
+                        ossUpload(oss, urls);// 递归同步效果
+                    }
+
+                    @Override
+                    public void onFailure(PutObjectRequest request, ClientException clientExcepion,
+                                          ServiceException serviceException) { // 上传失败
+
+                        // 请求异常
+                        if (clientExcepion != null) {
+                            // 本地异常如网络异常等
+                            clientExcepion.printStackTrace();
+                        }
+                        if (serviceException != null) {
+                            // 服务异常
+                            Log.e("ErrorCode", serviceException.getErrorCode());
+                            Log.e("RequestId", serviceException.getRequestId());
+                            Log.e("HostId", serviceException.getHostId());
+                            Log.e("RawMessage", serviceException.getRawMessage());
+                        }
+                    }
+                });
+        // task.cancel(); // 可以取消任务
+        // task.waitUntilFinished(); // 可以等待直到任务完成
+    }
 
     }

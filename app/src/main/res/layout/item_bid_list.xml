@@ -1,115 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackGround">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="35dp"
-    android:background="#fff"
-    android:padding="5dp">
-    <TextView
-        android:id="@+id/tv_master"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="张三"
-        android:gravity="center"
-        android:layout_centerVertical="true"
-        android:textColor="@color/colorTheme"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:id="@+id/tv_company_name"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="空行互联"
-        android:gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="50dp"
-        android:layout_toRightOf="@id/tv_master"
-        android:textColor="@color/colorTheme"/>
-    <TextView
-        android:id="@+id/tv_bid_date"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="2012-6-10"
-        android:gravity="center_vertical"
-        android:layout_toRightOf="@id/tv_company_name"
-        android:layout_marginLeft="50dp"
-        android:layout_centerVertical="true"
-        android:textColor="@color/colorTheme"
-       />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:drawableRight="@drawable/next_black"/>
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_common_border"
+    android:orientation="vertical">
 
-</RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="#fff"
-        android:layout_marginTop="1dp">
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:padding="5dp">
+
             <TextView
-                android:id="@+id/single"
+                android:id="@+id/tv_master"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:text="单件:"/>
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:text="张三"
+                android:textColor="@color/colorTheme" />
+
             <TextView
-                android:id="@+id/tv_single_price"
+                android:id="@+id/tv_company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/single"
-                android:layout_marginLeft="5dp"
-                android:text="100"/>
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:paddingTop="5dp"
+                android:layout_toRightOf="@id/tv_master"
+                android:gravity="center"
+                android:text="空行互联"
+                android:textColor="@color/colorTheme" />
+
+            <TextView
+                android:id="@+id/tv_bid_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:paddingTop="5dp"
+                android:layout_toRightOf="@id/tv_company_name"
+                android:gravity="center_vertical"
+                android:text="2012-6-10"
+                android:textColor="@color/colorTheme" />
+
+
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_marginTop="1dp"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/single"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="单件:" />
+
+                <TextView
+                    android:id="@+id/tv_single_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/single"
+                    android:text="100" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/hand_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="交货期:" />
+
+                <TextView
+                    android:id="@+id/tv_hand_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/hand_date"
+                    android:text="10" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
             <TextView
-                android:id="@+id/hand_date"
+                android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="交货期:"/>
+                android:text="地址:" />
+
             <TextView
-                android:id="@+id/tv_hand_date"
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/hand_date"
                 android:layout_marginLeft="5dp"
-                android:text="10"/>
+                android:layout_toRightOf="@id/address"
+                android:singleLine="true"
+                android:text="江苏苏州" />
         </RelativeLayout>
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="#fff">
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="地址:"/>
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_toRightOf="@id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="江苏苏州"
-            />
-    </RelativeLayout>
+
 </LinearLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorBackGround">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的资料"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
@@ -60,66 +62,12 @@
 
                 android:src="@drawable/next_black"/>
         </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorBackGround"></View>
-        <RelativeLayout
-            android:id="@+id/rl_finance"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/tv_finance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的融资"
-                android:textColor="@color/colorBlack"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_finance"/>
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
 
-                android:src="@drawable/next_black"/>
-        </RelativeLayout>
-        <View
+      <!--  <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="5dp"
             android:background="@color/colorBackGround"></View>
-        <RelativeLayout
-            android:id="@+id/rl_order"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/tv_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的订单"
-                android:textColor="@color/colorBlack"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_order"/>
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
 
-                android:src="@drawable/next_black"/>
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorBackGround"></View>
         <RelativeLayout
             android:id="@+id/rl_my_tender"
             android:layout_width="match_parent"
@@ -132,9 +80,10 @@
                 android:text="我的招标"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
+                android:drawablePadding="10dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_order"/>
+                android:drawableLeft="@drawable/tender"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -158,11 +107,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的投标"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_order"/>
+                android:drawableLeft="@drawable/bid"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -172,7 +122,35 @@
 
                 android:src="@drawable/next_black"/>
         </RelativeLayout>
+-->  <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBackGround"></View>
+        <RelativeLayout
+            android:id="@+id/rl_finance"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_finance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="系统通知"
+                android:drawablePadding="10dp"
+                android:textColor="@color/colorBlack"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/m"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
 
+                android:src="@drawable/next_black"/>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -188,11 +166,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="意见反馈"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/feed_back"/>
+                android:drawableLeft="@drawable/response"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -213,9 +192,10 @@
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/tv_after_sale"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="售后"
+                android:text="关于我们"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
@@ -241,14 +221,15 @@
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/tv_set"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="设置"
+                android:drawablePadding="10dp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/my_address"/>
+                android:drawableLeft="@drawable/set"/>
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -257,6 +238,10 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/next_black"/>
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
     </LinearLayout>
 </RelativeLayout>
 </ScrollView>

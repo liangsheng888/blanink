@@ -24,7 +24,9 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.DateUtils;
 import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.LoadListView;
@@ -321,10 +323,11 @@ public class BidSeekTender extends AppCompatActivity implements LoadListView.ILo
                 viewHolder.tv_useful_time = (TextView) convertView.findViewById(R.id.tv_useful_time);
                 viewHolder.tv_single_price = (TextView) convertView.findViewById(R.id.tv_single_price);
                 viewHolder.tv_note_content = (TextView) convertView.findViewById(R.id.tv_note_content);
-                viewHolder.tv_attachment = (TextView) convertView.findViewById(R.id.tv_attachment);
                 viewHolder.tv_first_pay = (TextView) convertView.findViewById(R.id.tv_first_pay);
                 viewHolder.tv_publish = (TextView) convertView.findViewById(R.id.tv_publish);
                 viewHolder.iv_out_of_date=(ImageView)convertView.findViewById(R.id.iv_out_of_date);
+                viewHolder.iv=(ImageView)convertView.findViewById(R.id.iv);
+
                 viewSparseArray.put(position,convertView);
                 convertView.setTag(viewHolder);
             } else {
@@ -339,11 +342,13 @@ public class BidSeekTender extends AppCompatActivity implements LoadListView.ILo
             viewHolder.tv_first_pay.setText(rowList.get(position).downPayment + "%");
             viewHolder.tv_note_content.setText(rowList.get(position).remarks);
             viewHolder.tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(rowList.get(position).expireDate)));
-            viewHolder.tv_publish.setText(rowList.get(position).createDate);
+            viewHolder.tv_publish.setText(DateUtils.format(ExampleUtil.stringToDate(rowList.get(position).createDate)));
             //设置失效显示
             if (ExampleUtil.compare_date(rowList.get(position).expireDate,ExampleUtil.dateToString(new Date(System.currentTimeMillis())))<0){
                 viewHolder.iv_out_of_date.setVisibility(View.VISIBLE);
             }
+            GlideUtils.glideImageView(BidSeekTender.this,viewHolder.iv,rowList.get(position).inviteCompany.photo,true);
+
             return convertView;
         }
     }
@@ -359,5 +364,6 @@ public class BidSeekTender extends AppCompatActivity implements LoadListView.ILo
         public TextView tv_first_pay;
         public TextView tv_publish;
         public ImageView iv_out_of_date;
+        public ImageView iv;
     }
 }

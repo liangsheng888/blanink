@@ -35,14 +35,15 @@
     <RelativeLayout
         android:id="@+id/rl_load_not_data"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/colorBackGround"
         android:visibility="gone"
         >
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
             android:text="没有更多的数据了"
             android:padding="15dp"/>
     </RelativeLayout>

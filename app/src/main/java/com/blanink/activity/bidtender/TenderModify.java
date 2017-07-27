@@ -95,11 +95,7 @@ public class TenderModify extends Activity {
         et_end_date = ((EditText) findViewById(R.id.et_end_date));
         tv_date = ((TextView) findViewById(R.id.tv_date));
         et_note = ((EditText) findViewById(R.id.et_note));
-        tv_file_name = ((TextView) findViewById(R.id.tv_file_name));
         btn_commit = ((Button) findViewById(R.id.btn_commit));
-        tv_upload = (TextView) findViewById(R.id.tv_upload);
-        iv_upload = ((ImageView) findViewById(R.id.iv_upload));
-        tv_file_size = ((TextView) findViewById(R.id.tv_file_size));
     }
 
     private void initData() {
@@ -132,7 +128,7 @@ public class TenderModify extends Activity {
                 expireTime = et_end_date.getText().toString().trim();
                 remarks = et_note.getText().toString().trim();
                 DialogLoadUtils.getInstance(TenderModify.this);
-                DialogLoadUtils.showDialogLoad(TenderModify.this);
+                DialogLoadUtils.showDialogLoad("操作进行中...");
 
                 uploadDataToServer();
             }
@@ -189,8 +185,6 @@ public class TenderModify extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     alertDialog.dismiss();
-                                    Intent intent = new Intent(TenderModify.this, MyTender.class);
-                                    startActivity(intent);
                                 }
                             });
                         } else {

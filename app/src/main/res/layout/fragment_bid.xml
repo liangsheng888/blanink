@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bid_accord_with_tender"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.bidTender.BidAccordWithTender">
+
+    <LinearLayout
+        android:id="@+id/ll_seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_marginTop="1dp"
+            android:padding="5dp">
+            <Spinner
+                android:id="@+id/sp_sort"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:entries="@array/sort"></Spinner>
+            <Spinner
+                android:id="@+id/sp_expire"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/sp_sort"
+                android:gravity="center"
+                android:entries="@array/expire"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_seek">
+
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/smartRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <com.blanink.view.UpLoadListView
+                android:id="@+id/lv_tender_info_queue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+            </com.blanink.view.UpLoadListView>
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <include layout="@layout/layout_load"></include>
+    </FrameLayout>
+</RelativeLayout>

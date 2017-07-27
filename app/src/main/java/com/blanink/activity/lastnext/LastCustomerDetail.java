@@ -131,7 +131,7 @@ public class LastCustomerDetail extends AppCompatActivity {
                 }
             });
             //判断公司类型
-            if (companyType.equals("1") && "2".equals(sp.getString("COMPANY_TYPE", null))) {
+            if ("1".equals(companyType) && "2".equals(sp.getString("COMPANY_TYPE", null))) {
                 tv_type.setVisibility(View.VISIBLE);
             }
             tv_type.setOnClickListener(new View.OnClickListener() {

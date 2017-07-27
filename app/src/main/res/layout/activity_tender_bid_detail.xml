@@ -4,6 +4,7 @@
     android:id="@+id/activity_bender_bid_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.bidTender.TenderBidAccord">
     <RelativeLayout
         android:id="@+id/bid_detail_rl"
@@ -19,23 +20,27 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/bid_detail_iv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:drawableLeft="@drawable/last"
+            android:text="返回"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:gravity="center"/>
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_my_bid_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
         android:orientation="vertical"
         android:padding="5dp"
+        android:background="@color/colorWhite"
         android:layout_below="@+id/bid_detail_rl"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -43,7 +48,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
             android:padding="5dp">
 
             <TextView
@@ -61,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="空行互联有限公司 "
+                android:text=" "
                 android:layout_toRightOf="@id/tv_name"
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorTheme" />
@@ -210,8 +214,37 @@
                     android:text="50000" />
             </RelativeLayout>
         </LinearLayout>
+
         <RelativeLayout
-            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_attachment2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#000"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true"
+                android:text="附件:"
+                />
+               <TextView
+                   android:id="@+id/tv_attachment"
+                   android:layout_toRightOf="@id/tv_attachment2"
+                   android:layout_width="60dp"
+                   android:layout_height="20dp"
+                   android:gravity="center"
+                   android:textColor="@color/colorBlue"
+                   android:layout_centerVertical="true"
+                   android:background="@drawable/selector_corner_blue"
+                   android:layout_marginLeft="5dp"
+                   android:text="查看"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -231,68 +264,37 @@
                 android:gravity="top"
                 android:layout_marginLeft="5dp"
                 android:maxLines="6"
-                android:text="本公司采购mac book pro 500台，要去质量过硬，速度快，效率高"
                 android:ellipsize="end"/>
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/tv_attachment2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textColor="#000"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_alignParentTop="true"
-                android:text="附件:"
-                />
-               <TextView
-                   android:layout_toRightOf="@id/tv_attachment2"
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:gravity="center_vertical"
-                   android:drawableLeft="@drawable/license"
-                   android:layout_marginLeft="5dp"
-                   android:text="营业执照"/>
-
-        </RelativeLayout>
-        <View
-            android:id="@+id/view6"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorBackGround"></View>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            >
-            <Button
-                android:id="@+id/btn_chat"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/selector_red"
-                android:text="联系对方"
-                android:layout_margin="5dp"
-                android:textColor="#fff"
-                android:layout_height="match_parent" />
-
-            <Button
-                android:id="@+id/btn_become_partner"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/selector_red"
-                android:textColor="#fff"
-                android:layout_margin="5dp"
-                android:text="确定合作意向"
-              />
-        </LinearLayout>
-
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:layout_below="@id/ll_my_bid_detail"
+        ><Button
+        android:id="@+id/btn_chat"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/selector_blue"
+        android:text="联系对方"
+        android:layout_margin="5dp"
+        android:textColor="#fff"
+        android:layout_height="match_parent" />
 
+        <Button
+            android:id="@+id/btn_become_partner"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/selector_gray_pressed"
+            android:textColor="@color/colorBlack"
+            android:layout_margin="5dp"
+            android:text="确定合作意向"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -102,7 +102,7 @@ public class ModifyPsd extends AppCompatActivity {
             return;
         }
         DialogLoadUtils.getInstance(ModifyPsd.this);
-        DialogLoadUtils.showDialogLoad(ModifyPsd.this);
+        DialogLoadUtils.showDialogLoad("操作进行中...");
 
         loadData(newPsd);
     }

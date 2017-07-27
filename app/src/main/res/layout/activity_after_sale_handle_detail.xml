@@ -22,14 +22,18 @@
             android:textColor="#fff"
             android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/iv_last"
+        <TextView
+            android:id="@+id/tv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/last" />
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:text="返回"
+            android:gravity="center"
+            android:drawableLeft="@drawable/last" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -270,7 +274,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="15dp"
 
-                android:text="提出要求:" />
+                android:text="处理意见:" />
 
             <TextView
                 android:id="@+id/tv_demand"
@@ -391,36 +395,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_seek_order_pro_detail"
-            android:layout_below="@id/ll2"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="15dp"
-            android:background="@drawable/corners_bg_red"
-            android:textColor="#fff"
-            android:text="查看订单产品详情"/>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_order_other_pro"
-        android:layout_below="@id/rl_order_pro_detail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="本订单内其它产品"/>
-
-    </RelativeLayout>
-    <com.blanink.view.NoScrollListview
-        android:id="@+id/lv_other_pro"
-        android:layout_below="@id/rl_order_other_pro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff">
-
-    </com.blanink.view.NoScrollListview>
 </RelativeLayout>
     </ScrollView>

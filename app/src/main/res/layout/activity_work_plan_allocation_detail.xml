@@ -33,286 +33,248 @@
             android:textColor="#fff" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/order_item_ll"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rl_activity_work_plan_allocation_detail"
-        android:background="#fff"
-        android:gravity="center_vertical">
+        android:background="@color/colorBackGround"
+        >
 
-        <TextView
-            android:id="@+id/tv_companyName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="10dp"
-            android:layout_weight="1"
-            android:text="空行互联"
-            android:textColor="@color/colorTheme" />
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
-            <TextView
-                android:id="@+id/master"
-                android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:orientation="vertical">
+           <!-- <com.blanink.view.MyPagerList
+                android:id="@+id/myPager"
+                android:layout_width="match_parent"
+                android:layout_margin="2dp"
+                android:layout_height="350dp">
+            </com.blanink.view.MyPagerList>-->
+           <!-- <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_height="wrap_content"/>
+-->
+            <RelativeLayout
+                android:id="@+id/order_item_ll2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="2dp"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/tv_pro_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="产品类"
+                    android:textColor="@color/colorBlack" />
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text=""/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="任务负责人:"
-                android:layout_alignParentLeft="true"
-                android:textColor="@color/colorTheme"/>
-        <TextView
-            android:id="@+id/tv_master"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/master"
-            android:layout_marginLeft="5dp"
-            android:text="张三"
-            android:textColor="@color/colorTheme" />
-        </RelativeLayout>
+                android:background="#fff"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_woker"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/order_item_ll"
-        android:background="#fff"
-        android:layout_marginTop="1dp"
-        android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/order_item_ll2_guigeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="规格名称:"
+                    android:textColor="@color/colorBlack" />
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tv_pro_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/order_item_ll2_guigeName" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_woker"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="产品数量:"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/num" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="任务量:"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/tv_target"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/task" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/response"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="反馈数量:"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/tv_response"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/response" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_my_task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="次品数目:"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/bad_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_my_task" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_down"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="任务者:" />
+                android:layout_below="@id/product_attribute"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:background="@color/colorWhite">
+                <TextView
+                    android:id="@+id/attactment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorBlack"
+                    android:text="附件:"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/attactment"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorBackGround">
 
-            <TextView
-                android:id="@+id/tv_woker_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/tv_woker"
-                android:text="" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/tv_attactment"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="查看"
+                        android:textSize="12sp"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:background="@drawable/selector_corner_blue"/>
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/priority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="优先级:" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp">
 
-            <TextView
-                android:id="@+id/tv_priority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/priority" />
-        </RelativeLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/order_item_ll2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/ll_woker"
-        android:background="#fff"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        <TextView
-            android:id="@+id/tv_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:text="产品类" />
-            <TextView
-                android:id="@+id/tv_pro_category"
-                android:layout_toRightOf="@id/tv_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:text="产品类" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="备注信息:"
+                        android:textColor="@color/colorBlack" />
 
-            <TextView
-                android:id="@+id/order_item_ll2_guigeName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="规格名称:" />
+                    <TextView
+                        android:id="@+id/tv_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/note" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_pro_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/order_item_ll2_guigeName"
-                android:ellipsize="end"
-                android:singleLine="true" />
-        </RelativeLayout>
+            </RelativeLayout>
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/order_item"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/order_item_ll2"
-        android:background="#fff"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="产品数量:" />
-
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/num" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="进度:" />
-
-            <TextView
-                android:id="@+id/tv_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/finish" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_date"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/order_item"
-        android:background="#fff"
-        android:gravity="center_vertical">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_order_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="分配日期:" />
-
-            <TextView
-                android:id="@+id/tv_take_order_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/tv_order_time"
-                android:text="2012-6-10" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-           >
-
-            <TextView
-                android:id="@+id/achieveAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="分配数量:" />
-
-            <TextView
-                android:id="@+id/tv_achieveAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/achieveAmount"
-                android:text="" />
-        </RelativeLayout>
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/ll_date"
-        android:background="#fff"
-        android:gravity="center_vertical">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp">
-
-            <TextView
-                android:id="@+id/note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="备注:" />
-
-            <TextView
-                android:id="@+id/tv_note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/note"
-                android:text="" />
-        </RelativeLayout>
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

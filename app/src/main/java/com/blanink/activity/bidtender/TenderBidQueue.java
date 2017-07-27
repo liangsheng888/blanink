@@ -1,7 +1,6 @@
 package com.blanink.activity.bidTender;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,22 +8,100 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
+import com.blanink.utils.StringToListUtils;
 import com.blanink.view.NoScrollListview;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /***
  * 招标  投标列表
  */
 public class TenderBidQueue extends AppCompatActivity {
+    @BindView(R.id.bid_detail_iv_last)
+    TextView bidDetailIvLast;
+    @BindView(R.id.bid_detail_rl)
+    RelativeLayout bidDetailRl;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.bids_num)
+    TextView bidsNum;
+    @BindView(R.id.tv_bids_num)
+    TextView tvBidsNum;
+    @BindView(R.id.bid_date)
+    TextView bidDate;
+    @BindView(R.id.tv_bid_date)
+    TextView tvBidDate;
+    @BindView(R.id.view)
+    View view;
+    @BindView(R.id.tv_unit_price)
+    TextView tvUnitPrice;
+    @BindView(R.id.tv_single_cost)
+    TextView tvSingleCost;
+    @BindView(R.id.purchase_num)
+    TextView purchaseNum;
+    @BindView(R.id.tv_purchase_num)
+    TextView tvPurchaseNum;
+    @BindView(R.id.tv_first_cost)
+    TextView tvFirstCost;
+    @BindView(R.id.tv_first_price)
+    TextView tvFirstPrice;
+    @BindView(R.id.intro)
+    TextView intro;
+    @BindView(R.id.tv_total_price)
+    TextView tvTotalPrice;
+    @BindView(R.id.tv_note_detail)
+    TextView tvNoteDetail;
+    @BindView(R.id.tv_note_detail_content)
+    TextView tvNoteDetailContent;
+    @BindView(R.id.attactment)
+    TextView attactment;
+    @BindView(R.id.tv_attactment)
+    TextView tvAttactment;
+    @BindView(R.id.rl_down)
+    RelativeLayout rlDown;
+    @BindView(R.id.publish_time)
+    TextView publishTime;
+    @BindView(R.id.tv_publish_time)
+    TextView tvPublishTime;
+    @BindView(R.id.view6)
+    View view6;
+    @BindView(R.id.btn_update)
+    Button btnUpdate;
+    @BindView(R.id.ll_my_bid_detail)
+    LinearLayout llMyBidDetail;
+    @BindView(R.id.num)
+    TextView num;
+    @BindView(R.id.tv_bid_num)
+    TextView tvBidNum;
+    @BindView(R.id.tv_more)
+    TextView tvMore;
+    @BindView(R.id.more)
+    RelativeLayout more;
+    @BindView(R.id.lv_tender)
+    NoScrollListview lvTender;
+    @BindView(R.id.my_publish_tender_rl)
+    RelativeLayout myPublishTenderRl;
+    @BindView(R.id.tv_not)
+    TextView tvNot;
+    @BindView(R.id.rl_not_data)
+    RelativeLayout rlNotData;
+    @BindView(R.id.activity_tender_reply_detail)
+    RelativeLayout activityTenderReplyDetail;
     private MyActivityManager myActivityManager;
     private TextView bid_detail_iv_last;
     private TenderAndBid.Result.Row row = new TenderAndBid.Result.Row();
@@ -47,6 +124,7 @@ public class TenderBidQueue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tender_reply_detail);
+        ButterKnife.bind(this);
         myActivityManager = MyActivityManager.getInstance();
         myActivityManager.pushOneActivity(this);
         receivedDataFromTenderManage();
@@ -89,10 +167,29 @@ public class TenderBidQueue extends AppCompatActivity {
         tv_purchase_num.setText(row.count + "个");
         tv_note_detail_content.setText(row.remarks);
         tv_publish_time.setText(row.inviteDate);
-        tv_total_price.setText(row.count*Double.parseDouble(row.targetPrice) + "元");
+        tv_total_price.setText(row.count * Double.parseDouble(row.targetPrice) + "元");
         tv_first_cost.setText(row.downPayment + "%");
         //附件
         uploadAttachment();
+
+        List<String> arrayList=null;
+        if (row.attachment!= null && row.attachment != ""&&!"".equals(row.attachment)) {
+            arrayList = StringToListUtils.stringToList(row.attachment, "\\|");
+        }else {
+            arrayList=new ArrayList<>();
+        }
+
+
+        final List<String> finalArrayList = arrayList;
+        tvAttactment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TenderBidQueue.this, AttachmentBrow.class);
+                intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                startActivity(intent);
+            }
+        });
+
         //返回
         bid_detail_iv_last.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,39 +197,37 @@ public class TenderBidQueue extends AppCompatActivity {
                 finish();
             }
         });
-        tv_bid_num.setText("("+bidList.size()+")");
+        tv_bid_num.setText("(" + bidList.size() + ")");
         //投标列表
         lv_tender.setAdapter(new BidQueueAdapter());
 
         lv_tender.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(TenderBidQueue.this,TenderBidAccord.class) ;
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("BidCompany",bidList.get(position));
-                intent.putExtra("downPayment",row.downPayment+"");
-                intent.putExtra("count",row.count+"");
-                intent.putExtra("inviteCompany.id",row.inviteCompany.id);
+                Intent intent = new Intent(TenderBidQueue.this, TenderBidAccord.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("BidCompany", bidList.get(position));
+                intent.putExtra("downPayment", row.downPayment + "");
+                intent.putExtra("count", row.count + "");
+                intent.putExtra("inviteCompany.id", row.inviteCompany.id);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
         //如果有投标，不能编辑
-        if(row.bidList.size()>0){
-            btn_update.setEnabled(false);
-            btn_update.setBackgroundColor(Color.GRAY);
+        if (row.bidList.size() > 0) {
+            btnUpdate.setVisibility(View.GONE);
+        }else {
+            myPublishTenderRl.setVisibility(View.GONE);
+        }
 
-        }
-        else {
-            rl_not_data.setVisibility(View.VISIBLE);
-        }
         //编辑
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent=new Intent(TenderBidQueue.this,TenderModify.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("TenderDetail",row);
+                Intent intent = new Intent(TenderBidQueue.this, TenderModify.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("TenderDetail", row);
                 intent.putExtras(bundle);
                 startActivity(intent);
 
@@ -170,7 +265,7 @@ public class TenderBidQueue extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder = null;
             if (convertView == null) {
-                viewHolder=new ViewHolder();
+                viewHolder = new ViewHolder();
                 convertView = View.inflate(TenderBidQueue.this, R.layout.item_bid_list, null);
                 viewHolder.tv_master = (TextView) convertView.findViewById(R.id.tv_master);
                 viewHolder.tv_company_name = (TextView) convertView.findViewById(R.id.tv_company_name);
@@ -180,32 +275,33 @@ public class TenderBidQueue extends AppCompatActivity {
                 viewHolder.tv_address = (TextView) convertView.findViewById(R.id.tv_address);
                 convertView.setTag(viewHolder);
             } else {
-                viewHolder =(ViewHolder) convertView.getTag();
+                viewHolder = (ViewHolder) convertView.getTag();
             }
-            TenderAndBid.Result.Row.Bid bid=bidList.get(position);
+            TenderAndBid.Result.Row.Bid bid = bidList.get(position);
             viewHolder.tv_master.setText(bid.bidCompany.master);
             viewHolder.tv_company_name.setText(bid.bidCompany.name);
             viewHolder.tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bid.bidDate)));
             viewHolder.tv_single_price.setText(bid.bidPrice);
-            String productionCycle="";
-            if ("1".equals(bid.productionCycle)){
-                productionCycle="个小时";
-
-            } if ("2".equals(bid.productionCycle)){
-                productionCycle="天";
-            }
-            if ("3".equals(bid.productionCycle)){
-                productionCycle="周";
+            String productionCycle = "";
+            if ((bid.productionCycleUnit==1)) {
+                productionCycle = "个小时";
 
             }
-            if ("4".equals(bid.productionCycle)){
-                productionCycle="个月";
+            if (bid.productionCycleUnit==2) {
+                productionCycle = "天";
             }
-            if ("5".equals(bid.productionCycle)){
-                productionCycle="年";
+            if (bid.productionCycleUnit==3) {
+                productionCycle = "周";
+
+            }
+            if (bid.productionCycleUnit==4) {
+                productionCycle = "个月";
+            }
+            if (bid.productionCycleUnit==5) {
+                productionCycle = "年";
             }
 
-            viewHolder.tv_hand_date.setText(bid.productionCycleUnit+productionCycle);//
+            viewHolder.tv_hand_date.setText(bid.productionCycle + productionCycle);//
             viewHolder.tv_address.setText(bid.bidCompany.address);
             return convertView;
         }

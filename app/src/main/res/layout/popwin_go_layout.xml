@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBackGround"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_down_send"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="重新下发"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack"
+
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_seek_progress"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="查看进度"
+            android:visibility="gone"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack"
+
+            />
+        <TextView
+            android:id="@+id/tv_add_note"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="沟通记录"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/tv_modify"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="编辑产品"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_modify_supplier"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="修改供应商"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorBlack" />
+        <TextView
+            android:id="@+id/tv_after_sale"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="发起售后"
+            android:visibility="gone"
+            android:textColor="@color/colorBlack" />
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="评价"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/colorBlack" />
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="18sp"
+            android:background="@drawable/selector_gray_pressed"
+            android:gravity="center"
+            android:text="取消"
+            android:layout_marginTop="10dp"
+
+            android:textColor="@color/colorBlack" />
+
+    </LinearLayout>
+
+</RelativeLayout>

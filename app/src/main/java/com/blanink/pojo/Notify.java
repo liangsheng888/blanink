@@ -368,6 +368,7 @@ public class Notify implements Serializable {
                     private String phone;
                     private String fax;
                     private String email;
+                    private String photo;
                     private int reviewOthers;
                     private int reviewSelf;
                     private int otherCosting;
@@ -381,6 +382,10 @@ public class Notify implements Serializable {
                     private int grossProfit;
                     private String parentId;
                     private List<?> customerServiceList;
+
+                    public String getPhoto() {
+                        return photo;
+                    }
 
                     public String getId() {
                         return id;

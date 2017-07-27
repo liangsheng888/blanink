@@ -22,11 +22,6 @@ import com.blanink.fragment.CompanyHonest;
 import com.blanink.fragment.CompanyPartner;
 import com.blanink.fragment.CompanyRemark;
 import com.blanink.fragment.CustomerInfo;
-import com.blanink.fragment.LastCustomerInfo;
-import com.blanink.fragment.LastHonest;
-import com.blanink.fragment.LastPartner;
-import com.blanink.fragment.LastProduct;
-import com.blanink.fragment.LastRemark;
 import com.blanink.utils.MyActivityManager;
 
 import butterknife.BindView;
@@ -128,7 +123,7 @@ public class CompanyDetail extends AppCompatActivity {
                 }
             });
             //判断公司类型
-            if (companyType.equals("1") && "2".equals(sp.getString("COMPANY_TYPE", null))) {
+            if ("1".equals(companyType) && "2".equals(sp.getString("COMPANY_TYPE", null))) {
                 tvType.setVisibility(View.VISIBLE);
             }
             tvType.setOnClickListener(new View.OnClickListener() {

@@ -57,10 +57,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
   public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
 
     if (getItemViewType(position) == TYPE_PHOTO) {
-      Uri uri = Uri.fromFile(new File(photoPaths.get(position)));
+      Uri uri=null;
+      if(photoPaths.get(position).contains("http://")){
+       uri= Uri.parse(photoPaths.get(position));
+      }else {
+       uri = Uri.fromFile(new File(photoPaths.get(position)));
+      }
 
       boolean canLoadImage = AndroidLifecycleUtils.canLoadImage(holder.ivPhoto.getContext());
-
       if (canLoadImage) {
         Glide.with(mContext)
                 .load(uri)

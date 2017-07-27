@@ -26,7 +26,7 @@ public class ProcessFeedback implements Serializable {
         public String id;
         public Boolean isNewRecord;
         public String remarks;
-        public LoginResult.CreateBy createBy;
+        public LoginResult.ResultBean.CreateByBean createBy;
         public String createDate;
         public String updateDate;
         public String parentIds;

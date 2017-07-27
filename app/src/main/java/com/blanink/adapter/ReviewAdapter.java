@@ -57,7 +57,7 @@ public class ReviewAdapter extends BaseAdapter {
         }
         viewHolder.tv_product.setText(reviewList.get(position).getOrderProduct().getProductName());
         viewHolder.tv_product_ruler.setText(reviewList.get(position).getOrderProduct().getCompanyCategory().getName());
-        viewHolder.tv_require.setText(reviewList.get(position).getOrder().getBCompany().getName());
+        viewHolder.tv_require.setText(reviewList.get(position).getOrder().getACompany().getName());
         viewHolder.tv_num.setText(reviewList.get(position).getOrderProduct().getAmount());
         return convertView;
     }

@@ -14,62 +14,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/tv_company"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-
-                    android:text=""
-                    android:textColor="@color/colorTheme" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
-
-                    <TextView
-                        android:id="@+id/tv_customer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/view"
-                        android:text="服务客户:"
-                        android:textColor="@color/colorTheme" />
-
-                    <TextView
-                        android:id="@+id/tv_customer_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/tv_customer"
-                        android:text="30家"
-                        android:textColor="@color/colorTheme" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tv_credit_customer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
-                    android:drawableLeft="@drawable/credit"
-                    android:gravity="center_vertical"
-                    android:text="诚信客户"
-                    android:textColor="@color/colorBlack" />
-
-            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/company_info"
@@ -360,7 +304,7 @@
                     android:textColor="@color/colorGray" />
             </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/layout_load">
+     <include layout="@layout/layout_load">
         </include>
     </FrameLayout>
 

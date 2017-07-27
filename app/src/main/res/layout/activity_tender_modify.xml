@@ -84,7 +84,6 @@
                     android:text="标题:"
                     android:textColor="@color/colorBlack"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
                     android:layout_marginStart="52dp" />
 
             </RelativeLayout>
@@ -367,49 +366,6 @@
                 </RelativeLayout>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/tv_upload"
-                    android:layout_alignParentLeft="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_centerVertical="true"
-                    android:text="上传附件:"
-                    android:textColor="@color/colorBlack"
-                    />
-                <ImageView
-                    android:id="@+id/iv_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/upload"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/tv_upload"
-                    android:layout_centerVertical="true"
-                    />
-                <TextView
-                    android:id="@+id/tv_file_name"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/iv_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:singleLine="true"/>
-
-                <TextView
-                    android:id="@+id/tv_file_size"
-                    android:layout_toRightOf="@id/tv_file_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    />
-            </RelativeLayout>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/ll_save"

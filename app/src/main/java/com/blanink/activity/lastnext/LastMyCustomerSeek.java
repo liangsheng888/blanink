@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.ManyCustomer;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -242,6 +243,7 @@ public class LastMyCustomerSeek extends AppCompatActivity {
                 viewHolder.tv_company_apply_remark = (TextView) convertView.findViewById(R.id.tv_company_apply_remark);
                 viewHolder.tv_company_apply_remark_other = (TextView) convertView.findViewById(R.id.tv_company_apply_other_remark);
                 viewHolder.tv_apply_address = (TextView) convertView.findViewById(R.id.tv_apply_address);
+                viewHolder.iv=(ImageView)convertView.findViewById(R.id.iv);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
@@ -264,6 +266,8 @@ public class LastMyCustomerSeek extends AppCompatActivity {
             viewHolder.tv_honest.setText(df.format((customers.get(position).companyA.reviewOthers + customers.get(position).companyA.reviewOthers) / 2.0));
             viewHolder.tv_company_apply_remark.setText(customers.get(position).companyA.reviewOthers + "");
             viewHolder.tv_company_apply_remark_other.setText(customers.get(position).companyA.reviewOthers + "");
+            GlideUtils.glideImageView(LastMyCustomerSeek.this,viewHolder.iv,customers.get(position).getCompanyA().photo,true);
+
             return convertView;
         }
     }
@@ -278,6 +282,7 @@ public class LastMyCustomerSeek extends AppCompatActivity {
         public TextView tv_company_apply_remark;//自评
         public TextView tv_company_apply_remark_other;//他评
         public TextView tv_scope;
+        ImageView iv;
 
     }
 

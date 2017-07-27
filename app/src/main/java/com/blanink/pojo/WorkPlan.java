@@ -1408,7 +1408,7 @@ public class WorkPlan implements Serializable{
 
     @Override
     public String toString() {
-        return "WorkPlan{" +
+        return "WorkPlanProcessQueue{" +
                 "errorCode='" + errorCode + '\'' +
                 ", reason='" + reason + '\'' +
                 ", result=" + result +

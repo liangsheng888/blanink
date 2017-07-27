@@ -14,8 +14,9 @@ public class XUtilsImageUtils {
     public static void display(ImageView imageView, String iconUrl) {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
-                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                .setFailureDrawableId(R.mipmap.th_pda_net)
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
+                .setFailureDrawableId(R.drawable.empty)
+                .setLoadingDrawableId(R.drawable.loading)
                 .setUseMemCache(true)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
@@ -25,9 +26,9 @@ public class XUtilsImageUtils {
     public static void displayLoading(ImageView imageView, String iconUrl) {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
-                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                .setFailureDrawableId(R.mipmap.th_pda_net)
-                .setLoadingDrawableId(R.mipmap.load)
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
+                .setFailureDrawableId(R.drawable.empty)
+                .setLoadingDrawableId(R.drawable.loading)
                 .setUseMemCache(true)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
@@ -43,13 +44,13 @@ public class XUtilsImageUtils {
      */
     public static void display(ImageView imageView, String iconUrl, int radius) {
         ImageOptions imageOptions = new ImageOptions.Builder()
-                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
                 .setRadius(DensityUtil.dip2px(radius))
                 .setIgnoreGif(false)
                 .setCrop(true)//是否对图片进行裁剪
                 .setUseMemCache(true)
-                .setFailureDrawableId(R.drawable.user_photo)
-                .setLoadingDrawableId(R.mipmap.load)
+                .setFailureDrawableId(R.drawable.empty)
+                .setLoadingDrawableId(R.drawable.loading)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
     }
@@ -63,12 +64,12 @@ public class XUtilsImageUtils {
      */
     public static void display(ImageView imageView, String iconUrl, boolean isCircluar) {
         ImageOptions imageOptions = new ImageOptions.Builder()
-                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
                 .setCircular(isCircluar)
                 .setCrop(true)
                 .setUseMemCache(true)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
-                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .setLoadingDrawableId(R.drawable.loading)
+                .setFailureDrawableId(R.drawable.empty)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
 

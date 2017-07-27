@@ -17,8 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.ConsultActivity;
-import com.blanink.activity.chat.ChatAcitivity;
+import com.blanink.activity.EaseChat.EaseChatActivity;
 import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyCooperate;
 import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyDelete;
 import com.blanink.pojo.ManyCustomer;
@@ -43,14 +42,6 @@ import butterknife.ButterKnife;
  */
 public class NextPartnerInfo extends Fragment {
     public static final String TAG = "NextPartnerInfo";
-    @BindView(R.id.tv_company)
-    TextView tvCompany;
-    @BindView(R.id.tv_customer)
-    TextView tvCustomer;
-    @BindView(R.id.tv_customer_num)
-    TextView tvCustomerNum;
-    @BindView(R.id.tv_credit_customer)
-    TextView tvCreditCustomer;
     @BindView(R.id.tv_address)
     TextView tvAddress;
     @BindView(R.id.tv_company_xin)
@@ -95,6 +86,7 @@ public class NextPartnerInfo extends Fragment {
     NoScrollListview lvOrderInfo;
     @BindView(R.id.company_info)
     LinearLayout companyInfo;
+
     @BindView(R.id.btn_chat)
     Button btnChat;
     @BindView(R.id.ll_talk)
@@ -115,14 +107,12 @@ public class NextPartnerInfo extends Fragment {
     private SharedPreferences sp;
     private String id;
     private ManyCustomer.Result.Company companyB;
-    private TextView tv_company;
     private TextView tv_address;
     private TextView tv_master;
     private TextView tv_phone;
     private TextView tv_major_content;
     private TextView tv_company_address;
     private TextView tv_introduce;
-    private TextView tv_finished_order_num;
     private SingleCustomer info;
     private Button btn;
     private Button btn_chat;
@@ -139,7 +129,7 @@ public class NextPartnerInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Intent intent = getActivity().getIntent();
         id = intent.getStringExtra("companyB.id");
-        type=intent.getStringExtra("type");
+        type = intent.getStringExtra("type");
         Log.e("partner", "NextPartnerInfo  id:" + id);
         sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
         View view = View.inflate(getActivity(), R.layout.fragment_next_partner_info, null);
@@ -160,13 +150,13 @@ public class NextPartnerInfo extends Fragment {
         btn_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                //  startChat(supplierId);
-                Intent intent = new Intent(getActivity(), ChatAcitivity.class);
+             /*   //
+                // startChat(supplierId);
+                Intent intent = new Intent(getActivity(), EaseChatActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("companyB", companyB);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
         btn.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +183,6 @@ public class NextPartnerInfo extends Fragment {
     }
 
     public void initView(View view) {
-        tv_company = ((TextView) view.findViewById(R.id.tv_company));
         tv_address = ((TextView) view.findViewById(R.id.tv_address));
         tv_master = ((TextView) view.findViewById(R.id.tv_major_person));//负责人
         tv_phone = ((TextView) view.findViewById(R.id.tv_phone));//手机
@@ -203,11 +192,9 @@ public class NextPartnerInfo extends Fragment {
         tv_company_xin_yu = ((TextView) view.findViewById(R.id.tv_company_xin_yu));//公司信誉
         tv_company_remark = ((TextView) view.findViewById(R.id.tv_company_remark));//自评
         tv_company_other_remark = ((TextView) view.findViewById(R.id.tv_company_other_remark));//他评
-        tv_finished_order_num = ((TextView) view.findViewById(R.id.tv_finished_order_num));//已完成订单数
         tv_url = ((TextView) view.findViewById(R.id.tv_url));
         btn = ((Button) view.findViewById(R.id.btn));//解除关系/申请合作
         btn_chat = ((Button) view.findViewById(R.id.btn_chat));//聊天
-        tv_customer_num = ((TextView) view.findViewById(R.id.tv_customer_num));
     }
 
     public void getData() {
@@ -227,22 +214,21 @@ public class NextPartnerInfo extends Fragment {
                 supplierId = info.result.getId();
                 Log.e(TAG, "companyA+++++++" + companyB.toString());
                 //界面设置
-                tv_company.setText(companyB.getName());
-                tv_address.setText(companyB.getArea().getName());
+                if (companyB.getArea() != null) {
+                    tv_address.setText(companyB.getArea().getName());
+                }
                 tv_master.setText(companyB.getMaster());
                 tv_phone.setText(companyB.getPhone());
-                //tv_major_content.setText(companyB.getScope());
                 tv_company_address.setText(companyB.getAddress());
-                tv_customer_num.setText(companyB.serviceCount + "");
                 DecimalFormat df = new DecimalFormat("0.0");
                 tv_company_remark.setText(companyB.reviewSelf + "");
                 tv_company_other_remark.setText(companyB.reviewOthers + "");
                 tv_company_xin_yu.setText(df.format((companyB.reviewSelf + companyB.reviewOthers) / 2.0));
                 tv_introduce.setText(companyB.getRemarks());
                 tv_url.setText(companyB.homepage);
-                if ("1".equals(type)){
+                if ("1".equals(type)) {
                     btn.setText("已合作,解除关系");
-                } else if ("0".equals(info.result.getType())) {
+                } else if ("0".equals(type)) {
                     btn.setText("潜在供应商,申请合作");
                 } else {
                     btn.setText("申请合作");
@@ -252,7 +238,8 @@ public class NextPartnerInfo extends Fragment {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 llLoad.setVisibility(View.GONE);
-                rlLoadFail.setVisibility(View.VISIBLE);
+                //rlLoadFail.setVisibility(View.VISIBLE);
+                Log.e("Next", ex.toString());
             }
 
             @Override
@@ -272,9 +259,14 @@ public class NextPartnerInfo extends Fragment {
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
    /* //开启聊天
     private void startChat(String userId) {
-        Intent intent = new Intent(getActivity(), ChatAcitivity.class);
+        Intent intent = new Intent(getActivity(), EaseChatActivity.class);
         intent.putExtra(EaseConstant.EXTRA_USER_ID, userId);
         intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
         startActivity(intent);

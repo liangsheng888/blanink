@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_last_family_manage_customer_delete_relation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:id="@+id/et_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corner_common_border_gray"
+                android:gravity="top"
+                android:lines="6"
+                android:padding="10dp"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
+            <CheckBox
+                android:id="@+id/cb_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/cb_role"
+                    android:textSize="12sp"
+                    android:text="仅内部可以看到"/>
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_send"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:background="@drawable/selector_blue"
+                android:text="发送"
+                android:layout_marginRight="15dp"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+        </RelativeLayout>
+</LinearLayout>

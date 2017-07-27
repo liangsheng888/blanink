@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.lastNext.LastFamilyManageCustomerApply;
-import com.blanink.activity.lastNext.NextFamilyManageInviteBcomeSupplier;
 import com.blanink.activity.lastNext.NextFamilyManageSupplierManageApplyCooperate;
 import com.blanink.pojo.SingleCustomer;
 import com.blanink.utils.NetUrlUtils;
@@ -39,15 +38,6 @@ import butterknife.ButterKnife;
  */
 public class CustomerInfo extends Fragment {
 
-
-    @BindView(R.id.tv_company)
-    TextView tvCompany;
-    @BindView(R.id.tv_customer)
-    TextView tvCustomer;
-    @BindView(R.id.tv_customer_num)
-    TextView tvCustomerNum;
-    @BindView(R.id.tv_credit_customer)
-    TextView tvCreditCustomer;
     @BindView(R.id.tv_address)
     TextView tvAddress;
     @BindView(R.id.tv_company_xin_yu)
@@ -117,13 +107,14 @@ public class CustomerInfo extends Fragment {
     private String id;
     private SharedPreferences sp;
     private SingleCustomer info;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.fragment_company_deatil_info, null);
         ButterKnife.bind(this, view);
         sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
-       Intent intent = getActivity().getIntent();
+        Intent intent = getActivity().getIntent();
         id = intent.getStringExtra("companyId");
         initData();
         return view;
@@ -137,7 +128,7 @@ public class CustomerInfo extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LastFamilyManageCustomerApply.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("info",info);
+                bundle.putSerializable("info", info);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -174,13 +165,13 @@ public class CustomerInfo extends Fragment {
                 info = gson.fromJson(result, SingleCustomer.class);
                 //界面设置
                 if (info != null) {
-                    tvCompany.setText(info.result.getName());
+                   // tvCompany.setText(info.result.getName());
                     tvCompanyAddress.setText(info.result.getAddress());
                     tvMajorPerson.setText(info.result.getMaster());
                     tvPhone.setText(info.result.getPhone());
                     tvMajorContent.setText(info.result.getScope());
-                    tvAddress.setText(info.result.getAddress());
-                    tvCustomerNum.setText(info.result.serviceCount + "");
+                    tvAddress.setText(info.result.getArea().getName());
+                   // tvCustomerNum.setText(info.result.serviceCount + "");
                     tvIntroduce.setText(info.result.getRemarks());
                     DecimalFormat df = new DecimalFormat("0.0");
                     tvCompanyRemark.setText(info.result.reviewSelf + "");
@@ -197,8 +188,10 @@ public class CustomerInfo extends Fragment {
                     }
                 }
             }
+
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("@@@",ex.toString());
                 llLoad.setVisibility(View.GONE);
                 rlLoadFail.setVisibility(View.VISIBLE);
             }
@@ -220,4 +213,8 @@ public class CustomerInfo extends Fragment {
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 }

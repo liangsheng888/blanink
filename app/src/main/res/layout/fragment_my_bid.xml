@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorBackGround"
+    tools:context="com.blanink.activity.bidTender.MyBidQueue">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.blanink.view.UpLoadListView
+            android:id="@+id/lv_my_bid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:listSelector="#11FB731F"
+            android:drawSelectorOnTop="true"
+            android:background="#fff">
+        </com.blanink.view.UpLoadListView>
+        <include layout="@layout/layout_load"></include>
+    </FrameLayout>
+</RelativeLayout>

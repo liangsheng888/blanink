@@ -31,33 +31,30 @@
             android:text="返回"
             android:textColor="#fff"
             android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            />
     </RelativeLayout>
  <RelativeLayout
-     android:id="@+id/rl_flow"
+     android:id="@+id/rl_flow_main"
      android:layout_below="@id/come_order_detail_rl"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content">
-     <com.blanink.view.RoundProgressBar
-         android:id="@+id/roundProgressBar"
-         android:layout_width="40dip"
-         android:layout_height="40dip"
-         android:layout_centerInParent="true"
-         android_custom:roundColor="#D1D1D1"
-         android_custom:roundProgressColor="@android:color/black"
-         android_custom:roundWidth="10dip"
-         android_custom:textColor="#9A32CD"
-         android_custom:textIsDisplayable="false"
-         android_custom:textSize="18sp">
-     </com.blanink.view.RoundProgressBar>
- </RelativeLayout>
-    <Button
-        android:id="@+id/bt_use"
-        android:layout_below="@id/rl_flow"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_flow"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_margin="15dp"
-        android:text="使用本流程"
-        android:background="@drawable/selector_red"
-        android:textSize="16sp"
-        android:textColor="#fff"/>
+        android:layout_height="match_parent"
+        >
+
+ </RelativeLayout>
+</RelativeLayout>
 </RelativeLayout>

@@ -20,7 +20,8 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.activity.MainActivity;
 import com.blanink.pojo.ManyCustomer;
-import com.blanink.utils.CheckNetIsConncet;
+import com.blanink.utils.CheckNet;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.RefreshListView;
@@ -193,7 +194,7 @@ public class NextFamilyManageCompanySupplierManage extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!CheckNetIsConncet.isNetWorkConnected(NextFamilyManageCompanySupplierManage.this)) {
+                if (!CheckNet.isNetWorkConnected(NextFamilyManageCompanySupplierManage.this)) {
                     ll_load.setVisibility(View.GONE);
                     ll_load_fail.setVisibility(View.VISIBLE);
                 } else {
@@ -262,7 +263,7 @@ public class NextFamilyManageCompanySupplierManage extends AppCompatActivity {
     //访问服务器
     private void getData() {
 
-                if (!CheckNetIsConncet.isNetWorkConnected(NextFamilyManageCompanySupplierManage.this)) {
+                if (!CheckNet.isNetWorkConnected(NextFamilyManageCompanySupplierManage.this)) {
                     ll_load.setVisibility(View.GONE);
                     ll_load_fail.setVisibility(View.VISIBLE);
                 } else {
@@ -362,6 +363,7 @@ public class NextFamilyManageCompanySupplierManage extends AppCompatActivity {
                 viewHolder.tv_company_apply_remark = (TextView) convertView.findViewById(R.id.tv_company_apply_remark);
                 viewHolder.tv_company_apply_remark_other = (TextView) convertView.findViewById(R.id.tv_company_apply_other_remark);
                 viewHolder.tv_apply_address = (TextView) convertView.findViewById(R.id.tv_apply_address);
+                viewHolder.iv=(ImageView)convertView.findViewById(R.id.iv);
                 convertView.setTag(viewHolder);
                 sparseArray.put(position, convertView);
             } else {
@@ -381,13 +383,15 @@ public class NextFamilyManageCompanySupplierManage extends AppCompatActivity {
             }
             viewHolder.tv_company_jc.setText(customer.getCompanyB().name);
             viewHolder.tv_master.setText(customer.getCompanyB().master);
-            viewHolder.tv_apply_address.setText(customer.getCompanyB().address);
+            viewHolder.tv_apply_address.setText(customer.getCompanyB().getArea().getName());
             viewHolder.tv_master.setText(customer.getCompanyB().master);
             viewHolder.tv_phone.setText(customer.getCompanyB().phone);
             DecimalFormat df = new DecimalFormat("0.0");
             viewHolder.tv_honest.setText(df.format((suppliers.get(position).companyB.reviewSelf + suppliers.get(position).companyB.reviewOthers) / 2.0));
             viewHolder.tv_company_apply_remark.setText(suppliers.get(position).companyB.reviewSelf + "");
             viewHolder.tv_company_apply_remark_other.setText(suppliers.get(position).companyB.reviewOthers + "");
+            GlideUtils.glideImageView(NextFamilyManageCompanySupplierManage.this,viewHolder.iv,suppliers.get(position).getCompanyB().photo,true);
+
             return convertView;
         }
 
@@ -403,6 +407,7 @@ public class NextFamilyManageCompanySupplierManage extends AppCompatActivity {
         public TextView tv_honest;//公司信誉
         public TextView tv_company_apply_remark;//自评
         public TextView tv_company_apply_remark_other;//他评
+        ImageView iv;
 
     }
 

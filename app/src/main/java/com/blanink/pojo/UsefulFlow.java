@@ -117,8 +117,9 @@ public class UsefulFlow  implements Serializable{
             private String isCommon;
             private String name;
             private String flowData;
-            private long internalDeliveryDate;
+            private String internalDeliveryDate;
             private List<?> processList;
+            private List<?> orderProducts;
             private List<RemaksListBean> remaksList;
 
             @Override
@@ -238,14 +239,6 @@ public class UsefulFlow  implements Serializable{
                 this.flowData = flowData;
             }
 
-            public long getInternalDeliveryDate() {
-                return internalDeliveryDate;
-            }
-
-            public void setInternalDeliveryDate(long internalDeliveryDate) {
-                this.internalDeliveryDate = internalDeliveryDate;
-            }
-
             public List<?> getProcessList() {
                 return processList;
             }
@@ -274,6 +267,7 @@ public class UsefulFlow  implements Serializable{
 
                 private String id;
                 private boolean isNewRecord;
+                private String name;
                 private String loginFlag;
                 private boolean admin;
                 private String roleNames;
@@ -443,6 +437,8 @@ public class UsefulFlow  implements Serializable{
                 private int selfPayment;
                 private int serviceCount;
                 private int grossProfit;
+                private String photo;
+                private List<?> roleList;
                 private String parentId;
                 private List<?> customerServiceList;
 

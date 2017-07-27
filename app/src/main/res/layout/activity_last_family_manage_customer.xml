@@ -56,131 +56,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <RelativeLayout
-        android:id="@+id/rl_seek"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/corners_bg_white"
-        android:gravity="center_vertical">
-        <TextView
-            android:id="@+id/come_order_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:layout_alignParentLeft="true"
-            android:drawableLeft="@drawable/seek" />
-
-        <EditText
-            android:id="@+id/et_seek"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_toRightOf="@id/come_order_tv"
-            android:background="#fff"
-            android:textSize="15sp"
-            android:hint="请输入你需要的信息" />
-
-        <TextView
-            android:id="@+id/tv_seek"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="搜索"
-            android:textColor="@color/colorTheme"
-            android:textSize="16sp" />
-    </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:layout_marginTop="1dp"
-            android:orientation="horizontal" >
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center_horizontal"
-                android:id="@+id/rl_category"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/cate_tab_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:text="分类"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/news_tab_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:text="最新"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/hot_tab_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:text="热门"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/album_tab_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:text="专题"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-        </LinearLayout>
         <com.blanink.view.RefreshListView
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:listSelector="#11FB731F"
-            android:drawSelectorOnTop="true"
-            android:background="#fff"
-            android:dividerHeight="4dp"
+            android:divider="@null"
             ></com.blanink.view.RefreshListView>
-    </LinearLayout>
 </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_not_data"
@@ -213,16 +94,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
+            <com.blanink.view.CusProgressView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="正在加载..." />
+                android:layout_height="match_parent">
+            </com.blanink.view.CusProgressView>
         </LinearLayout>
 
         <RelativeLayout

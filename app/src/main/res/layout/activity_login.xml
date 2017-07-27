@@ -4,7 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7bf2efee"
+    android:background="@drawable/bg"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context="com.blanink.activity.LoginActivity"
@@ -42,24 +42,23 @@
     <RelativeLayout
         android:id="@+id/rl_user"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/corners_bg_white"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="45dp"
+        android:background="@drawable/corner_common_border_gray"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
 
         android:gravity="center_vertical">
 
         <RelativeLayout
             android:id="@+id/rl_user_"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_alignParentLeft="true"
-
-            android:background="@drawable/corners_bg_white">
+            >
 
             <RelativeLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
@@ -78,13 +77,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_toRightOf="@id/rl_user_"
-            android:background="@drawable/corners_bg_white">
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/rl_user_">
             <EditText
                 android:id="@+id/et_user"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:background="#fff"
                 android:hint="请输入账户"
                 android:textSize="16sp"
@@ -99,24 +97,23 @@
         android:id="@+id/rl_psd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/corners_bg_white"
+        android:background="@drawable/corner_common_border_gray"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
 
         android:gravity="center_vertical">
 
         <RelativeLayout
             android:id="@+id/rl_psd_"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_alignParentLeft="true"
-
-            android:background="@drawable/corners_bg_white">
+            >
 
             <RelativeLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
@@ -135,14 +132,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_toRightOf="@id/rl_psd_"
-            android:background="@drawable/corners_bg_white">
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/rl_psd_">
 
             <EditText
                 android:id="@+id/et_psd"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:background="#fff"
                 android:hint="请输入密码"
                 android:textSize="16sp"
@@ -157,15 +153,15 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:background="@drawable/selector_red"
         android:text="登录"
         android:id="@+id/btn_login"
         android:textSize="16sp"
         android:textColor="#fff"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="40dp"
         />
 
     <TextView
@@ -173,8 +169,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="忘记密码"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
+        android:visibility="invisible"
             android:layout_marginRight="20dp"
             />
 

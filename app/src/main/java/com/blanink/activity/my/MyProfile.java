@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.activity.MainActivity;
 import com.blanink.pojo.LoginResult;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
@@ -31,7 +32,7 @@ public class MyProfile extends AppCompatActivity {
     private ImageView iv_photo;
     private TextView tv_company;
     private TextView tv_role;
-    private TextView tv_master;
+    private ImageView iv_company_photo;
     private TextView tv_area;
     private TextView tv_phone;
     private TextView tv_modify;
@@ -55,7 +56,7 @@ public class MyProfile extends AppCompatActivity {
         iv_photo = ((ImageView) findViewById(R.id.iv_photo));
         tv_company = ((TextView) findViewById(R.id.tv_company));
         tv_role = ((TextView) findViewById(R.id.tv_role));
-        tv_master = ((TextView) findViewById(R.id.tv_master));
+        iv_company_photo = ((ImageView) findViewById(R.id.iv_company_photo));
         tv_area = ((TextView) findViewById(R.id.tv_area));
         tv_phone = ((TextView) findViewById(R.id.tv_phone_number));
         tv_modify = ((TextView) findViewById(R.id.tv_modify));
@@ -79,6 +80,7 @@ public class MyProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -99,15 +101,16 @@ public class MyProfile extends AppCompatActivity {
                 Gson gson = new Gson();
                 loginResult = gson.fromJson(result, LoginResult.class);
                 Log.e("MyProfile", "loginResult:" + loginResult);
+                GlideUtils.glideImageView(MyProfile.this,iv_photo, loginResult.getResult().photo, true);
                 tv_name.setText(loginResult.getResult().name);
                 tv_company.setText(loginResult.getResult().company.name);
                 tv_role.setText(loginResult.getResult().roleNames);
                 tv_phone.setText(loginResult.getResult().phone);
-                tv_master.setText(loginResult.getResult().company.primaryPerson.name);
                 tv_area.setText(loginResult.getResult().company.area.name);
+                GlideUtils.glideImageView(MyProfile.this,iv_company_photo, loginResult.getResult().getCompany().getPhoto(), true);
 
                 //x.image().bind(iv_photo,NetUrlUtils.NET_URL+loginResult.getResult().getPhoto());
-                XUtilsImageUtils.display(iv_photo, NetUrlUtils.NET_URL + loginResult.getResult().photo, true);
+
             }
 
             @Override

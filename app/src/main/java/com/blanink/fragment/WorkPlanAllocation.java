@@ -12,6 +12,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
@@ -21,7 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.activity.task.WorkPlanAllocationDetail;
+import com.blanink.activity.task.WorkPlanedFinsihProgressQueue;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.pojo.WorkPlaned;
 import com.blanink.utils.ExampleUtil;
@@ -109,6 +110,11 @@ public class WorkPlanAllocation extends Fragment {
                 pageNo++;
                 loadData();
             }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
         });
         //分配详情
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -116,10 +122,9 @@ public class WorkPlanAllocation extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position < list.size()) {//防止出现下标越界
                     WorkPlaned.ResultBean.Rows rows = list.get(position);
-                    Intent intent = new Intent(getActivity(), WorkPlanAllocationDetail.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("WorkPlanAllocationDetail", rows);
-                    intent.putExtras(bundle);
+                    Intent intent = new Intent(getActivity(), WorkPlanedFinsihProgressQueue.class);
+                    intent.putExtra("processId",rows.getRelFlowProcess().getProcess().getId());
+                    intent.putExtra("flowId",rows.getRelFlowProcess().getFlow().getId());
                     startActivity(intent);
                 }
             }
@@ -227,7 +232,7 @@ public class WorkPlanAllocation extends Fragment {
 
             viewHolder.tv_companyName.setText(rows.getCompanyA().getName());
             viewHolder.tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(rows.getWorkPlan().getCreateDate())));
-            viewHolder.tv_master.setText(rows.getCompanyBOwner().getName());
+            //viewHolder.tv_master.setText(rows.getCompanyBOwner().getName());
             viewHolder.tv_pro_name.setText(rows.getProductName());
             viewHolder.tv_pro_category.setText(rows.getCompanyCategory().getName());
             viewHolder.tv_woker.setText(rows.getWorkPlan().getWorker().getName());//分配人

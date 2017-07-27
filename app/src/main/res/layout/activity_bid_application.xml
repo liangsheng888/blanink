@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_bid_application"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    android:focusableInTouchMode="true"
     android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.blanink.activity.bidTender.BidApplication">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/bid_apply_rl"
@@ -19,11 +24,11 @@
         android:background="@color/colorTheme">
 
         <TextView
+            android:id="@+id/come_order_tv_seek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="投标"
-            android:id="@+id/come_order_tv_seek"
             android:textColor="#fff"
             android:textSize="18sp" />
 
@@ -34,15 +39,15 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:textColor="#fff"
-            android:text="返回"
+            android:drawableLeft="@drawable/last"
             android:gravity="center"
-            android:textSize="16sp"
-            android:drawableLeft="@drawable/last"  />
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/go_order_add_ll"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bid_apply_rl"
@@ -61,54 +66,56 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"
-                android:text="投标标题:" />
+                android:text="投标标题:"
+                android:textColor="@color/colorBlack" />
 
             <RelativeLayout
                 android:id="@+id/rl_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_theme"
                 android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_theme"
                 android:background="@color/colorBackGround">
-0000
+
                 <EditText
                     android:id="@+id/et_title"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="1dp"
                     android:layout_marginLeft="10dp"
-                    android:singleLine="true"
-                    android:paddingLeft="5dp"
+                    android:background="#fff"
                     android:hint="标题"
-                    android:textSize="14sp"
-                    android:background="#fff">
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textSize="14sp">
 
                 </EditText>
 
             </RelativeLayout>
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#fff"
             android:padding="5dp">
+
             <TextView
                 android:id="@+id/tv_price2"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"
-                android:text="竞价金额:" />
+                android:text="竞价金额:"
+                android:textColor="@color/colorBlack" />
 
             <RelativeLayout
                 android:id="@+id/rl_price"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_price2"
                 android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_price2"
                 android:background="@color/colorBackGround">
 
                 <EditText
@@ -116,25 +123,25 @@
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_margin="1dp"
-                    android:inputType="numberDecimal"
-                    android:hint="请输入单价"
-                    android:paddingLeft="5dp"
                     android:background="#fff"
-                    android:textSize="14sp"
-                    android:singleLine="true">
+                    android:hint="请输入单价"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textSize="14sp">
 
                 </EditText>
 
             </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/rl_price"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/colorBlack"
-                android:text="元" />
-
+                android:layout_toRightOf="@id/rl_price"
+                android:text="元"
+                android:textColor="@color/colorBlack" />
 
 
         </RelativeLayout>
@@ -152,8 +159,8 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorBlack"
-                android:text="生产周期:" />
+                android:text="生产周期:"
+                android:textColor="@color/colorBlack" />
 
             <RelativeLayout
                 android:id="@+id/rl_hand_date"
@@ -162,34 +169,35 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/tv_hand_date"
                 android:background="@color/colorBackGround">
+
                 <EditText
                     android:id="@+id/et_hand_date"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:background="#fff"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginLeft="1dp"
                     android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
-                    android:inputType="number"
-                    android:textSize="14sp"
+                    android:layout_marginTop="1dp"
+                    android:background="#fff"
                     android:hint="请输入整数"
+                    android:inputType="number"
                     android:paddingLeft="5dp"
-                    />
+                    android:textSize="14sp" />
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/et_hand_date"
                     android:background="#fff">
-                <Spinner
-                    android:id="@+id/sp_date_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:dropDownSelector="@color/colorBlack"
-                    android:popupBackground="@color/colorBlue"
-                    android:entries="@array/productionDate">
-                </Spinner>
-            </RelativeLayout>
+
+                    <Spinner
+                        android:id="@+id/sp_date_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:dropDownSelector="@color/colorBlack"
+                        android:entries="@array/productionDate"
+                        android:popupBackground="@color/colorBlue"></Spinner>
+                </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
 
@@ -202,13 +210,6 @@
         android:layout_below="@id/go_order_add_ll"
         android:layout_marginTop="5dp"
         android:orientation="vertical">
-
-        <com.blanink.view.NoScrollListview
-            android:id="@+id/lv_major"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </com.blanink.view.NoScrollListview>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -223,15 +224,15 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
                 android:paddingTop="5dp"
-                android:textColor="@color/colorBlack"
-                android:text="详细说明:" />
+                android:text="详细说明:"
+                android:textColor="@color/colorBlack" />
 
             <RelativeLayout
                 android:id="@+id/rl_note"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/tv_note"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_note"
                 android:background="@color/colorBackGround">
 
                 <EditText
@@ -241,11 +242,11 @@
                     android:layout_centerVertical="true"
                     android:layout_margin="1dp"
                     android:background="#fff"
-                    android:paddingLeft="5dp"
-                    android:hint="备注说明"
-                    android:paddingTop="5dp"
-
                     android:gravity="top"
+                    android:hint="备注说明"
+                    android:paddingLeft="5dp"
+
+                    android:paddingTop="5dp"
                     android:textSize="14sp">
 
                 </EditText>
@@ -253,51 +254,32 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
-            android:paddingLeft="10dp"
-            android:paddingBottom="15dp"
-            android:paddingTop="10dp"
-            >
-            <TextView
-                android:id="@+id/upload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/colorBlack"
-                android:text="上传附件"/>
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp">
+
+
             <ImageView
-                android:id="@+id/iv_upload"
+                android:id="@+id/iv_picture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/upload"
-                android:layout_toRightOf="@id/upload"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                />
-            <TextView
-                android:id="@+id/tv_file_name"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/upload" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/iv_upload"
-                android:text=""/>
-            <TextView
-                android:id="@+id/tv_file_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toRightOf="@id/iv_upload"
-                android:layout_marginLeft="5dp"
-                android:text=""/>
-
-
-        </RelativeLayout>
-
-
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true" />
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -305,8 +287,7 @@
         android:id="@+id/ll_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/go_order_add_ll2"
-        android:layout_marginTop="20dp">
+        android:layout_below="@id/go_order_add_ll2">
 
         <Button
             android:id="@+id/btn_upload"
@@ -325,3 +306,5 @@
 
 </RelativeLayout>
     </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
+
+    <RelativeLayout
+        android:id="@+id/receive"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="工作记录"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_below="@id/receive">
+        <RelativeLayout
+            android:id="@+id/rl_seek"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:background="@drawable/corner_common_border_gray"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentLeft="true"
+                android:background="@color/colorBackGround"
+                android:drawableLeft="@drawable/seek" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv"
+                android:background="@color/colorBackGround">
+
+                <EditText
+                    android:id="@+id/et_seek"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:hint="请输入你需要的信息" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:textColor="@color/colorTheme"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_below="@id/ll_seek">
+
+        <com.blanink.view.UpLoadListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null">
+
+        </com.blanink.view.UpLoadListView>
+
+        <include layout="@layout/layout_load_gone"></include>
+    </FrameLayout>
+
+</RelativeLayout>

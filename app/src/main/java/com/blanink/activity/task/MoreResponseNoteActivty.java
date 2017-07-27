@@ -56,7 +56,7 @@ public class MoreResponseNoteActivty extends AppCompatActivity {
     private SharedPreferences sp;
     private String processId;
     private String flowId;
-    private CommonAdapter<FeedBackingTask.Result.ProcessFeedbackUser> commonAdapter;
+    private CommonAdapter<FeedBackingTask.ResultBean.ProcessFeedbackListBean> commonAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,18 +103,18 @@ public class MoreResponseNoteActivty extends AppCompatActivity {
                 Gson gson = new Gson();
                 final FeedBackingTask feedbackingTask = gson.fromJson(result, FeedBackingTask.class);
                 Log.e("TaskResponse", "我反馈过的2:" + feedbackingTask.toString());
-                commonAdapter = new CommonAdapter<FeedBackingTask.Result.ProcessFeedbackUser>(MoreResponseNoteActivty.this, feedbackingTask.result.processFeedbackList, R.layout.item_history_note_response) {
+                commonAdapter = new CommonAdapter<FeedBackingTask.ResultBean.ProcessFeedbackListBean>(MoreResponseNoteActivty.this, feedbackingTask.getResult().getProcessFeedbackList(), R.layout.item_history_note_response) {
                     @Override
-                    public void convert(ViewHolder viewHolder, FeedBackingTask.Result.ProcessFeedbackUser processFeedbackUser, int position) {
-                        processFeedbackUser = feedbackingTask.result.processFeedbackList.get(position);
+                    public void convert(ViewHolder viewHolder,FeedBackingTask.ResultBean.ProcessFeedbackListBean processFeedbackUser, int position) {
+                        processFeedbackUser = feedbackingTask.getResult().getProcessFeedbackList().get(position);
                         TextView date = viewHolder.getViewById(R.id.tv_date);
                         TextView tv_master = viewHolder.getViewById(R.id.tv_master);
                         TextView tv_finished = viewHolder.getViewById(R.id.tv_finished);
                         TextView tv_bad = viewHolder.getViewById(R.id.tv_bad);
-                        tv_master.setText(processFeedbackUser.feedbackUser.name);
-                        date.setText(processFeedbackUser.createDate);
-                        tv_finished.setText((processFeedbackUser.achieveAmount == null ? 0 : processFeedbackUser.achieveAmount) + "个");
-                        tv_bad.setText((processFeedbackUser.faultAmount == null ? 0 : processFeedbackUser.faultAmount) + "个");
+                        tv_master.setText(processFeedbackUser.getFeedbackUser().getName());
+                        date.setText(feedbackingTask.getResult().getProcessFeedbackList().get(position).getCreateDate());
+                        tv_finished.setText((feedbackingTask.getResult().getProcessFeedbackList().get(position).getAchieveAmount() + "个"));
+                        tv_bad.setText((feedbackingTask.getResult().getProcessFeedbackList().get(position).getFaultAmount() + "个"));
                     }
                 };
                 lv.setAdapter(commonAdapter);

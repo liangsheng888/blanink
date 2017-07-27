@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
     tools:context="com.blanink.activity.notify.NotifySend">
+
     <RelativeLayout
         android:id="@+id/last_family_manage_customer_apply_rl"
         android:layout_width="match_parent"
@@ -33,206 +34,256 @@
             android:drawableLeft="@drawable/last"
             android:gravity="center"
             android:text="返回"
-            android:textSize="16sp"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_below="@id/last_family_manage_customer_apply_rl"
         android:background="#fff"
-        android:layout_below="@id/last_family_manage_customer_apply_rl">
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="公司:"
-            android:textSize="16sp"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/colorBlack"/>
-        <Spinner
-            android:id="@+id/sp_company"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content">
-        </Spinner>
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner_common_border_gray">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corner_common_border_gray">
+
+                <Spinner
+                    android:id="@+id/sp_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp">
+
+                </Spinner>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_role"
-        android:layout_below="@id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_below="@id/ll"
         android:background="@color/colorWhite"
-        android:layout_marginTop="5dp"
         android:gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="岗位:"
-            android:textSize="16sp"
             android:textColor="@color/colorBlack"
-            />
-        <Spinner
-            android:id="@+id/sp_role"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content">
-        </Spinner>
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner_common_border_gray">
+
+            <Spinner
+                android:id="@+id/sp_role"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"></Spinner>
+        </RelativeLayout>
 
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/ll_name"
-        android:layout_below="@id/ll_role"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_below="@id/ll_role"
+        android:background="@color/colorWhite"
+
         android:gravity="center_vertical"
-        android:background="@color/colorWhite">
+        android:padding="5dp">
+
         <TextView
             android:id="@+id/tv_emp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="职工:"
-            android:layout_centerVertical="true"
-            android:textSize="16sp"
             android:textColor="@color/colorBlack"
-            />
-        <Spinner
-            android:id="@+id/sp_person"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv_emp"
-            android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content">
-        </Spinner>
+            android:background="@drawable/corner_common_border_gray">
+
+            <Spinner
+                android:id="@+id/sp_person"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"></Spinner>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/tv_delete_notify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:visibility="gone"
+            android:text="删除"
             android:textColor="@color/colorRed"
-            android:text="删除"/>
+            android:visibility="gone" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_name"
-        android:layout_below="@id/ll_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
+        android:layout_below="@id/ll_name"
+        android:padding="5dp">
+
         <com.blanink.view.NoScrollGridview
             android:id="@+id/gv_emp_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numColumns="3">
-        </com.blanink.view.NoScrollGridview>
+            android:numColumns="3"></com.blanink.view.NoScrollGridview>
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_type"
-        android:layout_below="@id/rl_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#fff">
-   <TextView
-       android:id="@+id/tv_type"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="通知类型:"
-       android:layout_centerVertical="true"
-       android:textSize="16sp"
-       android:textColor="@color/colorBlack"
-       android:layout_alignParentLeft="true"
-      />
-       <Spinner
-           android:id="@+id/sp_type"
-           android:layout_toRightOf="@id/tv_type"
-           android:layout_centerVertical="true"
-           android:layout_width="wrap_content"
-           android:layout_marginLeft="5dp"
-           android:layout_height="wrap_content"></Spinner>
+        android:layout_below="@id/rl_name"
+        android:background="#fff"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="通知类型:"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_type"
+            android:background="@drawable/corner_common_border_gray">
+
+            <Spinner
+                android:id="@+id/sp_type"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"></Spinner>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_title"
-        android:layout_below="@id/rl_type"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_height="40dp">
-        <EditText
-            android:id="@+id/et_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:singleLine="true"
-            android:hint="请输入标题"
-            android:padding="5dp"
-            android:background="@drawable/corner_common_border_gray"
-            />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_type"
+        android:background="@color/colorWhite">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="10dp">
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/corner_common_border_gray"
+                android:hint="请输入标题"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="16sp"></EditText>
+        </RelativeLayout>
+
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/content"
-        android:layout_below="@id/rl_title"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="150dp">
-        <EditText
-            android:id="@+id/et_content"
+        android:layout_height="150dp"
+        android:layout_below="@id/rl_title"
+        android:background="@color/colorWhite">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="通知内容"
-            android:gravity="top"
-            android:padding="5dp"
-            android:background="@drawable/corner_common_border_gray"/>
+            android:layout_margin="10dp">
+
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/corner_common_border_gray"
+                android:gravity="top"
+                android:hint="通知内容"
+                android:padding="5dp"
+                android:textSize="16sp" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/content"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/content">
+
         <TextView
             android:id="@+id/tv_draft"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_weight="1"
-            android:textColor="#fff"
-            android:text="保存到草稿"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_marginLeft="10dp"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/selector_blue"/>
-    <TextView
-        android:id="@+id/tv_send"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_weight="1"
-        android:textColor="#fff"
-        android:text="发送"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/selector_red"/>
+            android:layout_weight="1"
+            android:background="@drawable/selector_blue"
+            android:gravity="center"
+            android:text="保存到草稿"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_red"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </LinearLayout>
 </RelativeLayout>

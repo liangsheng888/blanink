@@ -1,12 +1,9 @@
 package com.blanink.activity;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.view.Display;
@@ -17,25 +14,17 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.VersionInfo;
-import com.blanink.utils.DialogNotifyUtils;
 import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,17 +41,14 @@ public class FlashActivity extends Activity {
     LinearLayout ll;
     @BindView(R.id.pb_downLoad)
     ProgressBar pbDownLoad;
-    @BindView(R.id.pb)
-    ProgressBar pb;
-    @BindView(R.id.tv_progress)
-    TextView tvProgress;
-
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash);
         ButterKnife.bind(this);
         myActivityManager = (MyActivityManager) MyActivityManager.getInstance();
+        sp=getSharedPreferences("USER",MODE_PRIVATE);
         myActivityManager.pushOneActivity(this);
         initData();
     }
@@ -82,9 +68,15 @@ public class FlashActivity extends Activity {
                         if (ExampleUtil.GetVersionCode(FlashActivity.this) < versionInfo.getResult().getVersionCode()) {
                             showDialog(versionInfo.getResult().getVersionName());
                         } else {
-                            Intent intent = new Intent(FlashActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish();
+                            if(sp.getString("loginName",null)!=null){
+                                Intent intent = new Intent(FlashActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else {
+                                Intent intent = new Intent(FlashActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }
 
@@ -132,23 +124,29 @@ public class FlashActivity extends Activity {
         WindowManager windowManager = getWindowManager();
         Display d = windowManager.getDefaultDisplay(); // 获取屏幕宽、高用
         lp.width = (int) (d.getWidth() * 0.9); // 宽度设置为屏幕的1/2
-        window.setWindowAnimations(R.style.dialogAnimation);
         window.setAttributes(lp);
         alertDialog.setCanceledOnTouchOutside(false);
-        ((TextView)(window.findViewById(R.id.tv_version_name))).setText("最新版本"+versionName);
+        ((TextView) (window.findViewById(R.id.tv_version_name))).setText("最新版本" + versionName);
         window.findViewById(R.id.tv_ingnore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                Intent intent = new Intent(FlashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if(sp.getString("loginName",null)!=null){
+                    Intent intent = new Intent(FlashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(FlashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
         window.findViewById(R.id.tv_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(FlashActivity.this,UpdateActivity.class);
+                Intent intent = new Intent(FlashActivity.this, UpdateActivity.class);
                 startActivity(intent);
                 alertDialog.dismiss();
                 finish();

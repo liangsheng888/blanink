@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
 
-    <FrameLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
+        <com.blanink.view.UpLoadListView
+            android:id="@+id/lv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+         >
 
-            <com.blanink.view.UpLoadListView
-                android:id="@+id/lv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:dividerHeight="2dp"
-              >
+        </com.blanink.view.UpLoadListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-            </com.blanink.view.UpLoadListView>
-        </android.support.v4.widget.SwipeRefreshLayout>
+    <include layout="@layout/layout_load"></include>
 
-        <include layout="@layout/layout_load"></include>
-    </FrameLayout>
-</LinearLayout>
+</RelativeLayout>

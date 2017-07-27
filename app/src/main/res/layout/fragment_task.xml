@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/framgent_task_seek_ll"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_columnWeight="4"
         android:background="@color/colorTheme"
@@ -16,15 +16,14 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_weight="3"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:paddingBottom="2dp"
             android:paddingLeft="@dimen/padding_search_bar"
             android:paddingRight="10dp"
-            android:paddingTop="2dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            >
+            android:paddingTop="2dp">
 
             <EditText
                 android:id="@+id/framgent_task_edt_query"
@@ -32,7 +31,7 @@
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/seabar_input"
+                android:background="@drawable/corner_common_border_gray"
                 android:drawableLeft="@drawable/search_bar_icon_normal"
                 android:hint="请输入你需要的信息"
                 android:paddingBottom="2dp"
@@ -61,38 +60,263 @@
             android:layout_marginRight="5dp"
             android:text="搜索"
             android:textColor="#FFFFFF"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
     </LinearLayout>
 
-    <com.blanink.view.MyViewPager
-        android:id="@+id/framgment_task_vp_advertise"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_below="@id/framgent_task_seek_ll"
-        android:gravity="center_horizontal"
-        android:background="#fff">
-    </com.blanink.view.MyViewPager>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/framgent_task_seek_ll">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/fra_task_viewPager"
-        android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_height="160dp"
-        android:layout_marginTop="2dp"
-        android:paddingBottom="5dp"
-        android:layout_below="@id/framgment_task_vp_advertise">
+            <com.blanink.view.MyViewPager
+                android:id="@+id/framgment_task_vp_advertise"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="#fff"
+                android:gravity="center_horizontal"></com.blanink.view.MyViewPager>
 
-    </android.support.v4.view.ViewPager>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/framgment_task_vp_advertise"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_viewpager_bottom_line"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/fra_task_viewPager"
-        android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="1dp"
+                    android:background="#fff"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="5dp">
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_fr_tender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/zb"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="招标管理" />
+
+                    <TextView
+                        android:id="@+id/tv_fr_bid"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/tb"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="投标管理" />
+
+                    <TextView
+                        android:id="@+id/tv_last_manage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/hzgl"
+                        android:textColor="@color/colorBlack"
+                        android:visibility="gone"
+                        android:gravity="center_horizontal"
+                        android:text="客户管理" />
+
+                    <TextView
+                        android:id="@+id/tv_next_manage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/hzgl"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="供应商管理" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp">
 
 
+                    <TextView
+                        android:id="@+id/tv_fr_task_response"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/gzfk"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="工作反馈" />
+
+                    <TextView
+                        android:id="@+id/tv_workPlan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/jt"
+                        android:textColor="@color/colorBlack"
+                        android:visibility="gone"
+                        android:gravity="center_horizontal"
+                        android:text="任务分工" />
+
+
+                    <TextView
+                        android:id="@+id/tv_buy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/ld"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="采购管理" />
+                    <TextView
+                        android:id="@+id/tv_order"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="订单管理"
+                        android:visibility="gone"
+                        android:drawableTop="@drawable/pj"
+
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/colorBlack" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_flow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/plc"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="排流程" />
+                    <TextView
+                        android:id="@+id/tv_after_sale_control"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="售后处理"
+                        android:visibility="gone"
+                        android:drawableTop="@drawable/sh"
+                        android:textColor="@color/colorBlack" />
+
+
+                    <TextView
+                        android:id="@+id/my_sale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="我的售后"
+                        android:visibility="gone"
+                        android:drawableTop="@drawable/sh"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/colorBlack"
+                        />
+                    <TextView
+                        android:id="@+id/tv_receive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/sh"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center_horizontal"
+                        android:text="收货" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_table"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/ld"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:textColor="@color/colorBlack"
+                        android:text="报表" />
+                    <TextView
+                        android:id="@+id/tv_history"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:drawableTop="@drawable/ld"
+                        android:visibility="gone"
+                        android:text="工作记录"
+                        android:textColor="@color/colorBlack" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/colorBlack" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/colorBlack"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--  <FrameLayout
+                  android:layout_below="@id/framgent_task_seek_ll"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+                  <com.blanink.view.CustomSwipeRefreshLayout
+                      android:id="@+id/swipeRefreshLayout"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_below="@id/framgent_task_seek_ll">
+
+                          <ListView
+                              android:id="@+id/lv_task"
+                              android:layout_width="match_parent"
+                              android:layout_height="match_parent"
+                              android:layout_marginTop="1dp"></ListView>
+
+                  </com.blanink.view.CustomSwipeRefreshLayout>
+
+                  <include layout="@layout/layout_load"></include>
+
+              </FrameLayout>
+      -->
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

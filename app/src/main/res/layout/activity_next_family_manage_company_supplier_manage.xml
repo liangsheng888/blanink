@@ -100,9 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/rl_seek"
             android:background="#fff"
-            android:dividerHeight="4dp"
-            android:drawSelectorOnTop="true"
-            android:listSelector="#11FB731F">
+            android:divider="@null">
 
         </com.blanink.view.RefreshListView>
       </RelativeLayout>
@@ -138,15 +136,10 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
+                <com.blanink.view.CusProgressView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="正在加载..." />
+                    android:layout_height="match_parent">
+                </com.blanink.view.CusProgressView>
             </LinearLayout>
 
             <RelativeLayout

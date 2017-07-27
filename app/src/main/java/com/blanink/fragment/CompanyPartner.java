@@ -172,7 +172,7 @@ public class CompanyPartner extends Fragment {
             ManyCustomer.Result.Customer customer = partnerLists.get(position);
             viewHolder.tv_company_jc.setText(customer.getCompanyA().getName());
             viewHolder.tv_master.setText(customer.getCompanyA().getMaster());
-            viewHolder.tv_apply_address.setText(customer.getCompanyA().getAddress());
+            viewHolder.tv_apply_address.setText(customer.getCompanyA().getArea().getName());
             viewHolder.tv_master.setText(customer.getCompanyA().getMaster());
             viewHolder.tv_phone.setText(customer.getCompanyA().getPhone());
             viewHolder.tv_major.setText(customer.getCompanyA().getScope());
