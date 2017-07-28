@@ -433,7 +433,7 @@ public class BarChart01View extends DemoView implements Runnable{ //DemoView
 			chart.getToolTip().setStyle(XEnum.DyInfoStyle.ROUNDRECT);		
 			chart.getToolTip().addToolTip(mDotToolTip,bData.getKey(), mPaintToolTip);
 			chart.getToolTip().addToolTip(
-						"数量:" +Double.toString(bValue),mPaintToolTip);
+						"数值:" +Double.toString(bValue),mPaintToolTip);
 			chart.getToolTip().getBackgroundPaint().setAlpha(100);
 			chart.getToolTip().setAlign(Align.CENTER);
 			
