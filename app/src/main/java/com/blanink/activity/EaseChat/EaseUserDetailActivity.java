@@ -81,7 +81,7 @@ public class EaseUserDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        if("chat".equals(getIntent().getStringExtra("flag"))){
+        if ("chat".equals(getIntent().getStringExtra("flag"))) {
             videoCall.setVisibility(View.GONE);
             chat.setVisibility(View.GONE);
         }
@@ -89,7 +89,7 @@ public class EaseUserDetailActivity extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(EaseUserDetailActivity.this,EaseChatActivity.class);
+                Intent intent = new Intent(EaseUserDetailActivity.this, EaseChatActivity.class);
                 intent.putExtra("userId", getIntent().getStringExtra("userId"));
                 intent.putExtra("chatType", Constant.CHATTYPE_SINGLE);
                 startActivity(intent);
@@ -130,13 +130,17 @@ public class EaseUserDetailActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        GlideUtils.glideImageView(EaseUserDetailActivity.this,ivUserPhoto,loginResult.getResult().getPhoto(),true);
-                        tvUserName.setText(loginResult.getResult().getName());
-                        tvAddress.setText(loginResult.getResult().getCompany().getAddress());
-                        tvArea.setText(loginResult.getResult().getCompany().getArea().getName());
-                        tvCompany.setText(loginResult.getResult().getCompany().getName());
-                        tvRole.setText(loginResult.getResult().getRoleNames());
-                        tvPhone.setText(loginResult.getResult().getPhone());
+                        if (loginResult.getResult() != null) {
+                            if (loginResult.getResult().getPhoto() != null) {
+                                GlideUtils.glideImageView(EaseUserDetailActivity.this, ivUserPhoto, loginResult.getResult().getPhoto(), true);
+                            }
+                            tvUserName.setText(loginResult.getResult().getName());
+                            tvAddress.setText(loginResult.getResult().getCompany().getAddress());
+                            tvArea.setText(loginResult.getResult().getCompany().getArea().getName());
+                            tvCompany.setText(loginResult.getResult().getCompany().getName());
+                            tvRole.setText(loginResult.getResult().getRoleNames());
+                            tvPhone.setText(loginResult.getResult().getPhone());
+                        }
                     }
                 });
 
