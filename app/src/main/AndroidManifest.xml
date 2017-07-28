@@ -151,25 +151,25 @@
             android:name=".activity.lastnext.LastFamilyNewAddMatche"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidApplication"
+            android:name=".activity.bidtender.BidApplication"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidDetail"
+            android:name=".activity.bidtender.BidDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidAccordWithTender"
+            android:name=".activity.bidtender.BidAccordWithTender"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.TenderDetail"
+            android:name=".activity.bidtender.TenderDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.TenderPublish"
+            android:name=".activity.bidtender.TenderPublish"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.TenderBidQueue"
+            android:name=".activity.bidtender.TenderBidQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.TenderBidAccord"
+            android:name=".activity.bidtender.TenderBidAccord"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.remark.RemarkQueue"
@@ -181,10 +181,10 @@
             android:name=".activity.remark.RemarkGoOrder"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleQueue"
+            android:name=".activity.aftersale.AfterSaleQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleSeek"
+            android:name=".activity.aftersale.AfterSaleSeek"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AdvertiseActivity"
@@ -351,10 +351,10 @@
             android:name=".activity.jPush.ResponseResult"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleHandleDetail"
+            android:name=".activity.aftersale.AfterSaleHandleDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleDemand"
+            android:name=".activity.aftersale.AfterSaleDemand"
             android:screenOrientation="portrait" />
         <!-- photoPicker -->
         <activity
@@ -364,31 +364,31 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".activity.borrowRepay.RePayQueue"
+            android:name=".activity.borrowrepay.RePayQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.RePayNotify"
+            android:name=".activity.borrowrepay.RePayNotify"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.RePayBorrowDetail"
+            android:name=".activity.borrowrepay.RePayBorrowDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.BorrowingComeOrderQueue"
+            android:name=".activity.borrowrepay.BorrowingComeOrderQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.BorrowingGoOrderQueue"
+            android:name=".activity.borrowrepay.BorrowingGoOrderQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.BorrowingComeOrderItemDetail"
+            android:name=".activity.borrowrepay.BorrowingComeOrderItemDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.BorrowingGoOrderToBorrow"
+            android:name=".activity.borrowrepay.BorrowingGoOrderToBorrow"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.BorrowingGoOrderCombinationSendApplication"
+            android:name=".activity.borrowrepay.BorrowingGoOrderCombinationSendApplication"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.BorrowingApplyDetail"
+            android:name=".activity.borrowrepay.BorrowingApplyDetail"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.fincying.FinancingApply"
@@ -430,25 +430,25 @@
             android:name=".activity.bank.BankLookCompanyDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.ReceivedPayNotifyQueue"
+            android:name=".activity.borrowrepay.ReceivedPayNotifyQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.ReceivedPayHistoryQueue"
+            android:name=".activity.borrowrepay.ReceivedPayHistoryQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.ReceivedPayPlanQueue"
+            android:name=".activity.borrowrepay.ReceivedPayPlanQueue"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.ReceivedPayHistoryDetail"
+            android:name=".activity.borrowrepay.ReceivedPayHistoryDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.borrowRepay.ReceivedPayPlanDetail"
+            android:name=".activity.borrowrepay.ReceivedPayPlanDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.TenderModify"
+            android:name=".activity.bidtender.TenderModify"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidDetailChatHistory"
+            android:name=".activity.bidtender.BidDetailChatHistory"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.my.MyProfile"
@@ -460,7 +460,7 @@
             android:name=".activity.my.ModifyProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidSeekTender"
+            android:name=".activity.bidtender.BidSeekTender"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.set.PersonSet"
@@ -536,7 +536,7 @@
             android:name=".activity.lastnext.ProductMore"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidMore"
+            android:name=".activity.bidtender.BidMore"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.fincying.FincyingMore"
@@ -713,22 +713,22 @@
             android:name=".activity.remark.RemarkGoOrderReview"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.BidManage"
+            android:name=".activity.bidtender.BidManage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.bidTender.TenderManage"
+            android:name=".activity.bidtender.TenderManage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.MyAfterSale"
+            android:name=".activity.aftersale.MyAfterSale"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleToHandle"
+            android:name=".activity.aftersale.AfterSaleToHandle"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleDetail"
+            android:name=".activity.aftersale.AfterSaleDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.afterSale.AfterSaleDemandModify"
+            android:name=".activity.aftersale.AfterSaleDemandModify"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.report.SaleAmountAnalysis" />
         <activity android:name=".activity.WorkResponseHistory" />
