@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.fragment.SaleLineChartFragment;
 import com.blanink.fragment.SalePieChartFragment;
 import com.blanink.fragment.SaleBarChartFragment;
 import com.blanink.view.CusViewPager;
@@ -65,10 +66,10 @@ public class SaleAmountAnalysis extends AppCompatActivity {
         tvName.setText(getIntent().getStringExtra("name"));
         fragments.add(new SaleBarChartFragment());
         fragments.add(new SalePieChartFragment());
-        fragments.add(new SalePieChartFragment());
+       // fragments.add(new SaleLineChartFragment());
         radioButtons.add(rbComeOrder);
         radioButtons.add(rbNotDownOrder);
-        radioButtons.add(rbDownOrder);
+       // radioButtons.add(rbDownOrder);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -79,9 +80,9 @@ public class SaleAmountAnalysis extends AppCompatActivity {
                     case R.id.rb_not_down_order:
                         viewPager.setCurrentItem(1);
                         break;
-                    case R.id.rb_down_order:
+                   /* case R.id.rb_down_order:
                         viewPager.setCurrentItem(2);
-                        break;
+                        break;*/
                 }
                 LineChange(fragments);
 

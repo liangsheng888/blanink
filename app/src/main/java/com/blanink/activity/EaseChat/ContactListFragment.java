@@ -56,7 +56,6 @@ import okhttp3.Response;
 
 /**
  * 通讯录
- *
  */
 public class ContactListFragment extends EaseContactListFragment {
 
@@ -93,7 +92,7 @@ public class ContactListFragment extends EaseContactListFragment {
     public void refresh() {
         Map<String, EaseUser> m = DemoHelper.getInstance().getContactList();
         for (Map.Entry<String, EaseUser> set : m.entrySet()) {
-            seekUser(set.getKey(), set.getValue(),m);
+            seekUser(set.getKey(), set.getValue(), m);
         }
         if (m instanceof Hashtable<?, ?>) {
             //noinspection unchecked
@@ -127,7 +126,7 @@ public class ContactListFragment extends EaseContactListFragment {
         //设置联系人数据
         Map<String, EaseUser> m = DemoHelper.getInstance().getContactList();
         for (Map.Entry<String, EaseUser> set : m.entrySet()) {
-            seekUser(set.getKey(), set.getValue(),m);
+            seekUser(set.getKey(), set.getValue(), m);
         }
 
         if (m instanceof Hashtable<?, ?>) {
@@ -373,15 +372,17 @@ public class ContactListFragment extends EaseContactListFragment {
                 String result = response.body().string();
                 Gson gson = new Gson();
                 loginResult = gson.fromJson(result, LoginResult.class);
-                EaseUser user=null;
-                if(value==null){
-                    user=new EaseUser(id);
-                }else {
-                    user=value;
+                EaseUser user = null;
+                if (value == null) {
+                    user = new EaseUser(id);
+                } else {
+                    user = value;
                 }
-                user.setNick(loginResult.getResult().getName());
-                user.setAvatar(loginResult.getResult().getPhoto());
-                m.put(user.getUsername(),user);
+                if (loginResult.getResult() != null) {
+                    user.setNick(loginResult.getResult().getName());
+                    user.setAvatar(loginResult.getResult().getPhoto());
+                    m.put(user.getUsername(), user);
+                }
                 if (user != null) {
                     if (user.getNick() == null || user.getUsername().equals(user.getNick())) {
                         DemoHelper.getInstance().getContactList().put(user.getUsername(), user);

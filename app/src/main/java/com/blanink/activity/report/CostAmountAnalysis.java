@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.fragment.CostBarChartFragment;
+import com.blanink.fragment.CostLineChartFragment;
 import com.blanink.fragment.CostPieChartFragment;
 import com.blanink.fragment.SalePieChartFragment;
 import com.blanink.fragment.SaleBarChartFragment;
@@ -64,10 +65,10 @@ public class CostAmountAnalysis extends AppCompatActivity {
         tvName.setText(getIntent().getStringExtra("name"));
         fragments.add(new CostBarChartFragment());
         fragments.add(new CostPieChartFragment());
-        fragments.add(new CostPieChartFragment());
+       // fragments.add(new CostLineChartFragment());
         radioButtons.add(rbComeOrder);
         radioButtons.add(rbNotDownOrder);
-        radioButtons.add(rbDownOrder);
+       // radioButtons.add(rbDownOrder);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -78,9 +79,9 @@ public class CostAmountAnalysis extends AppCompatActivity {
                     case R.id.rb_not_down_order:
                         viewPager.setCurrentItem(1);
                         break;
-                    case R.id.rb_down_order:
+                   /* case R.id.rb_down_order:
                         viewPager.setCurrentItem(2);
-                        break;
+                        break;*/
                 }
                 LineChange(fragments);
 

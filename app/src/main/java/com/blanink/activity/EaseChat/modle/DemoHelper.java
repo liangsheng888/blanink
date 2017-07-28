@@ -1512,15 +1512,17 @@ public class DemoHelper {
                 } else {
                     user = value;
                 }
-                user.setNick(loginResult.getResult().getName());
-                user.setAvatar(loginResult.getResult().getPhoto());
+                if (loginResult.getResult() != null) {
+                    user.setNick(loginResult.getResult().getName());
+                    user.setAvatar(loginResult.getResult().getPhoto());
+                }
                 if (user != null) {
                     if (user.getNick() == null || user.getUsername().equals(user.getNick())) {
                         DemoHelper.getInstance().getContactList().put(user.getUsername(), user);
                         DemoHelper.getInstance().saveContact(user);//保存到数据库
                     }
                 }
-                Log.e("DemoHelper", "服务器联系人信息:" + loginResult.getResult().getName() + "----" + loginResult.getResult().getPhoto());
+               // Log.e("DemoHelper", "服务器联系人信息:" + loginResult.getResult().getName() + "----" + loginResult.getResult().getPhoto());
             }
         });
     }
