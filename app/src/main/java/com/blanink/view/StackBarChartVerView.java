@@ -154,11 +154,9 @@ public class StackBarChartVerView extends DemoView {
             chart.setTitleAlign(XEnum.HorizontalAlign.CENTER);
             chart.setTitleVerticalAlign(XEnum.VerticalAlign.MIDDLE);
 
-            //轴标题
-
             //背景网格
-            chart.getPlotGrid().showEvenRowBgColor();
-            chart.getPlotGrid().showOddRowBgColor();
+           // chart.getPlotGrid().showEvenRowBgColor();
+          //  chart.getPlotGrid().showOddRowBgColor();
 
             //定义数据轴标签显示格式
             chart.getDataAxis().setLabelFormatter(new IFormatterTextCallBack() {
@@ -206,7 +204,7 @@ public class StackBarChartVerView extends DemoView {
             //激活点击监听
             chart.ActiveListenItemClick();
             chart.showClikedFocus();
-            chart.setPlotPanMode(XEnum.PanMode.HORIZONTAL);
+            chart.setPlotPanMode(XEnum.PanMode.FREE);
 
             chart.setBarCenterStyle(XEnum.BarCenterStyle.TICKMARKS);
 
@@ -218,51 +216,7 @@ public class StackBarChartVerView extends DemoView {
         }
     }
 
-    private void chartDataSet() {
-        //标签1对应的柱形数据集
-        List<Double> dataSeriesA = new LinkedList<Double>();
-        dataSeriesA.add((double) 212);
-        dataSeriesA.add((double) 234);
-        dataSeriesA.add(200.123);
-        dataSeriesA.add(300.123);
-        dataSeriesA.add(410.123);
-        dataSeriesA.add(250.123);
-        dataSeriesA.add(160.123);
-        List<Double> dataSeriesB = new LinkedList<Double>();
-        dataSeriesB.add((double) 300);
-        dataSeriesB.add((double) 150);
-        dataSeriesB.add(200.123);
-        dataSeriesB.add(300.123);
-        dataSeriesB.add(410.123);
-        dataSeriesB.add(250.123);
-        dataSeriesB.add(160.123);
 
-        List<Double> dataSeriesC = new LinkedList<Double>();
-        dataSeriesC.add((double) 200);
-        dataSeriesC.add((double) 150);
-        dataSeriesC.add(200.123);
-        dataSeriesC.add(300.123);
-        dataSeriesC.add(410.123);
-        dataSeriesC.add(250.123);
-        dataSeriesC.add(160.123);
-
-        BarDataSet.add(new BarData("销售额", dataSeriesA, Color.rgb(0, 0, 255)));
-        BarDataSet.add(new BarData("毛利", dataSeriesB, Color.rgb(255, 0, 0)));
-        BarDataSet.add(new BarData("纯利", dataSeriesC, Color.rgb(0, 255, 0)));
-
-    }
-
-    private void chartLabels()
-    //横坐标
-    {
-        chartLabels.add("1月");
-        chartLabels.add("2月");
-        chartLabels.add("3月");
-        chartLabels.add("4月");
-        chartLabels.add("5月");
-        chartLabels.add("6月");
-        chartLabels.add("7月");
-    }
 
     @Override
     public void render(Canvas canvas) {
@@ -299,7 +253,7 @@ public class StackBarChartVerView extends DemoView {
         int cid = record.getDataChildID();
         Double bValue = bData.getDataSet().get(cid);
         String label = chartLabels.get(cid);
-
+        String labelTitle= bData.getKey();
         chart.showFocusRectF(record.getRectF());
         chart.getFocusPaint().setStyle(Style.FILL);
         chart.getFocusPaint().setStrokeWidth(3);
@@ -307,14 +261,14 @@ public class StackBarChartVerView extends DemoView {
         chart.getFocusPaint().setAlpha(100);
 
         //在点击处显示tooltip
-        pToolTip.setColor(Color.WHITE);
+        pToolTip.setColor(Color.BLACK);
         chart.getToolTip().setAlign(Align.CENTER);
         chart.getToolTip().setInfoStyle(XEnum.DyInfoStyle.CIRCLE);
-        chart.getToolTip().getBackgroundPaint().setColor(Color.BLACK);
+            chart.getToolTip().getBackgroundPaint().setColor(Color.rgb(0,255,255));
 
         //chart.getToolTip().setCurrentXY(record.getRectF().centerX(),record.getRectF().centerY());
         chart.getToolTip().setCurrentXY(x, y);
-        chart.getToolTip().addToolTip(label + " 当前数值:" + Double.toString(bValue), pToolTip);
+        chart.getToolTip().addToolTip("("+label+")" + labelTitle+":" + Double.toString(bValue), pToolTip);
 
         this.invalidate();
 

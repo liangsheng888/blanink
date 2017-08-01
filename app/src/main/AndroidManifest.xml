@@ -800,7 +800,8 @@
         </receiver>
 
         <activity android:name=".activity.report.ReportType" />
-        <activity android:name=".activity.report.CostAmountAnalysis"></activity>
+        <activity android:name=".activity.report.CostAmountAnalysis" />
+        <activity android:name=".activity.report.PayAmountAnalysis"></activity>
     </application>
 
 </manifest>

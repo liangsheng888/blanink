@@ -28,6 +28,8 @@ public class ReportType extends AppCompatActivity {
     TextView tvSale;
     @BindView(R.id.tv_cost)
     TextView tvCost;
+    @BindView(R.id.pay)
+    TextView pay;
     @BindView(R.id.pager)
     MyViewPager pager;
 
@@ -67,6 +69,14 @@ public class ReportType extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReportType.this, CostAmountAnalysis.class);
                 intent.putExtra("name","成本分析");
+                startActivity(intent);
+            }
+        });
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReportType.this, PayAmountAnalysis.class);
                 startActivity(intent);
             }
         });

@@ -155,7 +155,6 @@ public class CostBarChartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 rlNotData.setVisibility(View.GONE);
-                llLoad.setVisibility(View.VISIBLE);
                 loadSaleData();
             }
         });
