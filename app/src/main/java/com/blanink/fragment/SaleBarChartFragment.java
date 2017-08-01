@@ -205,27 +205,27 @@ public class SaleBarChartFragment extends Fragment {
 
                         for (ReportSale.ResultBean rr : rs.getResult()) {
                             final List<Double> dataSeries = new ArrayList<Double>();
+                            int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
                             for (int i = 0; i < rr.getReportList().size(); i++) {
-                                dataSeries.add(Double.parseDouble(rr.getReportList().get(i).getSaleAmount()/10000 + ""));
-                                if (i == rr.getReportList().size() - 1) {
-                                    int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-                                    barDataSet.add(new BarData(rr.getCompanyCategoryName(), dataSeries, color));
-
-                                }
-
+                                dataSeries.add(rr.getReportList().get(i).getSaleAmount()/10000);//单位万元
                             }
+                            barDataSet.add(new BarData(rr.getCompanyCategoryName(), dataSeries, color));
+
+
                         }
 
 
-                        BarChart01View sv = new BarChart01View(getActivity());
-                        sv.setAxisMaxAndMin(0,2000,200);
-                        sv.setChartLabels(labelList);
-                        sv.setChartData(barDataSet);
-                        sv.setTitle("万元","时间段");
+                        // BarChart01View sv = new BarChart01View(getActivity());
+                        StackBarChartVerView view = new StackBarChartVerView(getActivity());
+                        view.setYAxis(0, 2000, 200);
+                        view.setChartLabels(labelList);
+                        view.setBarDataSet(barDataSet);
+                        view.setLeftTitle("万元");
                         if(flView!=null){
                             flView.removeAllViews();
-                            flView.addView(sv);
+                            flView.addView(view);
                         }
+
                         if (rs.getResult().size() == 0) {
                             rlNotData.setVisibility(View.VISIBLE);
                             tvNot.setText("没有结果显示");

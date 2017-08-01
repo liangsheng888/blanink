@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.fragment.SaleLineChartFragment;
+//import com.blanink.fragment.SaleLineChartFragment;
 import com.blanink.fragment.SalePieChartFragment;
 import com.blanink.fragment.SaleBarChartFragment;
 import com.blanink.view.CusViewPager;

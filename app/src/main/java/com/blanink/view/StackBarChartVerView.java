@@ -64,10 +64,8 @@ public class StackBarChartVerView extends DemoView {
     private String leftTitle;
     private String title;
 
-    public StackBarChartVerView(Context context, List<String> chartLabels, List<BarData> BarDataSet) {
+    public StackBarChartVerView(Context context) {
         super(context);
-        this.chartLabels = chartLabels;
-        this.BarDataSet = BarDataSet;
         // TODO Auto-generated constructor stub
         initView();
     }
@@ -102,7 +100,16 @@ public class StackBarChartVerView extends DemoView {
             chart.getAxisTitle().setLeftTitle(leftTitle);
         }
     }
+   public void setBarDataSet(List<BarData> barDataSet){
+       this.BarDataSet=barDataSet;
+       chart.setDataSource(barDataSet);
+   }
 
+    public void setChartLabels(List<String> chartLabels){
+        this.chartLabels=chartLabels;
+        chart.setCategories(chartLabels);
+
+    }
     //设置范围
     public void setYAxis(double min, double max, double step) {
         if (chart != null) {
@@ -128,12 +135,11 @@ public class StackBarChartVerView extends DemoView {
             chart.setPadding(ltrb[0], ltrb[1], ltrb[2], DensityUtil.dip2px(getContext(), 55));
 
             //显示边框
-            chart.showRoundBorder();
+          //  chart.showRoundBorder();
 
             chart.setChartDirection(XEnum.Direction.VERTICAL);
             //数据源
-            chart.setCategories(chartLabels);
-            chart.setDataSource(BarDataSet);
+
 
             //坐标系
 
@@ -142,7 +148,8 @@ public class StackBarChartVerView extends DemoView {
             Paint labelPaint = chart.getCategoryAxis().getTickLabelPaint();
             labelPaint.setTextAlign(Align.RIGHT);
             labelPaint.setColor(Color.rgb(0, 75, 106));
-
+            chart.setTotalLabelVisible(false);
+            chart.showDyLine();
             //标题
             chart.setTitleAlign(XEnum.HorizontalAlign.CENTER);
             chart.setTitleVerticalAlign(XEnum.VerticalAlign.MIDDLE);
@@ -174,7 +181,7 @@ public class StackBarChartVerView extends DemoView {
                 @Override
                 public String textFormatter(String value) {
                     // TODO Auto-generated method stub
-                    String label = "[" + value + "]";
+                    String label =  value;
                     return label;
                 }
 
@@ -186,7 +193,7 @@ public class StackBarChartVerView extends DemoView {
                 @Override
                 public String doubleFormatter(Double value) {
                     // TODO Auto-generated method stub
-                    DecimalFormat df = new DecimalFormat("#0.00");
+                    DecimalFormat df = new DecimalFormat("0.00");
                     String label = df.format(value).toString();
                     return label;
                 }
@@ -310,13 +317,6 @@ public class StackBarChartVerView extends DemoView {
         chart.getToolTip().addToolTip(label + " 当前数值:" + Double.toString(bValue), pToolTip);
 
         this.invalidate();
-
-    }
-
-    //获取数据
-    public void loadData() {
-        OkHttpClient ok = new OkHttpClient();
-
 
     }
 

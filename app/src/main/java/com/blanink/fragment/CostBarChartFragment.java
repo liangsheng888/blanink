@@ -23,6 +23,8 @@ import com.blanink.R;
 import com.blanink.pojo.ReportSale;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.BarChart01View;
+import com.blanink.view.StackBarChartHorView;
+import com.blanink.view.StackBarChartVerView;
 import com.google.gson.Gson;
 
 import org.xclcharts.chart.BarData;
@@ -74,11 +76,12 @@ public class CostBarChartFragment extends Fragment {
     private String startDate = "";
     private String endDate = "";
     private String viewType = "3";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         sp = getActivity().getSharedPreferences("DATA", getActivity().MODE_PRIVATE);
-        View view=View.inflate(getActivity(), R.layout.fragment_chart, null);
+        View view = View.inflate(getActivity(), R.layout.fragment_chart, null);
         unbinder = ButterKnife.bind(this, view);
         calendar = Calendar.getInstance();
         return view;
@@ -159,11 +162,11 @@ public class CostBarChartFragment extends Fragment {
     }
 
     public void loadSaleData() {
-        String url = NetUrlUtils.NET_URL+"report/costDataList";
+        String url = NetUrlUtils.NET_URL + "report/costDataList";
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("userId", sp.getString("USER_ID", null))
-                .add("viewType",viewType)
+                .add("viewType", viewType)
                 .add("startDateString", startDate)
                 .add("endDateString", endDate)
                 .add("office.id", sp.getString("COMPANY_ID", null))
@@ -172,12 +175,12 @@ public class CostBarChartFragment extends Fragment {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    llLoad.setVisibility(View.GONE);
-                }
-            });
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        llLoad.setVisibility(View.GONE);
+                    }
+                });
             }
 
             @Override
@@ -204,31 +207,30 @@ public class CostBarChartFragment extends Fragment {
 
                         for (ReportSale.ResultBean rr : rs.getResult()) {
                             final List<Double> dataSeries = new ArrayList<Double>();
+                            int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
                             for (int i = 0; i < rr.getReportList().size(); i++) {
-                                dataSeries.add(Double.parseDouble(rr.getReportList().get(i).getCostAmount()/10000 + ""));
-                                if (i == rr.getReportList().size() - 1) {
-                                    int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-                                    barDataSet.add(new BarData(rr.getCompanyCategoryName(), dataSeries, color));
-
-                                }
-
+                                dataSeries.add(rr.getReportList().get(i).getCostAmount()/10000);//单位万元
                             }
+                            barDataSet.add(new BarData(rr.getCompanyCategoryName(), dataSeries, color));
+
+
                         }
 
 
-                        BarChart01View sv = new BarChart01View(getActivity());
-                        sv.setAxisMaxAndMin(0,2000,200);
-                        sv.setChartLabels(labelList);
-                        sv.setChartData(barDataSet);
-                        sv.setTitle("万元","时间段");
-                        if(flView!=null){
+                        // BarChart01View sv = new BarChart01View(getActivity());
+                        StackBarChartVerView view = new StackBarChartVerView(getActivity());
+                        view.setYAxis(0, 2000, 200);
+                        view.setChartLabels(labelList);
+                        view.setBarDataSet(barDataSet);
+                         view.setLeftTitle("万元");
+                        if (flView != null) {
                             flView.removeAllViews();
-                            flView.addView(sv);
+                            flView.addView(view);
                         }
                         if (rs.getResult().size() == 0) {
                             rlNotData.setVisibility(View.VISIBLE);
                             tvNot.setText("没有结果显示");
-                        }else {
+                        } else {
                             rlNotData.setVisibility(View.GONE);
 
                         }

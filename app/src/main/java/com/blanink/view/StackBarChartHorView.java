@@ -59,11 +59,10 @@ public class StackBarChartHorView extends DemoView {
 	List<BarData> BarDataSet;
 	Paint pToolTip = new Paint(Paint.ANTI_ALIAS_FLAG);
 	
-	public StackBarChartHorView(Context context,List<String> chartLabels,List<BarData> BarDataSet) {
+	public StackBarChartHorView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		this.chartLabels=chartLabels;
-		this.BarDataSet=BarDataSet;
+
 		 initView();
 	}
 	
@@ -85,8 +84,30 @@ public class StackBarChartHorView extends DemoView {
 		//綁定手势滑动事件
 		 this.bindTouch(this,chart);
 	 }
-	 
-	
+
+	public void setLeftTitle(String leftTitle) {
+		if (chart != null) {
+			chart.getAxisTitle().setLeftTitle(leftTitle);
+		}
+	}
+	public void setBarDataSet(List<BarData> barDataSet){
+		this.BarDataSet=barDataSet;
+		chart.setDataSource(barDataSet);
+	}
+
+	public void setChartLabels(List<String> chartLabels){
+		this.chartLabels=chartLabels;
+		chart.setCategories(chartLabels);
+
+	}
+	//设置范围
+	public void setYAxis(double min, double max, double step) {
+		if (chart != null) {
+			chart.getDataAxis().setAxisMax(max);
+			chart.getDataAxis().setAxisMin(min);
+			chart.getDataAxis().setAxisSteps(step);
+		}
+	}
 	@Override  
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {  
         super.onSizeChanged(w, h, oldw, oldh);  
@@ -255,11 +276,15 @@ public class StackBarChartHorView extends DemoView {
 		chart.getToolTip().setAlign(Align.CENTER);
 		chart.getToolTip().getBackgroundPaint().setColor(Color.BLUE);
 		chart.getToolTip().setInfoStyle(XEnum.DyInfoStyle.CAPROUNDRECT);
-		//chart.getToolTip().setCurrentXY(x,y);	
+		//chart.getToolTip().setCurrentXY(x,y);
 		chart.getToolTip().setCurrentXY(record.getRectF().centerX(),record.getRectF().top);				
 		chart.getToolTip().addToolTip(" Current Value:" +Double.toString(bValue),pToolTip);
 		
 		this.invalidate();
 	}
+
+	public void setYAxis(int i, int i1, int i2) {
+	}
+
 
 }

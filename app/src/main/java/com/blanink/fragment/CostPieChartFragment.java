@@ -24,8 +24,10 @@ import com.blanink.R;
 import com.blanink.pojo.ReportSale;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.PieChart3D01View;
+import com.blanink.view.StackBarChartVerView;
 import com.google.gson.Gson;
 
+import org.xclcharts.chart.BarData;
 import org.xclcharts.chart.PieData;
 
 import java.io.IOException;
@@ -187,7 +189,6 @@ public class CostPieChartFragment extends Fragment {
                     @Override
                     public void run() {
                         llLoad.setVisibility(View.GONE);
-                        Log.e("@@@",e.getMessage());
                     }
                 });
 
@@ -196,6 +197,7 @@ public class CostPieChartFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final List<PieData> pieChartList = new ArrayList<>();
+                //final List<BarData> barDataList=new ArrayList<BarData>();
                 String json = response.body().string();
                 Gson gson = new Gson();
                 Random random = new Random();
@@ -210,11 +212,11 @@ public class CostPieChartFragment extends Fragment {
                 }
                 for (ReportSale.ResultBean rr : rs.getResult()) {
 
-
+                    List<Double> doubleList=new ArrayList<Double>();
                     int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-                    pieChartList.add(new PieData(rr.getCompanyCategoryName(), rr.getCompanyCategoryName() + ":" + (df.format((rr.getTotalCostAmount() / total * 1.0) * 100)) + "%", (rr.getTotalCostAmount() / total) * 100, color));
 
-
+                  pieChartList.add(new PieData(rr.getCompanyCategoryName(), rr.getCompanyCategoryName() + ":" + (df.format((rr.getTotalCostAmount() / total * 1.0) * 100)) + "%", (rr.getTotalCostAmount() / total) * 100, color));
+                   // barDataList.add(new BarData(rr.getCompanyCategoryName(),doubleList,color));
                 }
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
