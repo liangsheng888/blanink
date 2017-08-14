@@ -801,7 +801,10 @@
 
         <activity android:name=".activity.report.ReportType" />
         <activity android:name=".activity.report.CostAmountAnalysis" />
-        <activity android:name=".activity.report.PayAmountAnalysis"></activity>
+        <activity android:name=".activity.report.PayAmountAnalysis" />
+        <activity android:name=".activity.stock.StockManage" />
+        <activity android:name=".activity.stock.WareHouseAdd" />
+        <activity android:name=".activity.stock.OutInStockAdd"></activity>
     </application>
 
 </manifest>

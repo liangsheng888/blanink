@@ -162,8 +162,8 @@ public class ReportSale {
          */
 
         private boolean isNewRecord;
-        private long startDate;
-        private long endDate;
+        private String startDate;
+        private String endDate;
         private double saleAmount;
         private double costAmount;
         private double profitAmount;
@@ -180,21 +180,7 @@ public class ReportSale {
             isNewRecord = newRecord;
         }
 
-        public long getStartDate() {
-            return startDate;
-        }
 
-        public void setStartDate(long startDate) {
-            this.startDate = startDate;
-        }
-
-        public long getEndDate() {
-            return endDate;
-        }
-
-        public void setEndDate(long endDate) {
-            this.endDate = endDate;
-        }
 
         public double getSaleAmount() {
             return saleAmount;

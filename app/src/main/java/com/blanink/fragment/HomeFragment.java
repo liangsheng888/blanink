@@ -34,6 +34,7 @@ import com.blanink.activity.order.ComeOrder;
 import com.blanink.activity.order.GoOrderPurchase;
 import com.blanink.activity.order.ReceiveGoods;
 import com.blanink.activity.report.ReportType;
+import com.blanink.activity.stock.StockManage;
 import com.blanink.activity.task.TaskResponseProcessQueue;
 import com.blanink.activity.task.WorkPlanProcessQueue;
 import com.blanink.adapter.GridSpacingItemDecoration;
@@ -64,7 +65,7 @@ import okhttp3.Response;
  * Created by Administrator on 2016/12/24.
  * 任务
  */
-public class HomeFragmentFu extends Fragment {
+public class HomeFragment extends Fragment {
 
     @BindView(R.id.framgent_task_edt_query)
     EditText framgentTaskEdtQuery;
@@ -277,6 +278,10 @@ public class HomeFragmentFu extends Fragment {
                                 }
                                 if ("工作记录".equals(menuList.get(position))) {
                                     Intent intent = new Intent(getActivity(), WorkResponseHistory.class);
+                                    startActivity(intent);
+                                }
+                                if ("仓库管理".equals(menuList.get(position))) {
+                                    Intent intent = new Intent(getActivity(), StockManage.class);
                                     startActivity(intent);
                                 }
                             }

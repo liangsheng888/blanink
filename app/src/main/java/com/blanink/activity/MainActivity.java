@@ -19,7 +19,7 @@ import android.widget.RadioGroup;
 
 import com.blanink.R;
 import com.blanink.activity.EaseChat.ChatFragmentParent;
-import com.blanink.fragment.HomeFragmentFu;
+import com.blanink.fragment.HomeFragment;
 import com.blanink.fragment.MineFragment;
 import com.blanink.fragment.NotifyFragment;
 import com.blanink.utils.MyActivityManager;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         buttons[3] = (RadioButton) this.findViewById(R.id.main_rb_mine);
         main_rg = (RadioGroup) findViewById(R.id.main_rg);
         //初始化，为fragments添加数据
-        fragments[0] = new HomeFragmentFu();
+        fragments[0] = new HomeFragment();
        // fragments[1] = new OrderFragment();
         fragments[1] = new ChatFragmentParent();
         fragments[2] = new NotifyFragment();
