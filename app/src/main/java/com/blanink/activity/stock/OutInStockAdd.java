@@ -182,7 +182,8 @@ public class OutInStockAdd extends AppCompatActivity {
                 final List<String> cateGoryIdList = new ArrayList<String>();
                 cateGoryIdList.add("");
                 pNoNameList.add("选择唯一标识编号");
-                cateGoryIdList.add("产品类");
+                cateGoryIdList.add("");
+                cateGoryList.add("产品类");
                 unitList.add("单位");
                 for (ProductNo.ResultBean rb : pNo.getResult()) {
                     pNoNameList.add(rb.getProcuteNumber());
