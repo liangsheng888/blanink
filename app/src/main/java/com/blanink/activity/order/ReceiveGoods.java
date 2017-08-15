@@ -124,7 +124,6 @@ public class ReceiveGoods extends AppCompatActivity {
         lv.setOnRefreshListener(new RefreshListView.OnRefreshListener() {
             @Override
             public void onPullRefresh() {
-                rowsList.clear();
                 pageNo = 1;
                 RefreshData();
             }
@@ -230,6 +229,7 @@ public class ReceiveGoods extends AppCompatActivity {
                 llLoad.setVisibility(View.GONE);
                 Log.e("ComeOrderActivity", result);
                 Gson gson = new Gson();
+                rowsList.clear();
                 GoOrderDown order = gson.fromJson(result, GoOrderDown.class);
                 Log.e("ComeOrderActivity", "order;" + order.toString());
 

@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.utils.NetUrlUtils;
-import com.blanink.view.MyPagerList;
 import com.blanink.view.MyViewPager;
 
 import java.util.ArrayList;
@@ -32,6 +32,12 @@ public class ReportType extends AppCompatActivity {
     TextView pay;
     @BindView(R.id.pager)
     MyViewPager pager;
+    @BindView(R.id.tv_profit)
+    TextView tvProfit;
+    @BindView(R.id.tv_loss)
+    TextView tvLoss;
+    @BindView(R.id.ll)
+    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class ReportType extends AppCompatActivity {
     }
 
     private void initData() {
-        List<String> picLis=new ArrayList<>();
+        List<String> picLis = new ArrayList<>();
         picLis.add("http://b.hiphotos.baidu.com/image/pic/item/d01373f082025aaf95bdf7e4f8edab64034f1a15.jpg");
         picLis.add("http://g.hiphotos.baidu.com/image/pic/item/6159252dd42a2834da6660c459b5c9ea14cebf39.jpg");
         picLis.add("http://d.hiphotos.baidu.com/image/pic/item/adaf2edda3cc7cd976427f6c3901213fb80e911c.jpg");
@@ -58,8 +64,8 @@ public class ReportType extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReportType.this, SaleAmountAnalysis.class);
-                intent.putExtra("url", NetUrlUtils.NET_URL+"report/saleDataList");
-                intent.putExtra("name","销售额分析");
+                intent.putExtra("url", NetUrlUtils.NET_URL + "report/saleDataList");
+                intent.putExtra("name", "销售额分析");
                 startActivity(intent);
             }
         });
@@ -68,7 +74,7 @@ public class ReportType extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReportType.this, CostAmountAnalysis.class);
-                intent.putExtra("name","成本分析");
+                intent.putExtra("name", "成本分析");
                 startActivity(intent);
             }
         });
@@ -77,6 +83,21 @@ public class ReportType extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReportType.this, PayAmountAnalysis.class);
+                startActivity(intent);
+            }
+        });
+        tvProfit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReportType.this, ProfitAnalysis.class);
+                startActivity(intent);
+            }
+        });
+
+        tvLoss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReportType.this, LossAnalysis.class);
                 startActivity(intent);
             }
         });

@@ -147,7 +147,6 @@ public class GoDownOrderProduct extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                orderDetails.clear();
                 RefreshDatafromServer();
 
             }
@@ -335,6 +334,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
             public void onSuccess(String result) {
                 llLoad.setVisibility(View.GONE);
                 Gson gson = new Gson();
+                orderDetails.clear();
                 OrderDetail orderDetail = gson.fromJson(result, OrderDetail.class);
                 //设置订单产品数量
                 orderDetails.addAll(0, orderDetail.getResult());

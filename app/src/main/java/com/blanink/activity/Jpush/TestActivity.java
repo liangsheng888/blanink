@@ -1,4 +1,4 @@
-package com.blanink.activity.jPush;
+package com.blanink.activity.Jpush;
 
 import cn.jpush.android.api.JPushInterface;
 import android.app.Activity;

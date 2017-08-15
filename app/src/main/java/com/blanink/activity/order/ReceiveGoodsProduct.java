@@ -122,7 +122,7 @@ public class ReceiveGoodsProduct extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                orderDetails.clear();
+
                 getDatafromServer();
             }
         });
@@ -154,6 +154,7 @@ public class ReceiveGoodsProduct extends AppCompatActivity {
             public void onSuccess(String result) {
                 llLoad.setVisibility(View.GONE);
                 Gson gson = new Gson();
+                orderDetails.clear();
                 OrderDetail orderDetail = gson.fromJson(result, OrderDetail.class);
                 swipeRefreshLayout.setRefreshing(false);
                 //设置订单产品数量

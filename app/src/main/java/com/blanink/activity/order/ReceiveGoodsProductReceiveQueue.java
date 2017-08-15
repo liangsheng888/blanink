@@ -31,6 +31,7 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.blanink.R;
+import com.blanink.activity.stock.OutInStockAdd;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.ProductDeliverInfo;
@@ -186,6 +187,7 @@ public class ReceiveGoodsProductReceiveQueue extends AppCompatActivity {
                                             talkNoteItem.setTitleColor(Color.WHITE);
                                             menu.addMenuItem(talkNoteItem);
 
+
                                             SwipeMenuItem refuse = new SwipeMenuItem(ReceiveGoodsProductReceiveQueue.this);
                                             refuse.setBackground(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
                                             refuse.setWidth(dp2px(100));
@@ -193,6 +195,14 @@ public class ReceiveGoodsProductReceiveQueue extends AppCompatActivity {
                                             refuse.setTitleSize(18);
                                             refuse.setTitleColor(Color.WHITE);
                                             menu.addMenuItem(refuse);
+
+                                            SwipeMenuItem in = new SwipeMenuItem(ReceiveGoodsProductReceiveQueue.this);
+                                            in.setBackground(new ColorDrawable(getResources().getColor(R.color.colorGray)));
+                                            in.setWidth(dp2px(100));
+                                            in.setTitle("入库");
+                                            in.setTitleSize(18);
+                                            in.setTitleColor(Color.WHITE);
+                                            menu.addMenuItem(in);
                                         } else if (pfList.get(position).getConfirmAmount() > 0) {
                                             SwipeMenuItem talkNoteItem = new SwipeMenuItem(ReceiveGoodsProductReceiveQueue.this);
                                             talkNoteItem.setBackground(new ColorDrawable(getResources().getColor(R.color.colorBlue)));
@@ -201,6 +211,14 @@ public class ReceiveGoodsProductReceiveQueue extends AppCompatActivity {
                                             talkNoteItem.setTitleSize(18);
                                             talkNoteItem.setTitleColor(Color.WHITE);
                                             menu.addMenuItem(talkNoteItem);
+
+                                            SwipeMenuItem in = new SwipeMenuItem(ReceiveGoodsProductReceiveQueue.this);
+                                            in.setBackground(new ColorDrawable(getResources().getColor(R.color.colorGray)));
+                                            in.setWidth(dp2px(100));
+                                            in.setTitle("入库");
+                                            in.setTitleSize(18);
+                                            in.setTitleColor(Color.WHITE);
+                                            menu.addMenuItem(in);
                                         } else if (pfList.get(position).getConfirmAmount() == -1) {
                                             //-1代表已拒绝
                                             SwipeMenuItem talkNoteItem = new SwipeMenuItem(ReceiveGoodsProductReceiveQueue.this);
@@ -254,9 +272,24 @@ public class ReceiveGoodsProductReceiveQueue extends AppCompatActivity {
                                         case 1:
                                             showNotify(pfList.get(position).getFeedbackUser().getId(), pfList.get(position).getId(), pfList.get(position).getProcess().getId());
                                             break;
+                                        case 2:
+                                            //入库
+                                            Intent in = new Intent(ReceiveGoodsProductReceiveQueue.this, OutInStockAdd.class);
+                                            in.putExtra("inOut","1");
+                                            startActivity(in);
+                                            break;
                                     }
-                                } else {
-
+                                } else if (pfList.get(position).getConfirmAmount() > 0) {
+                                    switch (index) {
+                                        case 0:
+                                            break;
+                                        case 1:
+                                            //入库
+                                            Intent in = new Intent(ReceiveGoodsProductReceiveQueue.this, OutInStockAdd.class);
+                                            in.putExtra("inOut","1");
+                                            startActivity(in);
+                                            break;
+                                    }
                                 }
 
                                 return false;

@@ -1,4 +1,4 @@
-package com.blanink.activity.jPush;
+package com.blanink.activity.Jpush;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
