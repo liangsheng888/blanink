@@ -62,11 +62,12 @@ public class OutInAdapter extends BaseAdapter {
         rowsBean = srr.get(position);
         viewHolder.tvNo.setText(rowsBean.getProcuteNumber());
         viewHolder.tvCategory.setText(rowsBean.getCompanyCategoryId().getName());
-        viewHolder.tvNum.setText(rowsBean.getStok() + "");
+        viewHolder.tvNum.setText(rowsBean.getChangeAmount() + "");
         viewHolder.tvPrice.setText(rowsBean.getUnitPrice() + "元/" + rowsBean.getUnit());
         String typeString=("1".equals(rowsBean.getInOut()) ? "入库" : "出库");
         viewHolder.tvType.setText(typeString);
         viewHolder.tvNote.setText(rowsBean.getRemarks());
+        viewHolder.tvName.setText(rowsBean.getName());
         return convertView;
     }
 

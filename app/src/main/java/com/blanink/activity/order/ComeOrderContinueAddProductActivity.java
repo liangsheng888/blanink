@@ -52,8 +52,8 @@ import com.blanink.pojo.OrderProductSpecifications;
 import com.blanink.pojo.TypeCateGory;
 import com.blanink.pojo.RelIndustryCategoryAttribute;
 import com.blanink.pojo.Response;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.NoScrollListview;
@@ -142,8 +142,6 @@ public class ComeOrderContinueAddProductActivity extends Activity {
     EditText etNote;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
     @BindView(R.id.bt_save)
     Button btSave;
     @BindView(R.id.come_order_add_product_ll)
@@ -205,6 +203,12 @@ public class ComeOrderContinueAddProductActivity extends Activity {
     }
 
     private void initData() {
+        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
+
+
         oss = OssService.getOSSClientInstance(this);
         Intent intent = getIntent();
         customer = intent.getStringExtra("customer");
@@ -264,22 +268,6 @@ public class ComeOrderContinueAddProductActivity extends Activity {
             }
         });
 
-        //选择图片
-        ivPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PhotoPicker.builder()
-                        //设置选择个数
-                        .setPhotoCount(3)
-                        //选择界面第一个显示拍照按钮
-                        .setShowCamera(true)
-                        //选择时点击图片放大浏览
-                        .setPreviewEnabled(false)
-                        //附带已经选中过的图片
-                        .start(ComeOrderContinueAddProductActivity.this);
-            }
-        });
-        //
         //图片放大
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
                 new RecyclerItemClickListener.OnItemClickListener() {
@@ -287,7 +275,7 @@ public class ComeOrderContinueAddProductActivity extends Activity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)
@@ -604,19 +592,17 @@ public class ComeOrderContinueAddProductActivity extends Activity {
             ArrayList<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                photoAdapter = new PhotoAdapter(this, selectedPhotos);
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++) {
 
-                        urls = urls + "|" + OssService.OSS_URL+"alioss_"+ExampleUtil.getFileName(selectedPhotos.get(i)+ExampleUtil.getFileLastName(selectedPhotos.get(i)));
+                        urls = urls + "|" + OssService.OSS_URL+"alioss_"+ CommonUtil.getFileName(selectedPhotos.get(i)+ CommonUtil.getFileLastName(selectedPhotos.get(i)));
                     }
                     urls = urls.substring(1);
                     Log.e("ComeOrder",urls);
                 }
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                recyclerView.setAdapter(photoAdapter);
+
                 photoAdapter.notifyDataSetChanged();
             }
         }
@@ -824,10 +810,10 @@ public class ComeOrderContinueAddProductActivity extends Activity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = ExampleUtil.getFileName(url);
+            fileSuffix = CommonUtil.getFileName(url);
         }
         // 文件标识符objectKey
-        final String objectKey = "alioss_"+ ExampleUtil.getFileName(url)+ExampleUtil.getFileLastName(url);
+        final String objectKey = "alioss_"+ CommonUtil.getFileName(url)+ CommonUtil.getFileLastName(url);
         // 下面3个参数依次为bucket名，ObjectKey名，上传文件路径
         PutObjectRequest put = new PutObjectRequest("blanink", objectKey, url);
 

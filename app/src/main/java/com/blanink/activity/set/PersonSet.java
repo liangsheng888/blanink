@@ -78,6 +78,7 @@ public class PersonSet extends AppCompatActivity {
             public void onClick(View v) {
                 alertDialog.dismiss();
                 Intent intent = new Intent(PersonSet.this, LoginActivity.class);
+                intent.putExtra("UPDATE",true);
                 startActivity(intent);
             }
         });

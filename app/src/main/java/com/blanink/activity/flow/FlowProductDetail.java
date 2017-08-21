@@ -125,7 +125,9 @@ public class FlowProductDetail extends AppCompatActivity {
 
             final List<String> finalArrayList = arrayList;
            // final List<String> picList = StringToListUtils.stringToList(orderProduct.getImages(), "\\|");
-
+                if(finalArrayList.size()==0){
+                    tvAttactment.setText("无附件");
+                }else {
                 tvAttactment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -133,7 +135,7 @@ public class FlowProductDetail extends AppCompatActivity {
                         intent.putExtra("imageList", new Gson().toJson(finalArrayList));
                         startActivity(intent);
                     }
-                });
+                });}
              /*   final ArrayList<String> arrayList = new ArrayList<String>();
                 arrayList.addAll(picList);
                 //点击放大

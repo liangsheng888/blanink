@@ -65,6 +65,13 @@ public class PayAmountAnalysis extends AppCompatActivity {
     }
 
     private void initData() {
+
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         fragments.add(new PayRecieveBarChartFragment());
         fragments.add(new PayBarChartFragment());
         // fragments.add(new CostLineChartFragment());

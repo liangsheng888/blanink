@@ -22,7 +22,7 @@ import com.blanink.activity.task.WorkPlanToAllocation;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.WorkPlan;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
 import com.google.gson.Gson;
@@ -131,7 +131,7 @@ public class WorkPlanNotAllocation extends Fragment {
                             TextView tv_priority = viewHolder.getViewById(R.id.tv_priority);
                             TextView tv_note = viewHolder.getViewById(R.id.tv_note);
                             tv_companyName.setText(result.getCompanyA().getName());
-                            tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.getCreateDate())));
+                            tv_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(result.getCreateDate())));
                           //  tv_master.setText(result.getCompanyBOwner().getName());
                             tv_pro_name.setText(result.getProductName());
                             tv_pro_category.setText(result.getCompanyCategory().getName());

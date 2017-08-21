@@ -16,7 +16,6 @@ import com.alibaba.sdk.android.oss.model.DeleteObjectRequest;
 import com.alibaba.sdk.android.oss.model.DeleteObjectResult;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
-import com.blanink.utils.ExampleUtil;
 
 import java.io.File;
 import java.util.List;

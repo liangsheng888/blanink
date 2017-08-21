@@ -25,10 +25,9 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.activity.bidtender.BidDetail;
 import com.blanink.pojo.TenderAndBid;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
-import com.blanink.view.RefreshListView;
 import com.blanink.view.UpLoadListView;
 import com.google.gson.Gson;
 
@@ -155,7 +154,7 @@ public class FragmentMyBid extends Fragment {
 
     //加载数据
     private void loadDataFromServer() {
-        if (!ExampleUtil.isConnected(getActivity())) {
+        if (!CommonUtil.isConnected(getActivity())) {
             Toast.makeText(getActivity(), "检查你的网络", Toast.LENGTH_SHORT).show();
 
         } else {
@@ -174,6 +173,8 @@ public class FragmentMyBid extends Fragment {
                     if (tb.getResult().total <= myBidList.size()) {
                         isHasData = false;
                     } else {
+                        isHasData = true;
+
                         myBidList.addAll(tb.getResult().rows);
                         if (adapter == null) {
                             adapter = new MyBidAdapter();
@@ -266,7 +267,7 @@ public class FragmentMyBid extends Fragment {
                 viewHolder.tv_state.setText("已通过");
                 viewHolder.tv_state.setTextColor(getResources().getColor(R.color.colorBlue));
             }
-            int index = ExampleUtil.compare_date(row.expireDate, ExampleUtil.dateToString(new Date(System.currentTimeMillis())));
+            int index = CommonUtil.compare_date(row.expireDate, CommonUtil.dateToString(new Date(System.currentTimeMillis())));
             if (index == -1) {
                 viewHolder.tv_state.setText("已失效");
                 viewHolder.tv_state.setTextColor(getResources().getColor(R.color.colorRed));

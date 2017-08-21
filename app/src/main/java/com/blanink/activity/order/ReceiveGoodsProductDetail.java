@@ -158,6 +158,9 @@ public class ReceiveGoodsProductDetail extends AppCompatActivity {
 
 
                                                              final List<String> finalArrayList = arrayList;
+                                                             if(finalArrayList.size()==0){
+                                                                 tvAttactment.setText("无附件");
+                                                             }else {
                                                             // final List<String> stringList = StringToListUtils.stringToList(getIntent().getStringExtra("images"), ",");
                                                              tvAttactment.setOnClickListener(new View.OnClickListener() {
                                                                  @Override
@@ -166,7 +169,7 @@ public class ReceiveGoodsProductDetail extends AppCompatActivity {
                                                                      intent.putExtra("imageList", new Gson().toJson(finalArrayList));
                                                                      startActivity(intent);
                                                                  }
-                                                             });
+                                                             });}
                                                              proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
                                                              orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称
                                                              comeOrderDetailSinglePrice.setText(orderProduct.getResult().getPrice());//单价

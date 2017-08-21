@@ -248,7 +248,7 @@ public class ReceiveGoodsProduct extends AppCompatActivity {
             viewHolder.order_product_state.setText(orderProductState);
             viewHolder.proCateGory.setText(orderDetails.get(position).getCompanyCategory().getName());
             viewHolder.tv_product_name.setText(orderDetails.get(position).getProductName());
-            if (orderDetails.get(position).getBCompany() != null) {
+            if (orderDetails.get(position).getBCompany() != null&&orderDetails.get(position).getBCompany().getPhoto()!=null&&orderDetails.get(position).getBCompany().getPhoto()!="") {
                 GlideUtils.glideImageView(ReceiveGoodsProduct.this, viewHolder.iv, orderDetails.get(position).getBCompany().getPhoto(), true);
             }
             return convertView;

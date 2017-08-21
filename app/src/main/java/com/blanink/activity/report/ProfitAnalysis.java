@@ -59,6 +59,13 @@ public class ProfitAnalysis extends AppCompatActivity {
     }
 
     private void initData() {
+
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         fragments.add(new ProfitBarChartFragment());
         fragments.add(new ProfitPieChartFragment());
         // fragments.add(new SaleLineChartFragment());

@@ -46,8 +46,8 @@ import com.blanink.oss.OssService;
 import com.blanink.pojo.FeedBackingTask;
 import com.blanink.pojo.OrderProduct;
 import com.blanink.pojo.Response;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
@@ -559,7 +559,7 @@ public class TaskResponseMyTask extends AppCompatActivity {
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++){
-                        feedbackAttachmentStr = feedbackAttachmentStr + "," + OssService.OSS_URL+"alioss_"+ ExampleUtil.getFileName(selectedPhotos.get(i))+ExampleUtil.getFileLastName(selectedPhotos.get(i));
+                        feedbackAttachmentStr = feedbackAttachmentStr + "," + OssService.OSS_URL+"alioss_"+ CommonUtil.getFileName(selectedPhotos.get(i))+ CommonUtil.getFileLastName(selectedPhotos.get(i));
                     }
                     feedbackAttachmentStr = feedbackAttachmentStr.substring(1);
                     Log.e("ComeOrder",feedbackAttachmentStr);
@@ -605,7 +605,7 @@ public class TaskResponseMyTask extends AppCompatActivity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = ExampleUtil.getFileName(url)+ExampleUtil.getFileLastName(url);
+            fileSuffix = CommonUtil.getFileName(url)+ CommonUtil.getFileLastName(url);
         }
         // 文件标识符objectKey
         final String objectKey = "alioss_"+ fileSuffix;

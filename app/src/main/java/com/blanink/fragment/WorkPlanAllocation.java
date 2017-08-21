@@ -25,7 +25,7 @@ import com.blanink.R;
 import com.blanink.activity.task.WorkPlanedFinsihProgressQueue;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.pojo.WorkPlaned;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.UpLoadListView;
 import com.google.gson.Gson;
@@ -231,7 +231,7 @@ public class WorkPlanAllocation extends Fragment {
             }
 
             viewHolder.tv_companyName.setText(rows.getCompanyA().getName());
-            viewHolder.tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(rows.getWorkPlan().getCreateDate())));
+            viewHolder.tv_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(rows.getWorkPlan().getCreateDate())));
             //viewHolder.tv_master.setText(rows.getCompanyBOwner().getName());
             viewHolder.tv_pro_name.setText(rows.getProductName());
             viewHolder.tv_pro_category.setText(rows.getCompanyCategory().getName());

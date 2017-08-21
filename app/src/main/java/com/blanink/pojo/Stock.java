@@ -1,5 +1,6 @@
 package com.blanink.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -66,7 +67,7 @@ public class Stock {
             this.rows = rows;
         }
 
-        public static class RowsBean {
+        public static class RowsBean implements Serializable{
             /**
              * id : 301ad6ba64df4e3c86cbd5b20cebf5c5
              * isNewRecord : false
@@ -221,7 +222,7 @@ public class Stock {
                 this.unitPrice = unitPrice;
             }
 
-            public static class CreateByBean {
+            public static class CreateByBean implements Serializable {
                 /**
                  * id : 4856035c527b419a9cf70d856e65c93b
                  * isNewRecord : false
@@ -297,7 +298,7 @@ public class Stock {
                 }
             }
 
-            public static class CompanyCategoryIdBean {
+            public static class CompanyCategoryIdBean implements Serializable {
                 /**
                  * id : 6d364bec5b324391944fb3f36b63023e
                  * isNewRecord : false
@@ -433,7 +434,7 @@ public class Stock {
                 }
             }
 
-            public static class CompanyIdBean {
+            public static class CompanyIdBean implements Serializable {
                 /**
                  * id : f541afa391974409ba680e9bd9a394fd
                  * isNewRecord : false

@@ -16,6 +16,7 @@ import com.blanink.pojo.FlowRemark;
 import com.blanink.pojo.OrderProductRemark;
 import com.blanink.pojo.Response;
 import com.blanink.utils.DateUtils;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.KeyMapDialogFlow;
@@ -146,7 +147,7 @@ public class FlowComments extends AppCompatActivity {
                         tv_user.setText(resultBean.getCreateBy().getName());
                         tv_time.setText(DateUtils.format(DateUtils.stringToDate(resultBean.getCreateDate())));
                         tv_message.setText(resultBean.getRemarks());
-                        XUtilsImageUtils.display(iv, resultBean.getCreateBy().getCompany().getPhoto(), true);
+                        GlideUtils.glideImageView(FlowComments.this,iv, resultBean.getCreateBy().getCompany().getPhoto(), true);
 //                        if(sp.getString("USER_ID",null).equals(resultBean.getCreateBy().getId())){
 //                            tv_message.setTextColor(getResources().getColor(R.color.colorAccent));
 //                        }

@@ -65,6 +65,13 @@ public class SaleAmountAnalysis extends AppCompatActivity {
     }
 
     private void initData() {
+
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tvName.setText(getIntent().getStringExtra("name"));
         fragments.add(new SaleBarChartFragment());
         fragments.add(new SalePieChartFragment());

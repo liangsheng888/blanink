@@ -114,13 +114,17 @@ public class ReceiveGoodsDetails extends AppCompatActivity {
 
 
         final List<String> finalArrayList = arrayList;
-        tvAttactment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReceiveGoodsDetails.this, AttachmentBrow.class);
-                intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                startActivity(intent);
-            }
-        });
+        if(finalArrayList.size()==0){
+            tvAttactment.setText("无附件");
+        }else {
+            // final List<String> stringList = StringToListUtils.stringToList(getIntent().getStringExtra("images"), ",");
+            tvAttactment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ReceiveGoodsDetails.this, AttachmentBrow.class);
+                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                    startActivity(intent);
+                }
+            });}
     }
 }

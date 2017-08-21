@@ -17,6 +17,7 @@ import com.blanink.R;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.PurchaseProduct;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.StringToListUtils;
@@ -136,7 +137,7 @@ public class GoOrderAddProductHistory extends AppCompatActivity {
                         TextView tv_price = viewHolder.getViewById(R.id.tv_price);
                         TextView tv_amount = viewHolder.getViewById(R.id.tv_amount);
                         if (resultBean.getImages() != null) {
-                            XUtilsImageUtils.display(iv, StringToListUtils.stringToList(resultBean.getImages(), "\\|").get(0));
+                            GlideUtils.glideImageView(GoOrderAddProductHistory.this,iv, StringToListUtils.stringToList(resultBean.getImages(), "\\|").get(0),false);
                         }
                         tv_time.setText(resultBean.getCreateDate());
                         tv_product_name.setText(resultBean.getProductName());

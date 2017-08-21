@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.TenderAndBid;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.StringToListUtils;
 import com.blanink.view.NoScrollListview;
@@ -162,7 +162,7 @@ public class TenderBidQueue extends AppCompatActivity {
         //setData
         tv_name.setText(row.buyProductName);
         tv_bids_num.setText(row.bidList.size() + "");
-        tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
+        tv_bid_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.expireDate)));
         tv_single_cost.setText(row.targetPrice);
         tv_purchase_num.setText(row.count + "个");
         tv_note_detail_content.setText(row.remarks);
@@ -280,7 +280,7 @@ public class TenderBidQueue extends AppCompatActivity {
             TenderAndBid.Result.Row.Bid bid = bidList.get(position);
             viewHolder.tv_master.setText(bid.bidCompany.master);
             viewHolder.tv_company_name.setText(bid.bidCompany.name);
-            viewHolder.tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bid.bidDate)));
+            viewHolder.tv_bid_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bid.bidDate)));
             viewHolder.tv_single_price.setText(bid.bidPrice);
             String productionCycle = "";
             if ((bid.productionCycleUnit==1)) {

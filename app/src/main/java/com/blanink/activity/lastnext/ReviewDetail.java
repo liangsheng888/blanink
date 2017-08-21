@@ -115,11 +115,13 @@ public class ReviewDetail extends AppCompatActivity {
                 TextView company = viewHolder.getViewById(R.id.tv_company);
                 TextView reviewtime = viewHolder.getViewById(R.id.tv_time);
                 TextView content = viewHolder.getViewById(R.id.tv_review_content);
+                TextView tv_master= viewHolder.getViewById(R.id.tv_master);
                 ImageView iv = viewHolder.getViewById(R.id.iv);
 
                 company.setText(reviewReplyListBean.getCompany().getName());
                 reviewtime.setText(reviewReplyListBean.getCreateDate());
                 content.setText(reviewReplyListBean.getContents());
+                tv_master.setText(reviewReplyListBean.getCreateBy().getName());
                 GlideUtils.glideImageView(ReviewDetail.this, iv, reviewReplyListBean.getCompany().getPhoto(), true);
             }
         });

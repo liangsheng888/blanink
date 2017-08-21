@@ -153,7 +153,7 @@ public class FlowProgressDetail extends AppCompatActivity {
                                     TextView bad = viewHolder.getViewById(R.id.bad);
                                      RoundProgressBar rb=viewHolder.getViewById(R.id.pb_progress);
                                     rb.setMax(flowProgress.getResult().get(position).getTarget());
-                                    rb.setRoundWidth(10.0f);
+                                    rb.setRoundWidth(5.0f);
                                     rb.setTextColor(getResources().getColor(R.color.colorAccent));
                                     rb.setCricleColor(getResources().getColor(R.color.colorBackGround));
                                     rb.setCricleProgressColor(getResources().getColor(R.color.colorAccent));

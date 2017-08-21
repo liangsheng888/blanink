@@ -132,7 +132,6 @@ public class WorkResponseHistorySeek extends AppCompatActivity {
                 etCotent = etSeek.getText().toString().trim();
                 rows.clear();
                 isHasData=true;
-                handler.sendEmptyMessage(0);
                 rlNotData.setVisibility(View.GONE);
                 if (TextUtils.isEmpty(etCotent)) {
                     return;
@@ -163,11 +162,9 @@ public class WorkResponseHistorySeek extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("company.id", sp.getString("COMPANY_ID", null))
                 .add("userId", sp.getString("USER_ID", null))
+
                 .add("pageNo", pageNo + "")
-                .add("orderProduct.productName", etCotent)
-                .add("process.name", etCotent)
-                .add("feedBackUser.name", etCotent)
-                .add("companyA.name", etCotent)
+                .add("mobileSearch", etCotent)
                 .build();
         Request request = new Request.Builder().post(body).url(url).build();
         ok.newCall(request).enqueue(new Callback() {
@@ -196,6 +193,9 @@ public class WorkResponseHistorySeek extends AppCompatActivity {
                         if (rh.getResult().getTotal() == 0) {
                             rlNotData.setVisibility(View.VISIBLE);//没有数据
                             tvNot.setText("没有找到你要搜索的数据");
+                        }else {
+                            rlNotData.setVisibility(View.GONE);//没有数据
+
                         }
                         if (rh.getResult().getRows().size() == 0) {
                             isHasData = false;

@@ -16,7 +16,7 @@ import com.blanink.R;
 import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.BidTender;
 import com.blanink.pojo.TenderAndBid;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.StringToListUtils;
 import com.google.gson.Gson;
@@ -163,7 +163,7 @@ public class TenderDetail extends AppCompatActivity {
             tv_note_content.setText(row.remarks);
             tv_first_pay.setText(row.downPayment + "%");
             tv_publish_date.setText(row.inviteDate);
-            tv_end_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
+            tv_end_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.expireDate)));
 
             List<String> arrayList=null;
             if (row.attachment!= null && row.attachment != ""&&!"".equals(row.attachment)) {
@@ -174,15 +174,18 @@ public class TenderDetail extends AppCompatActivity {
 
 
             final List<String> finalArrayList = arrayList;
-            tvAttactment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(TenderDetail.this, AttachmentBrow.class);
-                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                    startActivity(intent);
-                }
-            });
-
+            if(finalArrayList.size()==0){
+                tvAttactment.setText("无附件");
+            }else {
+                tvAttactment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(TenderDetail.this, AttachmentBrow.class);
+                        intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                        startActivity(intent);
+                    }
+                });
+            }
         }
         if (bidDetailInfo != null) {
             //大搜索点击进入的详情
@@ -193,8 +196,8 @@ public class TenderDetail extends AppCompatActivity {
             tv_single_price.setText(bidDetailInfo.getInviteBid().getTargetPrice());
             tv_purchase_num.setText(bidDetailInfo.getInviteBid().getCount() + "");
             tv_first_pay.setText(bidDetailInfo.getInviteBid().getDownPayment() + "%");
-            tv_publish_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidDetailInfo.getInviteBid().getInviteDate())));
-            tv_end_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidDetailInfo.getInviteBid().getExpireDate())));
+            tv_publish_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bidDetailInfo.getInviteBid().getInviteDate())));
+            tv_end_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bidDetailInfo.getInviteBid().getExpireDate())));
             tv_note_content.setText(bidDetailInfo.getInviteBid().getRemarks());
         }
         //返回
@@ -222,7 +225,7 @@ public class TenderDetail extends AppCompatActivity {
         }
         //如果已失效 ，不能投标
         if (row != null) {
-            if (ExampleUtil.compare_date(row.expireDate, ExampleUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
+            if (CommonUtil.compare_date(row.expireDate, CommonUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
                 bt_bid.setText("本次招标已失效，你不能投标！");
                 bt_bid.setEnabled(false);
                 bt_bid.setBackgroundColor(Color.GRAY);
@@ -245,7 +248,7 @@ public class TenderDetail extends AppCompatActivity {
         });
 
         if (bidDetailInfo != null) {
-            if (ExampleUtil.compare_date(bidDetailInfo.getInviteBid().getExpireDate(), ExampleUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
+            if (CommonUtil.compare_date(bidDetailInfo.getInviteBid().getExpireDate(), CommonUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
                 bt_bid.setText("本次招标已失效，你不能投标！");
                 bt_bid.setEnabled(false);
                 bt_bid.setBackgroundColor(Color.GRAY);

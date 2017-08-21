@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private int oldIndex;//当前可见的碎片
     MyActivityManager activityManager;
     private SharedPreferences sp;
-
+    private Boolean update=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initData();
 
+    }
+
+    public Boolean getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Boolean update) {
+        this.update = update;
     }
 
     //找到相关控件
@@ -111,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-      /*//  接收返回的状态吗
-        Intent intentBack=getIntent();
+
+   /*     Intent intentBack=getIntent();
         int backCode=intentBack.getIntExtra("DIRECT",0);
         changeFragments(backCode);
         buttons[backCode].setChecked(true);*/
@@ -121,14 +129,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        setUpdate(intent.getBooleanExtra("UPDATE",false));
+        Log.e("MainActivity","是否更新:"+intent.getBooleanExtra("UPDATE",false));
         Log.e("MainActivity", "onNewIntent");
-        String code=intent.getStringExtra("DIRECT");
+        int code=intent.getIntExtra("DIRECT",-1);
         //  接收返回的状态吗
-        if (code!=null) {
-            int backCode = Integer.parseInt(code);
-
-            changeFragments(backCode);
-            buttons[backCode].setChecked(true);
+        if (code!=-1) {
+            changeFragments(code);
+            buttons[code].setChecked(true);
         }
     }
 

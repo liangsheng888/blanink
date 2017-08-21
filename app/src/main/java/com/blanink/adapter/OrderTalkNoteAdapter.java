@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.pojo.OrderProductRemark;
 import com.blanink.utils.DateUtils;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.XUtilsImageUtils;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public class OrderTalkNoteAdapter extends BaseAdapter {
 
         if (resultBean.getSenderCompany() != null) {
             viewHolder.tv_company.setText(resultBean.getSenderCompany().getName());
-            XUtilsImageUtils.display(viewHolder.iv, resultBean.getSenderCompany().getPhoto(), true);
+            GlideUtils.glideImageView(context,viewHolder.iv, resultBean.getSenderCompany().getPhoto(), true);
         }
         viewHolder.tv_user.setText(resultBean.getSender().getName());
         viewHolder.tv_time.setText(DateUtils.format(DateUtils.stringToDate(resultBean.getCreateDate())));

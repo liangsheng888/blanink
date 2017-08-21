@@ -16,7 +16,7 @@ import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.BidDetailInfo;
 import com.blanink.pojo.TenderAndBid;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.StringToListUtils;
@@ -190,8 +190,8 @@ public class BidDetail extends AppCompatActivity {
             tv_single_price.setText(row.targetPrice);
             tv_purchase_num.setText(row.count + "");
             tv_first_pay.setText(row.downPayment + "%");
-            tv_publish_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.inviteDate)));
-            tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
+            tv_publish_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.inviteDate)));
+            tv_useful_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.expireDate)));
             tv_note_detail_content.setText(row.remarks);
             List<String> arrayList=null;
             if (row.attachment!= null &&row.attachment != ""&&!"".equals(row.attachment)) {
@@ -248,7 +248,7 @@ public class BidDetail extends AppCompatActivity {
                 Log.e("BidDetail", "bidinfo:" + bidinfo.toString());
                 tv_name.setText(bidinfo.result.bidCompany.master);
                 tv_company_name.setText(bidinfo.result.bidCompany.name);
-                tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidinfo.result.bidDate)));
+                tv_bid_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bidinfo.result.bidDate)));
                 tv_single_cost.setText(bidinfo.result.bidPrice);
                 String date = "";
                 if (bidinfo.result.productionCycleUnit == 5) {

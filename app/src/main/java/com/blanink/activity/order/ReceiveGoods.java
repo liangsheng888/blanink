@@ -1,7 +1,5 @@
 package com.blanink.activity.order;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,13 +21,11 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.GoOrderDown;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DateUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.OrderStateUtils;
-import com.blanink.utils.SysConstants;
-import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.RefreshListView;
 import com.google.gson.Gson;
 
@@ -138,9 +133,9 @@ public class ReceiveGoods extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ( position < rowsList.size() + 1) {
+                if (position < rowsList.size() + 1) {
                     Intent intent = new Intent(ReceiveGoods.this, ReceiveGoodsProduct.class);
-                    intent.putExtra("orderId",rowsList.get(position-1).getId());
+                    intent.putExtra("orderId", rowsList.get(position - 1).getId());
                     startActivity(intent);
                 }
             }
@@ -149,7 +144,7 @@ public class ReceiveGoods extends AppCompatActivity {
 
     //访问服务器
     public void loadData() {
-        if (!ExampleUtil.isConnected(ReceiveGoods.this)) {
+        if (!CommonUtil.isConnected(ReceiveGoods.this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(ReceiveGoods.this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -211,7 +206,7 @@ public class ReceiveGoods extends AppCompatActivity {
 
 
     private void RefreshData() {
-        if (!ExampleUtil.isConnected(ReceiveGoods.this)) {
+        if (!CommonUtil.isConnected(ReceiveGoods.this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(ReceiveGoods.this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -305,7 +300,9 @@ public class ReceiveGoods extends AppCompatActivity {
             viewHolder.tv_date.setText(DateUtils.format(DateUtils.stringToDate(order.getCreateDate())));
             viewHolder.tv_state.setText(OrderStateUtils.orderStatus(order.getOrderStatus()));
             viewHolder.tv_remark.setText(order.getRemarks());
-            GlideUtils.glideImageView(ReceiveGoods.this,viewHolder.iv_log, order.getBCompany().getPhoto(), true);
+            if (order.getBCompany() != null&& order.getBCompany().getPhoto()!=null&& order.getBCompany().getPhoto()!="") {
+                GlideUtils.glideImageView(ReceiveGoods.this, viewHolder.iv_log, order.getBCompany().getPhoto(), true);
+            }
             return convertView;
         }
     }

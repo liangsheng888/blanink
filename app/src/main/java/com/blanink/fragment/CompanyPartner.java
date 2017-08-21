@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.ManyCustomer;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.RefreshListView;
 import com.google.gson.Gson;
@@ -187,7 +187,7 @@ public class CompanyPartner extends Fragment {
     }
     //访问网络
     public void getData(){
-        if(!ExampleUtil.isConnected(getActivity())){
+        if(!CommonUtil.isConnected(getActivity())){
             //判断网络是否连接
             ll_load.setVisibility(View.GONE);
             rl_load_fail.setVisibility(View.VISIBLE);

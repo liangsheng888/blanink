@@ -21,7 +21,7 @@ import com.blanink.activity.task.TaskResponseHistoryDetail;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.WorkedTask;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
 
@@ -132,7 +132,7 @@ public class TaskResponseHistory extends Fragment {
                                     tv_companyName.setText(ResultBean.getCompanyA().getName());
                                 }
                                 if (ResultBean.getUpdateDate() != null) {
-                                    tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(ResultBean.getUpdateDate())));
+                                    tv_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(ResultBean.getUpdateDate())));
                                 }
                                 /*if (ResultBean.getCompanyBOwner() != null) {
                                     tv_master.setText(ResultBean.getCompanyBOwner().getName());

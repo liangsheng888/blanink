@@ -24,12 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.activity.AttachmentBrow;
 import com.blanink.activity.aftersale.AfterSaleDemand;
 import com.blanink.activity.flow.FlowProgress;
 import com.blanink.activity.flow.FlowProgressDetail;
 import com.blanink.activity.remark.RemarkGoOrder;
 import com.blanink.activity.remark.RemarkGoOrderReview;
-import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.OneOrderProduct;
 import com.blanink.pojo.OrderProductAttributes;
 import com.blanink.pojo.OrderProductStatus;
@@ -40,7 +40,7 @@ import com.blanink.utils.DialogNotifyUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
 import com.blanink.utils.StringToListUtils;
-import com.blanink.view.LoadingDialog;
+import com.blanink.utils.SysConstants;
 import com.blanink.view.NoScrollGridview;
 import com.blanink.view.PopBottomWinGo;
 import com.google.gson.Gson;
@@ -122,6 +122,14 @@ public class GoDownOrderProductDetail extends AppCompatActivity {
     NoScrollGridview comeOrderDetailLvFujianDownload;
     @BindView(R.id.activity_come_order_product_detail)
     RelativeLayout activityComeOrderProductDetail;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
+    @BindView(R.id.tv_add_note)
+    TextView tvAddNote;
+    @BindView(R.id.tv_seek_progress)
+    TextView tvSeekProgress;
+    @BindView(R.id.item_come_order_detail_product)
+    LinearLayout itemComeOrderDetailProduct;
 
     private SharedPreferences sp;
     private String coments;
@@ -223,6 +231,28 @@ public class GoDownOrderProductDetail extends AppCompatActivity {
             }
         });
 
+
+        //  查看进度
+        tvSeekProgress.setOnClickListener(new View.OnClickListener()
+
+                                          {
+                                              @Override
+                                              public void onClick(View v) {
+                                                  DialogLoadUtils.showDialogLoad("努力加载中...");
+                                                  postAsynHttp();
+                                              }
+                                          }
+
+        );
+
+        tvAddNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(GoDownOrderProductDetail.this, ComeOrderProductDetailTalkNote.class);
+                it.putExtra("productId", orderProduct.getResult().getId());
+                startActivity(it);
+            }
+        });
     }
           /*  //点击放大
             myPager.setImageViewListener(new MyPagerList.ImageViewOnClickListener() {
@@ -299,14 +329,6 @@ public class GoDownOrderProductDetail extends AppCompatActivity {
         });
         //评价
         tvRemark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        //查看进度
-        tvSeekProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -585,8 +607,8 @@ public class GoDownOrderProductDetail extends AppCompatActivity {
         String url = NetUrlUtils.NET_URL + "order/getOneOrderProduct";
         OkHttpClient ok = new OkHttpClient();
         RequestBody rb = new FormBody.Builder().add("id", getIntent().getStringExtra("orderProductId")).
-                add("order.id",getIntent().getStringExtra("orderId")).build();
-        Log.e("GoDown",url+"?order.id="+getIntent().getStringExtra("orderId")+"&id="+getIntent().getStringExtra("orderProductId"));
+                add("order.id", getIntent().getStringExtra("orderId")).build();
+        Log.e("GoDown", url + "?order.id=" + getIntent().getStringExtra("orderId") + "&id=" + getIntent().getStringExtra("orderProductId"));
         Request re = new Request.Builder().post(rb).url(url).build();
         ok.newCall(re).enqueue(new okhttp3.Callback() {
                                    @Override
@@ -606,6 +628,24 @@ public class GoDownOrderProductDetail extends AppCompatActivity {
                                                              //recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
                                                              List<String> arrayList = null;
                                                              if (orderProduct.getResult() != null) {
+
+                                                                 //查看进度
+                                                                 if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_FLOW_PULISHED.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_PRODUCTION_END.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_DELIEVERY_PART.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_DELIEVERY_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_RECEIVED_PART.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_RECEIVED_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_COMMENT_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_START.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_DEALING.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_DEALING_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_DEALING_OVER_CONFIRMED.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         || SysConstants.ORDER_PRODUCT_SRTATUS_REJECT_TAKE.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                         ) {
+                                                                     tvSeekProgress.setVisibility(View.VISIBLE);
+                                                                 }
+
                                                                  if (orderProduct.getResult().getImages() != null && orderProduct.getResult().getImages() != "" && !"".equals(orderProduct.getResult().getImages())) {
                                                                      arrayList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), "\\|");
                                                                  } else {
@@ -613,25 +653,27 @@ public class GoDownOrderProductDetail extends AppCompatActivity {
                                                                  }
 
 
-
-                                                             final List<String> finalArrayList = arrayList;
-                                                             // final List<String> stringList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), ",");
-                                                             tvAttactment.setOnClickListener(new View.OnClickListener() {
-                                                                 @Override
-                                                                 public void onClick(View v) {
-                                                                     Intent intent = new Intent(GoDownOrderProductDetail.this, AttachmentBrow.class);
-                                                                     intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                                                                     startActivity(intent);
-                                                                 }
-                                                             });
-                                                             proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
-                                                             orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称
-                                                             comeOrderDetailSinglePrice.setText(orderProduct.getResult().getPrice());//单价
-                                                             comeOrderDetailTvNum.setText(orderProduct.getResult().getAmount());
-                                                             comeOrderDetailTvEndDateHand.setText(orderProduct.getResult().getDeliveryTime());
-                                                             comeOrderDetailTvMinePriority.setText(PriorityUtils.getPriority(orderProduct.getResult().getCompanyAPriority()));//甲方优先级
-                                                             orderDetailTvNote.setText(orderProduct.getResult().getProductDescription());
-                                                             loadProductAttribute(orderProduct.getResult().getId());//获得产品属性
+                                                                 final List<String> finalArrayList = arrayList;
+                                                                 // final List<String> stringList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), ",");
+                                                                 if(finalArrayList.size()==0){
+                                                                     tvAttactment.setText("无附件");
+                                                                 }else {
+                                                                 tvAttactment.setOnClickListener(new View.OnClickListener() {
+                                                                     @Override
+                                                                     public void onClick(View v) {
+                                                                         Intent intent = new Intent(GoDownOrderProductDetail.this, AttachmentBrow.class);
+                                                                         intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                                                                         startActivity(intent);
+                                                                     }
+                                                                 });}
+                                                                 proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
+                                                                 orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称
+                                                                 comeOrderDetailSinglePrice.setText(orderProduct.getResult().getPrice());//单价
+                                                                 comeOrderDetailTvNum.setText(orderProduct.getResult().getAmount());
+                                                                 comeOrderDetailTvEndDateHand.setText(orderProduct.getResult().getDeliveryTime());
+                                                                 comeOrderDetailTvMinePriority.setText(PriorityUtils.getPriority(orderProduct.getResult().getCompanyAPriority()));//甲方优先级
+                                                                 orderDetailTvNote.setText(orderProduct.getResult().getProductDescription());
+                                                                 loadProductAttribute(orderProduct.getResult().getId());//获得产品属性
                                                              }
                                                          }
                                                      }

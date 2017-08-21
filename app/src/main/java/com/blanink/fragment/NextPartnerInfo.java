@@ -41,6 +41,10 @@ import butterknife.ButterKnife;
  */
 public class NextPartnerInfo extends Fragment {
     public static final String TAG = "NextPartnerInfo";
+
+
+    @BindView(R.id.tv_history_num)
+    TextView tvHistoryNum;
     @BindView(R.id.tv_address)
     TextView tvAddress;
     @BindView(R.id.tv_company_xin)
@@ -224,6 +228,7 @@ public class NextPartnerInfo extends Fragment {
                 tv_company_other_remark.setText(companyB.reviewOthers + "");
                 tv_company_xin_yu.setText(df.format((companyB.reviewSelf + companyB.reviewOthers) / 2.0));
                 tv_introduce.setText(companyB.getRemarks());
+                tv_major_content.setText(companyB.scope);
                 tv_url.setText(companyB.homepage);
                 if ("1".equals(type)) {
                     btn.setText("已合作,解除关系");

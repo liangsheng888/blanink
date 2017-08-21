@@ -162,15 +162,18 @@ public class BarChart01View extends DemoView implements Runnable{ //DemoView
 			
 			//在柱形顶部显示值
 			chart.getBar().setItemLabelVisible(true);
-			
+
+			chart.getDataAxis().enabledAxisStd();
+			//chart.getDataAxis().setAxisStd(230);
+			chart.getCategoryAxis().setAxisBuildStd(true);
 		
 			//设定格式
 			chart.setItemLabelFormatter(new IFormatterDoubleCallBack() {
 				@Override
 				public String doubleFormatter(Double value) {
 					// TODO Auto-generated method stub
-					DecimalFormat df=new DecimalFormat("#0");					 
-					String label = df.format(value).toString();
+
+					String label = value.toString();
 					return label;
 				}});
 			
@@ -180,22 +183,22 @@ public class BarChart01View extends DemoView implements Runnable{ //DemoView
 			
 			
 			//轴颜色			
-			chart.getDataAxis().getAxisPaint().setColor(colorTitalAxes);
+	/*		chart.getDataAxis().getAxisPaint().setColor(colorTitalAxes);
 			chart.getCategoryAxis().getAxisPaint().setColor(colorTitalAxes);			
 			chart.getDataAxis().getTickMarksPaint().setColor(colorTitalAxes);
-			chart.getCategoryAxis().getTickMarksPaint().setColor(colorTitalAxes);
+			chart.getCategoryAxis().getTickMarksPaint().setColor(colorTitalAxes);*/
 			
-			chart.getDataAxis().getTickLabelPaint().setColor(colorTitalAxes);
-			chart.getCategoryAxis().getTickLabelPaint().setColor(colorTitalAxes);
-			chart.getAxisTitle().getLeftTitlePaint().setColor(colorTitalAxes);	
-			chart.getAxisTitle().getLowerTitlePaint().setColor(colorTitalAxes);	
+		/*	chart.getDataAxis().getTickLabelPaint().setColor(colorTitalAxes);
+			chart.getCategoryAxis().getTickLabelPaint().setColor(colorTitalAxes);*/
+			chart.getAxisTitle().getLeftTitlePaint().setColor(Color.RED);
+			chart.getAxisTitle().getLowerTitlePaint().setColor(Color.RED);
 			
 			chart.getBar().getItemLabelPaint().setColor(Color.rgb(246, 133, 39));	
 			chart.getBar().getItemLabelPaint().setTextSize(15);
 		
 								
 			//指隔多少个轴刻度(即细刻度)后为主刻度
-			chart.getDataAxis().setDetailModeSteps(5);
+			chart.getDataAxis().setDetailModeSteps(2);
 
 			//显示十字交叉线
 			chart.showDyLine();
@@ -230,13 +233,13 @@ public class BarChart01View extends DemoView implements Runnable{ //DemoView
 		chart.getAxisTitle().setLowerTitle(lowerTitle);
 	}
 
-	public void setAxisMaxAndMin(long min,long max,long step){
+	public void setYAxis(Double min,Double max,Double step){
 		//数据轴
 		chart.getDataAxis().setAxisMax(max);
 		chart.getDataAxis().setAxisMin(min);
 		chart.getDataAxis().setAxisSteps(step);
 	}
-	public void setChartData(List<BarData> barDataList)	{
+	public void setBarDataSet(List<BarData> barDataList)	{
 		for (BarData bar:barDataList){
 			chartData.add(bar);
 		}
@@ -304,7 +307,7 @@ public class BarChart01View extends DemoView implements Runnable{ //DemoView
 		chart.showClikedFocus();
 		
 		//扩展横向显示范围,当数据太多时可用这个扩展实际绘图面积
-		chart.getPlotArea().extWidth(100f);
+		//chart.getPlotArea().extWidth(100f);
 		
 		//禁用平移模式
 		//chart.disablePanMode();

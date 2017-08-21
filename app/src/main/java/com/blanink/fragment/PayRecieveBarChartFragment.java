@@ -1,5 +1,6 @@
 package com.blanink.fragment;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +25,7 @@ import com.blanink.pojo.PartnerInfo;
 import com.blanink.pojo.PartnerOffice;
 import com.blanink.pojo.ReportPay;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.view.BarChart01View;
 import com.blanink.view.StackBarChartVerView;
 import com.google.gson.Gson;
 
@@ -30,6 +33,7 @@ import org.xclcharts.chart.BarData;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -68,6 +72,7 @@ public class PayRecieveBarChartFragment extends Fragment {
     Unbinder unbinder;
     private SharedPreferences sp;
     private String customerId;
+    private String searchOffice = "";
 
     @Nullable
     @Override
@@ -82,6 +87,15 @@ public class PayRecieveBarChartFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         loadCustomerData();
+        loadSaleData();
+
+        tvSeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadSaleData();
+
+            }
+        });
 
     }
 
@@ -98,6 +112,7 @@ public class PayRecieveBarChartFragment extends Fragment {
         RequestBody body = new FormBody.Builder()
                 .add("userId", sp.getString("USER_ID", null))
                 .add("office.id", sp.getString("COMPANY_ID", null))
+                .add("searchOffice.id", searchOffice)
                 .build();
         Request request = new Request.Builder().post(body).url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -122,27 +137,35 @@ public class PayRecieveBarChartFragment extends Fragment {
                 final List<Double> dataSeries = new ArrayList<Double>();
                 final List<Double> dataSeries2 = new ArrayList<Double>();
                 final List<Double> dataSeries3 = new ArrayList<Double>();
+                final List<Double> data = new ArrayList<Double>();
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         llLoad.setVisibility(View.GONE);
-                        for(int i=0;i<rs.getResult().size();i++){
+                        for (int i = 0; i < rs.getResult().size(); i++) {
                             labelList.add(rs.getResult().get(i).getOffice().getShortName());
                             dataSeries.add(rs.getResult().get(i).getSaleAmount() / 10000);
                             dataSeries2.add(rs.getResult().get(i).getAccountReceivable() / 10000);
                             dataSeries3.add((rs.getResult().get(i).getSaleAmount() - rs.getResult().get(i).getAccountReceivable()) / 10000);
 
                         }
-                        barDataSet.add(new BarData("应收总额", dataSeries, Color.rgb(255,0,0)));
-                        barDataSet.add(new BarData("已收付款", dataSeries2, Color.rgb(148,0,211)));
-                        barDataSet.add(new BarData("未收付款", dataSeries3,Color.rgb(0,0,255)));
+                        data.addAll(dataSeries);
+                        data.addAll(dataSeries2);
+                        data.addAll(dataSeries3);
 
-                        StackBarChartVerView view = new StackBarChartVerView(getActivity());
-                        view.setYAxis(0, 2000, 200);
+                        barDataSet.add(new BarData("应收总额", dataSeries, Color.rgb(255, 0, 0)));
+                        barDataSet.add(new BarData("已收付款", dataSeries2, Color.rgb(148, 0, 211)));
+                        barDataSet.add(new BarData("未收付款", dataSeries3, Color.rgb(0, 0, 255)));
+
+                        BarChart01View view = new BarChart01View(getActivity());
+                        Collections.sort(data);
+                        if (data.size() > 0) {
+                            view.setYAxis((Math.ceil(data.get(0)) >= 0 ? 0 : Math.ceil(data.get(0))), Math.ceil(data.get(data.size() - 1)) + Math.ceil(data.get(data.size() - 1)) / data.size(), Math.ceil(data.get(data.size() - 1)) / data.size());
+                        }
                         view.setChartLabels(labelList);
                         view.setBarDataSet(barDataSet);
-                        view.setLeftTitle("万元");
+                        view.setTitle("万元", "公司");
                         if (flView != null) {
                             flView.removeAllViews();
                             flView.addView(view);
@@ -166,7 +189,7 @@ public class PayRecieveBarChartFragment extends Fragment {
         String url = NetUrlUtils.NET_URL + "report/customerList";
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("userId", sp.getString("USER_ID", null))
+                .add("office.id", sp.getString("COMPANY_ID", null))
                 .build();
         Request request = new Request.Builder().post(body).url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -183,29 +206,28 @@ public class PayRecieveBarChartFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-                Log.e("@@@",json);
+                Log.e("@@@", json);
                 Gson gson = new Gson();
 
                 final PartnerOffice rs = gson.fromJson(json, PartnerOffice.class);
-                final List<String> customerList=new ArrayList<String>();
-                final List<String> customerIdList=new ArrayList<String>();
+                final List<String> customerList = new ArrayList<String>();
+                final List<String> customerIdList = new ArrayList<String>();
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
                         llLoad.setVisibility(View.GONE);
-                        loadSaleData();
-                        for(int i=0;i<rs.getResult().size();i++){
+                        for (int i = 0; i < rs.getResult().size(); i++) {
                             customerList.add(rs.getResult().get(i).getName());
                             customerIdList.add(rs.getResult().get(i).getId());
                         }
-                        spType.setAdapter(new ArrayAdapter<String>(getActivity(),R.layout.spanner_item,customerList));
+                        spType.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spanner_item, customerList));
                         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                customerId = customerIdList.get(position);
+                                searchOffice = customerIdList.get(position);
 
                             }
 

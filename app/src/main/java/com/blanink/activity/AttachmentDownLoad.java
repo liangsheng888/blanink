@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.utils.CheckNet;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.OpenFileUtils;
 import com.bumptech.glide.Glide;
 
@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -56,8 +55,7 @@ public class AttachmentDownLoad extends AppCompatActivity {
     Button btnDownLoad;
     @BindView(R.id.pb)
     ProgressBar pb;
-    @BindView(R.id.tv_len)
-    TextView tvLen;
+
     private String path = "";
     private Handler handler = new Handler() {
         @Override
@@ -83,7 +81,16 @@ public class AttachmentDownLoad extends AppCompatActivity {
                 finish();
             }
         });
-        if (getIntent().getStringExtra("url").endsWith(".gif") || getIntent().getStringExtra("url").endsWith(".png") || getIntent().getStringExtra("url").endsWith(".jpg") || getIntent().getStringExtra("url").endsWith(".jpeg") || getIntent().getStringExtra("url").endsWith(".bmp") || getIntent().getStringExtra("url").endsWith(".png")) {
+        if (getIntent().getStringExtra("url").endsWith(".gif")
+                || getIntent().getStringExtra("url").endsWith(".png")
+                || getIntent().getStringExtra("url").endsWith(".jpg")
+                || getIntent().getStringExtra("url").endsWith(".jpeg")
+                || getIntent().getStringExtra("url").endsWith(".bmp")
+                ||getIntent().getStringExtra("url").endsWith(".GIF")
+                || getIntent().getStringExtra("url").endsWith(".PNG")
+                || getIntent().getStringExtra("url").endsWith(".JPG")
+                || getIntent().getStringExtra("url").endsWith(".JPEG")
+                || getIntent().getStringExtra("url").endsWith(".BMP")) {
             {
                 Glide.with(AttachmentDownLoad.this).load(getIntent().getStringExtra("url")).placeholder(R.drawable.loading).error(R.drawable.fail).into(ivIcon);
                 ivIcon.setOnClickListener(new View.OnClickListener() {
@@ -96,25 +103,35 @@ public class AttachmentDownLoad extends AppCompatActivity {
                 });
             }
 
-        } else if (getIntent().getStringExtra("url").endsWith(".doc") || getIntent().getStringExtra("url").endsWith(".docx")) {
+        } else if (getIntent().getStringExtra("url").endsWith(".doc")
+                || getIntent().getStringExtra("url").endsWith(".docx")
+                ||getIntent().getStringExtra("url").endsWith(".DOC")
+                || getIntent().getStringExtra("url").endsWith(".DOCX")) {
             ivIcon.setImageResource(R.drawable.word);
-        } else if (getIntent().getStringExtra("url").endsWith(".ppt") || getIntent().getStringExtra("url").endsWith(".pptx")) {
+        } else if (getIntent().getStringExtra("url").endsWith(".ppt")
+                || getIntent().getStringExtra("url").endsWith(".pptx")||getIntent().getStringExtra("url").endsWith(".PPT")
+                || getIntent().getStringExtra("url").endsWith(".PPTX")) {
 
             ivIcon.setImageResource(R.drawable.ppt);
-        } else if (getIntent().getStringExtra("url").endsWith(".pdf")) {
+        } else if (getIntent().getStringExtra("url").endsWith(".pdf")||getIntent().getStringExtra("url").endsWith(".PDF")) {
               /*  Glide.with(mContext)
                         .load(new File(Environment.getExternalStorageDirectory(),"pdf.png"))
                        .into(ivIcon);*/
             ivIcon.setImageResource(R.drawable.pdf);
 
-        } else if (getIntent().getStringExtra("url").endsWith(".xls") || getIntent().getStringExtra("url").endsWith(".xlsx")) {
+        } else if (getIntent().getStringExtra("url").endsWith(".xls")
+                || getIntent().getStringExtra("url").endsWith(".xlsx")||getIntent().getStringExtra("url").endsWith(".XLS")
+                || getIntent().getStringExtra("url").endsWith(".XLSX")) {
 //                Glide.with(mContext)
 //                        .load(new File(Environment.getExternalStorageDirectory(),"xml.png"))
 //                        .into(ivIcon);
             ivIcon.setImageResource(R.drawable.xml);
 
 
-        } else if (getIntent().getStringExtra("url").endsWith(".zip") || getIntent().getStringExtra("url").endsWith(".gizp")) {
+        } else if (getIntent().getStringExtra("url").endsWith(".zip")
+                || getIntent().getStringExtra("url").endsWith(".gizp")||
+                getIntent().getStringExtra("url").endsWith(".ZIP")
+                || getIntent().getStringExtra("url").endsWith(".GZIP")) {
             ivIcon.setImageResource(R.drawable.zip);
 
         }/*else if (getIntent().getStringExtra("url").endsWith(".gif")){
@@ -124,7 +141,7 @@ public class AttachmentDownLoad extends AppCompatActivity {
 
         }
         if (!getIntent().getStringExtra("url").equals("") && getIntent().getStringExtra("url") != null) {
-            tvName.setText(ExampleUtil.getFileName(getIntent().getStringExtra("url")) + ExampleUtil.getFileLastName(getIntent().getStringExtra("url")));
+            tvName.setText(CommonUtil.getFileName(getIntent().getStringExtra("url")) + CommonUtil.getFileLastName(getIntent().getStringExtra("url")));
         }
         getFlieLength();
         btnDownLoad.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +183,7 @@ public class AttachmentDownLoad extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        tvLen.setText("(" + new DecimalFormat("0.00").format(maxLenth / (1024.0)) + "kb)");
+                        btnDownLoad.setText("下载("+CommonUtil.getPrintSize(maxLenth)+")");
                     }
                 });
             }
@@ -198,7 +215,7 @@ public class AttachmentDownLoad extends AppCompatActivity {
                 final InputStream is = response.body().byteStream();
                 final long maxLength = response.body().contentLength();
                 FileOutputStream fos = null;
-                path = "/sdcard/" + System.currentTimeMillis() + ExampleUtil.getFileLastName(getIntent().getStringExtra("url"));
+                path = "/sdcard/" + System.currentTimeMillis() + CommonUtil.getFileLastName(getIntent().getStringExtra("url"));
                 Log.e("OrderAttachment", path);
 
                 fos = new FileOutputStream(new File(path));

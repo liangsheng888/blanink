@@ -1,9 +1,7 @@
 package com.blanink.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.utils.ExampleUtil;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import me.iwf.photopicker.utils.AndroidLifecycleUtils;
 
 /**
  * Created by donglua on 15/5/31.
@@ -98,6 +92,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.PhotoViewHolde
         }
         if ("工作记录".equals(menuList.get(position))) {
             holder.ivMenu.setImageResource(R.drawable.gzjl);
+
+        }
+        if ("仓库管理".equals(menuList.get(position))) {
+            holder.ivMenu.setImageResource(R.drawable.stock);
 
         }
 

@@ -20,8 +20,8 @@ import com.blanink.activity.EaseChat.modle.DemoHelper;
 import com.blanink.db.DemoDBManager;
 import com.blanink.pojo.LoginResult;
 import com.blanink.utils.CheckNet;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.RePsdUtils;
@@ -196,20 +196,15 @@ public class LoginActivity extends AppCompatActivity {
                                         });
 
 
-
-                                        if (loginResult.getResult().admin) {
-                                            //跳转到管理员界面
-                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                            intent.putExtra("DATA", result);
-                                            intent.putExtra("DIRECT", FRAGMENT_TASK);
-                                            startActivity(intent);
-                                        } else {
                                             //跳转到普通用户界面
                                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             intent.putExtra("DATA", result);
                                             intent.putExtra("DIRECT", FRAGMENT_TASK);
+                                           Log.e("LoginActivity","是否更新:"+getIntent().getBooleanExtra("UPDATE",false));
+
+                                             intent.putExtra("UPDATE",getIntent().getBooleanExtra("UPDATE",false));
                                             startActivity(intent);
-                                        }
+
 
                                     } else if ("10004".equals(loginResult.getErrorCode())) {
                                         Toast.makeText(LoginActivity.this, "您的账户已经过期，请联系客服解决！", Toast.LENGTH_SHORT).show();
@@ -330,7 +325,7 @@ public class LoginActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(alias)) {
             return;
         }
-        if (!ExampleUtil.isValidTagAndAlias(alias)) {
+        if (!CommonUtil.isValidTagAndAlias(alias)) {
             return;
         }
 
@@ -358,7 +353,7 @@ public class LoginActivity extends AppCompatActivity {
                     logs = "Failed with errorCode = " + code;
                     Log.e(TAG, logs);
             }
-            // ExampleUtil.showToast(logs, getApplicationContext());
+            // CommonUtil.showToast(logs, getApplicationContext());
         }
     };
 
@@ -377,7 +372,7 @@ public class LoginActivity extends AppCompatActivity {
                 case 6002:
                     logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
                     Log.i(TAG, logs);
-                    if (ExampleUtil.isConnected(getApplicationContext())) {
+                    if (CommonUtil.isConnected(getApplicationContext())) {
                         mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_TAGS, tags), 1000 * 60);
                     } else {
                         Log.i(TAG, "No network");
@@ -389,7 +384,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e(TAG, logs);
             }
 
-            // ExampleUtil.showToast(logs, getApplicationContext());
+            // CommonUtil.showToast(logs, getApplicationContext());
         }
 
     };

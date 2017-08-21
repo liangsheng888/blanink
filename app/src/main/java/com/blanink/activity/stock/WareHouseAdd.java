@@ -3,9 +3,13 @@ package com.blanink.activity.stock;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,13 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.adapter.WareHouseAdapter;
-import com.blanink.pojo.CompanyProduct;
 import com.blanink.pojo.CompanyProductCategory;
 import com.blanink.pojo.ResponseDelete;
-import com.blanink.pojo.Stock;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
 
@@ -84,6 +85,7 @@ public class WareHouseAdd extends AppCompatActivity {
     private String remarks;
     private String stok="0";
     private String unitPrice;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +93,17 @@ public class WareHouseAdd extends AppCompatActivity {
         setContentView(R.layout.activity_ware_house_add);
         ButterKnife.bind(this);
         sp = getSharedPreferences("DATA", Context.MODE_PRIVATE);
+
         initData();
     }
 
     private void initData() {
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         //加载产品类
         loadCateGory();
         //返回
@@ -214,14 +223,14 @@ public class WareHouseAdd extends AppCompatActivity {
 
 
     private void save(){
-        if(!ExampleUtil.isConnected(this)){
+        if(!CommonUtil.isConnected(this)){
             Toast.makeText(WareHouseAdd.this, "请检查你的网络", Toast.LENGTH_SHORT).show();
             return;
         }
         String url = NetUrlUtils.NET_URL + "companyInventory/save";
         OkHttpClient ok = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("company.id", sp.getString("COMPANY_ID", null))
+                .add("companyId.id", sp.getString("COMPANY_ID", null))
                 .add("name",name)
                 .add("procuteNumber", procuteNumber)
                 .add("companyCategoryId.id", cateGoryId)
@@ -257,6 +266,7 @@ public class WareHouseAdd extends AppCompatActivity {
                     public void run() {
                         DialogLoadUtils.dismissDialog();
                      if("00000".equals(rd.getErrorCode())){
+                         deleteNofity("保存成功，是否继续添加?","继续","返回");
 
                      }else {
                          Toast.makeText(WareHouseAdd.this, rd.getReason(), Toast.LENGTH_SHORT).show();
@@ -266,5 +276,32 @@ public class WareHouseAdd extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void deleteNofity( String content, String left, String right) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(WareHouseAdd.this).create();
+        alertDialog.show();
+        alertDialog.setContentView(R.layout.dialog_custom_exit);
+        final Window window = alertDialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        window.setGravity(Gravity.CENTER);
+        window.setAttributes(lp);
+        ((TextView) window.findViewById(R.id.tv_content)).setText(content);
+        ((TextView) window.findViewById(R.id.tv_continue)).setText(left);
+        ((TextView) window.findViewById(R.id.tv_exit)).setText(right);
+        window.findViewById(R.id.tv_continue).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        window.findViewById(R.id.tv_exit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                finish();
+
+            }
+        });
     }
 }

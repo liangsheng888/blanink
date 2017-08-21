@@ -20,8 +20,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.pojo.BidTender;
-import com.blanink.pojo.TenderAndBid;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -191,10 +190,10 @@ public class BidMore extends AppCompatActivity {
             viewHolder.tv_single_price.setText(bidTenderList.get(position).getInviteBid().getTargetPrice());
             viewHolder.tv_first_pay.setText(bidTenderList.get(position).getInviteBid().getDownPayment() + "%");
             viewHolder.tv_note_content.setText(bidTenderList.get(position).getInviteBid().getRemarks());
-            viewHolder.tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidTenderList.get(position).getInviteBid().getExpireDate())));
+            viewHolder.tv_useful_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bidTenderList.get(position).getInviteBid().getExpireDate())));
             viewHolder.tv_publish.setText(bidTenderList.get(position).getInviteBid().getCreateDate());
             //设置失效显示
-            if (ExampleUtil.compare_date(bidTenderList.get(position).getInviteBid().getExpireDate(), ExampleUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
+            if (CommonUtil.compare_date(bidTenderList.get(position).getInviteBid().getExpireDate(), CommonUtil.dateToString(new Date(System.currentTimeMillis()))) < 0) {
                 viewHolder.iv_out_of_date.setVisibility(View.VISIBLE);
             }
             GlideUtils.glideImageView(BidMore.this,viewHolder.iv,bidTenderList.get(position).getInviteBid().getInviteCompany().getPhoto(),true);

@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,8 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.activity.order.GoOrderGroupDownOrderProduct;
 import com.blanink.pojo.GoFormDownOrder;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
 import com.google.gson.Gson;
@@ -121,11 +123,16 @@ public class GoNotDownOrderFragment extends Fragment {
         sp = getActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE);
         loadGoOrderData();
 
-
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                rowsList.clear();
                 RefreshData();
             }
         });
@@ -161,7 +168,7 @@ public class GoNotDownOrderFragment extends Fragment {
     }
 
     private void RefreshData() {
-        if (!ExampleUtil.isConnected(getActivity())) {
+        if (!CommonUtil.isConnected(getActivity())) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -185,6 +192,7 @@ public class GoNotDownOrderFragment extends Fragment {
                 /*for (int i=0;i<order.getResult().size();i++){
                    productListBeen.addAll(order.getResult().get(i).getOrderProductList());
                 }*/
+                rowsList.clear();
                 rowsList.addAll(order.getResult());
                 adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
@@ -269,7 +277,7 @@ public class GoNotDownOrderFragment extends Fragment {
     }
 
     public void loadGoOrderData() {
-        if (!ExampleUtil.isConnected(getActivity())) {
+        if (!CommonUtil.isConnected(getActivity())) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -364,7 +372,7 @@ public class GoNotDownOrderFragment extends Fragment {
             Log.e("ComeOrderActivity", "标题:");
             viewHolder.tv_supplier_name.setText(suplier.getProviderName());
             //产品类
-            XUtilsImageUtils.display(viewHolder.iv_photo, suplier.getOrderProductList().get(0).getBCompany().getPhoto(), true);
+            GlideUtils.glideImageView(getActivity(),viewHolder.iv_photo, suplier.getOrderProductList().get(0).getBCompany().getPhoto(), true);
             viewHolder.tv_amount.setText(suplier.getOrderProductList().size() + "");
         /*    viewHolder.tv_remark.setText(product.get);
             XUtilsImageUtils.display(viewHolder.iv_log, order.aCompany.photo, true);*/

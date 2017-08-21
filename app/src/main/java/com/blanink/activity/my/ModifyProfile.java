@@ -29,16 +29,14 @@ import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider;
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
-import com.alibaba.sdk.android.oss.model.DeleteObjectRequest;
-import com.alibaba.sdk.android.oss.model.DeleteObjectResult;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.blanink.R;
-import com.blanink.activity.EaseChat.modle.DemoHelper;
 import com.blanink.oss.OssService;
 import com.blanink.pojo.LoginResult;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
@@ -110,7 +108,7 @@ public class ModifyProfile extends AppCompatActivity {
     private void receivedData() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-       loginResult = (LoginResult) bundle.getSerializable("MyProfile");
+        loginResult = (LoginResult) bundle.getSerializable("MyProfile");
         Log.e("ModifyProfile", "loginResult:" + loginResult.toString());
     }
 
@@ -120,7 +118,9 @@ public class ModifyProfile extends AppCompatActivity {
         oss = new OSSClient(getApplicationContext(), OssService.endpoint, credentialProvider);
         etNick.setText(loginResult.getResult().name);
         etPhone.setText(loginResult.getResult().phone);
-        XUtilsImageUtils.display(ivPhoto, loginResult.getResult().photo, true);
+        if (loginResult.getResult().photo != null && loginResult.getResult().photo != "") {
+            GlideUtils.glideImageView(ModifyProfile.this, ivPhoto, loginResult.getResult().photo, true);
+        }
         //返回
         ivLast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,7 +176,7 @@ public class ModifyProfile extends AppCompatActivity {
                     //上传图片到阿里云服务器
 
 
-                    PutObjectRequest put = new PutObjectRequest("blanink", ExampleUtil.getFileName(path), path);
+                    PutObjectRequest put = new PutObjectRequest("blanink", CommonUtil.getFileName(path), path);
                     OSSAsyncTask task = oss.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
                         @Override
                         public void onSuccess(PutObjectRequest request, PutObjectResult result) {
@@ -283,7 +283,7 @@ public class ModifyProfile extends AppCompatActivity {
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
                 path = Uri.fromFile(new File(photos.get(0))).getPath();
-                photo = OssService.OSS_URL + ExampleUtil.getFileName(path);
+                photo = OssService.OSS_URL + CommonUtil.getFileName(path);
                 ivPhoto.setImageBitmap(BitmapFactory.decodeFile(path));
             }
 

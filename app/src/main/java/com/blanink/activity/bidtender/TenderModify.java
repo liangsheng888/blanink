@@ -22,8 +22,8 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -112,7 +112,7 @@ public class TenderModify extends Activity {
         et_first_price.setText(row.downPayment);
         et_price.setText(row.targetPrice);
         et_num.setText(row.count + "");
-        et_end_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(row.expireDate)));
+        et_end_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.expireDate)));
         et_note.setText(row.remarks);
         //upload data
         btn_commit.setOnClickListener(new View.OnClickListener() {

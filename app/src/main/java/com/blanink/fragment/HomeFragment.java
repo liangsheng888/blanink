@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.activity.MainActivity;
 import com.blanink.activity.SeekActivity;
 import com.blanink.activity.WorkResponseHistory;
 import com.blanink.activity.aftersale.AfterSaleQueue;
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
     private List<OrderProduct.Result> oldTaskList = new ArrayList<>();
 
     private RelativeLayout rlMyTask;
-
+    private MenuAdapter menuAdapter=null;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -103,18 +104,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loadMenuControl();
+
         initData();
+        loadMenuControl();
+
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        Log.e("Home", "" + hidden);
-        /*if (!hidden) {
-            loadMenuControl();
-        }*/
-    }
 
     private void initData() {
         framgentTaskEdtQuery.clearFocus();
@@ -144,7 +139,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        List<String> picLis=new ArrayList<>();
+        List<String> picLis = new ArrayList<>();
         picLis.add(UrlPic.pic);
         picLis.add(UrlPic.pic2);
         picLis.add(UrlPic.pic3);
@@ -158,17 +153,23 @@ public class HomeFragment extends Fragment {
         super.onStart();
         framgentTaskEdtQuery.clearFocus();
         framgentTaskEdtQuery.setCursorVisible(false);
-    }
-
- /*   //底部直线选中状态切换
-    private void LineChange(List<Fragment> fragmentLists) {
-        Log.e("@@@@", "LineChange: " + fragmentLists.size());
-        int currentPage = fra_task_viewPager.getCurrentItem() % fragmentLists.size();
-        for (int i = 0; i < fragmentLists.size(); i++) {
-            ll_viewpager_bottom_line.getChildAt(i).setEnabled(currentPage == i);
+        if (((MainActivity)getActivity()).getUpdate()) {
+            recyclerView.removeAllViews();
+            recyclerView.setAdapter(null);
+            menuAdapter.notifyDataSetChanged();
+            loadMenuControl();
         }
     }
-*/
+
+    /*   //底部直线选中状态切换
+       private void LineChange(List<Fragment> fragmentLists) {
+           Log.e("@@@@", "LineChange: " + fragmentLists.size());
+           int currentPage = fra_task_viewPager.getCurrentItem() % fragmentLists.size();
+           for (int i = 0; i < fragmentLists.size(); i++) {
+               ll_viewpager_bottom_line.getChildAt(i).setEnabled(currentPage == i);
+           }
+       }
+   */
     //底部直线动态初始化
     private void initLine(List<Fragment> fragmentLists) {
         Log.e("@@@@", "initLine: " + fragmentLists.size());
@@ -211,28 +212,28 @@ public class HomeFragment extends Fragment {
                 Gson gson = new Gson();
                 MenuControl menu = gson.fromJson(result, MenuControl.class);
                 final List<String> menuList = menu.getResult();
-
+                menuAdapter=new MenuAdapter(getActivity(), menuList);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4, GridLayoutManager.VERTICAL, false));
 
                         recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, getResources().getDimensionPixelSize(R.dimen.padding_middle), true));//设置间隙
-                        recyclerView.setAdapter(new MenuAdapter(getActivity(), menuList));
+                        recyclerView.setAdapter(menuAdapter);
                         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
 
                                 if ("招标管理".equals(menuList.get(position))) {
-                                    Intent intentTender = new Intent(getActivity(),TenderManage.class);
+                                    Intent intentTender = new Intent(getActivity(), TenderManage.class);
                                     startActivity(intentTender);
                                 }
                                 if ("投标管理".equals(menuList.get(position))) {
-                                    Intent intentBid = new Intent(getActivity(),BidManage.class);
+                                    Intent intentBid = new Intent(getActivity(), BidManage.class);
                                     startActivity(intentBid);
                                 }
                                 if ("客户管理".equals(menuList.get(position))) {
-                                    Intent intentLast = new Intent(getActivity(),LastFamilyManageCustomer.class);
+                                    Intent intentLast = new Intent(getActivity(), LastFamilyManageCustomer.class);
                                     startActivity(intentLast);
                                 }
                                 if ("供应商管理".equals(menuList.get(position))) {
@@ -260,12 +261,12 @@ public class HomeFragment extends Fragment {
                                     startActivity(intentFlow);
                                 }
                                 if ("售后处理".equals(menuList.get(position))) {
-                                    Intent intent=new Intent(getActivity(), AfterSaleQueue.class);
+                                    Intent intent = new Intent(getActivity(), AfterSaleQueue.class);
                                     startActivity(intent);
 
                                 }
                                 if ("我的售后".equals(menuList.get(position))) {
-                                    Intent intent=new Intent(getActivity(), MyAfterSale.class);
+                                    Intent intent = new Intent(getActivity(), MyAfterSale.class);
                                     startActivity(intent);
                                 }
                                 if ("收货".equals(menuList.get(position))) {

@@ -62,6 +62,13 @@ public class CostAmountAnalysis extends AppCompatActivity {
     }
 
     private void initData() {
+
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tvName.setText(getIntent().getStringExtra("name"));
         fragments.add(new CostBarChartFragment());
         fragments.add(new CostPieChartFragment());

@@ -23,7 +23,6 @@ public class GlideUtils {
                     .thumbnail(0.1f)
                     .transform(new GlideCircleTransform(context))
                     .placeholder(R.drawable.loading)
-                    .error(R.drawable.empty)
                     .transform(new GlideCircleTransform(context))
                     .into(iv);
         } else {
@@ -32,7 +31,6 @@ public class GlideUtils {
                     .centerCrop()
                     .thumbnail(0.1f)
                     .placeholder(R.drawable.loading)
-                    .error(R.drawable.empty)
                     .into(iv);
         }
     }

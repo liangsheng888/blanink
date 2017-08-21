@@ -2266,8 +2266,17 @@ public class AllReview implements Serializable {
                     private boolean isNewRecord;
                     private String loginFlag;
                     private String roleNames;
+                    private String name;
                     private boolean admin;
                     private List<?> roleList;
+
+                    public String getName() {
+                        return name;
+                    }
+
+                    public void setName(String name) {
+                        this.name = name;
+                    }
 
                     public String getId() {
                         return id;

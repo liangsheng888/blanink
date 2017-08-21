@@ -21,8 +21,8 @@ import com.blanink.R;
 import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.Response;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.StringToListUtils;
@@ -138,7 +138,7 @@ public class TenderBidAccord extends AppCompatActivity {
         //set data
         tv_name.setText(bidCompany.bidCompany.master);
         tv_company_name.setText(bidCompany.bidCompany.name);
-        tv_bid_date.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(bidCompany.bidDate)));
+        tv_bid_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bidCompany.bidDate)));
         tv_purchase_num.setText(count);
         tv_total.setText((Integer.parseInt(bidCompany.bidPrice) * Integer.parseInt(count)) + "元");
         tv_note_detail_content.setText(bidCompany.remarks);

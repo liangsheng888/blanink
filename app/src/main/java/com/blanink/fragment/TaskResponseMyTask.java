@@ -18,12 +18,9 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.task.TaskResponseDeliver;
-import com.blanink.adapter.CommonAdapter;
-import com.blanink.adapter.ViewHolder;
+import com.blanink.adapter.MyTaskAdapter;
 import com.blanink.pojo.OrderProduct;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
-import com.blanink.utils.PriorityUtils;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -56,7 +53,7 @@ public class TaskResponseMyTask extends Fragment {
     RelativeLayout rlNotData;
     private String processId;
     private SharedPreferences sp;
-    private CommonAdapter<OrderProduct.Result> commonAdapter;
+    private MyTaskAdapter myTaskAdapter;
     private List<OrderProduct.Result> list;
 
     @Override
@@ -79,9 +76,9 @@ public class TaskResponseMyTask extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if ("3".equals(getActivity().getIntent().getStringExtra("processType"))) {
                     Intent intent = new Intent(getActivity(), TaskResponseDeliver.class);
-                    intent.putExtra("processId",processId);
+                    intent.putExtra("processId", processId);
                     intent.putExtra("companyId", list.get(position).companyA.id);
-                    intent.putExtra("flowId",list.get(position).relFlowProcess.flow.id);
+                    intent.putExtra("flowId", list.get(position).relFlowProcess.flow.id);
                     startActivity(intent);
 
                 } else {
@@ -118,37 +115,12 @@ public class TaskResponseMyTask extends Fragment {
                 list = new ArrayList<OrderProduct.Result>();
                 list.addAll(listPlanedTask.result);
                 Log.e("TaskResponse", listPlanedTask.toString());
-                if (commonAdapter == null) {
-                    commonAdapter = new CommonAdapter<OrderProduct.Result>(getActivity(), list, R.layout.item_planed_task) {
-                        @Override
-                        public void convert(ViewHolder viewHolder, OrderProduct.Result result, int position) {
-                            result = list.get(position);
-                            TextView tv_companyName = viewHolder.getViewById(R.id.tv_companyName);
-                            TextView tv_time = viewHolder.getViewById(R.id.tv_time);
-                            TextView tv_master = viewHolder.getViewById(R.id.tv_master);
-                            TextView tv_pro_name = viewHolder.getViewById(R.id.tv_pro_name);
-                            TextView tv_priority = viewHolder.getViewById(R.id.tv_priority);
-                            TextView tv_pro_category = viewHolder.getViewById(R.id.tv_pro_category);
-                            TextView tv_response = viewHolder.getViewById(R.id.tv_response);
-                            TextView tv_my_task_num = viewHolder.getViewById(R.id.tv_my_task_num);
-                            TextView tv_num = viewHolder.getViewById(R.id.tv_num);
-                            tv_companyName.setText(result.companyA.name);
-                            tv_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(result.createDate)));
-                          //  tv_master.setText(result.companyBOwner.name);
-                            tv_pro_name.setText(result.productName);
-                            tv_pro_category.setText(result.companyCategory.name);
-                            tv_response.setText((result.finishedAmount == null ? 0 : result.finishedAmount) + "");//我的反馈
-                            tv_my_task_num.setText(result.workPlan.achieveAmount);//我的任务
-                            tv_num.setText(result.amount);//订单产品数量
-                            tv_priority.setText(PriorityUtils.getPriority(result.workPlan.priority));
-
-                        }
-                    };
-                    lv.setAdapter(commonAdapter);
+                if (myTaskAdapter == null) {
+                    myTaskAdapter = new MyTaskAdapter(getActivity(), list, getActivity().getIntent().getStringExtra("processType"), processId);
+                    lv.setAdapter(myTaskAdapter);
                 } else {
-                    commonAdapter.notifyDataSetChanged();
+                    myTaskAdapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override

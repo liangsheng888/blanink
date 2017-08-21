@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,9 @@ import com.blanink.R;
 import com.blanink.activity.order.GoComeOrderProduct;
 import com.blanink.activity.order.OrderSeek;
 import com.blanink.pojo.ComeOder;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DateUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.OrderStateUtils;
 import com.blanink.utils.XUtilsImageUtils;
@@ -122,11 +124,17 @@ public class GoComeOrderFragment extends Fragment {
     private void initData() {
         loadData();
         addSeekHeader();
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 pageNo = 1;
-                rowsList.clear();
                 rlNotData.setVisibility(View.GONE);
                 RefreshData();
             }
@@ -172,7 +180,7 @@ public class GoComeOrderFragment extends Fragment {
 
     //访问服务器
     public void loadData() {
-        if (!ExampleUtil.isConnected(getActivity())) {
+        if (!CommonUtil.isConnected(getActivity())) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -242,7 +250,7 @@ public class GoComeOrderFragment extends Fragment {
     }
 
     private void RefreshData() {
-        if (!ExampleUtil.isConnected(getActivity())) {
+        if (!CommonUtil.isConnected(getActivity())) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -259,6 +267,7 @@ public class GoComeOrderFragment extends Fragment {
             public void onSuccess(String result) {
                 llLoad.setVisibility(View.GONE);
                 Log.e("ComeOrderActivity", result);
+                rowsList.clear();
                 Gson gson = new Gson();
                 ComeOder order = gson.fromJson(result, ComeOder.class);
                 Log.e("ComeOrderActivity", "order;" + order.toString());
@@ -338,7 +347,9 @@ public class GoComeOrderFragment extends Fragment {
             viewHolder.tv_date.setText(DateUtils.format(DateUtils.stringToDate(order.getCreateDate())));
             viewHolder.tv_state.setText(OrderStateUtils.orderStatus(order.getOrderStatus()));
             viewHolder.tv_remark.setText(order.getRemarks());
-            XUtilsImageUtils.display(viewHolder.iv_log, order.getACompany().getPhoto(), true);
+            if ( order.getACompany() != null&&  order.getACompany().getPhoto()!=null&&  order.getACompany().getPhoto()!="") {
+         
+            GlideUtils.glideImageView(getActivity(),viewHolder.iv_log, order.getACompany().getPhoto(), true);}
             return convertView;
         }
     }

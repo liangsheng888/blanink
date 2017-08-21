@@ -358,8 +358,9 @@ public class GoComeOrderProduct extends AppCompatActivity {
             viewHolder.order_product_state.setText(orderProductState);
             viewHolder.proCateGory.setText(orderDetails.get(position).getCompanyCategory().getName());
             viewHolder.tv_product_name.setText(orderDetails.get(position).getProductName());
-            GlideUtils.glideImageView(GoComeOrderProduct.this,viewHolder.iv,orderDetails.get(position).getCompanyCategory().getCompany().getPhoto(),true);
-
+            if (orderDetails.get(position).getCompanyCategory().getCompany() != null&& orderDetails.get(position).getCompanyCategory().getCompany().getPhoto()!=null&& orderDetails.get(position).getCompanyCategory().getCompany().getPhoto()!="") {
+                GlideUtils.glideImageView(GoComeOrderProduct.this, viewHolder.iv, orderDetails.get(position).getCompanyCategory().getCompany().getPhoto(), true);
+            }
             return convertView;
         }
     }

@@ -23,11 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
+import com.blanink.activity.AttachmentBrow;
 import com.blanink.activity.flow.FlowProgress;
 import com.blanink.activity.flow.FlowProgressDetail;
 import com.blanink.activity.remark.RemarkComeOder;
 import com.blanink.activity.remark.RemarkReview;
-import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.OneOrderProduct;
 import com.blanink.pojo.OrderProductAttributes;
 import com.blanink.pojo.OrderProductStatus;
@@ -36,6 +36,7 @@ import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
 import com.blanink.utils.StringToListUtils;
+import com.blanink.utils.SysConstants;
 import com.blanink.view.NoScrollGridview;
 import com.blanink.view.PopBottomWin;
 import com.google.gson.Gson;
@@ -113,6 +114,14 @@ public class ComeOrderProductDetail extends AppCompatActivity {
     LinearLayout orderDetailLlNote;
     @BindView(R.id.activity_come_order_product_detail)
     RelativeLayout activityComeOrderProductDetail;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
+    @BindView(R.id.tv_seek_progress)
+    TextView tvSeekProgress;
+    @BindView(R.id.tv_add_note)
+    TextView tvAddNote;
+    @BindView(R.id.item_come_order_detail_product)
+    LinearLayout itemComeOrderDetailProduct;
     private OneOrderProduct orderProduct;
     private AlertDialog alertDialog;
     private SharedPreferences sp;
@@ -138,6 +147,30 @@ public class ComeOrderProductDetail extends AppCompatActivity {
         });
 
         OkHttp();
+
+
+        //查看进度
+        //  查看进度
+        tvSeekProgress.setOnClickListener(new View.OnClickListener()
+
+                                          {
+                                              @Override
+                                              public void onClick(View v) {
+                                                  DialogLoadUtils.showDialogLoad("努力加载中...");
+                                                  postAsynHttp();
+                                              }
+                                          }
+
+        );
+
+        tvAddNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(ComeOrderProductDetail.this, ComeOrderProductDetailTalkNote.class);
+                it.putExtra("productId", orderProduct.getResult().getId());
+                startActivity(it);
+            }
+        });
         //
         tvMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,28 +200,27 @@ public class ComeOrderProductDetail extends AppCompatActivity {
                                    public void onResponse(Call call, Response response) throws IOException {
                                        String json = response.body().string();
                                        Log.e("@@@@", json);
-                                       Gson gson=new Gson();
-                                       final com.blanink.pojo.Response rp= gson.fromJson(json, com.blanink.pojo.Response.class);
-                                      runOnUiThread(new Runnable() {
-                                          @Override
-                                          public void run() {
-                                              if("00000".equals(rp.getErrorCode())){
-                                                  alertDialog.dismiss();
-                                                  DialogLoadUtils.dismissDialog();
-                                                  Toast.makeText(ComeOrderProductDetail.this, "已下发", Toast.LENGTH_SHORT).show();
-                                                  ((TextView)v).setEnabled(false);
-                                                  ((TextView)v).setText("已下发");
-                                                  ((TextView)v).setBackgroundColor(getResources().getColor(R.color.colorBackGround));
+                                       Gson gson = new Gson();
+                                       final com.blanink.pojo.Response rp = gson.fromJson(json, com.blanink.pojo.Response.class);
+                                       runOnUiThread(new Runnable() {
+                                           @Override
+                                           public void run() {
+                                               if ("00000".equals(rp.getErrorCode())) {
+                                                   alertDialog.dismiss();
+                                                   DialogLoadUtils.dismissDialog();
+                                                   Toast.makeText(ComeOrderProductDetail.this, "已下发", Toast.LENGTH_SHORT).show();
+                                                   ((TextView) v).setEnabled(false);
+                                                   ((TextView) v).setText("已下发");
+                                                   ((TextView) v).setBackgroundColor(getResources().getColor(R.color.colorBackGround));
 
 
+                                               } else {
+                                                   DialogLoadUtils.dismissDialog();
+                                                   Toast.makeText(ComeOrderProductDetail.this, "操作失败", Toast.LENGTH_SHORT).show();
 
-                                              }else{
-                                                  DialogLoadUtils.dismissDialog();
-                                                  Toast.makeText(ComeOrderProductDetail.this, "操作失败", Toast.LENGTH_SHORT).show();
-
-                                              }
-                                          }
-                                      });
+                                               }
+                                           }
+                                       });
 
                                    }
                                }
@@ -200,8 +232,8 @@ public class ComeOrderProductDetail extends AppCompatActivity {
         String url = NetUrlUtils.NET_URL + "order/getOneOrderProduct";
         OkHttpClient ok = new OkHttpClient();
         RequestBody rb = new FormBody.Builder().add("id", getIntent().getStringExtra("orderProductId"))
-                .add("order.id",getIntent().getStringExtra("orderId")).build();
-        Log.e("ComeOrder",getIntent().getStringExtra("orderProductId"));
+                .add("order.id", getIntent().getStringExtra("orderId")).build();
+        Log.e("ComeOrder", getIntent().getStringExtra("orderProductId"));
         Request re = new Request.Builder().post(rb).url(url).build();
         ok.newCall(re).enqueue(new Callback() {
                                    @Override
@@ -221,9 +253,25 @@ public class ComeOrderProductDetail extends AppCompatActivity {
                                        runOnUiThread(new Runnable() {
                                                          @Override
                                                          public void run() {
+                                                             if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_FLOW_PULISHED.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_PRODUCTION_END.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_DELIEVERY_PART.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_DELIEVERY_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_RECEIVED_PART.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_COMPANY_B_RECEIVED_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_COMMENT_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_START.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_DEALING.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_STATUS_AFTERSALES_DEALING_OVER.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     || SysConstants.ORDER_PRODUCT_SRTATUS_REJECT_TAKE.equals(orderProduct.getResult().getOrderProductStatus())
+                                                                     ) {
+                                                                 tvSeekProgress.setVisibility(View.VISIBLE);
+                                                             }
+
                                                              //recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
                                                              List<String> arrayList = null;
                                                              if (orderProduct.getResult().getImages() != null && orderProduct.getResult().getImages() != "" && !"".equals(orderProduct.getResult().getImages())) {
+
                                                                  arrayList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), "\\|");
                                                              } else {
                                                                  arrayList = new ArrayList<>();
@@ -232,14 +280,18 @@ public class ComeOrderProductDetail extends AppCompatActivity {
 
                                                              final List<String> finalArrayList = arrayList;
                                                              // final List<String> stringList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), ",");
-                                                             tvAttactment.setOnClickListener(new View.OnClickListener() {
-                                                                 @Override
-                                                                 public void onClick(View v) {
-                                                                     Intent intent = new Intent(ComeOrderProductDetail.this, AttachmentBrow.class);
-                                                                     intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                                                                     startActivity(intent);
-                                                                 }
-                                                             });
+                                                             if (finalArrayList.size() == 0) {
+                                                                 tvAttactment.setText("无附件");
+                                                             } else {
+                                                                 tvAttactment.setOnClickListener(new View.OnClickListener() {
+                                                                     @Override
+                                                                     public void onClick(View v) {
+                                                                         Intent intent = new Intent(ComeOrderProductDetail.this, AttachmentBrow.class);
+                                                                         intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                                                                         startActivity(intent);
+                                                                     }
+                                                                 });
+                                                             }
                                                              proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
                                                              orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称
                                                              comeOrderDetailSinglePrice.setText(orderProduct.getResult().getPrice());//单价
@@ -330,14 +382,14 @@ public class ComeOrderProductDetail extends AppCompatActivity {
                 .build();
         Call call = mOkHttpClient.newCall(request);
         Log.e("FlowSort", NetUrlUtils.NET_URL + "flow/getFlowPlan?type=2&orderProduct.id=" + orderProduct.getResult().getId());
-        call.enqueue(new okhttp3.Callback() {
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
             }
 
             @Override
-            public void onResponse(Call call, okhttp3.Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
                 Gson gson = new Gson();
                 final OrderProgress orderProgress = gson.fromJson(str, OrderProgress.class);
@@ -413,6 +465,7 @@ public class ComeOrderProductDetail extends AppCompatActivity {
             }
         });
     }
+
     private void downSendNotify(String title, String left, String right, final View ve) {
         alertDialog = new AlertDialog.Builder(this).create();
         final View view = View.inflate(this, R.layout.dialog_send, null);
@@ -482,9 +535,9 @@ public class ComeOrderProductDetail extends AppCompatActivity {
                             DialogLoadUtils.dismissDialog();
                             alertDialog.dismiss();
                             Toast.makeText(ComeOrderProductDetail.this, message, Toast.LENGTH_SHORT).show();
-                            ((TextView)v).setEnabled(false);
-                            ((TextView)v).setText(message);
-                            ((TextView)v).setBackgroundColor(getResources().getColor(R.color.colorBackGround));
+                            ((TextView) v).setEnabled(false);
+                            ((TextView) v).setText(message);
+                            ((TextView) v).setBackgroundColor(getResources().getColor(R.color.colorBackGround));
 
                         } else {
                             DialogLoadUtils.dismissDialog();
@@ -516,7 +569,7 @@ public class ComeOrderProductDetail extends AppCompatActivity {
                                 startActivity(it);
                                 break;
                             case R.id.tv_give_A:
-                                showMotify(v,"打回甲方", "取消", "确定","1");
+                                showMotify(v, "打回甲方", "取消", "确定", "1");
                                 break;
                             case R.id.tv_down_send:
                                 downSendNotify("下发生产", "取消", "确定", v);
@@ -533,37 +586,37 @@ public class ComeOrderProductDetail extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.tv_remark:
-                                Log.e("comeOrder","reviewFinish"+orderProduct.getResult().getReviewFinish());
-                                if("1".equals(orderProduct.getResult().getReviewFinish())){
+                                Log.e("comeOrder", "reviewFinish" + orderProduct.getResult().getReviewFinish());
+                                if ("1".equals(orderProduct.getResult().getReviewFinish())) {
                                     //回复
-                                    Intent itRemark=new Intent(ComeOrderProductDetail.this, RemarkReview.class);
-                                    itRemark.putExtra("orderProductId",orderProduct.getResult().getId());
-                                    itRemark.putExtra("orderId",orderProduct.getResult().getOrder().getId());
-                                    itRemark.putExtra("productName",orderProduct.getResult().getProductName());
-                                    itRemark.putExtra("productCategory",orderProduct.getResult().getCompanyCategory().getName());
-                                    itRemark.putExtra("amount",orderProduct.getResult().getAmount());
-                                    itRemark.putExtra("deliverTime",orderProduct.getResult().getDeliveryTimeString());
-                                    itRemark.putExtra("productRemarks",orderProduct.getResult().getProductDescription());
-                                    itRemark.putExtra("price",orderProduct.getResult().getPrice());
-                                    itRemark.putExtra("productSo",orderProduct.getResult().getProductSn());
+                                    Intent itRemark = new Intent(ComeOrderProductDetail.this, RemarkReview.class);
+                                    itRemark.putExtra("orderProductId", orderProduct.getResult().getId());
+                                    itRemark.putExtra("orderId", orderProduct.getResult().getOrder().getId());
+                                    itRemark.putExtra("productName", orderProduct.getResult().getProductName());
+                                    itRemark.putExtra("productCategory", orderProduct.getResult().getCompanyCategory().getName());
+                                    itRemark.putExtra("amount", orderProduct.getResult().getAmount());
+                                    itRemark.putExtra("deliverTime", orderProduct.getResult().getDeliveryTimeString());
+                                    itRemark.putExtra("productRemarks", orderProduct.getResult().getProductDescription());
+                                    itRemark.putExtra("price", orderProduct.getResult().getPrice());
+                                    itRemark.putExtra("productSo", orderProduct.getResult().getProductSn());
                                     startActivity(itRemark);
-                                }else {
+                                } else {
                                     //去评价
-                                    Intent itRemark=new Intent(ComeOrderProductDetail.this, RemarkComeOder.class);
-                                    itRemark.putExtra("orderProductId",orderProduct.getResult().getId());
-                                    itRemark.putExtra("orderId",orderProduct.getResult().getOrder().getId());
-                                    itRemark.putExtra("productName",orderProduct.getResult().getProductName());
-                                    itRemark.putExtra("amount",orderProduct.getResult().getAmount());
-                                    itRemark.putExtra("deliverTime",orderProduct.getResult().getDeliveryTime());
-                                    itRemark.putExtra("productRemarks",orderProduct.getResult().getProductDescription());
-                                    itRemark.putExtra("price",orderProduct.getResult().getPrice());
-                                    itRemark.putExtra("productSo",orderProduct.getResult().getProductSn());
-                                    startActivityForResult(itRemark,0);
+                                    Intent itRemark = new Intent(ComeOrderProductDetail.this, RemarkComeOder.class);
+                                    itRemark.putExtra("orderProductId", orderProduct.getResult().getId());
+                                    itRemark.putExtra("orderId", orderProduct.getResult().getOrder().getId());
+                                    itRemark.putExtra("productName", orderProduct.getResult().getProductName());
+                                    itRemark.putExtra("amount", orderProduct.getResult().getAmount());
+                                    itRemark.putExtra("deliverTime", orderProduct.getResult().getDeliveryTime());
+                                    itRemark.putExtra("productRemarks", orderProduct.getResult().getProductDescription());
+                                    itRemark.putExtra("price", orderProduct.getResult().getPrice());
+                                    itRemark.putExtra("productSo", orderProduct.getResult().getProductSn());
+                                    startActivityForResult(itRemark, 0);
                                 }
 
                                 break;
                             case R.id.tv_refuse:
-                                showMotify(v,"拒绝", "取消", "确定", "2");
+                                showMotify(v, "拒绝", "取消", "确定", "2");
                                 break;
                         }
                     }

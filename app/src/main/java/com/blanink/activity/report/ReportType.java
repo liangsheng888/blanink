@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.utils.NetUrlUtils;
+import com.blanink.utils.UrlPic;
 import com.blanink.view.MyViewPager;
 
 import java.util.ArrayList;
@@ -48,10 +49,17 @@ public class ReportType extends AppCompatActivity {
     }
 
     private void initData() {
+
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         List<String> picLis = new ArrayList<>();
-        picLis.add("http://b.hiphotos.baidu.com/image/pic/item/d01373f082025aaf95bdf7e4f8edab64034f1a15.jpg");
-        picLis.add("http://g.hiphotos.baidu.com/image/pic/item/6159252dd42a2834da6660c459b5c9ea14cebf39.jpg");
-        picLis.add("http://d.hiphotos.baidu.com/image/pic/item/adaf2edda3cc7cd976427f6c3901213fb80e911c.jpg");
+        picLis.add(UrlPic.pic);
+        picLis.add(UrlPic.pic2);
+        picLis.add(UrlPic.pic3);
         pager.pictureRoll(picLis);
         ivLast.setOnClickListener(new View.OnClickListener() {
             @Override

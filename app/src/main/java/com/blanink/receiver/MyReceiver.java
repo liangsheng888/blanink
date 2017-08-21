@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.blanink.activity.jPush.RemoveRelationIsAgree;
-import com.blanink.activity.jPush.ResponseResult;
-import com.blanink.activity.jPush.TestActivity;
+import com.blanink.activity.Jpush.RemoveRelationIsAgree;
+import com.blanink.activity.Jpush.ResponseResult;
+import com.blanink.activity.Jpush.TestActivity;
 import com.blanink.activity.lastnext.LastFamilyManageCustomerSupplierInvite;
 
 import org.json.JSONException;
@@ -163,7 +163,7 @@ public class MyReceiver extends BroadcastReceiver {
 			String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
 			Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
 			msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
-			if (!ExampleUtil.isEmpty(extras)) {
+			if (!CommonUtil.isEmpty(extras)) {
 				try {
 					JSONObject extraJson = new JSONObject(extras);
 					if (extraJson.length() > 0) {

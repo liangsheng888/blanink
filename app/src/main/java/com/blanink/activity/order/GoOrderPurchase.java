@@ -209,9 +209,6 @@ public class GoOrderPurchase extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         myActivityManager.popOneActivity(this);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("DIRECT", 1);
-        startActivity(intent);
         super.onDestroy();
     }
 

@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.utils.CheckNet;
-import com.blanink.utils.ExampleUtil;
-import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.RoundProgressBar;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +18,6 @@ import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.jiguang.net.HttpUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

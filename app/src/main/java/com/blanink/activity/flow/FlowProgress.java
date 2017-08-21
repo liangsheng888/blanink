@@ -28,6 +28,7 @@ import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.OrderProgress;
 import com.blanink.utils.DialogLoadUtils;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.OrderProductStateUtils;
 import com.blanink.utils.StringToListUtils;
@@ -206,7 +207,7 @@ public class FlowProgress extends AppCompatActivity {
             viewHolder.order_product_state.setText(orderProductState);
             viewHolder.tv_product_name.setText(or.get(position).getProductName());
             if (or.get(position).getImages() != null) {
-                XUtilsImageUtils.display(viewHolder.iv, StringToListUtils.stringToList(or.get(position).getImages(), "\\|").get(0));
+                GlideUtils.glideImageView(FlowProgress.this,viewHolder.iv, StringToListUtils.stringToList(or.get(position).getImages(), "\\|").get(0),false);
             }
             return convertView;
         }

@@ -40,8 +40,8 @@ import com.blanink.pojo.OrderProductSpecifications;
 import com.blanink.pojo.PartnerInfo;
 import com.blanink.pojo.RelIndustryCategoryAttribute;
 import com.blanink.pojo.Response;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
@@ -281,7 +281,7 @@ public class GoDownOrderProductDetailModifySupplier extends AppCompatActivity {
                 selectedPhotos.addAll(photos);
                 for (int i = 0; i < selectedPhotos.size(); i++) {
 
-                    urls = urls + "|" + OssService.OSS_URL + "alioss_" + ExampleUtil.getFileName(selectedPhotos.get(i));
+                    urls = urls + "|" + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i));
                 }
                 if(selectedPhotos.size()>0){
                 urls = urls.substring(1);}

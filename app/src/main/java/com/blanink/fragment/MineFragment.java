@@ -16,9 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.activity.AboutUs;
+import com.blanink.activity.AdviceResponse;
+import com.blanink.activity.SysNotify;
 import com.blanink.activity.my.MyProfile;
 import com.blanink.activity.set.PersonSet;
 import com.blanink.pojo.LoginResult;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
 import com.google.gson.Gson;
@@ -100,36 +104,33 @@ public class MineFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.rl_profile, R.id.rl_finance,R.id.rl_response, R.id.rl_after_sale, R.id.rl_set})
+    @OnClick({R.id.rl_profile, R.id.rl_finance, R.id.rl_response, R.id.rl_after_sale, R.id.rl_set})
     public void onClick(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             //个人资料
+
             case R.id.rl_profile:
-                Intent intent = new Intent(getActivity(), MyProfile.class);
-                startActivity(intent);
+                intent = new Intent(getActivity(), MyProfile.class);
                 break;
             case R.id.rl_finance:
+                intent = new Intent(getActivity(), SysNotify.class);
                 break;
-         /*   case R.id.rl_my_tender:
-                //我的招标
-                Intent intent2 = new Intent(getActivity(), MyTender.class);
-                startActivity(intent2);
-                break;
-            case R.id.rl_my_bid:
-                //我的投标
-                Intent intent3 = new Intent(getActivity(), MyBidQueue.class);
-                startActivity(intent3);
-                break;*/
             case R.id.rl_response:
+                intent = new Intent(getActivity(), AdviceResponse.class);
+
+
                 break;
             case R.id.rl_after_sale:
+                intent = new Intent(getActivity(), AboutUs.class);
                 break;
             case R.id.rl_set:
                 //设置
-                Intent intent4 = new Intent(getActivity(), PersonSet.class);
-                startActivity(intent4);
+                intent = new Intent(getActivity(), PersonSet.class);
                 break;
         }
+        startActivity(intent);
+
     }
 
     public void loadUserInfoFromSever() {
@@ -145,7 +146,8 @@ public class MineFragment extends Fragment {
                 loginResult = gson.fromJson(result, LoginResult.class);
                 Log.e("MyProfile", "loginResult:" + loginResult);
                 tvUserName.setText(loginResult.getResult().name);
-                XUtilsImageUtils.display(ivUserPhoto, loginResult.getResult().photo, true);
+                if (loginResult.getResult().photo != null && loginResult.getResult().photo != "") {
+                GlideUtils.glideImageView(getActivity(),ivUserPhoto, loginResult.getResult().photo, true);}
                 arrayList.clear();
                 arrayList.add(loginResult.getResult().photo);
             }

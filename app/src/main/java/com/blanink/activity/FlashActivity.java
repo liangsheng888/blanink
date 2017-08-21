@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.pojo.VersionInfo;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -54,7 +54,7 @@ public class FlashActivity extends Activity {
     }
 
     private void initData() {
-        tvVersionName.setText(ExampleUtil.getVersion(this));
+        tvVersionName.setText(CommonUtil.getVersion(this));
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -65,7 +65,7 @@ public class FlashActivity extends Activity {
                     public void onSuccess(String result) {
                         Gson gson = new Gson();
                         VersionInfo versionInfo = gson.fromJson(result, VersionInfo.class);
-                        if (ExampleUtil.GetVersionCode(FlashActivity.this) < versionInfo.getResult().getVersionCode()) {
+                        if (CommonUtil.GetVersionCode(FlashActivity.this) < versionInfo.getResult().getVersionCode()) {
                             showDialog(versionInfo.getResult().getVersionName());
                         } else {
                             if(sp.getString("loginName",null)!=null){

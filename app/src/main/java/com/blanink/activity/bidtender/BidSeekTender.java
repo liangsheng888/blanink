@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.TenderAndBid;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DateUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
@@ -340,10 +340,10 @@ public class BidSeekTender extends AppCompatActivity implements LoadListView.ILo
             viewHolder.tv_single_price.setText(rowList.get(position).targetPrice);
             viewHolder.tv_first_pay.setText(rowList.get(position).downPayment + "%");
             viewHolder.tv_note_content.setText(rowList.get(position).remarks);
-            viewHolder.tv_useful_time.setText(ExampleUtil.dateToString(ExampleUtil.stringToDate(rowList.get(position).expireDate)));
-            viewHolder.tv_publish.setText(DateUtils.format(ExampleUtil.stringToDate(rowList.get(position).createDate)));
+            viewHolder.tv_useful_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(rowList.get(position).expireDate)));
+            viewHolder.tv_publish.setText(DateUtils.format(CommonUtil.stringToDate(rowList.get(position).createDate)));
             //设置失效显示
-            if (ExampleUtil.compare_date(rowList.get(position).expireDate,ExampleUtil.dateToString(new Date(System.currentTimeMillis())))<0){
+            if (CommonUtil.compare_date(rowList.get(position).expireDate, CommonUtil.dateToString(new Date(System.currentTimeMillis())))<0){
                 viewHolder.iv_out_of_date.setVisibility(View.VISIBLE);
             }
             GlideUtils.glideImageView(BidSeekTender.this,viewHolder.iv,rowList.get(position).inviteCompany.photo,true);

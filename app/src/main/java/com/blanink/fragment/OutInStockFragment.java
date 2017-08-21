@@ -179,7 +179,7 @@ public class OutInStockFragment extends Fragment {
 
 
     private void loadData() {
-        String url = NetUrlUtils.NET_URL + "companyInventory/list";
+        String url = NetUrlUtils.NET_URL + "companyInventoryInOut/list";
         OkHttpClient ok = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("companyId.id", sp.getString("COMPANY_ID", null))

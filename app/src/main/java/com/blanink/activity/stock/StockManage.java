@@ -64,6 +64,12 @@ public class StockManage extends AppCompatActivity {
     }
 
     private void initData() {
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tvType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

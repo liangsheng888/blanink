@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.activity.AttachmentBrow;
+import com.blanink.activity.order.ComeOrderProductDetailTalkNote;
 import com.blanink.pojo.FlowDetail;
 import com.blanink.pojo.FlowSort;
 import com.blanink.pojo.OneOrderProduct;
@@ -25,6 +26,7 @@ import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
 import com.blanink.utils.StringToListUtils;
+import com.blanink.utils.SysConstants;
 import com.blanink.view.NoScrollGridview;
 import com.blanink.view.PopBottomWinFlow;
 import com.google.gson.Gson;
@@ -106,6 +108,12 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
     LinearLayout orderDetailLlNote;
     @BindView(R.id.rl_flow)
     RelativeLayout rlFlow;
+    @BindView(R.id.tv_seek_progress)
+    TextView tvSeekProgress;
+    @BindView(R.id.tv_add_note)
+    TextView tvAddNote;
+    @BindView(R.id.item_come_order_detail_product)
+    LinearLayout itemComeOrderDetailProduct;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -156,17 +164,38 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
     }
 
     private void initData() {
+        //查看进度
+        //  查看进度
+        tvSeekProgress.setOnClickListener(new View.OnClickListener()
 
+                                          {
+                                              @Override
+                                              public void onClick(View v) {
+                                                  DialogLoadUtils.showDialogLoad("努力加载中...");
+                                                  postAsynHttp();
+                                              }
+                                          }
+
+        );
+
+        tvAddNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(FlowSortCompletedProductDetail.this, ComeOrderProductDetailTalkNote.class);
+                it.putExtra("productId", orderProduct.getResult().getId());
+                startActivity(it);
+            }
+        });
         loadProductDetail();
 
         Bundle bundle = getIntent().getExtras();
         FlowSort.ResultBean.RowsBean orderProduct = ((FlowSort.ResultBean.RowsBean) bundle.getSerializable("orderProduct"));
         if (orderProduct.getOrderProduct() != null && orderProduct.getOrderProduct().getImages() != null) {
-            List<String> arrayList=null;
-            if (orderProduct.getOrderProduct().getImages()!= null && orderProduct.getOrderProduct().getImages() != ""&&!"".equals(orderProduct.getOrderProduct().getImages())) {
+            List<String> arrayList = null;
+            if (orderProduct.getOrderProduct().getImages() != null && orderProduct.getOrderProduct().getImages() != "" && !"".equals(orderProduct.getOrderProduct().getImages())) {
                 arrayList = StringToListUtils.stringToList(orderProduct.getOrderProduct().getImages(), "\\|");
-            }else {
-                arrayList=new ArrayList<>();
+            } else {
+                arrayList = new ArrayList<>();
             }
 
 
@@ -175,6 +204,9 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
 
             //final List<String> picList = StringToListUtils.stringToList(orderProduct.getOrderProduct().getImages(), "\\|");
 
+            if (finalArrayList.size() == 0) {
+                tvAttactment.setText("无附件");
+            } else {
                 tvAttactment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -183,7 +215,7 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
+            }
               /*  //点击放大
                 flowMyPager.setImageViewListener(new MyPagerList.ImageViewOnClickListener() {
                     @Override
@@ -195,7 +227,7 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
                                 .start(FlowSortCompletedProductDetail.this);
                     }
                 });*/
-            }
+        }
 
 
         ivLast.setOnClickListener(new View.OnClickListener() {
@@ -343,6 +375,9 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
                 Log.e("@@@@", orderProduct.toString());
                 //初始化数据
                 initFlow();
+                if(SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CREATED.equals(orderProduct.getResult().getOrderProductStatus())){
+                    tvSeekProgress.setVisibility(View.VISIBLE);
+                }
                 proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
                 orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称
                 comeOrderDetailSinglePrice.setText(orderProduct.getResult().getPrice());//单价

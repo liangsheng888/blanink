@@ -23,7 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -51,8 +50,8 @@ import com.blanink.pojo.PartnerInfo;
 import com.blanink.pojo.RelIndustryCategoryAttribute;
 import com.blanink.pojo.ResponseOrder;
 import com.blanink.pojo.TypeCateGory;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.PriorityUtils;
@@ -78,6 +77,7 @@ import me.iwf.photopicker.PhotoPreview;
  * 去单中的来单  添加产品
  */
 public class GoOrderAddProduct extends AppCompatActivity {
+
     @BindView(R.id.go_order_add_tv_seek)
     TextView goOrderAddTvSeek;
     @BindView(R.id.go_order_add_iv_last)
@@ -86,16 +86,18 @@ public class GoOrderAddProduct extends AppCompatActivity {
     TextView tvHistory;
     @BindView(R.id.go_order_add_rl)
     RelativeLayout goOrderAddRl;
-    @BindView(R.id.tv_company_name)
-    TextView tvCompanyName;
-    @BindView(R.id.view_)
-    View view;
     @BindView(R.id.tv_company_no)
     TextView tvCompanyNo;
     @BindView(R.id.tv_a_number)
     TextView tvANumber;
     @BindView(R.id.rl_company)
     RelativeLayout rlCompany;
+    @BindView(R.id.tv)
+    TextView tv;
+    @BindView(R.id.tv_company_name)
+    TextView tvCompanyName;
+    @BindView(R.id.ll_company)
+    LinearLayout llCompany;
     @BindView(R.id.tv_productCateGory)
     TextView tvProductCateGory;
     @BindView(R.id.tv_go_order_add_jiafang_priority2)
@@ -134,6 +136,8 @@ public class GoOrderAddProduct extends AppCompatActivity {
     LinearLayout llNote;
     @BindView(R.id.go_order_add_download)
     NoScrollGridview goOrderAddDownload;
+    @BindView(R.id.ll_title)
+    LinearLayout llTitle;
     @BindView(R.id.tv_supplier)
     TextView tvSupplier;
     @BindView(R.id.sp_supplier)
@@ -190,8 +194,6 @@ public class GoOrderAddProduct extends AppCompatActivity {
     EditText etNote;
     @BindView(R.id.rl_note)
     RelativeLayout rlNote;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.go_order_add_ll2)
@@ -258,6 +260,11 @@ public class GoOrderAddProduct extends AppCompatActivity {
     }
 
     private void initData() {
+
+        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
+
         receDataFromComeOrderFragment();
         //返回
         goOrderAddIvLast.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +301,7 @@ public class GoOrderAddProduct extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //选择图片
+     /*   //选择图片
         ivPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -308,7 +315,7 @@ public class GoOrderAddProduct extends AppCompatActivity {
                         //附带已经选中过的图片
                         .start(GoOrderAddProduct.this);
             }
-        });
+        });*/
         //
         //图片放大
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
@@ -317,7 +324,7 @@ public class GoOrderAddProduct extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)
@@ -504,7 +511,7 @@ public class GoOrderAddProduct extends AppCompatActivity {
                 }
 
                 spProductCategory.setAdapter(new ArrayAdapter<String>(GoOrderAddProduct.this, R.layout.spanner_item
-                        ,productCateGoryName));
+                        , productCateGoryName));
 
                 spProductCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -606,7 +613,7 @@ public class GoOrderAddProduct extends AppCompatActivity {
                     priorityName.add(prioritys.getResult().get(i).getLabel());
                 }
                 spPriority.setAdapter(new ArrayAdapter<String>(GoOrderAddProduct.this, R.layout.spanner_item
-                        ,priorityName));
+                        , priorityName));
                 spPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -739,7 +746,7 @@ public class GoOrderAddProduct extends AppCompatActivity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = ExampleUtil.getFileName(url);
+            fileSuffix = CommonUtil.getFileName(url);
         }
         // 文件标识符objectKey
         final String objectKey = "alioss_" + fileSuffix;
@@ -795,21 +802,17 @@ public class GoOrderAddProduct extends AppCompatActivity {
             ArrayList<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                photoAdapter = new PhotoAdapter(this, selectedPhotos);
+                //photoAdapter = new PhotoAdapter(this, selectedPhotos);
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++) {
-                        urls = urls + "|" + OssService.OSS_URL + "alioss_" + ExampleUtil.getFileName(selectedPhotos.get(i));
+                        urls = urls + "|" + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i));
                     }
 
                     urls = urls.substring(1);
                     Log.e("ComeOrder", urls);
                 }
-
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                recyclerView.setAdapter(photoAdapter);
-
                 photoAdapter.notifyDataSetChanged();
             }
         }

@@ -22,7 +22,8 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.activity.lastnext.ProductDetail;
 import com.blanink.pojo.CompanyProduct;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.RefreshListView;
@@ -130,7 +131,7 @@ public class CompanyCateGoryProduct extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(!ExampleUtil.isConnected(getActivity())){
+                if(!CommonUtil.isConnected(getActivity())){
                     //判断网络是否连接
                     ll_load.setVisibility(View.GONE);
                     ll_load_fail.setVisibility(View.VISIBLE);
@@ -236,7 +237,7 @@ public class CompanyCateGoryProduct extends Fragment {
             }
             Log.e("LastProduct",rowList.toString());
             //x.image().bind(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
-            XUtilsImageUtils.displayLoading(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
+            GlideUtils.glideImageView(getActivity(),viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos,false);
             viewHolder.tv_product_name.setText(rowList.get(position).productName);
             viewHolder.tv_down_price.setText(rowList.get(position).productPriceDownline);
             viewHolder.tv_high_price.setText(rowList.get(position).productPriceHighline);

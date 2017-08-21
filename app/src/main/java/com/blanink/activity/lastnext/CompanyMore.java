@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.Company;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
@@ -317,7 +318,7 @@ public class CompanyMore extends AppCompatActivity {
             viewHolder.tvAddress.setText(listBean.get(position).getOffice().getAddress());
             viewHolder.other.setText(listBean.get(position).getOffice().getReviewOthers()+"");
             viewHolder.reself.setText(listBean.get(position).getOffice().getReviewSelf()+"");
-            XUtilsImageUtils.display(viewHolder.ivCompany,listBean.get(position).getOffice().getPhoto());
+            GlideUtils.glideImageView(CompanyMore.this,viewHolder.ivCompany,listBean.get(position).getOffice().getPhoto(),true);
             return convertView;
         }
 

@@ -1,9 +1,7 @@
 package com.blanink.adapter;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blanink.R;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.bumptech.glide.Glide;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import me.iwf.photopicker.utils.AndroidLifecycleUtils;
@@ -56,7 +53,17 @@ public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.Ph
     public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
 
         Uri uri = null;
-        if (photoPaths.get(position).endsWith(".gif")|| photoPaths.get(position).endsWith(".png") || photoPaths.get(position).endsWith(".jpg") || photoPaths.get(position).endsWith(".jpeg") || photoPaths.get(position).endsWith(".bmp") || photoPaths.get(position).endsWith(".png")) {
+        if (photoPaths.get(position).endsWith(".gif")
+                || photoPaths.get(position).endsWith(".png")
+                || photoPaths.get(position).endsWith(".jpg")
+                || photoPaths.get(position).endsWith(".jpeg")
+                || photoPaths.get(position).endsWith(".bmp")
+            ||photoPaths.get(position).endsWith(".GIF")
+                    || photoPaths.get(position).endsWith(".PNG")
+                    || photoPaths.get(position).endsWith(".JPG")
+                    || photoPaths.get(position).endsWith(".JPEG")
+                    || photoPaths.get(position).endsWith(".BMP")
+                ){
             uri = Uri.parse(photoPaths.get(position));
 
             boolean canLoadImage = AndroidLifecycleUtils.canLoadImage(holder.ivPhoto.getContext());
@@ -73,23 +80,33 @@ public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.Ph
             holder.ivPhoto.setImageResource(R.drawable.gif);
 
 
-        }*/else if (photoPaths.get(position).endsWith(".doc") || photoPaths.get(position).endsWith(".docx")) {
+        }*/else if (photoPaths.get(position).endsWith(".doc")
+                || photoPaths.get(position).endsWith(".docx")
+        ||photoPaths.get(position).endsWith(".DOC")
+                || photoPaths.get(position).endsWith(".DOCX")) {
             holder.ivPhoto.setImageResource(R.drawable.word);
 
-        } else if (photoPaths.get(position).endsWith(".ppt") || photoPaths.get(position).endsWith(".pptx")) {
+        } else if (photoPaths.get(position).endsWith(".ppt")
+                || photoPaths.get(position).endsWith(".pptx")||photoPaths.get(position).endsWith(".PPT")
+                || photoPaths.get(position).endsWith(".PPTX")) {
 
             holder.ivPhoto.setImageResource(R.drawable.ppt);
-        } else if (photoPaths.get(position).endsWith(".pdf")) {
+        } else if (photoPaths.get(position).endsWith(".pdf")||photoPaths.get(position).endsWith(".PDF")) {
 
             holder.ivPhoto.setImageResource(R.drawable.pdf);
 
 
-        } else if (photoPaths.get(position).endsWith(".xls") || photoPaths.get(position).endsWith(".xlsx")) {
+        } else if (photoPaths.get(position).endsWith(".xls")
+                || photoPaths.get(position).endsWith(".xlsx")||photoPaths.get(position).endsWith(".XLS")
+                || photoPaths.get(position).endsWith(".XLSX")) {
 
             holder.ivPhoto.setImageResource(R.drawable.xml);
 
 
-        } else if (photoPaths.get(position).endsWith(".zip") || photoPaths.get(position).endsWith(".gizp")) {
+        } else if (photoPaths.get(position).endsWith(".zip")
+                || photoPaths.get(position).endsWith(".gizp")||
+                photoPaths.get(position).endsWith(".ZIP")
+                || photoPaths.get(position).endsWith(".GZIP")) {
             holder.ivPhoto.setImageResource(R.drawable.zip);
 
         }else {
@@ -97,7 +114,7 @@ public class AttachmentAdapter extends RecyclerView.Adapter<AttachmentAdapter.Ph
         }
         if(photoPaths.get(position)!=null &&!photoPaths.get(position).equals("")){
             Log.e("Attach",photoPaths.get(position).toString());
-            holder.tv_name.setText(ExampleUtil.getFileName(photoPaths.get(position))+ExampleUtil.getFileLastName(photoPaths.get(position)));
+            holder.tv_name.setText(CommonUtil.getFileName(photoPaths.get(position))+ CommonUtil.getFileLastName(photoPaths.get(position)));
         }
     }
 

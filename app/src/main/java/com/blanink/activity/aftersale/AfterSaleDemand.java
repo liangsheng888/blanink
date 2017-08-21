@@ -37,8 +37,8 @@ import com.blanink.adapter.RecyclerItemClickListener;
 import com.blanink.oss.OssService;
 import com.blanink.pojo.ResponseDelete;
 import com.blanink.pojo.TypeCateGory;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
 
@@ -295,7 +295,7 @@ public class AfterSaleDemand extends AppCompatActivity {
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++) {
-                        urls = urls + "," + OssService.OSS_URL + "alioss_" + ExampleUtil.getFileName(selectedPhotos.get(i)) + ExampleUtil.getFileLastName(selectedPhotos.get(i));
+                        urls = urls + "," + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i)) + CommonUtil.getFileLastName(selectedPhotos.get(i));
                     }
                     urls = urls.substring(1);
                     Log.e("ComeOrder", urls);
@@ -346,7 +346,7 @@ public class AfterSaleDemand extends AppCompatActivity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = ExampleUtil.getFileName(url) + ExampleUtil.getFileLastName(url);
+            fileSuffix = CommonUtil.getFileName(url) + CommonUtil.getFileLastName(url);
         }
         // 文件标识符objectKey
         final String objectKey = "alioss_" + fileSuffix;

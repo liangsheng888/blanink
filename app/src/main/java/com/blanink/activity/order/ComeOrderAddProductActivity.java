@@ -52,8 +52,8 @@ import com.blanink.pojo.OrderProductSpecifications;
 import com.blanink.pojo.TypeCateGory;
 import com.blanink.pojo.RelIndustryCategoryAttribute;
 import com.blanink.pojo.ResponseOrder;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.NoScrollListview;
@@ -142,8 +142,6 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
     EditText etNote;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
     @BindView(R.id.bt_save)
     Button btSave;
     @BindView(R.id.come_order_add_product_ll)
@@ -206,6 +204,11 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
     }
 
     private void initData() {
+
+        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
+
         oss=OssService.getOSSClientInstance(this);
         Intent intent = getIntent();
         customer = intent.getStringExtra("customer");
@@ -264,7 +267,7 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
             }
         });
 
-        //选择图片
+     /*   //选择图片
         ivPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,7 +281,7 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
                         //附带已经选中过的图片
                         .start(ComeOrderAddProductActivity.this);
             }
-        });
+        });*/
         //
         //图片放大
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
@@ -287,7 +290,7 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)
@@ -593,19 +596,15 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
             ArrayList<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                photoAdapter = new PhotoAdapter(this, selectedPhotos);
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++){
-                        urls = urls + "|" + OssService.OSS_URL+"alioss_"+ExampleUtil.getFileName(selectedPhotos.get(i))+ExampleUtil.getFileLastName(selectedPhotos.get(i));
+                        urls = urls + "|" + OssService.OSS_URL+"alioss_"+ CommonUtil.getFileName(selectedPhotos.get(i))+ CommonUtil.getFileLastName(selectedPhotos.get(i));
                     }
                     urls = urls.substring(1);
                     Log.e("ComeOrder",urls);
                 }
-
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                recyclerView.setAdapter(photoAdapter);
 
                 photoAdapter.notifyDataSetChanged();
             }
@@ -825,7 +824,7 @@ public class ComeOrderAddProductActivity extends AppCompatActivity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = ExampleUtil.getFileName(url)+ExampleUtil.getFileLastName(url);
+            fileSuffix = CommonUtil.getFileName(url)+ CommonUtil.getFileLastName(url);
         }
         // 文件标识符objectKey
         final String objectKey = "alioss_"+ fileSuffix;

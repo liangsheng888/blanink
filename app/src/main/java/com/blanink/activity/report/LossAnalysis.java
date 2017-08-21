@@ -60,6 +60,13 @@ public class LossAnalysis extends AppCompatActivity {
     }
 
     private void initData() {
+
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         fragments.add(new LossBarChartFragment());
         fragments.add(new LossPieChartFragment());
         // fragments.add(new SaleLineChartFragment());

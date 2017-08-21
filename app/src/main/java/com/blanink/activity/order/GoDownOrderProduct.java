@@ -96,10 +96,10 @@ public class GoDownOrderProduct extends AppCompatActivity {
             if (adapter != null) {
                 adapter.notifyDataSetChanged();
             }
-            if(orderDetails.size()==0){
+            if (orderDetails.size() == 0) {
                 //通知订单界面刷新
-                Intent intent=new Intent("com.blanink.GO_ORDER_REFRESH_DATA");
-                intent.putExtra("flag","REFRESH");
+                Intent intent = new Intent("com.blanink.GO_ORDER_REFRESH_DATA");
+                intent.putExtra("flag", "REFRESH");
                 sendBroadcast(intent);
                 /*Intent in=new Intent(GoDownOrderProduct.this, GoOrderPurchase.class);
                 in.putExtra("flag","REFRESH");
@@ -109,6 +109,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,15 +156,15 @@ public class GoDownOrderProduct extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 Log.e("Come", position + "");
-                if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CONBINED.equals(orderDetails.get(position).getOrderProductStatus())||
-                        SysConstants.ORDER_PRODUCT_STATUS_BACK_TO_A.equals(orderDetails.get(position).getOrderProductStatus())){
+                if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CONBINED.equals(orderDetails.get(position).getOrderProductStatus()) ||
+                        SysConstants.ORDER_PRODUCT_STATUS_BACK_TO_A.equals(orderDetails.get(position).getOrderProductStatus())) {
                     //删除
                     deleteNofity(orderDetails.get(position).getId(), position, "你真要删除该产品吗?", "取消", "确定");
                 } else {
 
                     Intent intent = new Intent(GoDownOrderProduct.this, ComeOrderProductDetail.class);
-                    intent.putExtra("orderProductId",orderDetails.get(position).getId());
-                    intent.putExtra("orderId",orderDetails.get(position).getOrder().getId());
+                    intent.putExtra("orderProductId", orderDetails.get(position).getId());
+                    intent.putExtra("orderId", orderDetails.get(position).getOrder().getId());
                     startActivity(intent);
                 }
 
@@ -176,8 +177,8 @@ public class GoDownOrderProduct extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(GoDownOrderProduct.this, GoDownOrderProductDetail.class);
-                intent.putExtra("orderProductId",orderDetails.get(position).getId());
-                intent.putExtra("orderId",orderDetails.get(position).getOrder().getId());
+                intent.putExtra("orderProductId", orderDetails.get(position).getId());
+                intent.putExtra("orderId", orderDetails.get(position).getOrder().getId());
                 intent.putExtra("companyName", order.getBCompany().getName());
                 intent.putExtra("orderNumder", order.getAOrderNumber());
                 startActivity(intent);
@@ -240,7 +241,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e("come",ex.toString());
+                Log.e("come", ex.toString());
                 DialogLoadUtils.dismissDialog();
                 Toast.makeText(GoDownOrderProduct.this, "服务器开了会儿小车,请稍后重试", Toast.LENGTH_SHORT).show();
 
@@ -275,7 +276,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "order/orderDetail");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         rp.addBodyParameter("order.id", order.getId());
-        Log.e("Go",NetUrlUtils.NET_URL + "order/orderDetail?userId="+sp.getString("USER_ID", null)+"&order.id="+order.getId());
+        Log.e("Go", NetUrlUtils.NET_URL + "order/orderDetail?userId=" + sp.getString("USER_ID", null) + "&order.id=" + order.getId());
 
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
@@ -283,7 +284,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
                 llLoad.setVisibility(View.GONE);
                 Gson gson = new Gson();
                 OrderDetail orderDetail = gson.fromJson(result, OrderDetail.class);
-                Log.e("GoOrderProduct",orderDetail.toString());
+                Log.e("GoOrderProduct", orderDetail.toString());
                 //设置订单产品数量
                 orderDetails.addAll(orderDetail.getResult());
                 if (adapter == null) {
@@ -298,7 +299,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
             public void onError(Throwable ex, boolean isOnCallback) {
                 llLoad.setVisibility(View.GONE);
                 rlLoadFail.setVisibility(View.VISIBLE);
-                Log.e("GoOrderProduct",ex.toString());
+                Log.e("GoOrderProduct", ex.toString());
             }
 
             @Override
@@ -395,7 +396,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
                 viewHolder.come_order_detail_tv_num = (TextView) convertView.findViewById(R.id.come_order_detail_tv_num);
                 viewHolder.tv_product_name = (TextView) convertView.findViewById(R.id.tv_product_name); //
                 viewHolder.proCateGory = (TextView) convertView.findViewById(R.id.proCateGory);
-                viewHolder.iv=(ImageView)convertView.findViewById(R.id.iv);
+                viewHolder.iv = (ImageView) convertView.findViewById(R.id.iv);
 
                 convertView.setTag(viewHolder);
             } else {
@@ -407,7 +408,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
                     SwipeMenuItem seekProgressItem = new SwipeMenuItem(GoDownOrderProduct.this);
                     seekProgressItem.setBackground(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
                     seekProgressItem.setWidth(dp2px(100));
-                    if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CONBINED.equals(orderDetails.get(position).getOrderProductStatus())||
+                    if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CONBINED.equals(orderDetails.get(position).getOrderProductStatus()) ||
                             SysConstants.ORDER_PRODUCT_STATUS_BACK_TO_A.equals(orderDetails.get(position).getOrderProductStatus())) {
                         seekProgressItem.setTitle("删除");
                     } else {
@@ -428,8 +429,11 @@ public class GoDownOrderProduct extends AppCompatActivity {
             viewHolder.order_product_state.setText(orderProductState);
             viewHolder.proCateGory.setText(orderDetails.get(position).getCompanyCategory().getName());
             viewHolder.tv_product_name.setText(orderDetails.get(position).getProductName());
-            GlideUtils.glideImageView(GoDownOrderProduct.this,viewHolder.iv,orderDetails.get(position).getCompanyCategory().getCompany().getPhoto(),true);
+            if (orderDetails.get(position).getCompanyCategory() != null && orderDetails.get(position).getCompanyCategory().getCompany().getPhoto() != null && orderDetails.get(position).getCompanyCategory().getCompany().getPhoto() != "") {
 
+
+                GlideUtils.glideImageView(GoDownOrderProduct.this, viewHolder.iv, orderDetails.get(position).getCompanyCategory().getCompany().getPhoto(), true);
+            }
             return convertView;
         }
     }
@@ -443,6 +447,7 @@ public class GoDownOrderProduct extends AppCompatActivity {
         TextView tv_product_name;//产品规格
         public ImageView iv;
     }
+
     public int dp2px(float dipValue) {
         final float scale = this.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);

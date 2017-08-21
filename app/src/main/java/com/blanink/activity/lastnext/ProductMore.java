@@ -21,10 +21,12 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.pojo.CompanyCateGory;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.XUtilsImageUtils;
 import com.blanink.view.UpLoadListView;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -223,7 +225,7 @@ public class ProductMore extends AppCompatActivity {
             viewHolder.tv_product_name.setText(listBean.get(position).getCompanyProduct().getProductName());
             viewHolder.tv_specific_description.setText(listBean.get(position).getCompanyProduct().getProductDescription());
             String[] url=listBean.get(position).getCompanyProduct().getProductPhotos().split(",");
-            XUtilsImageUtils.display(viewHolder.iv_product_picture,url[0]);
+            GlideUtils.glideImageView(ProductMore.this,viewHolder.iv_product_picture,url[0],false);
             return convertView;
         }
 

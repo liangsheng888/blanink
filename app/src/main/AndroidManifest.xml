@@ -50,7 +50,9 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.FlashActivity">
+        <activity
+            android:name=".activity.FlashActivity"
+            android:theme="@style/FlashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -196,7 +198,7 @@
             android:name=".activity.FlashActivity2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.jPush.TestActivity"
+            android:name=".activity.Jpush.TestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.order.ComeOrderContinueAddProductActivity"
@@ -345,10 +347,10 @@
             android:value="fc2d806c5f4a412c809f9cb3" />
 
         <activity
-            android:name=".activity.jPush.RemoveRelationIsAgree"
+            android:name=".activity.Jpush.RemoveRelationIsAgree"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.jPush.ResponseResult"
+            android:name=".activity.Jpush.ResponseResult"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.aftersale.AfterSaleHandleDetail"
@@ -804,7 +806,13 @@
         <activity android:name=".activity.report.PayAmountAnalysis" />
         <activity android:name=".activity.stock.StockManage" />
         <activity android:name=".activity.stock.WareHouseAdd" />
-        <activity android:name=".activity.stock.OutInStockAdd"></activity>
+        <activity android:name=".activity.stock.OutInStockAdd" />
+        <activity android:name=".activity.report.LossAnalysis" />
+        <activity android:name=".activity.report.ProfitAnalysis" />
+        <activity android:name=".activity.stock.WareHouseModify" />
+        <activity android:name=".activity.AdviceResponse" />
+        <activity android:name=".activity.AboutUs" />
+        <activity android:name=".activity.SysNotify"></activity>
     </application>
 
 </manifest>

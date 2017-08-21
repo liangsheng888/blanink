@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.pojo.FlowData;
 import com.blanink.pojo.FlowDetail;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.SysConstants;
 import com.blanink.view.CusRect;
@@ -66,7 +66,7 @@ public class FlowSortCompletedDetail extends AppCompatActivity implements View.O
     }
 
     public void loadData() {
-        if (!ExampleUtil.isConnected(this)) {
+        if (!CommonUtil.isConnected(this)) {
             Toast.makeText(this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
         }

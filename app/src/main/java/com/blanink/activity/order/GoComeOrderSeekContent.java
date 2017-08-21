@@ -23,6 +23,7 @@ import com.blanink.R;
 import com.blanink.pojo.ComeOder;
 import com.blanink.pojo.OrderProductSpecifications;
 import com.blanink.utils.DateUtils;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.OrderStateUtils;
@@ -298,7 +299,7 @@ public class GoComeOrderSeekContent extends AppCompatActivity {
             Log.e("ComeOrderActivity", "标题:");
             viewHolder.tv_company.setText(order.getACompany().getName());
             viewHolder.tv_remark.setText(order.getRemarks());
-            XUtilsImageUtils.display(viewHolder.iv_log, order.getACompany().getPhoto(), true);
+            GlideUtils.glideImageView(GoComeOrderSeekContent.this,viewHolder.iv_log, order.getACompany().getPhoto(), true);
             viewHolder.tv_date.setText(DateUtils.format(DateUtils.stringToDate(order.getCreateDate())));
             viewHolder.tv_state.setText(OrderStateUtils.orderStatus(order.getOrderStatus()));
             return convertView;

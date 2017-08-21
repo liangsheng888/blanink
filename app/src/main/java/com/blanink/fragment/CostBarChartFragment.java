@@ -75,7 +75,7 @@ public class CostBarChartFragment extends Fragment {
     Calendar calendar;
     private String startDate = "";
     private String endDate = "";
-    private String viewType = "3";
+    private String viewType = "1";
 
     @Nullable
     @Override
@@ -124,25 +124,22 @@ public class CostBarChartFragment extends Fragment {
             }
 
         });
-        spType.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spanner_item, new String[]{"选择查看方式", "按日查看", "按月查看", "按年查看"}));
+        spType.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spanner_item, new String[]{"选择查看方式", "按月查看", "按年查看"}));
         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        viewType = "3";
+                        viewType = "1";
                         break;
                     case 1:
-                        viewType = "3";
+                        viewType = "1";
 
                         break;
                     case 2:
-                        viewType = "1";
-                        break;
-                    case 3:
                         viewType = "2";
-
                         break;
+
                 }
             }
 
@@ -190,6 +187,7 @@ public class CostBarChartFragment extends Fragment {
                 final ReportSale rs = gson.fromJson(json, ReportSale.class);
                 final List<String> labelList = new ArrayList<String>();
                 final List<BarData> barDataSet = new ArrayList<BarData>();
+                final List<Double> data = new ArrayList<Double>();
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -209,6 +207,7 @@ public class CostBarChartFragment extends Fragment {
                             int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
                             for (int i = 0; i < rr.getReportList().size(); i++) {
                                 dataSeries.add(rr.getReportList().get(i).getCostAmount()/10000);//单位万元
+                                data.add(rr.getReportList().get(i).getCostAmount()/10000);
                             }
                             barDataSet.add(new BarData(rr.getCompanyCategoryName(), dataSeries, color));
 
@@ -218,8 +217,9 @@ public class CostBarChartFragment extends Fragment {
 
                         // BarChart01View sv = new BarChart01View(getActivity());
                         StackBarChartVerView view = new StackBarChartVerView(getActivity());
-                        view.setYAxis(0, 2000, 200);
-                        view.setChartLabels(labelList);
+                        if (data.size() > 0) {
+                            view.setYAxis((Math.ceil(data.get(0)) >= 0 ? 0 : Math.ceil(data.get(0))), Math.ceil(data.get(data.size() - 1)) + Math.ceil(data.get(data.size() - 1)) / data.size(), Math.ceil(data.get(data.size() - 1)) / data.size());
+                        }                        view.setChartLabels(labelList);
                         view.setBarDataSet(barDataSet);
                          view.setLeftTitle("万元");
                         if (flView != null) {

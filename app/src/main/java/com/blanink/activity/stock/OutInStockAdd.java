@@ -3,9 +3,14 @@ package com.blanink.activity.stock;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,9 +24,9 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.ProductNo;
-import com.blanink.pojo.ResponseDelete;
+import com.blanink.pojo.ResponseOrder;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
 
@@ -38,6 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
 
 public class OutInStockAdd extends AppCompatActivity {
 
@@ -70,14 +76,14 @@ public class OutInStockAdd extends AppCompatActivity {
     @BindView(R.id.bt_commit)
     Button btCommit;
     private SharedPreferences sp;
-    private String cateGoryId;
-    private String name;
-    private String procuteNumber;
+    private String cateGoryId="";
+    private String name="";
+    private String procuteNumber="";
     private String inventoryType = "1";
-    private String unit;
-    private String remarks;
+    private String unit="";
+    private String remarks="";
     private String changeAmount = "0";
-    private String unitPrice;
+    private String unitPrice="0";
     private String inOut = "1";
 
     @Override
@@ -86,10 +92,23 @@ public class OutInStockAdd extends AppCompatActivity {
         setContentView(R.layout.activity_out_in_add);
         ButterKnife.bind(this);
         sp = getSharedPreferences("DATA", Context.MODE_PRIVATE);
+
         initData();
     }
 
     private void initData() {
+        ivLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        String type= getIntent().getStringExtra("inOut");
+        if("1".equals(type)){
+            rbStock.setChecked(true);
+        }else if("2".equals(type)) {
+            rbFinishd.setChecked(true);
+        }
         //加载产品类
         loadNo();
         //返回
@@ -121,7 +140,7 @@ public class OutInStockAdd extends AppCompatActivity {
                 unitPrice = etPrice.getText().toString().trim();
                 changeAmount = etNum.getText().toString().trim();
                 remarks = etNote.getText().toString().trim();
-                if (TextUtils.isEmpty(procuteNumber)) {
+                if ("选择唯一标识编号".equals(procuteNumber)) {
                     Toast.makeText(OutInStockAdd.this, "唯一标识编号不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -180,7 +199,6 @@ public class OutInStockAdd extends AppCompatActivity {
                 final List<String> unitList = new ArrayList<String>();
 
                 final List<String> cateGoryIdList = new ArrayList<String>();
-                cateGoryIdList.add("");
                 pNoNameList.add("选择唯一标识编号");
                 cateGoryIdList.add("");
                 cateGoryList.add("产品类");
@@ -219,14 +237,14 @@ public class OutInStockAdd extends AppCompatActivity {
 
 
     private void save() {
-        if (!ExampleUtil.isConnected(this)) {
+        if (!CommonUtil.isConnected(this)) {
             Toast.makeText(OutInStockAdd.this, "请检查你的网络", Toast.LENGTH_SHORT).show();
             return;
         }
-        String url = NetUrlUtils.NET_URL + "CompanyInventoryInOut/save";
+        String url = NetUrlUtils.NET_URL + "companyInventoryInOut/save";
         OkHttpClient ok = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("company.id", sp.getString("COMPANY_ID", null))
+                .add("companyId.id", sp.getString("COMPANY_ID", null))
                 .add("name", name)
                 .add("procuteNumber", procuteNumber)
                 .add("companyCategoryId.id", cateGoryId)
@@ -254,15 +272,16 @@ public class OutInStockAdd extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
+                Log.e("@@@@",result);
                 Gson gson = new Gson();
-                final ResponseDelete rd = gson.fromJson(result, ResponseDelete.class);
+                final ResponseOrder rd = gson.fromJson(result, ResponseOrder.class);
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         DialogLoadUtils.dismissDialog();
                         if ("00000".equals(rd.getErrorCode())) {
-
+                            deleteNofity("保存成功，是否继续添加?","继续","返回");
                         } else {
                             Toast.makeText(OutInStockAdd.this, rd.getReason(), Toast.LENGTH_SHORT).show();
                         }
@@ -271,5 +290,34 @@ public class OutInStockAdd extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+    private void deleteNofity( String content, String left, String right) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(OutInStockAdd.this).create();
+        alertDialog.show();
+        alertDialog.setContentView(R.layout.dialog_custom_exit);
+        final Window window = alertDialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        window.setGravity(Gravity.CENTER);
+        window.setAttributes(lp);
+        ((TextView) window.findViewById(R.id.tv_content)).setText(content);
+        ((TextView) window.findViewById(R.id.tv_continue)).setText(left);
+        ((TextView) window.findViewById(R.id.tv_exit)).setText(right);
+        window.findViewById(R.id.tv_continue).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        window.findViewById(R.id.tv_exit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                finish();
+
+            }
+        });
     }
 }

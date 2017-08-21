@@ -59,7 +59,22 @@ public class ReportPay {
         private Double profitAmount;
         private Double accountReceivable;
         private Double lossAmount;
+        private Double receivedAmount;
+        private Double payedAmount;
+        private Double unPayedAmount;
         private OfficeBean office;
+
+        public Double getUnPayedAmount() {
+            return unPayedAmount;
+        }
+
+        public Double getPayedAmount() {
+            return payedAmount;
+        }
+
+        public Double getReceivedAmount() {
+            return receivedAmount;
+        }
 
         public boolean isIsNewRecord() {
             return isNewRecord;

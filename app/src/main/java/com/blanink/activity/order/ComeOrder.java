@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -26,8 +27,9 @@ import android.widget.Toast;
 
 import com.blanink.R;
 import com.blanink.pojo.ComeOder;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DateUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.OrderStateUtils;
@@ -140,6 +142,13 @@ public class ComeOrder extends AppCompatActivity {
         //初始化数据
         loadData();
         addHeaderView();
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -193,7 +202,7 @@ public class ComeOrder extends AppCompatActivity {
     }
 
     private void RefreshData() {
-        if (!ExampleUtil.isConnected(ComeOrder.this)) {
+        if (!CommonUtil.isConnected(ComeOrder.this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(ComeOrder.this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -283,7 +292,7 @@ public class ComeOrder extends AppCompatActivity {
 
     //访问服务器
     public void loadData() {
-        if (!ExampleUtil.isConnected(ComeOrder.this)) {
+        if (!CommonUtil.isConnected(ComeOrder.this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(ComeOrder.this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -392,8 +401,10 @@ public class ComeOrder extends AppCompatActivity {
             viewHolder.tv_date.setText(DateUtils.format(DateUtils.stringToDate(order.getCreateDate())));
             viewHolder.tv_state.setText(OrderStateUtils.orderStatus(order.getOrderStatus()));
             viewHolder.tv_remark.setText(order.getRemarks());
-            XUtilsImageUtils.display(viewHolder.iv_log, order.getACompany().getPhoto(), true);
+            if (order.getACompany() != null&& order.getACompany().getPhoto()!=null&& order.getACompany().getPhoto()!="") {
 
+                GlideUtils.glideImageView(ComeOrder.this, viewHolder.iv_log, order.getACompany().getPhoto(), true);
+            }
             //都等于5 no ,有一个在7-14,23 no,
             int size = 0;
             for (int i = 0; i < order.getOrderProductList().size(); i++) {

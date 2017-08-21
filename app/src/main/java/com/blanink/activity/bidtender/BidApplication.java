@@ -40,8 +40,8 @@ import com.blanink.adapter.PhotoAdapter;
 import com.blanink.adapter.RecyclerItemClickListener;
 import com.blanink.oss.OssService;
 import com.blanink.pojo.Response;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DialogLoadUtils;
-import com.blanink.utils.ExampleUtil;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.google.gson.Gson;
@@ -341,7 +341,7 @@ public class BidApplication extends AppCompatActivity {
         // attachment&
         // bidDate=2016-11-18 18:10:27&
         // bidCompany.id=ee45bdbac1df402a8a7b6e195ab6ce53
-        if (!ExampleUtil.isConnected(this)) {
+        if (!CommonUtil.isConnected(this)) {
             Toast.makeText(this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
         } else {
             RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/saveBid");
@@ -429,7 +429,7 @@ public class BidApplication extends AppCompatActivity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = ExampleUtil.getFileName(url) + ExampleUtil.getFileLastName(url);
+            fileSuffix = CommonUtil.getFileName(url) + CommonUtil.getFileLastName(url);
         }
         // 文件标识符objectKey
         final String objectKey = "alioss_" + fileSuffix;
@@ -492,7 +492,7 @@ public class BidApplication extends AppCompatActivity {
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++) {
-                        urls = urls + "|" + OssService.OSS_URL + "alioss_" + ExampleUtil.getFileName(selectedPhotos.get(i) + ExampleUtil.getFileLastName(selectedPhotos.get(i)));
+                        urls = urls + "|" + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i) + CommonUtil.getFileLastName(selectedPhotos.get(i)));
                     }
 
                     urls = urls.substring(1);

@@ -31,6 +31,8 @@ import org.xclcharts.chart.BarData;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -188,6 +190,7 @@ public class SaleBarChartFragment extends Fragment {
                 final ReportSale rs = gson.fromJson(json, ReportSale.class);
                 final List<String> labelList = new ArrayList<String>();
                 final List<BarData> barDataSet = new ArrayList<BarData>();
+                final List<Double> data = new ArrayList<Double>();
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -207,6 +210,7 @@ public class SaleBarChartFragment extends Fragment {
                             int color = Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
                             for (int i = 0; i < rr.getReportList().size(); i++) {
                                 dataSeries.add(rr.getReportList().get(i).getSaleAmount()/10000);//单位万元
+                                data.add(rr.getReportList().get(i).getSaleAmount()/10000);
                             }
                             barDataSet.add(new BarData(rr.getCompanyCategoryName(), dataSeries, color));
 
@@ -216,8 +220,10 @@ public class SaleBarChartFragment extends Fragment {
 
                         // BarChart01View sv = new BarChart01View(getActivity());
                         StackBarChartVerView view = new StackBarChartVerView(getActivity());
-                        view.setYAxis(0, 2000, 200);
-                        view.setChartLabels(labelList);
+                        Collections.sort(data);
+                        if (data.size() > 0) {
+                            view.setYAxis((Math.ceil(data.get(0)) >= 0 ? 0 : Math.ceil(data.get(0))), Math.ceil(data.get(data.size() - 1)) + Math.ceil(data.get(data.size() - 1)) / data.size(), Math.ceil(data.get(data.size() - 1)) / data.size());
+                        }                        view.setChartLabels(labelList);
                         view.setBarDataSet(barDataSet);
                         view.setLeftTitle("万元");
                         if(flView!=null){

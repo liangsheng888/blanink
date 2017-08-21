@@ -153,6 +153,7 @@ public class StackBarChartVerView extends DemoView {
             //标题
             chart.setTitleAlign(XEnum.HorizontalAlign.CENTER);
             chart.setTitleVerticalAlign(XEnum.VerticalAlign.MIDDLE);
+            chart.getDataAxis().setDetailModeSteps(2);
 
             //背景网格
            // chart.getPlotGrid().showEvenRowBgColor();

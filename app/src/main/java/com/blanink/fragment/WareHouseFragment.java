@@ -97,6 +97,12 @@ public class WareHouseFragment extends Fragment {
         initData();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
     private void initData() {
         loadData();
         lv.setOnRefreshListener(new UpLoadListView.OnRefreshListener() {
@@ -165,6 +171,7 @@ public class WareHouseFragment extends Fragment {
                             }else {
                                 srr.clear();
                                 srr.addAll(stock.getResult().getRows());
+                                rlNotData.setVisibility(View.GONE);
 
                             }
 

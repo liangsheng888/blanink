@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -130,10 +131,17 @@ public class FlowSortCompleted extends AppCompatActivity {
             }
         });
         //刷新
+        //刷新
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                rowsBeanList.clear();
                 pageNo = 1;
                 refreshData();
             }
@@ -171,6 +179,7 @@ public class FlowSortCompleted extends AppCompatActivity {
 
                 Gson gson = new Gson();
                 FlowSort flow = gson.fromJson(result, FlowSort.class);
+                rowsBeanList.clear();
 
                 rowsBeanList.addAll(flow.getResult().getRows());
                 swipeRefreshLayout.setRefreshing(false);

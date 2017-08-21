@@ -101,14 +101,17 @@ public class MyProfile extends AppCompatActivity {
                 Gson gson = new Gson();
                 loginResult = gson.fromJson(result, LoginResult.class);
                 Log.e("MyProfile", "loginResult:" + loginResult);
-                GlideUtils.glideImageView(MyProfile.this,iv_photo, loginResult.getResult().photo, true);
+                if (loginResult.getResult().photo != null && loginResult.getResult().photo != "") {
+                GlideUtils.glideImageView(MyProfile.this,iv_photo, loginResult.getResult().photo, true);}
                 tv_name.setText(loginResult.getResult().name);
                 tv_company.setText(loginResult.getResult().company.name);
                 tv_role.setText(loginResult.getResult().roleNames);
                 tv_phone.setText(loginResult.getResult().phone);
                 tv_area.setText(loginResult.getResult().company.area.name);
-                GlideUtils.glideImageView(MyProfile.this,iv_company_photo, loginResult.getResult().getCompany().getPhoto(), true);
+                if (loginResult.getResult().getCompany().photo != null && loginResult.getResult().getCompany().photo != "") {
 
+                    GlideUtils.glideImageView(MyProfile.this, iv_company_photo, loginResult.getResult().getCompany().getPhoto(), true);
+                }
                 //x.image().bind(iv_photo,NetUrlUtils.NET_URL+loginResult.getResult().getPhoto());
 
             }
@@ -138,8 +141,6 @@ public class MyProfile extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            Intent intent = new Intent(MyProfile.this, MainActivity.class);
-            intent.putExtra("DIRECT", 4);
-            startActivity(intent);
+
     }
 }

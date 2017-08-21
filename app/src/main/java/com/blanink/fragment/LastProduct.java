@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.activity.lastnext.ProductDetail;
 import com.blanink.pojo.CompanyProduct;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.StringToListUtils;
@@ -136,7 +136,7 @@ public class LastProduct extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!ExampleUtil.isConnected(getActivity())) {
+                if (!CommonUtil.isConnected(getActivity())) {
                     //判断网络是否连接
                     ll_load.setVisibility(View.GONE);
                     ll_load_fail.setVisibility(View.VISIBLE);

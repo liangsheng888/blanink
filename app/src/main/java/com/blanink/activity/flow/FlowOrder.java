@@ -24,11 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blanink.R;
-import com.blanink.activity.order.OrderSeek;
 import com.blanink.pojo.ComeOder;
 import com.blanink.pojo.Order;
+import com.blanink.utils.CommonUtil;
 import com.blanink.utils.DateUtils;
-import com.blanink.utils.ExampleUtil;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.OrderStateUtils;
@@ -174,7 +174,7 @@ public class FlowOrder extends AppCompatActivity {
     }
 
     public void loadDataRefresh() {
-        if (!ExampleUtil.isConnected(this)) {
+        if (!CommonUtil.isConnected(this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -243,7 +243,7 @@ public class FlowOrder extends AppCompatActivity {
 
     //访问服务器
     public void loadData() {
-        if (!ExampleUtil.isConnected(this)) {
+        if (!CommonUtil.isConnected(this)) {
             llLoad.setVisibility(View.GONE);
             Toast.makeText(this, "请检查你的网络！", Toast.LENGTH_SHORT).show();
             return;
@@ -371,7 +371,7 @@ public class FlowOrder extends AppCompatActivity {
             viewHolder.tv_date.setText(DateUtils.format(DateUtils.stringToDate(order.getCreateDate())));
             viewHolder.tv_state.setText(OrderStateUtils.orderStatus(order.getOrderStatus()));
             viewHolder.tv_remark.setText(order.getRemarks());
-            XUtilsImageUtils.display(viewHolder.iv_log, order.getACompany().getPhoto(), true);
+            GlideUtils.glideImageView(FlowOrder.this,viewHolder.iv_log, order.getACompany().getPhoto(), true);
             return convertView;
         }
     }
