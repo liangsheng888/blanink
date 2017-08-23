@@ -22,18 +22,29 @@
            android:text="空行互联"
            android:layout_toRightOf="@id/iv"
            android:layout_marginLeft="5dp"
-           android:layout_centerVertical="true"
            android:drawableRight="@drawable/next_gray"
            android:gravity="center"
            />
+       <TextView
+           android:id="@+id/tv_master"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/tv_company"
+           android:layout_toRightOf="@id/iv"
+           android:layout_marginLeft="5dp"
+           android:gravity="center"
+           android:textSize="12sp"
+           android:text="张三" />
        <TextView
            android:id="@+id/tv_time"
            android:layout_alignParentRight="true"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginRight="20dp"
-           android:layout_centerVertical="true"
-           android:text=""/>
+           android:text="2012"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
    </RelativeLayout>
     <RelativeLayout
         android:padding="5dp"

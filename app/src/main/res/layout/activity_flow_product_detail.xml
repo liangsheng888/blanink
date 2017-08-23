@@ -269,7 +269,7 @@
 
                     <TextView
                         android:id="@+id/tv_attactment"
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
                         android:layout_height="20dp"
                         android:text="查看"
                         android:textSize="12sp"

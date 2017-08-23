@@ -21,7 +21,7 @@ public class AboutUs extends AppCompatActivity {
     RelativeLayout comeOrder;
     @BindView(R.id.tv_msg)
     TextView tvMsg;
-    private String msg="";
+    private String msg="     “空行”是微小型实体企业（尤其是制造业）的协同制造平台，将我国企业推向工业4.0的过度的承载平台，包含企业之间的协同配合与企业内部的运营管理，可适应几乎所有行业。对企业外部管理，解决了企业的“猪一样的队友”问题；对企业内部管理，解决了“企业快速发展的瓶颈因素”。对于想“长久存活”、“做大做强”，且“原意付出努力”的企业具有绝对的帮助\n";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

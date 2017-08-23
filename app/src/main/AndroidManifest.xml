@@ -3,9 +3,6 @@
     package="com.blanink">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -24,10 +21,6 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- Optional. Required for location feature -->
     <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -38,6 +31,33 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于访问网络，网络定位需要上网 -->
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于写入缓存数据到扩展存储卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".activity.MyApplication"
@@ -800,7 +820,38 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+        <!-- 添加如下activity定义，用于sdk中间页显示，包含登录、开通云存储等。 -->
 
+        <activity
+            android:name="com.videogo.main.EzvizWebViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+        <!-- 添加如下广播接收器，用于接收网络变化刷新SDK网络状态，接收中间页登录成功消息启动其他界面。其中##you_BroadcastReceiver替换为自己代码中定义的BroadcastReceiver -->
+
+        <receiver
+            android:name=".receiver.EzBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.videogo.action.OAUTH_SUCCESS_ACTION" />
+                <action android:name="com.videogo.action.OAUTH_SUCCESS_ACTION" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activity.ezvideo.AutoWifiConnectingActivity" />
+        <activity android:name=".activity.ezvideo.AutoWifiNetConfigActivity" />
+        <activity android:name=".activity.ezvideo.CaptureActivity" />
+        <activity android:name=".activity.ezvideo.EZCameraListActivity" />
+        <activity android:name=".activity.ezvideo.EZRealPlayActivity" />
+        <activity android:name=".activity.ezvideo.PlayBackListActivity" />
+        <activity android:name=".activity.ezvideo.PreferencesActivity" />
+        <activity android:name=".activity.ezvideo.ResetIntroduceActivity" />
+        <activity android:name=".activity.ezvideo.RootActivity" />
+        <activity android:name=".activity.ezvideo.SeriesNumSearchActivity" />
+        <activity android:name=".activity.ezvideo.AutoWifiPrepareStepOneActivity" />
+        <activity android:name=".activity.ezvideo.AutoWifiResetActivity" />
         <activity android:name=".activity.report.ReportType" />
         <activity android:name=".activity.report.CostAmountAnalysis" />
         <activity android:name=".activity.report.PayAmountAnalysis" />
@@ -812,7 +863,15 @@
         <activity android:name=".activity.stock.WareHouseModify" />
         <activity android:name=".activity.AdviceResponse" />
         <activity android:name=".activity.AboutUs" />
-        <activity android:name=".activity.SysNotify"></activity>
+        <activity android:name=".activity.SysNotify" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="eff7fedaf05dc70ed5f5c31559617e7b"></meta-data>
+
+        <activity android:name=".activity.LocationActivity"></activity>
     </application>
 
 </manifest>

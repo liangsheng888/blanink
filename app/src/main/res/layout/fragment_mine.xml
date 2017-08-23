@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/rl_photo"
         android:layout_width="match_parent"
-        android:background="@drawable/bg"
+        android:background="@drawable/mine_bg"
         android:layout_height="150dp"
         >
         <ImageView
@@ -19,7 +19,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/user_photo"/>
+            android:src="@drawable/user_default"/>
         <TextView
             android:id="@+id/tv_user_name"
             android:layout_below="@id/iv_user_photo"
@@ -242,6 +242,34 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorBackGround"></View>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackGround"></View>
+        <RelativeLayout
+            android:id="@+id/rl_location"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="位置"
+                android:drawablePadding="10dp"
+                android:textColor="@color/colorBlack"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/after_sale"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next_black"/>
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
 </ScrollView>

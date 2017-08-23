@@ -567,7 +567,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_history"
                     android:layout_below="@id/task_response_btn_commit"
-                    android:background="#fff"
+                    android:background="@color/colorBackGround"
                     android:layout_marginTop="10dp"
                     android:padding="5dp"
                     android:layout_width="match_parent"

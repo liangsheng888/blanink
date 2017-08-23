@@ -37,14 +37,14 @@
         android:layout_below="@id/tender_manager"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/bg">
+        android:background="@color/colorWhite">
         <ImageView
             android:id="@+id/iv_user_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="80dp"
-            android:src="@drawable/ease_default_image"
+            android:src="@drawable/user_default"
             android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/tv_user_name"
@@ -78,6 +78,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:paddingBottom="10dp"
+        android:layout_marginTop="1dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -174,13 +175,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="语音通话"
             android:gravity="center"
-            android:background="@drawable/selector_gray_pressed"/>
+            android:background="@drawable/selector_red"/>
         <TextView
             android:id="@+id/chat"
             android:layout_width="0dp"

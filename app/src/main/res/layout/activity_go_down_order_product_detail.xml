@@ -292,7 +292,7 @@
 
                     <TextView
                         android:id="@+id/tv_attactment"
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
                         android:layout_height="20dp"
                         android:text="查看"
                         android:gravity="center"
@@ -337,7 +337,7 @@
                 android:layout_below="@id/rl_down"
                 android:background="#fff"></com.blanink.view.NoScrollGridview>
 
-           <!-- <LinearLayout
+       <LinearLayout
                 android:layout_below="@id/order_detail_ll_note"
 
                 android:id="@+id/item_come_order_detail_product"
@@ -346,104 +346,31 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp">
+           <TextView
+               android:id="@+id/tv_seek_progress"
+               android:layout_width="0dp"
+               android:layout_height="35dp"
+               android:layout_weight="1"
+               android:background="@drawable/selector_blue"
+               android:gravity="center"
+               android:text="查看进度"
+               android:visibility="gone"
+               android:layout_margin="15dp"
+               android:textColor="@color/colorWhite" />
                 <TextView
                     android:id="@+id/tv_add_note"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight="1"
+                    android:layout_margin="15dp"
                     android:background="@drawable/selector_red"
                     android:gravity="center"
                     android:text="沟通记录"
                     android:textColor="@color/colorWhite" />
 
-                <TextView
-                    android:id="@+id/tv_modify"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/selector_red"
-                    android:gravity="center"
-                    android:text="编辑"
-                    android:visibility="gone"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorWhite" />
-                <TextView
-                    android:id="@+id/tv_down_send"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/selector_red"
-                    android:gravity="center"
-                    android:text="重新下发"
-                    android:visibility="gone"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-
-                    android:textColor="@color/colorWhite" />
 
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/ll2"
-                android:layout_below="@id/item_come_order_detail_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp">
-                <TextView
-                    android:id="@+id/tv_seek_progress"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_red"
-                    android:gravity="center"
-                    android:text="查看进度"
-                    android:textColor="@color/colorWhite" />
 
-                <TextView
-                    android:id="@+id/tv_modify_supplier"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/selector_red"
-                    android:gravity="center"
-                    android:text="修改供应商"
-                    android:visibility="gone"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorWhite" />
-                <TextView
-                    android:id="@+id/tv_after_sale"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_red"
-                    android:gravity="center"
-                    android:text="发起售后"
-                    android:visibility="gone"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorWhite" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ll2"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-
-                >
-                <TextView
-                    android:id="@+id/tv_remark"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_red"
-                    android:gravity="center"
-                    android:text="评价"
-                    android:textColor="@color/colorWhite" />
-            </LinearLayout>
--->
         </RelativeLayout>
     </ScrollView>
 

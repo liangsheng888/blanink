@@ -18,7 +18,9 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.activity.AboutUs;
 import com.blanink.activity.AdviceResponse;
+import com.blanink.activity.LocationActivity;
 import com.blanink.activity.SysNotify;
+import com.blanink.activity.ezvideo.EZCameraListActivity;
 import com.blanink.activity.my.MyProfile;
 import com.blanink.activity.set.PersonSet;
 import com.blanink.pojo.LoginResult;
@@ -104,7 +106,7 @@ public class MineFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.rl_profile, R.id.rl_finance, R.id.rl_response, R.id.rl_after_sale, R.id.rl_set})
+    @OnClick({R.id.rl_profile, R.id.rl_finance, R.id.rl_response, R.id.rl_after_sale, R.id.rl_set,R.id.rl_location})
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {
@@ -114,7 +116,7 @@ public class MineFragment extends Fragment {
                 intent = new Intent(getActivity(), MyProfile.class);
                 break;
             case R.id.rl_finance:
-                intent = new Intent(getActivity(), SysNotify.class);
+                intent = new Intent(getActivity(), EZCameraListActivity.class);
                 break;
             case R.id.rl_response:
                 intent = new Intent(getActivity(), AdviceResponse.class);
@@ -127,6 +129,9 @@ public class MineFragment extends Fragment {
             case R.id.rl_set:
                 //设置
                 intent = new Intent(getActivity(), PersonSet.class);
+                break;
+            case R.id.rl_location:
+                intent = new Intent(getActivity(), LocationActivity.class);
                 break;
         }
         startActivity(intent);

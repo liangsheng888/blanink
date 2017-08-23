@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:textSize="16sp"
-                android:textColor="@color/colorOrange"
+                android:textColor="@color/colorBlack"
                 android:singleLine="true" />
         </RelativeLayout>
     </LinearLayout>
@@ -86,6 +86,7 @@
                 android:layout_toRightOf="@id/finished"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rl_bad"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content">

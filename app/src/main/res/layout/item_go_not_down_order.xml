@@ -12,6 +12,7 @@
         android:id="@+id/iv_photo"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:src="@drawable/company_default"
         android:scaleType="centerCrop"/>
 
    <LinearLayout

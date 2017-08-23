@@ -217,7 +217,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    android:paddingTop="10dp">
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp">
 
                     <TextView
                         android:id="@+id/introduce"
@@ -244,6 +245,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:paddingBottom="10dp"
+                    android:visibility="gone"
                     android:paddingTop="10dp">
 
                     <TextView
@@ -255,6 +257,7 @@
                         android:textColor="@color/colorBlack" />
 
                     <TextView
+                        android:id="@+id/tv_history_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/tv_order_num"
@@ -304,7 +307,7 @@
                     android:textColor="@color/colorGray" />
             </LinearLayout>
         </LinearLayout>
-     <include layout="@layout/layout_load">
+ <include layout="@layout/layout_load">
         </include>
     </FrameLayout>
 

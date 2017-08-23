@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blanink.R;
+import com.blanink.activity.EaseChat.modle.DemoHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +37,16 @@ public class ChatFragmentParent extends Fragment {
     RelativeLayout goOrderAddRl;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    @BindView(R.id.rl_chat)
+    RelativeLayout rlChat;
     private List<Fragment> fragmentList;
     private List<RadioButton> radioButtons = new ArrayList<>();
-
+    private  FragmentPagerAdapter adapter=null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.fragment_chat, null);
 
-       ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -51,6 +54,14 @@ public class ChatFragmentParent extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -88,7 +99,7 @@ public class ChatFragmentParent extends Fragment {
             }
         });
         //设置切换
-        viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+        adapter=new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return fragmentList.get(position);
@@ -98,7 +109,10 @@ public class ChatFragmentParent extends Fragment {
             public int getCount() {
                 return fragmentList.size();
             }
-        });
+        };
+        viewPager.setAdapter(adapter) ;
+
+
 
         viewPager.setCurrentItem(0);//默认选中第一个
 

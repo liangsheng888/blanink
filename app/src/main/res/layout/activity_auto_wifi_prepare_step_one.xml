@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/wifi_config_bg"
+    android:orientation="vertical" >
+
+   <!-- <com.videogo.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />-->
+    <RelativeLayout
+        android:id="@+id/rl_after_sale_demand"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:text="返回"
+            android:gravity="center"
+            android:drawableLeft="@drawable/last" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <TextView
+            android:id="@+id/topTip"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/tip_heard_voice"
+            android:textColor="@color/title_text"
+            android:textSize="@dimen/large_text_size" />
+
+        <ImageView
+            android:id="@+id/imageBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:src="@drawable/prepare_device" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:background="@drawable/login_btn_selector"
+            android:text="@string/next_button_txt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/realplay_button_text_size" />
+
+        <Button
+            android:id="@+id/btnIntroduce"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ez_btn_r1_retry_selector"
+            android:text="@string/next_button_txt"
+            android:textColor="@color/tv_my_blue"
+            android:textSize="@dimen/realplay_button_text_size" />
+    </LinearLayout>
+
+</LinearLayout>

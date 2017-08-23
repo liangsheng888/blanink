@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.blanink.activity.AdviceResponse">
+
+    <RelativeLayout
+        android:id="@+id/come_order"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <TextView
+            android:id="@+id/come_order_tv_seek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="意见反馈"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/et_msg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorGray"
+        android:background="@drawable/corner_common_border_gray"
+        android:hint="请输入反馈内容..."/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+
+        android:background="@color/colorBackGround"></View>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:text="添加图片"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:background="@color/colorBackGround"></View>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_commit"
+        android:layout_width="match_parent"
+        android:background="@drawable/selector_red"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        android:text="提交"
+        android:layout_margin="15dp"
+        android:layout_height="35dp"
+        />
+</LinearLayout>

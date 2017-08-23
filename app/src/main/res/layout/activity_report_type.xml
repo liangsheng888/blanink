@@ -55,6 +55,7 @@
             android:drawablePadding="5dp"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_profit"
             android:text="利润"
             android:drawableTop="@drawable/money"
             android:gravity="center"
@@ -72,6 +73,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_loss"
+
             android:text="损耗"
             android:drawableTop="@drawable/bad"
             android:gravity="center"
@@ -89,7 +92,7 @@
         <TextView
             android:id="@+id/pay"
             android:text="应收/应付"
-            android:drawableTop="@drawable/sale"
+            android:drawableTop="@drawable/outin"
             android:gravity="center"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -102,6 +105,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:drawablePadding="5dp"
+            android:visibility="invisible"
+
             android:layout_height="wrap_content" />
         <TextView
             android:text="成本"
@@ -110,6 +115,8 @@
             android:layout_width="0dp"
             android:drawablePadding="5dp"
             android:layout_weight="1"
+            android:visibility="invisible"
+
             android:layout_height="wrap_content" />
         <TextView
             android:text="损耗"
@@ -118,6 +125,7 @@
             android:drawablePadding="5dp"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>

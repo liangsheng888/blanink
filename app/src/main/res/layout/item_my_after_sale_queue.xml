@@ -96,6 +96,7 @@
                     android:layout_toRightOf="@id/name"
                     android:text="张安"
                     android:layout_marginLeft="5dp"
+                    android:singleLine="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

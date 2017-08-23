@@ -257,6 +257,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="#fff">
             <TextView
                 android:layout_marginLeft="10dp"
@@ -282,6 +283,7 @@
             android:background="#fff"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:visibility="gone"
             >
             <TextView
                 android:id="@+id/tv_order_num"

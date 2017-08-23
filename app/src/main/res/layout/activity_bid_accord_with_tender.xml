@@ -4,8 +4,7 @@
     android:id="@+id/activity_bid_accord_with_tender"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.bidTender.BidAccordWithTender">
+    android:background="@color/colorBackGround">
 
     <RelativeLayout
         android:id="@+id/bid_accord_with_tender_rl"
@@ -68,11 +67,15 @@
                 android:entries="@array/expire"
                 />
         </RelativeLayout>
-
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/colorBackGround"></View>
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
          android:layout_below="@id/ll_seek">
 
         <RelativeLayout
@@ -113,6 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fff"
+            android:layout_marginTop="1dp"
             >
             <LinearLayout
                 android:id="@+id/ll_load"

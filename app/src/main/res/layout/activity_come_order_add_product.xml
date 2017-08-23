@@ -58,7 +58,8 @@
                     android:id="@+id/tv_company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="5dp"
                     android:textColor="#000"
                     android:textSize="18sp" />
 
@@ -466,21 +467,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/corner_common_border_gray"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/tv_note">
+                      >
 
                         <EditText
                             android:id="@+id/et_note"
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:layout_margin="1dp"
-                            android:background="#fff"
+                            android:background="@drawable/corner_common_border_gray"
                             android:gravity="top"
                             android:hint="请填写备注信息"
                             android:lines="5"
@@ -503,15 +502,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true" />
-
-                        <ImageView
-                            android:id="@+id/iv_picture"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/upload"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_centerVertical="true"
                       />
                     </RelativeLayout>
 

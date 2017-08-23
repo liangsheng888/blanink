@@ -111,14 +111,14 @@
 
                 <RadioButton
                     android:id="@+id/rb_stock"
-                    android:text="出库"
+                    android:text="入库"
                     android:checked="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:id="@+id/rb_finishd"
-                    android:text="入库"
+                    android:text="出库"
                     android:layout_marginRight="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -282,6 +282,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/corner_common_border_gray"
                 android:hint="单位"
+                android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:singleLine="true"
                 android:textColor="@color/colorGray"

@@ -44,10 +44,10 @@ public class LookBrowseOrder extends AppCompatActivity {
     private void initData() {
         //将图片添加到集合中
         drawableLists=new ArrayList<>();
-        drawableLists.add(R.drawable.guanggao);
+        /*drawableLists.add(R.drawable.guanggao);
         drawableLists.add(R.drawable.guanggao1);
         drawableLists.add(R.drawable.guanggao2);
-        drawableLists.add(R.drawable.guanggao3);
+        drawableLists.add(R.drawable.guanggao3);*/
         //初始化得到autoAdvertise对象
         findOrder_iv_last.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,16 +1,19 @@
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '25.0.0'
     //use legacy for android 6.0
     // useLibrary 'org.apache.http.legacy'
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     defaultConfig {
 
         applicationId "com.blanink"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -64,6 +67,8 @@ dependencies {
     compile 'org.xclcharts:lib:2.4'
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.1'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.1'
-   // compile 'com.parse:parse-android:1.13.1'
+    compile 'com.hikvision.ezviz:ezviz-sdk:4.5.1'
+    compile 'com.amap.api:location:latest.integration'
+    // compile 'com.parse:parse-android:1.13.1'
     compile project(':easeui')
 }

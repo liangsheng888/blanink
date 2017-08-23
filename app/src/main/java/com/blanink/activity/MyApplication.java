@@ -8,6 +8,7 @@ import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;*/
 
 import com.blanink.activity.EaseChat.modle.DemoHelper;
+import com.videogo.openapi.EZOpenSDK;
 
 import org.xutils.BuildConfig;
 import org.xutils.x;
@@ -36,21 +37,34 @@ public class MyApplication extends MultiDexApplication {
         x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
 
-   /*  //初始化EaseUI
-         EMOptions options = new EMOptions();
-        // 默认添加好友时，是不需要验证的，改成需要验证
-        options.setAcceptInvitationAlways(false);
-        //设置自动登录
-        options.setAutoLogin(true);
-        EaseUI.getInstance().init(this,options);*/
-        //初始化jpush
-
         JPushInterface.init(this);
         JPushInterface.setDebugMode(true);
+        initSDK();
     }
+    public static EZOpenSDK getOpenSDK() {
+        return EZOpenSDK.getInstance();
+    }
+
     public static MyApplication getInstance() {
         return instance;
     }
 
+    private void initSDK() {
+        {
+            /**
+             * sdk日志开关，正式发布需要去掉
+             */
+            EZOpenSDK.showSDKLog(true);
 
+            /**
+             * 设置是否支持P2P取流,详见api
+             */
+            EZOpenSDK.enableP2P(false);
+
+            /**
+             * APP_KEY请替换成自己申请的f09a38faf1f04203ae33672ea5b1774a
+             */
+            EZOpenSDK.initLib(this, "f09a38faf1f04203ae33672ea5b1774a", "");
+        }
+    }
 }

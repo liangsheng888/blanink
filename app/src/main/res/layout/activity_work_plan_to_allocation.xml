@@ -54,6 +54,7 @@
                 <LinearLayout
                     android:id="@+id/task_response_rl_gongXuInfo"
                     android:layout_width="match_parent"
+                    android:paddingBottom="5dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:gravity="center"
@@ -310,7 +311,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:background="#fff"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">

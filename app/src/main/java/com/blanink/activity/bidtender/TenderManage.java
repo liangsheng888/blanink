@@ -280,9 +280,7 @@ public class TenderManage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         myActivityManager.popOneActivity(this);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("DIRECT", 4);
-        startActivity(intent);
+
     }
 
     private void sort(final String sort, String expire) {

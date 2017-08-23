@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flt_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <SurfaceView
+            android:id="@+id/preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal" />
+
+        <com.blanink.activity.ezvideo.ViewfinderView
+            android:id="@+id/viewfinder_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/transparent" />
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="设备二维码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tab_text_size" />
+
+        <CheckBox
+            android:id="@+id/ckbLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/flashlight_selector"
+            android:button="@null" />
+    </FrameLayout>
+
+    <RelativeLayout android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:background="@color/colorTheme"
+        android:layout_height="44dp">
+        <TextView
+            android:id="@+id/last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:text="返回"
+            android:gravity="center"
+            android:drawableLeft="@drawable/last"
+            />
+
+        <TextView
+            android:id="@+id/btn_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"
+            android:text="扫描二维码"
+          />
+
+
+
+        <TextView
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/add_white"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray"></RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

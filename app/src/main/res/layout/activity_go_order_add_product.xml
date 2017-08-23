@@ -38,16 +38,17 @@
             android:text="返回"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:textSize="16sp"
             android:layout_centerVertical="true"
-            android:text="采购历史"/>
+            android:layout_marginRight="15dp"
+            android:text="采购历史"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -71,31 +72,13 @@
                 android:paddingTop="10dp">
 
                 <TextView
-                    android:id="@+id/tv_company_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="空行互联公司"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTheme" />
-
-                <View
-                    android:id="@+id/view_"
-                    android:layout_width="1dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/tv_company_name"
-                    android:background="@color/colorBackGround"></View>
-
-                <TextView
                     android:id="@+id/tv_company_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/view_"
                     android:text="甲方订单编号:"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTheme" />
+                    android:textColor="@color/colorTheme"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv_a_number"
@@ -103,23 +86,45 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/tv_company_no"
-                    android:textSize="16sp"
                     android:singleLine="true"
                     android:text=""
-                    android:textColor="@color/colorTheme" />
+                    android:textColor="@color/colorTheme"
+                    android:textSize="16sp" />
 
 
             </RelativeLayout>
-
+          <LinearLayout
+              android:id="@+id/ll_company"
+              android:layout_below="@id/rl_company"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp"
+              android:layout_marginTop="1dp"
+              android:background="@color/colorWhite">
+              <TextView
+                  android:id="@+id/tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/colorBlack"
+                  android:text="公司:"
+                  android:textSize="16sp"/>
+              <TextView
+                  android:id="@+id/tv_company_name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="空行互联公司"
+                  android:layout_marginLeft="5dp"
+                  android:textSize="16sp" />
+          </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_go_order_queue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_company"
-                android:layout_marginTop="1dp"
+                android:layout_below="@id/ll_company"
                 android:background="#fff"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp">
 
                 <TextView
                     android:id="@+id/tv_productCateGory"
@@ -127,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:singleLine="true"
-                    android:text=""
+                    android:text="产品类"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp" />
 
@@ -162,6 +167,7 @@
                 android:layout_weight="1"
                 android:background="@color/colorWhite"
                 android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:paddingLeft="10dp">
 
                 <TextView
@@ -201,8 +207,8 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="5dp"
                         android:text="单价:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/go_order_add_single_price"
@@ -226,9 +232,9 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="5dp"
                         android:text="数量:"
-                        android:textSize="16sp"
+                        android:textColor="@color/colorBlack"
 
-                        android:textColor="@color/colorBlack" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/go_order_add_tv_num"
@@ -265,8 +271,8 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="5dp"
                         android:text="交货日期:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/go_order_add_tv_endDateHand"
@@ -290,8 +296,8 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="5dp"
                         android:text="我方优先级:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/go_order_add_tv_mine_priority"
@@ -329,8 +335,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:text="备注:"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/note"
@@ -352,16 +358,33 @@
                 android:numColumns="4"></com.blanink.view.NoScrollGridview>
 
             <LinearLayout
+                android:id="@+id/ll_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/go_order_add_download"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="采购要求"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/go_order_add_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/go_order_add_download"
+                android:layout_below="@id/ll_title"
                 android:layout_marginTop="1dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp">
+                android:paddingBottom="5dp">
 
                 <LinearLayout
                     android:id="@+id/go_order_add_rl_supplier"
@@ -379,8 +402,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="供应商:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_supplier"
@@ -414,8 +437,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="产品种类:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_category"
@@ -444,6 +467,7 @@
                     android:background="#fff"
                     android:divider="@null"
                     android:footerDividersEnabled="false"></com.blanink.view.NoScrollListview>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -459,8 +483,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="产品规格:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_product_name"
@@ -485,6 +509,7 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -499,8 +524,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="数量(个):"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_num"
@@ -515,9 +540,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/corner_common_border_gray"
+                            android:inputType="number"
                             android:paddingLeft="5dp"
                             android:singleLine="true"
-                            android:inputType="number"
                             android:textColor="@color/colorGray">
 
                         </EditText>
@@ -540,8 +565,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="优先级:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_prioirty"
@@ -578,10 +603,10 @@
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:textSize="16sp"
                         android:gravity="center"
                         android:text="单价:"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_price"
@@ -596,9 +621,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@null"
+                            android:inputType="number"
                             android:paddingLeft="5dp"
                             android:singleLine="true"
-                            android:inputType="number"
                             android:textColor="@color/colorGray">
 
                         </EditText>
@@ -624,8 +649,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="交货日期:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_hand_date"
@@ -640,11 +665,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/corner_common_border_gray"
-                            android:paddingLeft="5dp"
                             android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
                             android:singleLine="true"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorGray">
+                            android:textColor="@color/colorGray"
+                            android:textSize="16sp">
 
                         </TextView>
 
@@ -683,8 +708,8 @@
                         android:gravity="top|center_horizontal"
                         android:paddingTop="5dp"
                         android:text="备注信息:"
-                        android:textSize="16sp"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp" />
 
                     <RelativeLayout
                         android:id="@+id/rl_note"
@@ -705,12 +730,11 @@
                             android:background="#fff"
                             android:gravity="top"
                             android:hint="备注信息"
-                            android:textSize="16sp"
-
                             android:padding="5dp"
+
                             android:singleLine="true"
                             android:textColor="@color/colorGray"
-                       >
+                            android:textSize="16sp">
 
                         </EditText>
 
@@ -722,33 +746,35 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:padding="5dp">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
                         android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp">
 
 
-                        <ImageView
-                            android:id="@+id/iv_picture"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/upload"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_centerVertical="true"
-                            />
+                        <!--  <ImageView
+                              android:id="@+id/iv_picture"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:src="@drawable/upload"
+                              android:layout_marginLeft="5dp"
+                              android:layout_marginRight="5dp"
+                              android:layout_centerVertical="true"
+                              />-->
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recycler_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="#fff"
-                            android:layout_alignParentLeft="true" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="#fff" />
 
                     </RelativeLayout>
-
 
 
                 </LinearLayout>

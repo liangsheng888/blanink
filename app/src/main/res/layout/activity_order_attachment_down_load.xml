@@ -46,12 +46,6 @@
           android:scaleType="centerCrop"
           android:layout_gravity="center_horizontal" />
       <TextView
-          android:id="@+id/tv_len"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:textColor="@color/colorBlack"
-          android:gravity="center"/>
-      <TextView
           android:id="@+id/tv_name"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

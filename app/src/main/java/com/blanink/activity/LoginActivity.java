@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.blanink.R;
 import com.blanink.activity.EaseChat.modle.DemoHelper;
 import com.blanink.db.DemoDBManager;
+import com.blanink.pojo.AccessToken;
 import com.blanink.pojo.LoginResult;
 import com.blanink.utils.CheckNet;
 import com.blanink.utils.CommonUtil;
@@ -29,17 +30,25 @@ import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
+import com.videogo.openapi.EZOpenSDK;
 
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /***
  * 登录界面
@@ -150,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.e("LoginActivity", "loginResult:" + loginResult.toString());
                                     if ("00000".equals(loginResult.getErrorCode())) {
                                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                                        setAccessToken();
                                         //保存用户信息
                                         SharedPreferences.Editor ed = sp.edit();
                                         //清空上个账号的信息
@@ -178,14 +188,14 @@ public class LoginActivity extends AppCompatActivity {
                                         DemoHelper.getInstance().logout(true, new EMCallBack() {
                                             @Override
                                             public void onSuccess() {
-                                                Log.e("loginActivity","退出环信账号成功");
+                                                Log.e("loginActivity", "退出环信账号成功");
                                                 RegisterUser(loginResult.getResult().id, passWord);
-                                                login(loginResult.getResult().id, passWord,loginResult);//灯鹭当前账号
+                                                login(loginResult.getResult().id, passWord, loginResult);//灯鹭当前账号
                                             }
 
                                             @Override
                                             public void onError(int i, String s) {
-                                                Log.e("loginActivity","退出环信账号失败"+i+"---"+s.toString());
+                                                Log.e("loginActivity", "退出环信账号失败" + i + "---" + s.toString());
 
                                             }
 
@@ -196,14 +206,14 @@ public class LoginActivity extends AppCompatActivity {
                                         });
 
 
-                                            //跳转到普通用户界面
-                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                            intent.putExtra("DATA", result);
-                                            intent.putExtra("DIRECT", FRAGMENT_TASK);
-                                           Log.e("LoginActivity","是否更新:"+getIntent().getBooleanExtra("UPDATE",false));
+                                        //跳转到普通用户界面
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("DATA", result);
+                                        intent.putExtra("DIRECT", FRAGMENT_TASK);
+                                        Log.e("LoginActivity", "是否更新:" + getIntent().getBooleanExtra("UPDATE", false));
 
-                                             intent.putExtra("UPDATE",getIntent().getBooleanExtra("UPDATE",false));
-                                            startActivity(intent);
+                                        intent.putExtra("UPDATE", getIntent().getBooleanExtra("UPDATE", false));
+                                        startActivity(intent);
 
 
                                     } else if ("10004".equals(loginResult.getErrorCode())) {
@@ -301,7 +311,7 @@ public class LoginActivity extends AppCompatActivity {
                 DemoHelper.getInstance().setCurrentUserName(loginResult.getResult().id);
                 DemoHelper.getInstance().getUserProfileManager().setCurrentUserNick(loginResult.getResult().name);
                 DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(loginResult.getResult().photo);
-                Log.e("loginActivity","当前用户信息:"+DemoHelper.getInstance().getUserProfileManager().getCurrentUserInfo().toString());
+                Log.e("loginActivity", "当前用户信息:" + DemoHelper.getInstance().getUserProfileManager().getCurrentUserInfo().toString());
                 // get user's info (this should be get from App's server or 3rd party service)
                 // DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
             }
@@ -357,6 +367,39 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
+    private void setAccessToken() {
+        String accessToken = "";
+        String url = "https://open.ys7.com/api/lapp/token/get";
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("appKey", "f09a38faf1f04203ae33672ea5b1774a")
+                .add("appSecret", "12f1fbc6ec2b870c4e69fa8692d28ea3")
+                .build();
+        Request request = new Request.Builder().post(body).url(url).build();
+        okHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                Gson gson = new Gson();
+                final AccessToken at = gson.fromJson(json, AccessToken.class);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if ("200".equals(at.getCode())) {
+                            EZOpenSDK.getInstance().setAccessToken(at.getData().getAccessToken());
+                            Log.e(TAG,at.toString());
+                            Log.e(TAG,"设置萤石AccessToken成功");
+                        }
+                    }
+                });
+            }
+        });
+    }
 
     private final TagAliasCallback mTagsCallback = new TagAliasCallback() {
 
