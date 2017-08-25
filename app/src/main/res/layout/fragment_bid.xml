@@ -5,58 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGround"
-    tools:context="com.blanink.activity.bidTender.BidAccordWithTender">
+    >
 
-    <LinearLayout
-        android:id="@+id/ll_seek"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackGround"
-        android:visibility="gone"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:layout_marginTop="1dp"
-            android:padding="5dp">
-            <Spinner
-                android:id="@+id/sp_sort"
-                android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:entries="@array/sort"></Spinner>
-            <Spinner
-                android:id="@+id/sp_expire"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/sp_sort"
-                android:gravity="center"
-                android:entries="@array/expire"
-                />
-        </RelativeLayout>
 
-    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_seek">
+        >
 
 
-            <com.scwang.smartrefresh.layout.SmartRefreshLayout
-                android:id="@+id/smartRefreshLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smartRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <com.blanink.view.UpLoadListView
                 android:id="@+id/lv_tender_info_queue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff">
             </com.blanink.view.UpLoadListView>
-            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <LinearLayout
+            android:id="@+id/ll_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackGround"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:layout_marginTop="1dp"
+                android:padding="5dp">
+                <Spinner
+                    android:id="@+id/sp_sort"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:entries="@array/sort"></Spinner>
+                <Spinner
+                    android:id="@+id/sp_expire"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/sp_sort"
+                    android:gravity="center"
+                    android:entries="@array/expire"
+                    />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBackGround"></View>
+        </LinearLayout>
         <include layout="@layout/layout_load"></include>
     </FrameLayout>
 </RelativeLayout>

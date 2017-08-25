@@ -89,7 +89,7 @@
             android:name=".activity.flow.FlowNoteNotifyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.task.TaskResponseMyTask"
+            android:name=".activity.task.TaskResponseMine"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.flow.FlowProductStepActivity"

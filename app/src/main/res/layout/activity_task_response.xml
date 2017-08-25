@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround"
+    tools:context=".activity.task.TaskResponseMine">
+
+    <RelativeLayout
+        android:id="@+id/task_response_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackGround"
-        tools:context=".activity.task.TaskResponseMyTask">
+        android:layout_height="45dp"
+        android:background="@color/colorTheme">
 
-        <RelativeLayout
-            android:id="@+id/task_response_rl"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/colorTheme">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="任务反馈"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/task_response_iv_last"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/last"
-                android:gravity="center"
-                android:text="返回"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-        </RelativeLayout>
-        <ScrollView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/task_response_rl">
+            android:layout_centerInParent="true"
+            android:text="任务反馈"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/task_response_iv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/last"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_response_rl">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-           >
+            >
 
 
             <RelativeLayout
@@ -449,14 +449,7 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         />
-                    <ImageView
-                        android:id="@+id/iv_picture"
-                        android:layout_toRightOf="@id/recycler_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/upload"/>
+
                 </RelativeLayout>
 
                 <LinearLayout
@@ -481,13 +474,13 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/corner_common_border_gray">
 
-                    <Spinner
-                        android:id="@+id/task_response_sp_state"
-                        android:layout_width="100dp"
-                        android:layout_height="35dp"
-                        android:background="@drawable/corner_common_border_gray">
+                        <Spinner
+                            android:id="@+id/task_response_sp_state"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/corner_common_border_gray">
 
-                    </Spinner>
+                        </Spinner>
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -554,20 +547,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:background="@drawable/corner_common_border_gray">
-                    <Spinner
-                        android:id="@+id/task_response_sp_person"
-                        android:layout_width="213dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@drawable/corner_common_border_gray"
-                        ></Spinner>
+                        <Spinner
+                            android:id="@+id/task_response_sp_person"
+                            android:layout_width="213dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/corner_common_border_gray"
+                            ></Spinner>
                     </RelativeLayout>
 
                 </LinearLayout>
                 <RelativeLayout
                     android:id="@+id/rl_history"
                     android:layout_below="@id/task_response_btn_commit"
-                    android:background="@color/colorBackGround"
+                    android:background="@color/white"
                     android:layout_marginTop="10dp"
                     android:padding="5dp"
                     android:layout_width="match_parent"
@@ -583,7 +576,7 @@
                         android:textSize="16sp"/>
                     <TextView
                         android:id="@+id/tv_note_num"
-                         android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/note_num"/>
@@ -598,18 +591,18 @@
                         android:layout_marginRight="10dp"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
-              <com.blanink.view.NoScrollListview
-                  android:layout_below="@id/rl_history"
-                  android:id="@+id/lv_response_note"
-                  android:layout_marginTop="1dp"
-                  android:background="#fff"
-                  android:paddingLeft="10dp"
-                  android:paddingRight="10dp"
-                  android:divider="@null"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+                <com.blanink.view.NoScrollListview
+                    android:layout_below="@id/rl_history"
+                    android:id="@+id/lv_response_note"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/colorBackGround"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:divider="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-              </com.blanink.view.NoScrollListview>
+                </com.blanink.view.NoScrollListview>
             </RelativeLayout>
 
             <RelativeLayout
@@ -628,5 +621,5 @@
             </RelativeLayout>
 
         </FrameLayout>
-        </ScrollView>
-    </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

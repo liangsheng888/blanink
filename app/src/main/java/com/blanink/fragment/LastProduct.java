@@ -111,12 +111,14 @@ public class LastProduct extends Fragment {
         lv_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CompanyProduct.Result.Row row = rowList.get(position - 1);
-                Intent intent = new Intent(getActivity(), ProductDetail.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("ProductDetail", row);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (position < rowList.size() + 1) {
+                    CompanyProduct.Result.Row row = rowList.get(position - 1);
+                    Intent intent = new Intent(getActivity(), ProductDetail.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ProductDetail", row);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -243,7 +245,7 @@ public class LastProduct extends Fragment {
             //  x.image().bind(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
             //   XUtilsImageUtils.displayLoading(viewHolder.iv_product_picture,NetUrlUtils.NET_URL+rowList.get(position).productPhotos);
             if (rowList.get(position).productPhotos != null) {
-                GlideUtils.glideImageView(getActivity(), viewHolder.iv_product_picture, StringToListUtils.stringToList(rowList.get(position).productPhotos, "\\|").get(0),false);
+                GlideUtils.glideImageView(getActivity(), viewHolder.iv_product_picture, StringToListUtils.stringToList(rowList.get(position).productPhotos, "\\|").get(0), false);
             }
             viewHolder.tv_product_name.setText(rowList.get(position).productName);
             viewHolder.tv_down_price.setText(rowList.get(position).productPriceDownline);

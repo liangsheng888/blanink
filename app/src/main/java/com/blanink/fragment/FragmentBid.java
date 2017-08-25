@@ -155,13 +155,12 @@ public class FragmentBid extends Fragment {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 Log.e("BID", "firstVisibleItem:" + firstVisibleItem + ",visibleItemCount:" + visibleItemCount);
-                if (firstVisibleItem > 1) {
+                if (firstVisibleItem >= 1) {
                     llSeek.setVisibility(View.VISIBLE);
-                } else {
-                    if (firstVisibleItem <= 2) {
-                        llSeek.setVisibility(View.GONE);
-                    }
+                }else {
+                    llSeek.setVisibility(View.GONE);
                 }
+
             }
         });
 
@@ -205,6 +204,7 @@ public class FragmentBid extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     Intent intent = new Intent(getActivity(), BidSeekTender.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             }
@@ -233,25 +233,25 @@ public class FragmentBid extends Fragment {
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 3:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "3";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 4:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "4";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -273,25 +273,25 @@ public class FragmentBid extends Fragment {
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 3:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "3";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 4:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         sort = "4";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -315,13 +315,13 @@ public class FragmentBid extends Fragment {
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         expire = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         expire = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -345,13 +345,13 @@ public class FragmentBid extends Fragment {
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         expire = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         llLoad.setVisibility(View.VISIBLE);
                         expire = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -504,6 +504,57 @@ public class FragmentBid extends Fragment {
             }
         });
 
+    }
+
+    private void sortFilter(final String sort, String expire) {
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/inviteBidSort");
+        rp.addBodyParameter("userId", sp.getString("USER_ID", null));
+        rp.addBodyParameter("pageNo", pageNo + "");
+        rp.addBodyParameter("sort", sort);
+        rp.addBodyParameter("expire", expire);
+        x.http().post(rp, new Callback.CacheCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                llLoad.setVisibility(View.GONE);
+                Log.e("BidAccordWithTender", " sort result+++++" + sort + "----" + result);
+                Gson gson = new Gson();
+                TenderAndBid tender = gson.fromJson(result, TenderAndBid.class);
+                Log.e("BidAccordWithTender", "sort tender+++++" + tender.toString());
+                if (tender.getResult().rows.size() == 0) {
+                    rlNotData.setVisibility(View.VISIBLE);
+
+                } else {
+                    rlNotData.setVisibility(View.GONE);
+                }
+                isHasData = true;
+                rowList.addAll(0, tender.getResult().rows);
+
+
+                handler.sendEmptyMessage(0);//发送消息通知更新界面
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                llLoad.setVisibility(View.GONE);
+                rlLoadFail.setVisibility(View.VISIBLE);
+                pageNo--;
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+            @Override
+            public boolean onCache(String result) {
+                return false;
+            }
+        });
     }
 
     public void addHeaderView() {

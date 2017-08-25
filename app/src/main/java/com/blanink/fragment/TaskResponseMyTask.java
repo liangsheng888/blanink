@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.task.TaskResponseDeliver;
+import com.blanink.activity.task.TaskResponseMine;
 import com.blanink.adapter.MyTaskAdapter;
 import com.blanink.pojo.OrderProduct;
 import com.blanink.utils.NetUrlUtils;
@@ -82,7 +83,7 @@ public class TaskResponseMyTask extends Fragment {
                     startActivity(intent);
 
                 } else {
-                    Intent intent = new Intent(getActivity(), com.blanink.activity.task.TaskResponseMyTask.class);
+                    Intent intent = new Intent(getActivity(), TaskResponseMine.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("TaskDetail", list.get(position));
                     intent.putExtras(bundle);

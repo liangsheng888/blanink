@@ -21,8 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -139,8 +139,6 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     TextView taskResponseTvHand;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
     @BindView(R.id.task_response_rl_hand)
     RelativeLayout taskResponseRlHand;
     @BindView(R.id.task_response_sp_state)
@@ -157,16 +155,20 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     Spinner taskResponseSpPerson;
     @BindView(R.id.task_response_ll)
     LinearLayout taskResponseLl;
-    @BindView(R.id.rl_history)
-    RelativeLayout rlHistory;
-    @BindView(R.id.lv_response_note)
-    NoScrollListview lvResponseNote;
-    @BindView(R.id.rl_load)
-    RelativeLayout rlLoad;
+    @BindView(R.id.note_num)
+    TextView noteNum;
     @BindView(R.id.tv_note_num)
     TextView tvNoteNum;
     @BindView(R.id.tv_more)
     TextView tvMore;
+    @BindView(R.id.rl_history)
+    RelativeLayout rlHistory;
+    @BindView(R.id.lv_response_note)
+    NoScrollListview lvResponseNote;
+    @BindView(R.id.progressBar3)
+    ProgressBar progressBar3;
+    @BindView(R.id.rl_load)
+    RelativeLayout rlLoad;
     private WorkedTask.ResultBean taskDetail;
     private String faultAmount;
     private String isFinished;
@@ -179,21 +181,22 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     private PhotoAdapter photoAdapter;
     private ArrayList<String> selectedPhotos = new ArrayList<>();
     private CommonAdapter<FeedBackingTask.ResultBean.ProcessFeedbackListBean> commonAdapter;
-    private String feedbackAttachmentStr="";
+    private String feedbackAttachmentStr = "";
     OSSClient oss;
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-           showDialog();
+            showDialog();
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not_allocation_detail);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
-        oss=OssService.getOSSClientInstance(this);
+        oss = OssService.getOSSClientInstance(this);
         DialogLoadUtils.getInstance(this);
         DialogLoadUtils.showDialogLoad("拼命加载中...");
         ButterKnife.bind(this);
@@ -202,10 +205,13 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     }
 
     private void initData() {
+        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
         checkUserRoleType();
 
 //判断用户角色类型 assignment yes 显示下拉责任人 否不显示
-        taskResponseSpState.setAdapter(new ArrayAdapter<String>(this,R.layout.spanner_item,new String[]{"未完成","已完成"}));
+        taskResponseSpState.setAdapter(new ArrayAdapter<String>(this, R.layout.spanner_item, new String[]{"未完成", "已完成"}));
         taskResponseSpState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -231,7 +237,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)
@@ -331,13 +337,13 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                 tvPriority.setText(PriorityUtils.getPriority(taskDetail.getCompanyAPriority()));
                 tvMyMyPriority.setText(PriorityUtils.getPriority(taskDetail.getCompanyBPriority()));
                 tvResponse.setText((feedbackingTask.getResult().getAllFinishedAmount() + ""));
-                tvNoteNum.setText("("+feedbackingTask.getResult().getProcessFeedbackList().size()+")");
+                tvNoteNum.setText("(" + feedbackingTask.getResult().getProcessFeedbackList().size() + ")");
 
-                if(feedbackingTask.getResult().getProcessFeedbackList().size()<=4){
+                if (feedbackingTask.getResult().getProcessFeedbackList().size() <= 4) {
                     tvMore.setVisibility(View.GONE);
                     tvMore.setEnabled(false);
                 }
-                if(feedbackingTask.getResult().getProcessFeedbackList().size()==0) {
+                if (feedbackingTask.getResult().getProcessFeedbackList().size() == 0) {
                     rlHistory.setVisibility(View.GONE);
                 }
                 showSpinner(masterItem);//显示下拉列表
@@ -393,19 +399,17 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
             ArrayList<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                photoAdapter = new PhotoAdapter(this, selectedPhotos);
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
-                    for (int i = 0; i < selectedPhotos.size(); i++){
-                        feedbackAttachmentStr = feedbackAttachmentStr + "," + OssService.OSS_URL+"alioss_"+ CommonUtil.getFileName(selectedPhotos.get(i))+ CommonUtil.getFileLastName(selectedPhotos.get(i));
+                    for (int i = 0; i < selectedPhotos.size(); i++) {
+                        feedbackAttachmentStr = feedbackAttachmentStr + "," + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i)) + CommonUtil.getFileLastName(selectedPhotos.get(i));
                     }
                     feedbackAttachmentStr = feedbackAttachmentStr.substring(1);
-                    Log.e("ComeOrder",feedbackAttachmentStr);
+                    Log.e("ComeOrder", feedbackAttachmentStr);
                 }
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                recyclerView.setAdapter(photoAdapter);
                 photoAdapter.notifyDataSetChanged();
+
             }
         }
     }
@@ -413,7 +417,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
     //select master
     private void showSpinner(List<String> masterItem) {
         Log.e("TaskResponse", masterItem.toString());
-        ArrayAdapter<String> _Adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner_item,R.id.tv_name, masterItem);
+        ArrayAdapter<String> _Adapter = new ArrayAdapter<String>(this, R.layout.spanner_item, masterItem);
         taskResponseSpPerson.setAdapter(_Adapter);
         //选择责任人
         taskResponseSpPerson.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -429,7 +433,7 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.task_response_iv_last, R.id.task_response_btn_commit,R.id.iv_picture,R.id.tv_more})
+    @OnClick({R.id.task_response_iv_last, R.id.task_response_btn_commit, R.id.tv_more})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.task_response_iv_last:
@@ -456,21 +460,11 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                 DialogLoadUtils.showDialogLoad("反馈中...");
                 uploadData();
                 break;
-            case R.id.iv_picture:
-                PhotoPicker.builder()
-                        //设置选择个数
-                        .setPhotoCount(3)
-                        //选择界面第一个显示拍照按钮
-                        .setShowCamera(true)
-                        //选择时点击图片放大浏览
-                        .setPreviewEnabled(false)
-                        //附带已经选中过的图片
-                        .start(this);
-                break;
+
             case R.id.tv_more://更多
-                Intent intent=new Intent(TaskNotAllocationToResponse.this,MoreResponseNoteActivty.class);
-                intent.putExtra("flow.id",taskDetail.getRelFlowProcess().getFlow().getId());
-                intent.putExtra("process.id",taskDetail.getRelFlowProcess().getProcess().getId());
+                Intent intent = new Intent(TaskNotAllocationToResponse.this, MoreResponseNoteActivty.class);
+                intent.putExtra("flow.id", taskDetail.getRelFlowProcess().getFlow().getId());
+                intent.putExtra("process.id", taskDetail.getRelFlowProcess().getProcess().getId());
                 startActivity(intent);
                 break;
         }
@@ -495,9 +489,9 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
                 Gson gson = new Gson();
                 Response response = gson.fromJson(result, Response.class);
                 if (response.getErrorCode().equals("00000")) {
-                    List<String> photos=new ArrayList<String>();
+                    List<String> photos = new ArrayList<String>();
                     photos.addAll(selectedPhotos);
-                    uploadFiles(oss,photos);
+                    uploadFiles(oss, photos);
                 } else {
                     DialogLoadUtils.dismissDialog();
                     Toast.makeText(TaskNotAllocationToResponse.this, "反馈失败", Toast.LENGTH_SHORT).show();
@@ -556,28 +550,29 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
             }
         });
     }
-    public  void uploadFiles(OSSClient oss, List<String> urls) {
+
+    public void uploadFiles(OSSClient oss, List<String> urls) {
         if (null == urls || urls.size() == 0) {
-            return ;
+            return;
         } // 上传文件
-        ossUpload(oss,urls);
+        ossUpload(oss, urls);
     }
 
     public void ossUpload(final OSSClient oss, final List<String> urls) {
-        Log.e("ComeOrder","图片个数:"+urls.size());
+        Log.e("ComeOrder", "图片个数:" + urls.size());
         if (urls.size() <= 0) {
-            Log.e("ComeOrder","通知提醒");
+            Log.e("ComeOrder", "通知提醒");
             DialogLoadUtils.dismissDialog();
             handler.sendEmptyMessage(0);
             // 文件全部上传完毕，这里编写上传结束的逻辑，如果要在主线程操作，最好用Handler或runOnUiThead做对应逻辑
-            return ;// 这个return必须有，否则下面报越界异常，原因自己思考下哈
+            return;// 这个return必须有，否则下面报越界异常，原因自己思考下哈
         }
         final String url = urls.get(0);
         if (TextUtils.isEmpty(url)) {
             urls.remove(0);
             // url为空就没必要上传了，这里做的是跳过它继续上传的逻辑。
             ossUpload(oss, urls);
-            return ;
+            return;
         }
 
         File file = new File(url);
@@ -585,16 +580,16 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
             urls.remove(0);
             // 文件为空或不存在就没必要上传了，这里做的是跳过它继续上传的逻辑。
             ossUpload(oss, urls);
-            return ;
+            return;
         }
         // 文件后缀
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = CommonUtil.getFileName(url)+ CommonUtil.getFileLastName(url);
+            fileSuffix = CommonUtil.getFileName(url) + CommonUtil.getFileLastName(url);
         }
         // 文件标识符objectKey
-        final String objectKey = "alioss_"+ fileSuffix;
+        final String objectKey = "alioss_" + fileSuffix;
         // 下面3个参数依次为bucket名，ObjectKey名，上传文件路径
         PutObjectRequest put = new PutObjectRequest("blanink", objectKey, url);
 
@@ -637,4 +632,4 @@ public class TaskNotAllocationToResponse extends AppCompatActivity {
         // task.waitUntilFinished(); // 可以等待直到任务完成
     }
 
-    }
+}

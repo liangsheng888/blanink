@@ -109,12 +109,14 @@ public class NextProduct extends Fragment {
         lv_product.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CompanyProduct.Result.Row row=rowList.get(position-1);
+                if (position < rowList.size() + 1) {
+
+                    CompanyProduct.Result.Row row=rowList.get(position-1);
                 Intent intent=new Intent(getActivity(),ProductDetail.class);
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("ProductDetail",row);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);}
             }
         });
     }

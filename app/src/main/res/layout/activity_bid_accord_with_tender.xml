@@ -37,46 +37,12 @@
             android:drawableLeft="@drawable/last"
             />
     </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/ll_seek"
-        android:layout_below="@id/bid_accord_with_tender_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:padding="5dp">
-            <Spinner
-                android:id="@+id/sp_sort"
-                android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:entries="@array/sort"></Spinner>
-            <Spinner
-                android:id="@+id/sp_expire"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/sp_sort"
-                android:gravity="center"
-                android:entries="@array/expire"
-                />
-        </RelativeLayout>
-       <View
-           android:layout_width="match_parent"
-           android:layout_height="1dp"
-           android:background="@color/colorBackGround"></View>
-    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="1dp"
-         android:layout_below="@id/ll_seek">
+        android:layout_below="@id/bid_accord_with_tender_rl">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -86,82 +52,50 @@
                 android:id="@+id/smartRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <com.blanink.view.UpLoadListView
-                android:id="@+id/lv_tender_info_queue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:background="#fff">
+                <com.blanink.view.UpLoadListView
+                    android:id="@+id/lv_tender_info_queue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="#fff">
 
-            </com.blanink.view.UpLoadListView>
+                </com.blanink.view.UpLoadListView>
             </com.scwang.smartrefresh.layout.SmartRefreshLayout>
         </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rl_not_data"
+        <LinearLayout
+            android:id="@+id/ll_seek"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="gone"
-            android:background="#fff">
-            <TextView
-                android:id="@+id/tv_not"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:drawableTop="@drawable/data_not"
-                android:padding="10dp"
-                android:text="主人！暂时没有可投项目招标"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rl_load"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff"
-            android:layout_marginTop="1dp"
-            >
-            <LinearLayout
-                android:id="@+id/ll_load"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="正在加载..." />
-            </LinearLayout>
-
+            android:orientation="vertical">
             <RelativeLayout
-                android:id="@+id/rl_load_fail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/ll_load"
-                android:gravity="center_vertical"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/loading_error_img"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="5dp">
+                <Spinner
+                    android:id="@+id/sp_sort"
+                    android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/wb_request_loading_error" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/loading_error_img"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:text="加载失败，请点击屏幕重试"
-                    android:textSize="18sp" />
+                    android:entries="@array/sort"></Spinner>
+                <Spinner
+                    android:id="@+id/sp_expire"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/sp_sort"
+                    android:gravity="center"
+                    android:entries="@array/expire"
+                    />
             </RelativeLayout>
-        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBackGround"></View>
+        </LinearLayout>
+        <include layout="@layout/layout_load"></include>
     </FrameLayout>
 </RelativeLayout>

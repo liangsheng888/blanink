@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.blanink.R;
 import com.blanink.activity.stock.OutInStockAdd;
 import com.blanink.activity.task.TaskResponseDeliver;
+import com.blanink.activity.task.TaskResponseMine;
 import com.blanink.pojo.OrderProduct;
 import com.blanink.utils.CommonUtil;
 import com.blanink.utils.PriorityUtils;
@@ -109,7 +110,7 @@ public class MyTaskAdapter extends BaseAdapter {
                     context.startActivity(intent);
 
                 } else {
-                    Intent intent = new Intent(context, com.blanink.activity.task.TaskResponseMyTask.class);
+                    Intent intent = new Intent(context, TaskResponseMine.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("TaskDetail", result);
                     intent.putExtras(bundle);

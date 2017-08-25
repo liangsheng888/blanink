@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -65,6 +64,7 @@ import me.iwf.photopicker.PhotoPreview;
  * 发货 列表
  */
 public class TaskResponseDeliver extends AppCompatActivity {
+
     @BindView(R.id.come_order_tv_seek)
     TextView comeOrderTvSeek;
     @BindView(R.id.iv_last)
@@ -133,16 +133,14 @@ public class TaskResponseDeliver extends AppCompatActivity {
     NoScrollGridview gvReceiver;
     @BindView(R.id.et_note)
     EditText etNote;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.task_response_rl_hand)
+    RelativeLayout taskResponseRlHand;
     @BindView(R.id.ll_info)
     LinearLayout llInfo;
     @BindView(R.id.btn_send)
     Button btnSend;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
-    @BindView(R.id.task_response_rl_hand)
-    RelativeLayout taskResponseRlHand;
     private List<String> receiverNameList = new ArrayList<>();
     private List<String> receiverIdList = new ArrayList<>();
     private List<String> senderNameList = new ArrayList<>();
@@ -155,11 +153,11 @@ public class TaskResponseDeliver extends AppCompatActivity {
     private String[] isSend = {"部分发货", "全部发货"};
     private String isFinish;
     private ArrayList<String> selectedPhotos = new ArrayList<>();
-    List<FeedBackingTask.ResultBean.SendUserListBean> sendUserList=new ArrayList<>();
+    List<FeedBackingTask.ResultBean.SendUserListBean> sendUserList = new ArrayList<>();
     private List<String> masterItem = new ArrayList<String>();
     private List<String> userIdList = new ArrayList<String>();
     PhotoAdapter photoAdapter;
-    private String urls="";
+    private String urls = "";
     private String achieveAmount;
     private String isFinished;//1部分发货，2全部发货
     private String remarks;
@@ -169,9 +167,10 @@ public class TaskResponseDeliver extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            DialogNotifyUtils.showNotify(TaskResponseDeliver.this,"操作成功");
+            DialogNotifyUtils.showNotify(TaskResponseDeliver.this, "操作成功");
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,18 +178,21 @@ public class TaskResponseDeliver extends AppCompatActivity {
         ButterKnife.bind(this);
         sp = getSharedPreferences("DATA", MODE_PRIVATE);
         oss = OssService.getOSSClientInstance(this);
-        sp=getSharedPreferences("DATA",MODE_PRIVATE);
         DialogLoadUtils.getInstance(this);
         DialogLoadUtils.showDialogLoad("拼命加载中...");
         initData();
     }
 
     private void initData() {
-       // getReceiver(getIntent().getStringExtra("companyId"));//收货人
+        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
+
+        // getReceiver(getIntent().getStringExtra("companyId"));//收货人
         checkUserRoleType();
 
         getMineEmp(sp.getString("COMPANY_ID", null));//发货人
-        spIsSender.setAdapter(new ArrayAdapter<String>(TaskResponseDeliver.this, R.layout.spanner_item,isSend));
+        spIsSender.setAdapter(new ArrayAdapter<String>(TaskResponseDeliver.this, R.layout.spanner_item, isSend));
         spIsSender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -214,7 +216,7 @@ public class TaskResponseDeliver extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 achieveAmount = etNumber.getText().toString().trim();
-                remarks= etNote.getText().toString();
+                remarks = etNote.getText().toString();
                 if (TextUtils.isEmpty(achieveAmount)) {
                     Toast.makeText(TaskResponseDeliver.this, "数量不能为空", Toast.LENGTH_SHORT).show();
                     return;
@@ -234,21 +236,6 @@ public class TaskResponseDeliver extends AppCompatActivity {
         });
 
 
-        //选择图片
-        ivPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PhotoPicker.builder()
-                        //设置选择个数
-                        .setPhotoCount(3)
-                        //选择界面第一个显示拍照按钮
-                        .setShowCamera(true)
-                        //选择时点击图片放大浏览
-                        .setPreviewEnabled(false)
-                        //附带已经选中过的图片
-                        .start(TaskResponseDeliver.this);
-            }
-        });
         //
         //图片放大
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
@@ -257,7 +244,7 @@ public class TaskResponseDeliver extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)
@@ -278,24 +265,24 @@ public class TaskResponseDeliver extends AppCompatActivity {
         rp.addBodyParameter("isFinished", isFinished);
         rp.addBodyParameter("feedbackUser", senderId);
         rp.addBodyParameter("remarks", remarks);
-        for(int i=0;i<sendUserList.size();i++){
-            rp.addBodyParameter("sendUser["+i+"]", sendUserList.get(i).getId());//接收人List
+        for (int i = 0; i < sendUserList.size(); i++) {
+            rp.addBodyParameter("sendUser[" + i + "]", sendUserList.get(i).getId());//接收人List
         }
         rp.addBodyParameter("feedbackAttachmentStr", urls);
         rp.addBodyParameter("process.id", getIntent().getStringExtra("processId"));
         rp.addBodyParameter("flow.id", getIntent().getStringExtra("flowId"));
-        rp.addBodyParameter("currentUser.id",sp.getString("USER_ID",null));
-        rp.addBodyParameter("userId",sp.getString("USER_ID",null));
+        rp.addBodyParameter("currentUser.id", sp.getString("USER_ID", null));
+        rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         x.http().post(rp, new Callback.CacheCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();
-                Response re=gson.fromJson(result, Response.class);
-                if("00000".equals(re.getErrorCode())){
+                Response re = gson.fromJson(result, Response.class);
+                if ("00000".equals(re.getErrorCode())) {
                     List<String> photos = new ArrayList<String>();
                     photos.addAll(selectedPhotos);
                     uploadFiles(oss, photos);
-                }else {
+                } else {
                     DialogLoadUtils.dismissDialog();
                     Toast.makeText(TaskResponseDeliver.this, "操作失败", Toast.LENGTH_SHORT).show();
 
@@ -398,19 +385,16 @@ public class TaskResponseDeliver extends AppCompatActivity {
             ArrayList<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                photoAdapter = new PhotoAdapter(this, selectedPhotos);
+
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
                     for (int i = 0; i < selectedPhotos.size(); i++) {
-                        urls = urls + "," + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i))+ CommonUtil.getFileLastName((selectedPhotos.get(i)));
+                        urls = urls + "," + OssService.OSS_URL + "alioss_" + CommonUtil.getFileName(selectedPhotos.get(i)) + CommonUtil.getFileLastName((selectedPhotos.get(i)));
                     }
                     urls = urls.substring(1);
                     Log.e("ComeOrder", urls);
                 }
-
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                recyclerView.setAdapter(photoAdapter);
 
                 photoAdapter.notifyDataSetChanged();
             }
@@ -429,7 +413,7 @@ public class TaskResponseDeliver extends AppCompatActivity {
                     senderNameList.add(officeEmp.getResult().get(i).getName());
                     senderIdList.add(officeEmp.getResult().get(i).getId());
                 }
-                spSender.setAdapter(new ArrayAdapter<String>(TaskResponseDeliver.this, R.layout.spanner_item,senderNameList));
+                spSender.setAdapter(new ArrayAdapter<String>(TaskResponseDeliver.this, R.layout.spanner_item, senderNameList));
                 spSender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
@@ -499,7 +483,7 @@ public class TaskResponseDeliver extends AppCompatActivity {
                 final FeedBackingTask feedbackingTask = gson.fromJson(result, FeedBackingTask.class);
                 if ("00000".equals(response.getErrorCode())) {
                     for (int i = 0; i < feedbackingTask.getResult().getProcessWorkerList().size(); i++) {
-                       masterItem.add(i, feedbackingTask.getResult().getProcessWorkerList().get(i).getName());
+                        masterItem.add(i, feedbackingTask.getResult().getProcessWorkerList().get(i).getName());
                         userIdList.add(i, feedbackingTask.getResult().getProcessWorkerList().get(i).getId());
                         Log.e("TaskResponse", "该用户有权限:" + userIdList.toString() + "----" + masterItem.toString());
                     }
@@ -519,16 +503,16 @@ public class TaskResponseDeliver extends AppCompatActivity {
                 tvNote.setText(feedbackingTask.getResult().getProductDescription());
                 tvPriority.setText(PriorityUtils.getPriority(PriorityUtils.getPriority(feedbackingTask.getResult().getCompanyAPriority())));
                 tvMyMyPriority.setText(PriorityUtils.getPriority(PriorityUtils.getPriority(feedbackingTask.getResult().getCompanyBPriority())));
-                tvResponse.setText((feedbackingTask.getResult().getAllFinishedAmount()+""));
+                tvResponse.setText((feedbackingTask.getResult().getAllFinishedAmount() + ""));
                 sendUserList.addAll(feedbackingTask.getResult().getSendUserList());
-                Log.e("TaskResponse",sendUserList.toString());
+                Log.e("TaskResponse", sendUserList.toString());
                 receiverNameList.add("请选择责任人");
                 receiverIdList.add("");
-                for(FeedBackingTask.ResultBean.SendUserListBean  send:sendUserList){
+                for (FeedBackingTask.ResultBean.SendUserListBean send : sendUserList) {
                     receiverNameList.add(send.getName());
                     receiverIdList.add(send.getId());
                 }
-                spReceiver.setAdapter(new ArrayAdapter<String>(TaskResponseDeliver.this, R.layout.spanner_item,receiverNameList));
+                spReceiver.setAdapter(new ArrayAdapter<String>(TaskResponseDeliver.this, R.layout.spanner_item, receiverNameList));
                 spReceiver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
@@ -611,7 +595,7 @@ public class TaskResponseDeliver extends AppCompatActivity {
         String fileSuffix = "";
         if (file.isFile()) {
             // 获取文件后缀名
-            fileSuffix = CommonUtil.getFileName(url)+ CommonUtil.getFileLastName(url);
+            fileSuffix = CommonUtil.getFileName(url) + CommonUtil.getFileLastName(url);
         }
         // 文件标识符objectKey
         final String objectKey = "alioss_" + fileSuffix;

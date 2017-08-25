@@ -15,6 +15,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -53,6 +54,7 @@ import butterknife.ButterKnife;
 public class BidAccordWithTender extends AppCompatActivity {
 
     private static final int BACK_TASK = 0;
+    private static final String TAG = "BidAccordWithTender";
     @BindView(R.id.bid_accord_with_tender_iv_last)
     TextView bidAccordWithTenderIvLast;
     @BindView(R.id.bid_accord_with_tender_rl)
@@ -67,20 +69,22 @@ public class BidAccordWithTender extends AppCompatActivity {
     UpLoadListView lvTenderInfoQueue;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;
-    @BindView(R.id.tv_not)
-    TextView tvNot;
-    @BindView(R.id.rl_not_data)
-    RelativeLayout rlNotData;
     @BindView(R.id.ll_load)
     LinearLayout llLoad;
     @BindView(R.id.loading_error_img)
     ImageView loadingErrorImg;
     @BindView(R.id.rl_load_fail)
     RelativeLayout rlLoadFail;
-    @BindView(R.id.rl_load)
-    RelativeLayout rlLoad;
+    @BindView(R.id.tv_not)
+    TextView tvNot;
+    @BindView(R.id.rl_not_data)
+    RelativeLayout rlNotData;
+    @BindView(R.id.fl_load)
+    FrameLayout flLoad;
     @BindView(R.id.activity_bid_accord_with_tender)
     RelativeLayout activityBidAccordWithTender;
+
+
     private MyActivityManager myActivityManager;
     private TextView bid_accord_with_tender_iv_last;
     private LinearLayout ll_load;
@@ -101,7 +105,6 @@ public class BidAccordWithTender extends AppCompatActivity {
     private String expire = "";
     private int pageNo = 1;
     private SparseArray<View> viewSparseArray;
-    private Boolean isExipre = false;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -151,7 +154,7 @@ public class BidAccordWithTender extends AppCompatActivity {
         sort(sort, expire);
         addHeaderView();
         //重新加载
-        WaveSwipeHeader waveSwipeHeader= new WaveSwipeHeader(this);
+        WaveSwipeHeader waveSwipeHeader = new WaveSwipeHeader(this);
         waveSwipeHeader.setColorSchemeColors(Color.WHITE, Color.WHITE);
         smartRefreshLayout.setRefreshHeader(waveSwipeHeader);
         smartRefreshLayout.setFooterHeight(0);
@@ -159,7 +162,7 @@ public class BidAccordWithTender extends AppCompatActivity {
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                pageNo=1;
+                pageNo = 1;
                 rowList.clear();
                 sort(sort, expire);
 
@@ -198,12 +201,14 @@ public class BidAccordWithTender extends AppCompatActivity {
                 }
             }
         });
+
+
         //招标详情
         lv_tender_info_queue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position < rowList.size() + 1) {
-                    TenderAndBid.Result.Row row = rowList.get(position - 1);
+                if (position < rowList.size() + 2) {
+                    TenderAndBid.Result.Row row = rowList.get(position - 2);
                     Intent intent = new Intent(BidAccordWithTender.this, TenderDetail.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("TenderDetail", row);
@@ -220,6 +225,7 @@ public class BidAccordWithTender extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     Intent intent = new Intent(BidAccordWithTender.this, BidSeekTender.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             }
@@ -249,28 +255,28 @@ public class BidAccordWithTender extends AppCompatActivity {
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 3:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "3";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 4:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "4";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -293,28 +299,28 @@ public class BidAccordWithTender extends AppCompatActivity {
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 3:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "3";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 4:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         sort = "4";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -339,14 +345,14 @@ public class BidAccordWithTender extends AppCompatActivity {
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         expire = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         expire = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -371,14 +377,14 @@ public class BidAccordWithTender extends AppCompatActivity {
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         expire = "1";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                     case 2:
                         rowList.clear();
                         rl_load.setVisibility(View.VISIBLE);
                         ll_load.setVisibility(View.VISIBLE);
                         expire = "2";
-                        sort(sort, expire);
+                        sortFilter(sort, expire);
                         break;
                 }
 
@@ -454,9 +460,8 @@ public class BidAccordWithTender extends AppCompatActivity {
                 viewHolder.tv_publish = (TextView) convertView.findViewById(R.id.tv_publish);
                 viewHolder.iv_out_of_date = (ImageView) convertView.findViewById(R.id.iv_out_of_date);
                 viewHolder.iv = (ImageView) convertView.findViewById(R.id.iv);
-
-                viewSparseArray.put(position, convertView);
                 convertView.setTag(viewHolder);
+                viewSparseArray.put(position, convertView);
             } else {
                 convertView = viewSparseArray.get(position);
                 viewHolder = (ViewHolder) convertView.getTag();
@@ -546,7 +551,7 @@ public class BidAccordWithTender extends AppCompatActivity {
 
     }
 
-    private void sortRefresh(final String sort, String expire) {
+    private void sortFilter(final String sort, String expire) {
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/inviteBidSort");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
         rp.addBodyParameter("pageNo", pageNo + "");
@@ -560,17 +565,16 @@ public class BidAccordWithTender extends AppCompatActivity {
                 Gson gson = new Gson();
                 TenderAndBid tender = gson.fromJson(result, TenderAndBid.class);
                 Log.e("BidAccordWithTender", "sort tender+++++" + tender.toString());
-                if (tender.getResult().total <= rowList.size()) {
-                    isHasData = false;
+                if (tender.getResult().rows.size() == 0) {
+                    rl_not_data.setVisibility(View.VISIBLE);
+
                 } else {
-                    rowList.addAll(0, tender.getResult().rows);
-                    if (myAdapter == null) {
-                        lv_tender_info_queue.setAdapter(myAdapter);
-                    } else {
-                        myAdapter.notifyDataSetChanged();
-                    }
-                    myAdapter = new MyAdapter();
+                    rl_not_data.setVisibility(View.GONE);
                 }
+                isHasData = true;
+                rowList.addAll(0, tender.getResult().rows);
+
+
                 handler.sendEmptyMessage(0);//发送消息通知更新界面
             }
 
@@ -600,10 +604,13 @@ public class BidAccordWithTender extends AppCompatActivity {
 
     public void addHeaderView() {
         View view = View.inflate(this, R.layout.layout_bid_header, null);
-        sp_sort = ((Spinner) view.findViewById(R.id.sp_sort));
-        sp_expire = ((Spinner) view.findViewById(R.id.sp_expire));
+
         et_seek = (EditText) view.findViewById(R.id.et_seek);
         tv_seek = ((TextView) view.findViewById(R.id.tv_seek));
         lv_tender_info_queue.addHeaderView(view);
+        View filter = View.inflate(this, R.layout.item_bid_seek_category, null);
+        sp_sort = ((Spinner) filter.findViewById(R.id.sp_sort));
+        sp_expire = ((Spinner) filter.findViewById(R.id.sp_expire));
+        lv_tender_info_queue.addHeaderView(filter);
     }
 }
