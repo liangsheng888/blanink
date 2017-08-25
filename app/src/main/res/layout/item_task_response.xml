@@ -22,9 +22,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/order_item_ll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_alignParentTop="true"
@@ -32,37 +32,39 @@
 
         <TextView
             android:id="@+id/tv_companyName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textSize="16sp"
-            android:textColor="@color/colorTheme" />
+            android:text="江苏"
+            android:textColor="@color/colorBlack" />
 
 
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp">
+            >
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:singleLine="true"
                 android:layout_centerVertical="true"
-                android:text=""
-                android:textColor="@color/colorTheme" />
+                android:text="两天前"
+                android:textColor="@color/colorBlack" />
         </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
     <View
         android:id="@+id/view"
         android:background="@color/colorBackGround"
         android:layout_below="@id/order_item_ll"
         android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
         android:layout_height="1dp">
 
     </View>

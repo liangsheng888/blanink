@@ -99,22 +99,21 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
     @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+    LinearLayout rlDown;
     @BindView(R.id.textView5)
     TextView textView5;
     @BindView(R.id.order_detail_tv_note)
     TextView orderDetailTvNote;
     @BindView(R.id.order_detail_ll_note)
     LinearLayout orderDetailLlNote;
-    @BindView(R.id.rl_flow)
-    RelativeLayout rlFlow;
     @BindView(R.id.tv_seek_progress)
     TextView tvSeekProgress;
     @BindView(R.id.tv_add_note)
     TextView tvAddNote;
     @BindView(R.id.item_come_order_detail_product)
     LinearLayout itemComeOrderDetailProduct;
-
+    @BindView(R.id.rl_flow)
+    RelativeLayout rlFlow;
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -375,7 +374,7 @@ public class FlowSortCompletedProductDetail extends AppCompatActivity {
                 Log.e("@@@@", orderProduct.toString());
                 //初始化数据
                 initFlow();
-                if(SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CREATED.equals(orderProduct.getResult().getOrderProductStatus())){
+                if (SysConstants.ORDER_PRODUCT_STATUS_COMPANY_A_CREATED.equals(orderProduct.getResult().getOrderProductStatus())) {
                     tvSeekProgress.setVisibility(View.VISIBLE);
                 }
                 proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类

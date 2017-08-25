@@ -2408,6 +2408,11 @@ public class ProductDeliverInfo implements Serializable {
                     private boolean admin;
                     private String roleNames;
                     private List<?> roleList;
+                    private String photo;
+
+                    public String getPhoto() {
+                        return photo;
+                    }
 
                     public String getId() {
                         return id;
@@ -2863,6 +2868,11 @@ public class ProductDeliverInfo implements Serializable {
                     private boolean admin;
                     private String roleNames;
                     private List<?> roleList;
+                    private String photo;
+
+                    public String getPhoto() {
+                        return photo;
+                    }
 
                     public String getId() {
                         return id;

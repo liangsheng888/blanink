@@ -60,6 +60,7 @@ import okhttp3.Response;
 
 public class ComeOrderProductDetail extends AppCompatActivity {
 
+
     @BindView(R.id.come_order)
     TextView comeOrder;
     @BindView(R.id.iv_last)
@@ -72,12 +73,14 @@ public class ComeOrderProductDetail extends AppCompatActivity {
     TextView category;
     @BindView(R.id.proCateGory)
     TextView proCateGory;
+    @BindView(R.id.order_detail_ll_proCateGory)
+    LinearLayout orderDetailLlProCateGory;
     @BindView(R.id.tv_ruler)
     TextView tvRuler;
     @BindView(R.id.order_detail_ll_proCateGory_ruler)
     TextView orderDetailLlProCateGoryRuler;
-    @BindView(R.id.order_detail_ll_proCateGory)
-    LinearLayout orderDetailLlProCateGory;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
     @BindView(R.id.tv_price)
     TextView tvPrice;
     @BindView(R.id.come_order_detail_single_price)
@@ -106,22 +109,22 @@ public class ComeOrderProductDetail extends AppCompatActivity {
     TextView tvAttactment;
     @BindView(R.id.rl_down)
     RelativeLayout rlDown;
+    @BindView(R.id.ll)
+    LinearLayout ll;
     @BindView(R.id.textView5)
     TextView textView5;
     @BindView(R.id.order_detail_tv_note)
     TextView orderDetailTvNote;
     @BindView(R.id.order_detail_ll_note)
     LinearLayout orderDetailLlNote;
-    @BindView(R.id.activity_come_order_product_detail)
-    RelativeLayout activityComeOrderProductDetail;
-    @BindView(R.id.rl)
-    RelativeLayout rl;
     @BindView(R.id.tv_seek_progress)
     TextView tvSeekProgress;
     @BindView(R.id.tv_add_note)
     TextView tvAddNote;
     @BindView(R.id.item_come_order_detail_product)
     LinearLayout itemComeOrderDetailProduct;
+    @BindView(R.id.activity_come_order_product_detail)
+    RelativeLayout activityComeOrderProductDetail;
     private OneOrderProduct orderProduct;
     private AlertDialog alertDialog;
     private SharedPreferences sp;

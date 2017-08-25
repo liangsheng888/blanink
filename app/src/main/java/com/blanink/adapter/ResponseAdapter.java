@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.pojo.ResponseHistory;
+import com.blanink.utils.DateUtils;
 import com.blanink.utils.GlideUtils;
 
 import java.util.List;
@@ -61,7 +62,7 @@ public class ResponseAdapter extends BaseAdapter {
         }
         ResponseHistory.ResultBean.RowsBean rowsBean = rowsBeenList.get(position);
         viewHolder.companyName.setText(rowsBean.getACompany().getShortName());
-        viewHolder.tv_time.setText(rowsBean.getCreateDate());
+        viewHolder.tv_time.setText(DateUtils.format(DateUtils.stringToDate(rowsBean.getCreateDate())));
         viewHolder.tv_bad.setText(rowsBean.getFaultAmount() + "");
         viewHolder.tv_response.setText(rowsBean.getAchieveAmount() + "");
         if (rowsBean.getFeedbackUser() != null) {

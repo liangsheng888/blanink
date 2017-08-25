@@ -3,12 +3,16 @@ package com.blanink.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -22,6 +26,8 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -84,16 +90,48 @@ public class ReceiveEmailFragment extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             lv.completeRefresh(isHasData);
-            if (adapter == null || adapter.getCount() == 0) {
-                rlNotData.setVisibility(View.VISIBLE);
-            } else {
+
+            if(adapter!=null){
+                if(resultBeanList.size()==0){
+                    rlNotData.setVisibility(View.VISIBLE);
+                }
+                if(adapter.getCount()==0){
+                    rlNotData.setVisibility(View.VISIBLE);
+
+                }
                 adapter.notifyDataSetChanged();
+
             }
+
         }
     };
     private int pageNo = 1;
     private String type = "";
     private Spinner spNotifyCateGory;
+    /**
+     * TextView选择框
+     */
+    private TextView mSelectTv;
+
+    /**
+     * popup窗口里的ListView
+     */
+    private ListView mTypeLv;
+
+    /**
+     * popup窗口
+     */
+    private PopupWindow typeSelectPopup;
+
+    /**
+     * 模拟的假数据
+     */
+    private List<String> testData=new ArrayList<>();
+
+    /**
+     * 数据适配器
+     */
+    private ArrayAdapter<String> testDataAdapter;
 
     @Nullable
     @Override
@@ -167,105 +205,27 @@ public class ReceiveEmailFragment extends Fragment {
     }
 
     private void initData() {
+        testData.add("通知筛选");
+        testData.add("会议通告");
+        testData.add("咨询沟通");
+        testData.add("活动通告");
+        testData.add("下家申请");
+        testData.add("上家申请");
+        testData.add("下家解除");
+        testData.add("上家解除");
+        testData.add("申请回复");
         loadNotifyFilter();
         View view = View.inflate(getActivity(), R.layout.layout_my_notify_header, null);
         lv.addHeaderView(view);
-        spNotifyCateGory = (Spinner) view.findViewById(R.id.sp_notify_cateGory);
-
-        spNotifyCateGory.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spanner_item,
-                new String[]{"通知筛选", "会议通告", "咨询沟通", "活动通告", "产品沟通", "下家申请", "上家申请", "下家解除", "上家解除", "申请回复"}));
-        //筛选
-        spNotifyCateGory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSelectTv=(TextView)view.findViewById(R.id.tv_select_input);
+        mSelectTv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position) {
-                    case 0:
-                        pageNo = 1;
-                        type = "";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        loadNotifyFilter();
-                        break;
-                    case 1:
-                        pageNo = 1;
-                        type = "1";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 2:
-                        pageNo = 1;
-                        type = "2";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 3:
-                        pageNo = 1;
-                        type = "3";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 4:
-                        pageNo = 1;
-                        type = "4";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 5:
-                        pageNo = 1;
-                        type = "5";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 6:
-                        pageNo = 1;
-                        type = "6";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 7:
-                        pageNo = 1;
-                        type = "7";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 8:
-                        pageNo = 1;
-                        type = "8";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
-                    case 9:
-                        pageNo = 1;
-                        type = "9";
-                        resultBeanList.clear();
-                        rlNotData.setVisibility(View.GONE);
-                        llLoad.setVisibility(View.VISIBLE);
-                        loadNotifyFilter();
-                        break;
+            public void onClick(View v) {
+                initSelectPopup();
+                // 使用isShowing()检查popup窗口是否在显示状态
+                if (typeSelectPopup != null && !typeSelectPopup.isShowing()) {
+                    typeSelectPopup.showAsDropDown(mSelectTv, 0, 0);
                 }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
         //刷新数据
@@ -505,8 +465,52 @@ public class ReceiveEmailFragment extends Fragment {
         //resultBeanList.clear();
         // loadNotifyFilter();
     }
+    public void loadFilter() {
+        RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "notify/filter");
+        rp.addBodyParameter("currentUser.id", sp.getString("USER_ID", null));
+        rp.addBodyParameter("pageNo", pageNo + "");
+        rp.addBodyParameter("type", type);
+        x.http().post(rp, new Callback.CacheCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("ReceiveEmailFragment", result);
+                llLoad.setVisibility(View.GONE);
+                Gson gson = new Gson();
+                Notify notify = gson.fromJson(result, Notify.class);
+                Log.e("ReceiveEmailFragment", notify.toString());
+                resultBeanList.clear();
+                resultBeanList.addAll(notify.getResult().getRows());
+                isHasData=true;
+                handler.sendEmptyMessage(0);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("ReceiveEmailFragment", ex.toString());
+                llLoad.setVisibility(View.GONE);
+                rlLoadFail.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+            @Override
+            public boolean onCache(String result) {
+                return false;
+            }
+        });
+    }
 
     public void loadNotifyFilter() {
+
+
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "notify/filter");
         rp.addBodyParameter("currentUser.id", sp.getString("USER_ID", null));
         rp.addBodyParameter("pageNo", pageNo + "");
@@ -556,4 +560,98 @@ public class ReceiveEmailFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * 初始化popup窗口
+     */
+    private void initSelectPopup() {
+        mTypeLv = new ListView(getActivity());
+
+        // 设置适配器
+        testDataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.popup_text_item,testData );
+        mTypeLv.setAdapter(testDataAdapter);
+
+        // 设置ListView点击事件监听
+        mTypeLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // 在这里获取item数据
+                String value = testData.get(position);
+                // 把选择的数据展示对应的TextView上
+                mSelectTv.setText(value);
+
+                switch (position) {
+                    case 0:
+                        pageNo = 1;
+                        type = "";
+
+                        break;
+                    case 1:
+                        pageNo = 1;
+                        type = "1";
+
+                        break;
+                    case 2:
+                        pageNo = 1;
+                        type = "2";
+
+                        break;
+                    case 3:
+                        pageNo = 1;
+                        type = "3";
+
+                        break;
+                    case 4:
+                        pageNo = 1;
+                        type = "4";
+
+                        break;
+                    case 5:
+                        pageNo = 1;
+                        type = "5";
+
+                        break;
+                    case 6:
+                        pageNo = 1;
+                        type = "6";
+
+                        break;
+                    case 7:
+                        pageNo = 1;
+                        type = "7";
+
+                        break;
+                    case 8:
+                        pageNo = 1;
+                        type = "8";
+
+                    case 9:
+                        pageNo = 1;
+                        type = "9";
+
+                        break;
+                }
+
+                rlNotData.setVisibility(View.GONE);
+                llLoad.setVisibility(View.VISIBLE);
+                loadFilter() ;
+                // 选择完后关闭popup窗口
+                typeSelectPopup.dismiss();
+            }
+        });
+        typeSelectPopup = new PopupWindow(mTypeLv, mSelectTv.getWidth(), ActionBar.LayoutParams.WRAP_CONTENT, true);
+        // 取得popup窗口的背景图片
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.color.colorWhite);
+        typeSelectPopup.setBackgroundDrawable(drawable);
+        typeSelectPopup.setFocusable(true);
+        typeSelectPopup.setOutsideTouchable(true);
+        typeSelectPopup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                // 关闭popup窗口
+                typeSelectPopup.dismiss();
+            }
+        });
+    }
+
 }

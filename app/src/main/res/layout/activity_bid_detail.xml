@@ -195,39 +195,50 @@
         </LinearLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/rl_down"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite">
-
-            <TextView
-                android:id="@+id/attactment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:text="附件:"
-                android:textColor="#000" />
-
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/attactment"
-                android:background="@color/colorBackGround">
 
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                >
                 <TextView
-                    android:id="@+id/tv_attactment"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/attactment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/colorBlue"
-                    android:background="@drawable/selector_corner_blue"
-                    android:gravity="center"
-                    android:text="查看" />
+                    android:textColor="#000"
+                    android:layout_marginLeft="10dp"
+                    android:text="附件:"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/attactment"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorBackGround">
+
+                    <TextView
+                        android:id="@+id/tv_attactment"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:text="查看"
+                        android:textSize="14sp"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:background="@drawable/selector_corner_blue"/>
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"></RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -341,38 +352,25 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorTheme" />
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/tv_name"
-                android:background="@color/colorBackGround"></View>
+
 
             <TextView
                 android:id="@+id/tv_company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/view3"
+                android:layout_toRightOf="@id/tv_name"
                 android:layout_centerVertical="true"
                 android:text=" "
                 android:textColor="@color/colorTheme" />
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/tv_company_name"
-                android:background="@color/colorBackGround"></View>
 
             <TextView
                 android:id="@+id/bid_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/view4"
+                android:layout_toRightOf="@id/tv_company_name"
                 android:text="投标期:"
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorTheme" />
@@ -480,39 +478,52 @@
         </RelativeLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/rl_down2"
+        <LinearLayout
+            android:id="@+id/rl_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite">
-
-            <TextView
-                android:id="@+id/attactment2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:text="附件:"
-                android:textColor="#000" />
-
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/attactment2"
-                android:background="@color/colorBackGround">
 
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                >
                 <TextView
-                    android:id="@+id/tv_my_attactment"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/attactment2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/colorBlue"
-                    android:background="@drawable/selector_corner_blue"
-                    android:gravity="center"
-                    android:text="查看" />
+                    android:textColor="#000"
+
+                    android:text="附件:"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/attactment2"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorBackGround">
+
+                    <TextView
+                        android:id="@+id/tv_attactment2"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:text="查看"
+                        android:textSize="14sp"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:background="@drawable/selector_corner_blue"/>
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"></RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

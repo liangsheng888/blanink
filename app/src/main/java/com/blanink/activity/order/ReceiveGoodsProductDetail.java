@@ -53,12 +53,14 @@ public class ReceiveGoodsProductDetail extends AppCompatActivity {
     TextView category;
     @BindView(R.id.proCateGory)
     TextView proCateGory;
+    @BindView(R.id.order_detail_ll_proCateGory)
+    LinearLayout orderDetailLlProCateGory;
     @BindView(R.id.tv_ruler)
     TextView tvRuler;
     @BindView(R.id.order_detail_ll_proCateGory_ruler)
     TextView orderDetailLlProCateGoryRuler;
-    @BindView(R.id.order_detail_ll_proCateGory)
-    LinearLayout orderDetailLlProCateGory;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
     @BindView(R.id.tv_price)
     TextView tvPrice;
     @BindView(R.id.come_order_detail_single_price)
@@ -74,7 +76,7 @@ public class ReceiveGoodsProductDetail extends AppCompatActivity {
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
     @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+    LinearLayout rlDown;
     @BindView(R.id.tv_endDateHand)
     TextView tvEndDateHand;
     @BindView(R.id.come_order_detail_tv_endDateHand)
@@ -149,27 +151,28 @@ public class ReceiveGoodsProductDetail extends AppCompatActivity {
                                                          @Override
                                                          public void run() {
                                                              //recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                                                             List<String> arrayList=null;
-                                                             if (getIntent().getStringExtra("images")!= null && getIntent().getStringExtra("images") != ""&&!"".equals(getIntent().getStringExtra("images"))) {
+                                                             List<String> arrayList = null;
+                                                             if (getIntent().getStringExtra("images") != null && getIntent().getStringExtra("images") != "" && !"".equals(getIntent().getStringExtra("images"))) {
                                                                  arrayList = StringToListUtils.stringToList(getIntent().getStringExtra("images"), ",");
-                                                             }else {
-                                                                 arrayList=new ArrayList<>();
+                                                             } else {
+                                                                 arrayList = new ArrayList<>();
                                                              }
 
 
                                                              final List<String> finalArrayList = arrayList;
-                                                             if(finalArrayList.size()==0){
+                                                             if (finalArrayList.size() == 0) {
                                                                  tvAttactment.setText("无附件");
-                                                             }else {
-                                                            // final List<String> stringList = StringToListUtils.stringToList(getIntent().getStringExtra("images"), ",");
-                                                             tvAttactment.setOnClickListener(new View.OnClickListener() {
-                                                                 @Override
-                                                                 public void onClick(View v) {
-                                                                     Intent intent = new Intent(ReceiveGoodsProductDetail.this, AttachmentBrow.class);
-                                                                     intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                                                                     startActivity(intent);
-                                                                 }
-                                                             });}
+                                                             } else {
+                                                                 // final List<String> stringList = StringToListUtils.stringToList(getIntent().getStringExtra("images"), ",");
+                                                                 tvAttactment.setOnClickListener(new View.OnClickListener() {
+                                                                     @Override
+                                                                     public void onClick(View v) {
+                                                                         Intent intent = new Intent(ReceiveGoodsProductDetail.this, AttachmentBrow.class);
+                                                                         intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                                                                         startActivity(intent);
+                                                                     }
+                                                                 });
+                                                             }
                                                              proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
                                                              orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称
                                                              comeOrderDetailSinglePrice.setText(orderProduct.getResult().getPrice());//单价

@@ -51,12 +51,14 @@ public class FlowProductDetail extends AppCompatActivity {
     TextView category;
     @BindView(R.id.proCateGory)
     TextView proCateGory;
+    @BindView(R.id.order_detail_ll_proCateGory)
+    LinearLayout orderDetailLlProCateGory;
     @BindView(R.id.tv_ruler)
     TextView tvRuler;
     @BindView(R.id.order_detail_ll_proCateGory_ruler)
     TextView orderDetailLlProCateGoryRuler;
-    @BindView(R.id.order_detail_ll_proCateGory)
-    LinearLayout orderDetailLlProCateGory;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
     @BindView(R.id.tv_price)
     TextView tvPrice;
     @BindView(R.id.come_order_detail_single_price)
@@ -84,7 +86,7 @@ public class FlowProductDetail extends AppCompatActivity {
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
     @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+    LinearLayout rlDown;
     @BindView(R.id.textView5)
     TextView textView5;
     @BindView(R.id.order_detail_tv_note)
@@ -115,19 +117,19 @@ public class FlowProductDetail extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         OrderDetail.ResultBean orderProduct = ((OrderDetail.ResultBean) bundle.getSerializable("orderProduct"));
         if (orderProduct.getImages() != null) {
-            List<String> arrayList=null;
-            if (orderProduct.getImages()!= null && orderProduct.getImages() != ""&&!"".equals(orderProduct.getImages())) {
+            List<String> arrayList = null;
+            if (orderProduct.getImages() != null && orderProduct.getImages() != "" && !"".equals(orderProduct.getImages())) {
                 arrayList = StringToListUtils.stringToList(orderProduct.getImages(), "\\|");
-            }else {
-                arrayList=new ArrayList<>();
+            } else {
+                arrayList = new ArrayList<>();
             }
 
 
             final List<String> finalArrayList = arrayList;
-           // final List<String> picList = StringToListUtils.stringToList(orderProduct.getImages(), "\\|");
-                if(finalArrayList.size()==0){
-                    tvAttactment.setText("无附件");
-                }else {
+            // final List<String> picList = StringToListUtils.stringToList(orderProduct.getImages(), "\\|");
+            if (finalArrayList.size() == 0) {
+                tvAttactment.setText("无附件");
+            } else {
                 tvAttactment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -135,7 +137,8 @@ public class FlowProductDetail extends AppCompatActivity {
                         intent.putExtra("imageList", new Gson().toJson(finalArrayList));
                         startActivity(intent);
                     }
-                });}
+                });
+            }
              /*   final ArrayList<String> arrayList = new ArrayList<String>();
                 arrayList.addAll(picList);
                 //点击放大

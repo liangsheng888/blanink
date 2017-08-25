@@ -82,7 +82,7 @@ public class FlowProgressProductDetail extends AppCompatActivity {
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
     @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+    LinearLayout rlDown;
     @BindView(R.id.textView5)
     TextView textView5;
     @BindView(R.id.order_detail_tv_note)
@@ -131,25 +131,25 @@ public class FlowProgressProductDetail extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        List<String> arrayList=null;
-                        if (orderProduct.getResult().getImages()!= null && orderProduct.getResult().getImages() != ""&&!"".equals(orderProduct.getResult().getImages())) {
+                        List<String> arrayList = null;
+                        if (orderProduct.getResult().getImages() != null && orderProduct.getResult().getImages() != "" && !"".equals(orderProduct.getResult().getImages())) {
                             arrayList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), "\\|");
-                        }else {
-                            arrayList=new ArrayList<>();
+                        } else {
+                            arrayList = new ArrayList<>();
                         }
 
 
                         final List<String> finalArrayList = arrayList;
                         //final List<String> picList = StringToListUtils.stringToList(orderProduct.getResult().getImages(), "\\|");
 
-                            tvAttactment.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(FlowProgressProductDetail.this, AttachmentBrow.class);
-                                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                                    startActivity(intent);
-                                }
-                            });
+                        tvAttactment.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(FlowProgressProductDetail.this, AttachmentBrow.class);
+                                intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                                startActivity(intent);
+                            }
+                        });
 
                         proCateGory.setText(orderProduct.getResult().getCompanyCategory().getName());//产品类
                         orderDetailLlProCateGoryRuler.setText(orderProduct.getResult().getProductName());//产品名称

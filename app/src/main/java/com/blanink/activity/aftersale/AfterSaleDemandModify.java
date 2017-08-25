@@ -76,8 +76,7 @@ public class AfterSaleDemandModify extends AppCompatActivity {
     Spinner spReason;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
+
     @BindView(R.id.tv_specific_description_to_demand)
     TextView tvSpecificDescriptionToDemand;
     @BindView(R.id.et_description_to_demand)
@@ -137,21 +136,7 @@ public class AfterSaleDemandModify extends AppCompatActivity {
                 finish();
             }
         });
-        //选择图片
-        ivPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PhotoPicker.builder()
-                        //设置选择个数
-                        .setPhotoCount(3)
-                        //选择界面第一个显示拍照按钮
-                        .setShowCamera(true)
-                        //选择时点击图片放大浏览
-                        .setPreviewEnabled(false)
-                        //附带已经选中过的图片
-                        .start(AfterSaleDemandModify.this);
-            }
-        });
+
         //
         //图片放大
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
@@ -160,7 +145,7 @@ public class AfterSaleDemandModify extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)

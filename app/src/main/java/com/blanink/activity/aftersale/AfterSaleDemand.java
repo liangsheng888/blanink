@@ -74,8 +74,6 @@ public class AfterSaleDemand extends AppCompatActivity {
     Spinner spReason;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.iv_picture)
-    ImageView ivPicture;
     @BindView(R.id.tv_specific_description_to_demand)
     TextView tvSpecificDescriptionToDemand;
     @BindView(R.id.et_description_to_demand)
@@ -120,8 +118,12 @@ public class AfterSaleDemand extends AppCompatActivity {
                 finish();
             }
         });
+        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
+
         //选择图片
-        ivPicture.setOnClickListener(new View.OnClickListener() {
+    /*    ivPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PhotoPicker.builder()
@@ -134,7 +136,7 @@ public class AfterSaleDemand extends AppCompatActivity {
                         //附带已经选中过的图片
                         .start(AfterSaleDemand.this);
             }
-        });
+        });*/
         //
         //图片放大
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
@@ -143,7 +145,7 @@ public class AfterSaleDemand extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         if (photoAdapter.getItemViewType(position) == PhotoAdapter.TYPE_ADD) {
                             PhotoPicker.builder()
-                                    .setPhotoCount(PhotoAdapter.MAX)
+                                    .setPhotoCount(3)
                                     .setShowCamera(true)
                                     .setPreviewEnabled(false)
                                     .setSelected(selectedPhotos)
@@ -290,7 +292,7 @@ public class AfterSaleDemand extends AppCompatActivity {
             ArrayList<String> photos = null;
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                photoAdapter = new PhotoAdapter(this, selectedPhotos);
+
                 selectedPhotos.clear();
                 if (photos != null) {
                     selectedPhotos.addAll(photos);
@@ -300,9 +302,6 @@ public class AfterSaleDemand extends AppCompatActivity {
                     urls = urls.substring(1);
                     Log.e("ComeOrder", urls);
                 }
-
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));
-                recyclerView.setAdapter(photoAdapter);
 
                 photoAdapter.notifyDataSetChanged();
             }

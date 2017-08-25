@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ public class WorkResponseHistoryDetail extends AppCompatActivity {
     @BindView(R.id.tv_time)
     TextView tvTime;
     @BindView(R.id.order_item_ll2)
-    RelativeLayout orderItemLl2;
+    LinearLayout orderItemLl2;
     @BindView(R.id.order_item_ll2_guigeName)
     TextView orderItemLl2GuigeName;
     @BindView(R.id.tv_pro_name)
@@ -61,6 +62,8 @@ public class WorkResponseHistoryDetail extends AppCompatActivity {
     TextView tvAttactment;
     @BindView(R.id.rl_down)
     RelativeLayout rlDown;
+    @BindView(R.id.ll)
+    LinearLayout ll;
     @BindView(R.id.note)
     TextView note;
     @BindView(R.id.tv_note)
@@ -91,22 +94,26 @@ public class WorkResponseHistoryDetail extends AppCompatActivity {
         tvProName.setText(detail.getOrderProduct().getProductName());
         tvProCategory.setText(detail.getOrderProduct().getCompanyCategory().getName());
         tvNum.setText(detail.getOrderProduct().getAmount());
-        List<String> arrayList=null;
-        if (detail.getFeedbackAttachmentStr()!= null && detail.getFeedbackAttachmentStr() != ""&&!"".equals(detail.getFeedbackAttachmentStr())) {
+        List<String> arrayList = null;
+        if (detail.getFeedbackAttachmentStr() != null && detail.getFeedbackAttachmentStr() != "" && !"".equals(detail.getFeedbackAttachmentStr())) {
             arrayList = StringToListUtils.stringToList(detail.getFeedbackAttachmentStr(), ",");
-        }else {
-            arrayList=new ArrayList<>();
+        } else {
+            arrayList = new ArrayList<>();
         }
 
         final List<String> finalArrayList = arrayList;
-        tvAttactment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WorkResponseHistoryDetail.this, AttachmentBrow.class);
-                intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                startActivity(intent);
-            }
-        });
+        if (arrayList.size() == 0) {
+            tvAttactment.setText("无附件");
+        } else {
+            tvAttactment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(WorkResponseHistoryDetail.this, AttachmentBrow.class);
+                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                    startActivity(intent);
+                }
+            });
+        }
 
     }
 }

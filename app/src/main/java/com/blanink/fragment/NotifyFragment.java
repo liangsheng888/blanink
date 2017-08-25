@@ -9,7 +9,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -17,6 +20,8 @@ import android.widget.TextView;
 
 import com.blanink.R;
 import com.blanink.activity.notify.NotifySend;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,7 +48,20 @@ public class NotifyFragment extends Fragment {
     private RadioButton[] radioButtons;
     private int newIndex;
     private int oldIndex;
+    /** TextView选择框 */
+    private TextView mSelectTv;
 
+    /** popup窗口里的ListView */
+    private ListView mTypeLv;
+
+    /** popup窗口 */
+    private PopupWindow typeSelectPopup;
+
+    /** 模拟的假数据 */
+    private List<String> testData;
+
+    /** 数据适配器 */
+    private ArrayAdapter<String> testDataAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

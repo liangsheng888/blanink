@@ -59,7 +59,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/corner_common_border_gray"
+            android:background="@drawable/inputlayout_bg"
            />
 
         </RelativeLayout>

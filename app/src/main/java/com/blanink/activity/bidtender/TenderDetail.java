@@ -79,7 +79,7 @@ public class TenderDetail extends AppCompatActivity {
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
     @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+    LinearLayout rlDown;
     @BindView(R.id.tv_date)
     TextView tvDate;
     @BindView(R.id.tv_publish_date)
@@ -165,18 +165,18 @@ public class TenderDetail extends AppCompatActivity {
             tv_publish_date.setText(row.inviteDate);
             tv_end_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.expireDate)));
 
-            List<String> arrayList=null;
-            if (row.attachment!= null && row.attachment != ""&&!"".equals(row.attachment)) {
+            List<String> arrayList = null;
+            if (row.attachment != null && row.attachment != "" && !"".equals(row.attachment)) {
                 arrayList = StringToListUtils.stringToList(row.attachment, "\\|");
-            }else {
-                arrayList=new ArrayList<>();
+            } else {
+                arrayList = new ArrayList<>();
             }
 
 
             final List<String> finalArrayList = arrayList;
-            if(finalArrayList.size()==0){
+            if (finalArrayList.size() == 0) {
                 tvAttactment.setText("无附件");
-            }else {
+            } else {
                 tvAttactment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

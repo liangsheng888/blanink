@@ -23,6 +23,7 @@ import com.blanink.activity.AttachmentBrow;
 import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.FeedBackingTask;
+import com.blanink.utils.DateUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.StringToListUtils;
 import com.google.gson.Gson;
@@ -113,32 +114,33 @@ public class FlowProgressDetailHistory extends AppCompatActivity {
                         TextView tv_finished = viewHolder.getViewById(R.id.tv_finished);
                         TextView tv_bad = viewHolder.getViewById(R.id.tv_bad);
                         tv_master.setText(processFeedbackUser.getFeedbackUser().getName());
-                        date.setText(processFeedbackUser.getCreateDate());
+                        date.setText(DateUtils.format(DateUtils.stringToDate(processFeedbackUser.getCreateDate())));
                         tv_finished.setText((processFeedbackUser.getAchieveAmount()) + "个");
                         tv_bad.setText((processFeedbackUser.getFaultAmount()) + "个");
                         final FeedBackingTask.ResultBean.ProcessFeedbackListBean finalProcessFeedbackUser = processFeedbackUser;
-                        SwipeMenuCreator  creator = new SwipeMenuCreator() {
+                        SwipeMenuCreator creator = new SwipeMenuCreator() {
                             @Override
                             public void create(SwipeMenu menu) {
-                                if(finalProcessFeedbackUser.getFeedbackAttachmentStr()!=null){
-                                SwipeMenuItem seekProgressItem = new SwipeMenuItem(FlowProgressDetailHistory.this);
-                                seekProgressItem.setBackground(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
-                                seekProgressItem.setWidth(dp2px(100));
-                                seekProgressItem.setTitle("查看附件");
-                                seekProgressItem.setTitleSize(18);
-                                seekProgressItem.setTitleColor(Color.WHITE);
-                                menu.addMenuItem(seekProgressItem);}else {
+                                if (finalProcessFeedbackUser.getFeedbackAttachmentStr() != null&&!"".equals(finalProcessFeedbackUser.getFeedbackAttachmentStr())) {
+                                    SwipeMenuItem seekProgressItem = new SwipeMenuItem(FlowProgressDetailHistory.this);
+                                    seekProgressItem.setBackground(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
+                                    seekProgressItem.setWidth(dp2px(100));
+                                    seekProgressItem.setTitle("查看附件");
+                                    seekProgressItem.setTitleSize(18);
+                                    seekProgressItem.setTitleColor(Color.WHITE);
+                                    menu.addMenuItem(seekProgressItem);
+                                } else {
                                     SwipeMenuItem seekProgressItem = new SwipeMenuItem(FlowProgressDetailHistory.this);
                                     seekProgressItem.setBackground(new ColorDrawable(getResources().getColor(R.color.colorGray)));
                                     seekProgressItem.setWidth(dp2px(100));
-                                    seekProgressItem.setTitle("查看附件");
+                                    seekProgressItem.setTitle("暂无附件");
                                     seekProgressItem.setTitleSize(18);
                                     seekProgressItem.setTitleColor(Color.WHITE);
                                     menu.addMenuItem(seekProgressItem);
                                 }
                             }
                         };
-                        lv .setMenuCreator(creator);
+                        lv.setMenuCreator(creator);
 
                     }
                 };
@@ -148,9 +150,9 @@ public class FlowProgressDetailHistory extends AppCompatActivity {
                 lv.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                        if(feedbackingTask.getResult().getProcessFeedbackList().get(position).getFeedbackAttachmentStr()!=null){
-                            Intent intent=new Intent(FlowProgressDetailHistory.this, AttachmentBrow.class);
-                            intent.putExtra("imageList",new Gson().toJson(StringToListUtils.stringToList(feedbackingTask.getResult().getProcessFeedbackList().get(position).getFeedbackAttachmentStr(),",")));
+                        if (feedbackingTask.getResult().getProcessFeedbackList().get(position).getFeedbackAttachmentStr() != null&&!"".equals(feedbackingTask.getResult().getProcessFeedbackList().get(position).getFeedbackAttachmentStr())) {
+                            Intent intent = new Intent(FlowProgressDetailHistory.this, AttachmentBrow.class);
+                            intent.putExtra("imageList", new Gson().toJson(StringToListUtils.stringToList(feedbackingTask.getResult().getProcessFeedbackList().get(position).getFeedbackAttachmentStr(), ",")));
                             startActivity(intent);
                         }
 

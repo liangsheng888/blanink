@@ -16,7 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:paddingLeft="10dp"
             android:text="返回"
             android:layout_centerVertical="true"
             android:gravity="center"
@@ -52,8 +51,9 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/btn_send"
             android:hint="去留言...."
+            android:paddingLeft="5dp"
             android:gravity="center_vertical"
-            android:background="@drawable/corner_common_border_gray"
+            android:background="@drawable/inputlayout_bg"
             android:singleLine="true"
             android:textSize="16sp" />
     </RelativeLayout>

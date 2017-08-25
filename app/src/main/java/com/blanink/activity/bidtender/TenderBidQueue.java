@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
  * 招标  投标列表
  */
 public class TenderBidQueue extends AppCompatActivity {
+
     @BindView(R.id.bid_detail_iv_last)
     TextView bidDetailIvLast;
     @BindView(R.id.bid_detail_rl)
@@ -73,7 +74,7 @@ public class TenderBidQueue extends AppCompatActivity {
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
     @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+    LinearLayout rlDown;
     @BindView(R.id.publish_time)
     TextView publishTime;
     @BindView(R.id.tv_publish_time)
@@ -172,24 +173,27 @@ public class TenderBidQueue extends AppCompatActivity {
         //附件
         uploadAttachment();
 
-        List<String> arrayList=null;
-        if (row.attachment!= null && row.attachment != ""&&!"".equals(row.attachment)) {
+        List<String> arrayList = null;
+        if (row.attachment != null && row.attachment != "" && !"".equals(row.attachment)) {
             arrayList = StringToListUtils.stringToList(row.attachment, "\\|");
-        }else {
-            arrayList=new ArrayList<>();
+        } else {
+            arrayList = new ArrayList<>();
         }
 
 
         final List<String> finalArrayList = arrayList;
-        tvAttactment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TenderBidQueue.this, AttachmentBrow.class);
-                intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                startActivity(intent);
-            }
-        });
-
+        if(finalArrayList.size()==0){
+            tvAttactment.setText("无附件");
+        }else {
+            tvAttactment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TenderBidQueue.this, AttachmentBrow.class);
+                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                    startActivity(intent);
+                }
+            });
+        }
         //返回
         bid_detail_iv_last.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,7 +221,7 @@ public class TenderBidQueue extends AppCompatActivity {
         //如果有投标，不能编辑
         if (row.bidList.size() > 0) {
             btnUpdate.setVisibility(View.GONE);
-        }else {
+        } else {
             myPublishTenderRl.setVisibility(View.GONE);
         }
 
@@ -283,21 +287,21 @@ public class TenderBidQueue extends AppCompatActivity {
             viewHolder.tv_bid_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(bid.bidDate)));
             viewHolder.tv_single_price.setText(bid.bidPrice);
             String productionCycle = "";
-            if ((bid.productionCycleUnit==1)) {
+            if ((bid.productionCycleUnit == 1)) {
                 productionCycle = "个小时";
 
             }
-            if (bid.productionCycleUnit==2) {
+            if (bid.productionCycleUnit == 2) {
                 productionCycle = "天";
             }
-            if (bid.productionCycleUnit==3) {
+            if (bid.productionCycleUnit == 3) {
                 productionCycle = "周";
 
             }
-            if (bid.productionCycleUnit==4) {
+            if (bid.productionCycleUnit == 4) {
                 productionCycle = "个月";
             }
-            if (bid.productionCycleUnit==5) {
+            if (bid.productionCycleUnit == 5) {
                 productionCycle = "年";
             }
 

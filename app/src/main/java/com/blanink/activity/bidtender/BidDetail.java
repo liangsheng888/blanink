@@ -15,8 +15,8 @@ import com.blanink.R;
 import com.blanink.activity.AttachmentBrow;
 import com.blanink.pojo.BidDetailInfo;
 import com.blanink.pojo.TenderAndBid;
-import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.CommonUtil;
+import com.blanink.utils.DialogLoadUtils;
 import com.blanink.utils.MyActivityManager;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.utils.StringToListUtils;
@@ -36,6 +36,7 @@ import butterknife.ButterKnife;
  * 投标详情
  */
 public class BidDetail extends AppCompatActivity {
+
     @BindView(R.id.bid_detail_iv_last)
     TextView bidDetailIvLast;
     @BindView(R.id.bid_detail_rl)
@@ -64,8 +65,7 @@ public class BidDetail extends AppCompatActivity {
     TextView attactment;
     @BindView(R.id.tv_attactment)
     TextView tvAttactment;
-    @BindView(R.id.rl_down)
-    RelativeLayout rlDown;
+
     @BindView(R.id.tv_date)
     TextView tvDate;
     @BindView(R.id.tv_publish_date)
@@ -80,12 +80,8 @@ public class BidDetail extends AppCompatActivity {
     LinearLayout myBid;
     @BindView(R.id.tv_name)
     TextView tvName;
-    @BindView(R.id.view3)
-    View view3;
     @BindView(R.id.tv_company_name)
     TextView tvCompanyName;
-    @BindView(R.id.view4)
-    View view4;
     @BindView(R.id.bid_date)
     TextView bidDate;
     @BindView(R.id.tv_bid_date)
@@ -104,10 +100,10 @@ public class BidDetail extends AppCompatActivity {
     TextView tvArea;
     @BindView(R.id.attactment2)
     TextView attactment2;
-    @BindView(R.id.tv_my_attactment)
-    TextView tvMyAttactment;
-    @BindView(R.id.rl_down2)
-    RelativeLayout rlDown2;
+    @BindView(R.id.tv_attactment2)
+    TextView tvAttactment2;
+    @BindView(R.id.rl_down)
+    LinearLayout rlDown;
     @BindView(R.id.tv_note_detail)
     TextView tvNoteDetail;
     @BindView(R.id.tv_note_detail_content)
@@ -193,25 +189,28 @@ public class BidDetail extends AppCompatActivity {
             tv_publish_date.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.inviteDate)));
             tv_useful_time.setText(CommonUtil.dateToString(CommonUtil.stringToDate(row.expireDate)));
             tv_note_detail_content.setText(row.remarks);
-            List<String> arrayList=null;
-            if (row.attachment!= null &&row.attachment != ""&&!"".equals(row.attachment)) {
-                Log.e("@@@",row.attachment);
+            List<String> arrayList = null;
+            if (row.attachment != null && row.attachment != "" && !"".equals(row.attachment)) {
+                Log.e("@@@", row.attachment);
                 arrayList = StringToListUtils.stringToList(row.attachment, "\\|");
-            }else {
-                arrayList=new ArrayList<>();
+            } else {
+                arrayList = new ArrayList<>();
             }
 
 
             final List<String> finalArrayList = arrayList;
-            tvAttactment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(BidDetail.this, AttachmentBrow.class);
-                    intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                    startActivity(intent);
-                }
-            });
-
+            if(finalArrayList.size()==0){
+                tvAttactment.setText("无附件");
+            }else {
+                tvAttactment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(BidDetail.this, AttachmentBrow.class);
+                        intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                        startActivity(intent);
+                    }
+                });
+            }
         }
         //返回
         bid_detail_iv_last.setOnClickListener(new View.OnClickListener() {
@@ -235,8 +234,8 @@ public class BidDetail extends AppCompatActivity {
         RequestParams requestParams = new RequestParams(NetUrlUtils.NET_URL + "inviteBid/bidDetail");
         requestParams.addBodyParameter("userId", sp.getString("USER_ID", null));
 
-        requestParams.addBodyParameter("id",row.id);
-        Log.e("BidDetail",  NetUrlUtils.NET_URL + "inviteBid/bidDetail?userId="+ sp.getString("USER_ID", null)+"&id="+row.id);
+        requestParams.addBodyParameter("id", row.id);
+        Log.e("BidDetail", NetUrlUtils.NET_URL + "inviteBid/bidDetail?userId=" + sp.getString("USER_ID", null) + "&id=" + row.id);
 
         x.http().post(requestParams, new Callback.CacheCallback<String>() {
             @Override
@@ -269,23 +268,27 @@ public class BidDetail extends AppCompatActivity {
                 tv_date_of_delivery.setText(date);
                 tv_area.setText(bidinfo.result.bidCompany.address);
                 tv_note_content.setText(bidinfo.result.remarks);
-                List<String> arrayList=null;
-                if (bidinfo.result.attachment!= null &&bidinfo.result.attachment != ""&&!"".equals(bidinfo.result.attachment)) {
+                List<String> arrayList = null;
+                if (bidinfo.result.attachment != null && bidinfo.result.attachment != "" && !"".equals(bidinfo.result.attachment)) {
                     arrayList = StringToListUtils.stringToList(bidinfo.result.attachment, ",");
-                }else {
-                    arrayList=new ArrayList<>();
+                } else {
+                    arrayList = new ArrayList<>();
                 }
 
 
                 final List<String> finalArrayList = arrayList;
-                tvMyAttactment.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(BidDetail.this, AttachmentBrow.class);
-                        intent.putExtra("imageList", new Gson().toJson(finalArrayList));
-                        startActivity(intent);
-                    }
-                });
+                if (finalArrayList.size() == 0) {
+                    tvAttactment2.setText("无附件");
+                } else {
+                    tvAttactment2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(BidDetail.this, AttachmentBrow.class);
+                            intent.putExtra("imageList", new Gson().toJson(finalArrayList));
+                            startActivity(intent);
+                        }
+                    });
+                }
                 tv_talk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -293,7 +296,7 @@ public class BidDetail extends AppCompatActivity {
                         intent.putExtra("bid.id", bidinfo.result.id);
                         intent.putExtra("inviteBid.id", row.id);
                         intent.putExtra("createBy", row.createBy.id);
-                        intent.putExtra("companyName",row.inviteCompany.name);
+                        intent.putExtra("companyName", row.inviteCompany.name);
                         startActivity(intent);
                     }
                 });

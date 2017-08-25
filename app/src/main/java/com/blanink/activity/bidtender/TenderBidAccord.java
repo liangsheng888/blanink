@@ -74,10 +74,12 @@ public class TenderBidAccord extends AppCompatActivity {
     TextView total;
     @BindView(R.id.tv_total)
     TextView tvTotal;
-    @BindView(R.id.tv_attachment2)
-    TextView tvAttachment2;
-    @BindView(R.id.tv_attachment)
-    TextView tvAttachment;
+    @BindView(R.id.attactment)
+    TextView attactment;
+    @BindView(R.id.tv_attactment)
+    TextView tvAttactment;
+    @BindView(R.id.rl_down)
+    LinearLayout rlDown;
     @BindView(R.id.tv_note_detail)
     TextView tvNoteDetail;
     @BindView(R.id.tv_note_detail_content)
@@ -208,7 +210,7 @@ public class TenderBidAccord extends AppCompatActivity {
 
 
         final List<String> finalArrayList = arrayList;
-        tvAttachment.setOnClickListener(new View.OnClickListener() {
+        tvAttactment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TenderBidAccord.this, AttachmentBrow.class);
@@ -223,7 +225,7 @@ public class TenderBidAccord extends AppCompatActivity {
 
         RequestParams rp = new RequestParams(NetUrlUtils.NET_URL + "partner/savePartner");
         rp.addBodyParameter("userId", sp.getString("USER_ID", null));
-        rp.addBodyParameter("companyA.id", sp.getString("COMPANY_ID",null));
+        rp.addBodyParameter("companyA.id", sp.getString("COMPANY_ID", null));
         rp.addBodyParameter("companyB.id", bidCompany.bidCompany.id);
         rp.addBodyParameter("id", bidCompany.id);
         x.http().post(rp, new Callback.CacheCallback<String>() {

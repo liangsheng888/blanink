@@ -36,6 +36,7 @@ import com.blanink.adapter.CommonAdapter;
 import com.blanink.adapter.ViewHolder;
 import com.blanink.pojo.ProductDeliverInfo;
 import com.blanink.utils.DialogLoadUtils;
+import com.blanink.utils.GlideUtils;
 import com.blanink.utils.NetUrlUtils;
 import com.blanink.view.CustomSwipeRefreshLayout;
 import com.google.gson.Gson;
@@ -154,7 +155,9 @@ public class ReceiveGoodsProductReceiveQueue extends AppCompatActivity {
                                 TextView tv_deliver_num = viewHolder.getViewById(R.id.tv_deliver_num);
                                 TextView tv_sender_name = viewHolder.getViewById(R.id.tv_sender_name);
                                 TextView tv_deliver_note = viewHolder.getViewById(R.id.tv_deliver_note);
+                                ImageView imageView=viewHolder.getViewById(R.id.iv);
                                 tvProName.setText(processFeedbackListBean.getProcess().getName());
+
                                 if (processFeedbackListBean.getConfirmAmount() == -1) {
                                     tv_state.setText("已拒绝收货");
                                     tv_state.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -174,6 +177,9 @@ public class ReceiveGoodsProductReceiveQueue extends AppCompatActivity {
                                 tv_deliver_num.setText(processFeedbackListBean.getAchieveAmount() + "");
                                 tv_sender_name.setText(processFeedbackListBean.getFeedbackUser().getName());
                                 tv_deliver_note.setText(processFeedbackListBean.getRemarks());
+                                if(processFeedbackListBean.getFeedbackUser()!=null&&processFeedbackListBean.getFeedbackUser().getPhoto()!=null&&!"".equals(processFeedbackListBean.getFeedbackUser().getPhoto())) {
+                                    GlideUtils.glideImageView(ReceiveGoodsProductReceiveQueue.this, imageView, processFeedbackListBean.getFeedbackUser().getPhoto(), true);
+                                }
                                 final SwipeMenuCreator creator = new SwipeMenuCreator() {
                                     @Override
                                     public void create(final SwipeMenu menu) {

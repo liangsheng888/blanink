@@ -168,6 +168,13 @@ public class FlowOrder extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        et_seek.clearFocus();
+        et_seek.setCursorVisible(false);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         myActivityManager.popOneActivity(this);

@@ -72,17 +72,18 @@ public class UpLoadListView extends ListView implements OnScrollListener{
 	 * 完成刷新操作，重置状态,在你获取完数据并更新完adater之后，去在UI线程中调用该方法
 	 */
 	public void completeRefresh(Boolean hasData){
-		if(isLoadingMore){
 			//重置footerView状态
 			Log.e("@@@@","是否有数据:"+hasData);
 			if(hasData){
 				footerView.setPadding(0, -footerViewHeight,0, 0);
+				footerView.findViewById(R.id.ll_load_more).setVisibility(View.VISIBLE);
+				footerView.findViewById(R.id.rl_load_not_data).setVisibility(View.GONE);
 			}else{
 				footerView.findViewById(R.id.ll_load_more).setVisibility(View.GONE);
 				footerView.findViewById(R.id.rl_load_not_data).setVisibility(View.VISIBLE);
 			}
 			isLoadingMore = false;
-		}
+
 	}
 
 	private OnRefreshListener listener;

@@ -232,41 +232,52 @@
                 android:numColumns="2"
                 android:paddingLeft="15dp"
                 ></com.blanink.view.NoScrollGridview>
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/rl_down"
+                android:layout_below="@id/product_attribute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/product_attribute"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
                 android:background="@color/colorWhite">
-                <TextView
-                    android:id="@+id/attactment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/colorBlack"
-                    android:text="附件:"/>
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/attactment"
-                    android:layout_marginLeft="5dp"
-                    android:background="@color/colorBackGround">
 
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    >
                     <TextView
-                        android:id="@+id/tv_attactment"
-                        android:layout_width="60dp"
-                        android:layout_height="20dp"
-                        android:text="查看"
-                        android:textSize="12sp"
-                        android:layout_margin="1dp"
-                        android:gravity="center"
-                        android:textColor="@color/colorBlue"
-                        android:background="@drawable/selector_corner_blue"/>
+                        android:id="@+id/attactment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/colorBlack"
+                        android:text="附件:"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/attactment"
+                        android:layout_marginLeft="5dp"
+                        android:background="@color/colorBackGround">
+
+                        <TextView
+                            android:id="@+id/tv_attactment"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="查看"
+                            android:textSize="14sp"
+                            android:layout_margin="1dp"
+                            android:gravity="center"
+                            android:textColor="@color/colorBlue"
+                            android:background="@drawable/selector_corner_blue"/>
+                    </RelativeLayout>
                 </RelativeLayout>
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"></RelativeLayout>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/order_detail_ll_note"
                 android:layout_width="match_parent"
